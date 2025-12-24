@@ -1,21 +1,152 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungeun Lee | POSTECH</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <style>
+        :root {
+            --nav-bg: #111;
+            --nav-text: #fff;
+            --nav-active: #4db8ff;
+            --header-color: #2c3e50;
+        }
+
+        /* 1. 상단바 높이에 영향을 주는 body line-height 통일 */
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; }
+
+        /* 2. 상단 네비게이션 스타일 (두 파일 완전 동일) */
+        nav {
+            background-color: var(--nav-bg);
+            padding: 15px 0; /* 좌우 패딩을 제거합니다 */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo a { 
+            color: var(--nav-text); text-decoration: none; font-weight: bold; 
+            font-size: 1.3rem; letter-spacing: 0.5px; text-transform: uppercase; 
+        }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { 
+            color: var(--nav-text); text-decoration: none; 
+            font-weight: 500; font-size: 0.95rem; 
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--nav-active); }
+
+        /* 프로필 및 컨텐츠 섹션 */
+        .container { max-width: 950px; margin: 60px auto; padding: 0 20px; }
+        header { display: flex; align-items: flex-start; gap: 50px; margin-bottom: 60px; flex-wrap: wrap; }
+        .profile-img { width: 240px; height: 240px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .bio-text { flex: 1; min-width: 320px; }
+        .bio-text h1 { margin: 0 0 15px 0; font-size: 2.8rem; color: var(--header-color); }
+        .bio-text p { margin: 8px 0; font-size: 1.1rem; color: #555; text-align: justify; }
+
+        section { margin-top: 40px; }
+        h2 { font-size: 1.8rem; border-bottom: 2px solid var(--header-color); padding-bottom: 10px; color: var(--header-color); margin-bottom: 25px; }
+        #news p { margin: 14px 0; font-size: 1.05rem; }
+        
+        .blue { color: #4db8ff !important; }
+        .orange { color: #ed7d31 !important; }
+        
+        footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid #eee; text-align: center; }
+        .social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+        .social-links a { text-decoration: none; color: var(--header-color); font-weight: bold; padding: 10px 20px; border: 1px solid #ddd; border-radius: 8px; transition: 0.3s; }
+        .social-links a:hover { background-color: var(--header-color); color: #fff; }
+    </style>
 </head>
 <body>
-  <p>Hello, I'm Junwoo Kim!</p>
-	<p>I am an integrated MS-Ph.D student of Pohang University of Science and Technology(POSTECH).</p>
-	<p>My areas of interest are Haptics and AR/VR, and I am mainly conducting research to improve user experience through Haptic rendering within AR/VR.</p>
 
-	<p>Sorry, my website hasn't been created yet.</p>
-	<p>If you wish to contact us separately, please contact us by email or contact number.</p>
+<nav>
+    <div class="nav-container">
+        <div class="nav-logo"><a href="index.html">Jungeun Lee</a></div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="publications.html">Publications</a>
+        </div>
+    </div>
+</nav>
 
-	<p>Contact: (+82) 10-4172-8514</p>
-	<p>E-mail: kjw8515@postech.ac.kr</p>
-	<p>Interaction Lab: https://interaction.postech.ac.kr/</p> 
+<div class="container">
+    <header>
+        <img src="figure/profile/main.jpg" alt="Jungeun Lee" class="profile-img">
+        <div class="bio-text">
+            <h1>Jungeun Lee</h1>
+            <p>
+                I am a Ph.D. candidate in the department of Convergence IT Engineering at POSTECH advised by Seungmoon Choi. 
+                I am interested in Haptics, Human-Robot Interaction (HRI), and Virtual Reality (VR). 
+                My research goal is to present enriched information to users through designing haptic hardware and rendering methods.
+            </p>
+
+        <div class="social-links">
+        <a href="mailto:jungeunlee@postech.ac.kr">📧 Email</a>
+        <a href="https://drive.google.com/file/d/1mYFWWyCQ3fTV5cFCMNo3IhD9A-1FP_5g/view" target="_blank">📄 CV</a>
+        <a href="https://scholar.google.com/citations?user=-OF7c5gwlkkC&hl=en" target="_blank">🎓 Scholar</a>
+        <a href="https://linkedin.com/in/jungeun-lee-43036521a/" target="_blank">🔗 LinkedIn</a>
+    </div>
+        </div>
+    </header>
+
+    <section id="news">
+        <h2>News</h2>
+        <p><strong>Dec. 2025 |</strong> I passed PhD candidacy.</p>
+        
+        <p>
+            <strong>Nov. 2025 |</strong>
+            A paper published in npj Flexible Electronics.
+            <a href="https://www.nature.com/articles/s41528-025-00490-9" target="_blank"><i-icon name="article" color="blue"></i-icon></a>
+        </p>
+
+        <p>
+            <strong>Jul. 2025 |</strong>
+            One paper was demonstrated at WHC 2025.
+            <a href="https://youtu.be/uXlJCYZuc6I?t=100" target="_blank"><i-icon name="video_library" color="blue"></i-icon></a>
+        </p>
+
+        <p>
+            <strong>Feb. 2025 |</strong>
+            A demonstartion for SkinHaptics has been accepted to CHI 2025 Interactivity. 
+            <a href="https://dl.acm.org/doi/full/10.1145/3706599.3721275" target="_blank"><i-icon name="article" color="blue"></i-icon></a>
+        </p>
+
+        <p>
+            <strong>Jan. 2025 |</strong>
+            A paper has been conditionally accepted to CHI 2025. 
+            <a href="https://dl.acm.org/doi/full/10.1145/3706598.3713891" target="_blank"><i-icon name="article" color="blue"></i-icon></a>
+            <a href="https://www.youtube.com/watch?v=FNAL2OLkwdI&t=2s" target="_blank"><i-icon name="video_library" color="blue"></i-icon></a>
+        </p>
+        
+        <p>
+            <strong>Jun. 2024 |</strong>
+            My research proposal has been selected as beneficiaries of the NRF Fellowship Grants for Ph.D. Studies (한국연구재단 박사과정생연구장려금지원).
+            <i-icon name="trophy" color="orange"></i-icon>
+        </p>
+    </section>
+</div>
+
+<footer>
+    <p style="font-size: 0.85rem; color: #888;">© 2025 Jungeun Lee. All rights reserved.</p>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('i-icon').forEach(el => {
+            const name = el.getAttribute('name');
+            const colorClass = el.getAttribute('color') || '';
+            el.outerHTML = `<span class="material-symbols-outlined ${colorClass}" style="vertical-align: middle; font-size: 1.25rem;">${name}</span>`;
+        });
+    });
+</script>
+
 </body>
 </html>
