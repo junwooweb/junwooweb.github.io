@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications | Jungeun Lee</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <style>
+        :root {
+            --nav-bg: #111;
+            --nav-text: #fff;
+            --nav-active: #4db8ff;
+            --venue-blue: #4d8cff;
+            --award-orange: #ed7d31;
+        }
+
+        /* 1. index.html과 동일한 body 줄 간격 설정 */
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #000; }
+
+        /* 2. 상단 네비게이션 스타일 (index.html과 100% 동일하게 수정) */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            background-color: var(--nav-bg); padding: 15px 10%; 
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-logo a { 
+            color: var(--nav-text); text-decoration: none; font-weight: bold; 
+            font-size: 1.3rem; letter-spacing: 0.5px; text-transform: uppercase; 
+        }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { 
+            color: var(--nav-text); text-decoration: none; 
+            font-weight: 500; font-size: 0.95rem; 
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--nav-active); }
+
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .year-header { font-size: 2.8rem; font-weight: bold; margin: 60px 0 30px; border-bottom: 2px solid #eee; }
+
+        .pub-row { display: flex; gap: 40px; margin-bottom: 50px; align-items: flex-start; }
+        .pub-image { width: 300px; flex-shrink: 0; border: 1px solid #eee; }
+        .pub-image img { width: 100%; display: block; }
+        
+        .pub-info { flex: 1; }
+        .pub-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 12px; display: block; line-height: 1.3; }
+        .pub-authors { color: #555; margin-bottom: 5px; font-size: 1.05rem; }
+        .author-bold { font-weight: bold; text-decoration: underline; }
+        .pub-venue { color: var(--venue-blue); font-weight: bold; font-size: 1.05rem; margin-bottom: 8px; }
+        .award-text { color: var(--award-orange); font-weight: bold; }
+
+        .blue { color: var(--nav-active) !important; }
+        .orange { color: var(--award-orange) !important; }
+        .pub-info a { text-decoration: none; margin-right: 10px; display: inline-block; color: inherit; font-size: 0.95rem; font-weight: 600; }
+        .pub-info a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-logo"><a href="index.html">JUNGEUN LEE</a></div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="publication.html" class="active">Publications</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="year-header">2025</div>
+
+    <div class="pub-row">
+        <div class="pub-image"><img src="figure/publish/[J5]Simultaneous.png" alt="npjFE_Simultaneous"></div>
+        <div class="pub-info">
+            <span class="pub-title">[J5] Simultaneous decoding of static, dynamic, and thermal tactile stimuli by using pulsed spike signals in ion-electronic skin</span>
+            <div class="pub-authors"> Hyeongseok Choi, <span class="author-bold">Jungeun Lee</span>, Seungmoon Choi, Taeyeong Kim, Unyong Jeong.</div>
+            <div class="pub-venue">npj Flexible Electronics</div>
+            
+            <a href="https://www.nature.com/articles/s41528-025-00490-9" target="_blank"> Paper <i-icon name="article" color="blue"></i-icon></a>
+        </div>
+    </div>
+
+    <div class="pub-row">
+        <div class="pub-image"><img src="figure/publish/[C2]SkinHaptics.png" alt="CHI25_SkinHaptics"></div>
+        <div class="pub-info">
+            <span class="pub-title">[C2] SkinHaptics: Exploring Skin Softness Perception and Virtual Body Embodiment Techniques to Enhance Self-Haptic Interactions</span>
+            <div class="pub-authors"><span class="author-bold">Jungeun Lee</span>, Minha Jeon, Jinyoung Lee, Seungmoon Choi, and Seungjae Oh.</div>
+            <div class="pub-venue">ACM Conference on Human Factors in Computing Systems (CHI)</div>
+            
+            <a href="https://dl.acm.org/doi/full/10.1145/3706598.3713891" target="_blank"> Paper <i-icon name="article" color="blue"></i-icon></a>
+            <a href="https://www.youtube.com/watch?v=FNAL2OLkwdI" target="_blank"> Video <i-icon name="video_library" color="blue"></i-icon></a>
+        </div>
+    </div>
+
+    <div class="year-header">2024</div>
+
+    <div class="pub-row">
+        <div class="pub-image"><img src="figure/publish/[J4]Multimodal.png" alt="TOH24_Multimodal"></div>
+        <div class="pub-info">
+            <span class="pub-title">[J4] Multimodal Haptic Feedback for Virtual Collisions Combining Vibrotactile and Electrical Muscle Stimulation</span>
+            <div class="pub-authors"><span class="author-bold">Jungeun Lee</span> and Seungmoon Choi.</div>
+            <div class="pub-venue">IEEE Transactions on Haptics</div>
+            
+            <a href="https://ieeexplore.ieee.org/abstract/document/10400864" target="_blank"> Paper <i-icon name="article" color="blue"></i-icon></a>
+        </div>
+    </div>
+
+    <div class="pub-row">
+        <div class="pub-image"><img src="figure/publish/[J3]Sound.jpg" alt="TOH24_Sound"></div>
+        <div class="pub-info">
+            <span class="pub-title">[J3] Sound-to-touch crossmodal pitch matching for short sounds</span>
+            <div class="pub-authors">Dong-Geun Kim, <span class="author-bold">Jungeun Lee</span>, and Seungmoon Choi.</div>
+            <div class="pub-venue">IEEE Transactions on Haptics</div>
+            
+            <a href="https://ieeexplore.ieee.org/abstract/document/10337769" target="_blank"> Paper <i-icon name="article" color="blue"></i-icon></a>
+        </div>
+    </div>
+
+    <div class="year-header">2023</div>
+
+    <div class="pub-row">
+        <div class="pub-image"><img src="figure/publish/[C1]Generating.png" alt="CHI23_Generating"></div>
+        <div class="pub-info">
+            <span class="pub-title">[C1] Generating Real‐Time, Selective, and Multimodal Haptic Effects from Sound for Gaming Experience Enhancement</span>
+            <div class="pub-authors">Gyeore yun, Minjae Mun, <span class="author-bold">Jungeun Lee</span>, Dong-Geun Kim, Hong Z. Tan, and Seungmoon Choi.</div>
+            <div class="pub-venue">ACM Conference on Human Factors in Computing Systems (CHI)</div>
+            
+            <a href="https://dl.acm.org/doi/full/10.1145/3544548.3580787" target="_blank"> Paper <i-icon name="article" color="blue"></i-icon></a>
+            <a href="https://www.youtube.com/watch?v=TYE560GHJTw" target="_blank"> Video <i-icon name="video_library" color="blue"></i-icon></a>            
+        </div>
+    </div>
+
+
+    <div class="year-header">2022</div>
+
+    <div class="pub-row">
+        <div class="pub-image"><img src="figure/publish/[P1]MMGrip.png" alt="SiggraphAsia22_MMGrip"></div>
+        <div class="pub-info">
+            <span class="pub-title">[P1] MMGrip: A Handheld Multimodal Haptic Device Combining Vibration, Impact, and Shear for Realistic Expression of Contact</span>
+            <div class="pub-authors">Dong-Geun Kim, <span class="author-bold">Jungeun Lee</span>, and Seungmoon Choi.</div>
+            <div class="pub-venue">ACM SIGGRAPH Asia 2022 Posters</div>
+            
+            <a href="https://dl.acm.org/doi/abs/10.1145/3550082.3564177" target="_blank"> Paper <i-icon name="article" color="blue"></i-icon></a>      
+        </div>
+    </div>
+
+    <div class="pub-row">
+        <div class="pub-image"><img src="figure/pub/ksc2022.png" alt="KSC Award"></div>
+        <div class="pub-info">
+            <span class="pub-title">
+                <i-icon name="emoji_events" color="orange"></i-icon>
+                [C1] A multimodal wearable haptic interaction system combining electrical muscle stimulation and vibration for VR sports
+            </span>
+            <div class="pub-authors"><span class="author-bold">Jungeun Lee</span> and Seungmoon Choi.</div>
+            [cite_start]<div class="pub-venue">Korea Software Congress (KSC) 2022. <span class="award-text">(Best Paper Award)</span></div>
+            
+            <a href="#" target="_blank"><i-icon name="article" color="blue"></i-icon></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('i-icon').forEach(el => {
+            const name = el.getAttribute('name');
+            const colorClass = el.getAttribute('color') || '';
+            // el.outerHTML을 사용하여 태그 자체를 span으로 교체
+            el.outerHTML = `<span class="material-symbols-outlined ${colorClass}" style="vertical-align: middle; font-size: 1.4rem;">${name}</span>`;
+        });
+    });
+</script>
+
+</body>
+</html>
