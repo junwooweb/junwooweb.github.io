@@ -6,16 +6,15 @@
     <title>Junwoo Kim | Interaction Lab</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --text-main: #333;
             --text-light: #666;
-            --accent: #2563eb; /* 차분한 연구실 블루 */
+            --accent: #2563eb;
             --bg-tag: #f1f5f9;
             --border-color: #e2e8f0;
-            /* 포스텍 시그니처 컬러 추가 */
-            --postech-color: #C9006C; 
+            --postech-color: #C9006C;
         }
 
         body { font-family: 'Inter', sans-serif; line-height: 1.6; margin: 0; color: var(--text-main); }
@@ -35,22 +34,22 @@
         /* 1. 프로필 섹션 */
         .profile-section { display: flex; gap: 3rem; margin-bottom: 4rem; align-items: flex-start; }
         .profile-img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-color); flex-shrink: 0; }
-        
+
         .profile-info h1 { margin: 0 0 0.5rem 0; font-size: 2.5rem; letter-spacing: -1px; }
         .profile-role { font-size: 1.1rem; color: var(--text-light); margin-bottom: 1rem; }
         .profile-bio { margin-bottom: 1.5rem; text-align: justify; }
-        
+
         /* 키워드 태그 */
         .keyword-box { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-        .tag { 
-            background: var(--bg-tag); color: #475569; 
-            padding: 4px 12px; border-radius: 6px; 
+        .tag {
+            background: var(--bg-tag); color: #475569;
+            padding: 4px 12px; border-radius: 6px;
             font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border-color);
         }
 
         /* 버튼 그룹 */
         .btn-group { display: flex; gap: 1rem; }
-        .btn { 
+        .btn {
             display: inline-flex; align-items: center; gap: 0.5rem;
             padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 8px;
             font-size: 0.9rem; font-weight: 600; color: var(--text-main);
@@ -58,23 +57,121 @@
         .btn:hover { background: var(--text-main); color: #fff; border-color: var(--text-main); }
         .material-symbols-outlined { font-size: 1.1rem; }
 
-        /* 2. Research Areas (그리드) */
+        /* 섹션 타이틀 */
         .section-title { font-size: 1.5rem; border-bottom: 2px solid var(--text-main); padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        /* 2. Research Areas */
         .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 4rem; }
         .area-card { background: #f8fafc; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); transition: transform 0.2s; }
         .area-card:hover { transform: translateY(-3px); border-color: var(--accent); }
         .area-card h3 { margin: 0 0 0.8rem 0; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
         .area-card p { margin: 0; font-size: 0.9rem; color: var(--text-light); line-height: 1.5; }
 
-        /* Publications 리스트 */
-        .pub-item { margin-bottom: 1.5rem; padding-left: 1rem; border-left: 3px solid var(--border-color); }
-        .pub-title { font-weight: 700; display: block; margin-bottom: 0.2rem; }
-        .pub-authors { color: var(--text-light); font-size: 0.9rem; margin-bottom: 0.2rem; }
-        .pub-venue { color: var(--accent); font-size: 0.85rem; font-weight: 600; font-style: italic; }
-        .pub-links { margin-top: 0.5rem; font-size: 0.85rem; font-weight: 600; }
-        .pub-links a { margin-right: 10px; color: #64748b; }
-        .pub-links a:hover { color: var(--accent); }
+        /* 3. Current Research */
+        .research-section { margin-bottom: 4rem; }
+        .research-list { display: flex; flex-direction: column; gap: 1.1rem; }
+        .research-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.4rem 1.6rem;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: #fafbfd;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+        .research-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(37,99,235,0.08);
+            border-color: var(--accent);
+        }
+        .research-num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #dbeafe;
+            letter-spacing: -2px;
+            line-height: 1;
+            min-width: 3rem;
+            text-align: center;
+            padding-top: 2px;
+            user-select: none;
+        }
+        .research-item:hover .research-num { color: #bfdbfe; }
+        .research-body { flex: 1; }
+        .research-title { font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.4rem; line-height: 1.4; }
+        .research-keywords { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .research-kw {
+            background: #eff6ff;
+            color: #3b82f6;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid #bfdbfe;
+        }
+
+        /* 4. Publications */
+        .pub-section { margin-bottom: 4rem; }
         .pub-category { font-size: 1rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; margin: 1.5rem 0 1rem 0; }
+        .pub-item {
+            margin-bottom: 1.2rem;
+            padding: 1rem 1rem 1rem 1.2rem;
+            border-left: 3px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: border-color 0.2s;
+        }
+        .pub-item:hover { border-left-color: var(--accent); }
+        .pub-main { flex: 1; min-width: 0; }
+        .pub-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1px 8px;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+            letter-spacing: 0.03em;
+        }
+        .pub-badge.conf { background: #64748b; }
+        .pub-title { font-weight: 700; display: block; margin-bottom: 0.3rem; line-height: 1.4; }
+        .pub-authors { color: var(--text-light); font-size: 0.88rem; margin-bottom: 0.2rem; }
+        .pub-venue { color: var(--accent); font-size: 0.85rem; font-weight: 600; font-style: italic; }
+
+        /* 논문 이미지 버튼 */
+        .pub-thumb {
+            flex-shrink: 0;
+            width: 88px;
+            height: 88px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            color: #94a3b8;
+            font-size: 0.65rem;
+            font-weight: 600;
+            gap: 0.3rem;
+            transition: all 0.2s;
+            text-decoration: none;
+            text-align: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .pub-thumb:hover {
+            border-color: var(--accent);
+            background: #eff6ff;
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37,99,235,0.12);
+        }
+        .pub-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 7px; }
+        .pub-thumb .material-symbols-outlined { font-size: 2rem; }
 
         /* 반응형 */
         @media (max-width: 768px) {
@@ -82,6 +179,7 @@
             .profile-info { width: 100%; }
             .keyword-box, .btn-group { justify-content: center; }
             .areas-grid { grid-template-columns: 1fr; }
+            .pub-thumb { width: 72px; height: 72px; }
         }
     </style>
 </head>
@@ -99,9 +197,10 @@
 
 <div class="container">
 
+    <!-- Profile -->
     <section class="profile-section">
-        <img src= "contents/main.png" alt="Junwoo Kim" class="profile-img">
-        
+        <img src="contents/main.png" alt="Junwoo Kim" class="profile-img">
+
         <div class="profile-info">
             <h1>Junwoo Kim</h1>
             <div class="profile-role">
@@ -111,7 +210,7 @@
                     B.S. in Electronics Engineering (EE), PNU, South Korea<br>
                 </span>
             </div>
-            
+
             <div class="profile-bio">
                 I am an HCI researcher studying haptic perception and rendering techniques that provide physically grounded sensations in virtual and immersive environments.
                 My research focuses on leveraging signal processing and AI-based methods to translate digital content into meaningful haptic feedback.
@@ -138,11 +237,12 @@
         </div>
     </section>
 
+    <!-- Research Areas -->
     <section>
         <div class="section-title">Research Areas</div>
         <div class="areas-grid">
             <div class="area-card">
-                <h3><span class="material-symbols-outlined" style="color:#ef4444;">touch_app</span> Haptic Perception & Rendering</h3>
+                <h3><span class="material-symbols-outlined" style="color:#ef4444;">touch_app</span> Haptic Perception &amp; Rendering</h3>
                 <p>Designing psychophysics-based tactile rendering algorithms to enhance realism in virtual environments.</p>
             </div>
             <div class="area-card">
@@ -156,52 +256,140 @@
         </div>
     </section>
 
-    <section>
+    <!-- Current Research -->
+    <section class="research-section">
+        <div class="section-title">
+            <span class="material-symbols-outlined">science</span> Current Research
+        </div>
+        <div class="research-list">
+
+            <div class="research-item">
+                <div class="research-num">01</div>
+                <div class="research-body">
+                    <div class="research-title">Real-Time Audiovisual-to-Haptic Rendering System for Cinematic Content</div>
+                    <div class="research-keywords">
+                        <span class="research-kw"># Haptic Rendering</span>
+                        <span class="research-kw"># Multimodal</span>
+                        <span class="research-kw"># Audio / Video</span>
+                        <span class="research-kw"># Real-Time</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-item">
+                <div class="research-num">02</div>
+                <div class="research-body">
+                    <div class="research-title">Full-Body Haptics for VR Interaction</div>
+                    <div class="research-keywords">
+                        <span class="research-kw"># Full-Body Haptics</span>
+                        <span class="research-kw"># VR</span>
+                        <span class="research-kw"># Vibrotactile</span>
+                        <span class="research-kw"># User Interaction</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-item">
+                <div class="research-num">03</div>
+                <div class="research-body">
+                    <div class="research-title">Directional Cueing in 3D Space</div>
+                    <div class="research-keywords">
+                        <span class="research-kw"># Spatial Haptics</span>
+                        <span class="research-kw"># Directional Cue</span>
+                        <span class="research-kw"># 3D Perception</span>
+                        <span class="research-kw"># Torso Display</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Publications -->
+    <section class="pub-section">
         <div class="section-title">
             <span class="material-symbols-outlined">article</span> Publications
         </div>
 
+        <!-- Journal Papers -->
         <div class="pub-category">Journal Papers</div>
 
         <div class="pub-item">
-            <span class="pub-title">Representing Egocentric Directions With Torso-Applied Vibrotactile Stimuli</span>
-            <div class="pub-authors"><u>Junwoo Kim</u>, Jaejun Park, Chaeyong Park, Junseok Park, and Seungmoon Choi</div>
-            <div class="pub-venue">IEEE Transactions on Haptics (ToH)</div>
+            <div class="pub-main">
+                <span class="pub-title">
+                    <span class="pub-badge">J2</span>
+                    Representing Egocentric Directions With Torso-Applied Vibrotactile Stimuli
+                </span>
+                <div class="pub-authors"><u>Junwoo Kim</u>, Jaejun Park, Chaeyong Park, Junseok Park, and Seungmoon Choi</div>
+                <div class="pub-venue">IEEE Transactions on Haptics (ToH), 2026</div>
+            </div>
+            <a href="https://ieeexplore.ieee.org/abstract/document/11408227" target="_blank" class="pub-thumb" title="View Paper">
+                <span class="material-symbols-outlined">article</span>
+                <span>View Paper</span>
+            </a>
         </div>
 
         <div class="pub-item">
-            <span class="pub-title">Telemetry-based Haptic Rendering for Racing Game Experience Improvement</span>
-            <div class="pub-authors">Jiwan Lee, <u>Junwoo Kim</u>, Jeonggoo Kang, Eunsoo Jo, Dong Chul Park, and Seungmoon Choi</div>
-            <div class="pub-venue">IEEE Transactions on Haptics (ToH)</div>
+            <div class="pub-main">
+                <span class="pub-title">
+                    <span class="pub-badge">J1</span>
+                    Telemetry-based Haptic Rendering for Racing Game Experience Improvement
+                </span>
+                <div class="pub-authors">Jiwan Lee, <u>Junwoo Kim</u>, Jeonggoo Kang, Eunsoo Jo, Dong Chul Park, and Seungmoon Choi</div>
+                <div class="pub-venue">IEEE Transactions on Haptics (ToH), 2024</div>
+            </div>
+            <a href="https://ieeexplore.ieee.org/document/10413623" target="_blank" class="pub-thumb" title="View Paper">
+                <span class="material-symbols-outlined">article</span>
+                <span>View Paper</span>
+            </a>
         </div>
 
+        <!-- Conference Papers -->
         <div class="pub-category">Conference Papers</div>
 
         <div class="pub-item">
-            <span class="pub-title">Human Identification Performance of Vibrotactile Stimuli Applied on the Torso along Azimuth or Elevation</span>
-            <div class="pub-authors"><u>Junwoo Kim</u>, Jaejun Park, Chaeyong Park, and Seungmoon Choi</div>
-            <div class="pub-venue">2024 EuroHaptics Conference (EH'24)</div>
-            <div class="pub-links">
-                <a href="https://link.springer.com/chapter/10.1007/978-3-031-70058-3_1" target="_blank">[Link]</a>
+            <div class="pub-main">
+                <span class="pub-title">
+                    <span class="pub-badge conf">C3</span>
+                    Human Identification Performance of Vibrotactile Stimuli Applied on the Torso along Azimuth or Elevation
+                </span>
+                <div class="pub-authors"><u>Junwoo Kim</u>, Jaejun Park, Chaeyong Park, and Seungmoon Choi</div>
+                <div class="pub-venue">2024 EuroHaptics Conference (EH'24)</div>
             </div>
+            <a href="https://link.springer.com/chapter/10.1007/978-3-031-70058-3_1" target="_blank" class="pub-thumb" title="View Paper">
+                <span class="material-symbols-outlined">article</span>
+                <span>View Paper</span>
+            </a>
         </div>
 
         <div class="pub-item">
-            <span class="pub-title">Information Transfer of Full-Body Vibrotactile Stimuli: An Initial Study with One to Three Sequential Vibrations</span>
-            <div class="pub-authors">Jaejun Park, <u>Junwoo Kim</u>, Sangyoon Han, Chaeyong Park, and Seungmoon Choi</div>
-            <div class="pub-venue">2023 IEEE World Haptics Conference (WHC'23), p. 41–47</div>
-            <div class="pub-links">
-                <a href="https://ieeexplore.ieee.org/abstract/document/10224391" target="_blank">[Link]</a>
+            <div class="pub-main">
+                <span class="pub-title">
+                    <span class="pub-badge conf">C2</span>
+                    Information Transfer of Full-Body Vibrotactile Stimuli: An Initial Study with One to Three Sequential Vibrations
+                </span>
+                <div class="pub-authors">Jaejun Park, <u>Junwoo Kim</u>, Sangyoon Han, Chaeyong Park, and Seungmoon Choi</div>
+                <div class="pub-venue">2023 IEEE World Haptics Conference (WHC'23), p. 41–47</div>
             </div>
+            <a href="https://ieeexplore.ieee.org/abstract/document/10224391" target="_blank" class="pub-thumb" title="View Paper">
+                <span class="material-symbols-outlined">article</span>
+                <span>View Paper</span>
+            </a>
         </div>
 
         <div class="pub-item">
-            <span class="pub-title">Human Recognition Performance of Simple Spatial Vibrotactile Patterns on the Torso</span>
-            <div class="pub-authors"><u>Junwoo Kim</u>*, Heeyeon Kim*, Chaeyong Park, and Seungmoon Choi</div>
-            <div class="pub-venue">2023 IEEE World Haptics Conference (WHC'23), p. 20–27</div>
-            <div class="pub-links">
-                <a href="https://ieeexplore.ieee.org/abstract/document/10224430" target="_blank">[Link]</a>
+            <div class="pub-main">
+                <span class="pub-title">
+                    <span class="pub-badge conf">C1</span>
+                    Human Recognition Performance of Simple Spatial Vibrotactile Patterns on the Torso
+                </span>
+                <div class="pub-authors"><u>Junwoo Kim</u>*, Heeyeon Kim*, Chaeyong Park, and Seungmoon Choi</div>
+                <div class="pub-venue">2023 IEEE World Haptics Conference (WHC'23), p. 20–27</div>
             </div>
+            <a href="https://ieeexplore.ieee.org/abstract/document/10224430" target="_blank" class="pub-thumb" title="View Paper">
+                <span class="material-symbols-outlined">article</span>
+                <span>View Paper</span>
+            </a>
         </div>
 
     </section>
