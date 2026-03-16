@@ -5,180 +5,246 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Junwoo Kim | Interaction Lab</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --text-main: #333;
-            --text-light: #666;
+            --text-main: #1e293b;
+            --text-light: #64748b;
             --accent: #2563eb;
+            --accent-light: #eff6ff;
             --bg-tag: #f1f5f9;
             --border-color: #e2e8f0;
             --postech-color: #C9006C;
+            --card-bg: #fafbfd;
         }
 
-        body { font-family: 'Inter', sans-serif; line-height: 1.6; margin: 0; color: var(--text-main); }
-        a { text-decoration: none; color: inherit; transition: 0.2s; }
-        a:hover { color: var(--accent); }
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.65; margin: 0; color: var(--text-main); background: #fff; }
+        a { text-decoration: none; color: inherit; transition: color 0.2s; }
 
-        /* 네비게이션 */
-        nav { background: #fff; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
-        .nav-inner { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
-        .nav-menu a { margin-left: 2rem; font-size: 0.95rem; color: var(--text-light); font-weight: 500; }
+        /* ── 네비게이션 ── */
+        nav { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .nav-inner { max-width: 1000px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.5px; color: var(--text-main); }
+        .nav-logo:hover { color: var(--accent); }
+        .nav-menu a { margin-left: 2rem; font-size: 0.9rem; color: var(--text-light); font-weight: 600; }
         .nav-menu a:hover, .nav-menu a.active { color: var(--accent); }
 
-        /* 메인 컨테이너 */
-        .container { max-width: 1000px; margin: 3rem auto; padding: 0 1.5rem; }
+        /* ── 컨테이너 ── */
+        .container { max-width: 1000px; margin: 3.5rem auto; padding: 0 1.5rem; }
 
-        /* 1. 프로필 섹션 */
+        /* ── 섹션 타이틀 ── */
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--border-color);
+            letter-spacing: -0.3px;
+        }
+        .section-title .material-symbols-outlined { font-size: 1.3rem; color: var(--accent); }
+
+        /* ── 1. 프로필 ── */
         .profile-section { display: flex; gap: 3rem; margin-bottom: 4rem; align-items: flex-start; }
-        .profile-img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-color); flex-shrink: 0; }
-
-        .profile-info h1 { margin: 0 0 0.5rem 0; font-size: 2.5rem; letter-spacing: -1px; }
-        .profile-role { font-size: 1.1rem; color: var(--text-light); margin-bottom: 1rem; }
-        .profile-bio { margin-bottom: 1.5rem; text-align: justify; }
+        .profile-img {
+            width: 190px; height: 190px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 24px rgba(37,99,235,0.12), 0 1px 4px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+        .profile-info h1 {
+            margin: 0 0 0.4rem 0;
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: var(--text-main);
+        }
+        .profile-role { font-size: 1rem; color: var(--text-light); margin-bottom: 1rem; line-height: 1.7; }
+        .profile-bio { margin-bottom: 1.4rem; color: #374151; line-height: 1.75; font-size: 0.96rem; }
 
         /* 키워드 태그 */
-        .keyword-box { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .keyword-box { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
         .tag {
             background: var(--bg-tag); color: #475569;
-            padding: 4px 12px; border-radius: 6px;
-            font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border-color);
+            padding: 3px 11px; border-radius: 20px;
+            font-size: 0.8rem; font-weight: 600; border: 1px solid var(--border-color);
         }
 
         /* 버튼 그룹 */
-        .btn-group { display: flex; gap: 1rem; }
+        .btn-group { display: flex; gap: 0.75rem; flex-wrap: wrap; }
         .btn {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 8px;
-            font-size: 0.9rem; font-weight: 600; color: var(--text-main);
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 7px 15px; border: 1.5px solid var(--border-color); border-radius: 8px;
+            font-size: 0.88rem; font-weight: 600; color: var(--text-main);
+            transition: all 0.18s;
         }
-        .btn:hover { background: var(--text-main); color: #fff; border-color: var(--text-main); }
+        .btn:hover { background: var(--text-main); color: #fff; border-color: var(--text-main); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .material-symbols-outlined { font-size: 1.1rem; }
 
-        /* 섹션 타이틀 */
-        .section-title { font-size: 1.5rem; border-bottom: 2px solid var(--text-main); padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
-
-        /* 2. Doctoral Research */
+        /* ── 2. Doctoral Research ── */
         .doctoral-section { margin-bottom: 4rem; }
         .doctoral-card {
             position: relative;
-            background: linear-gradient(135deg, #eff6ff 0%, #f8faff 60%, #f0fdf4 100%);
+            background: linear-gradient(135deg, #eff6ff 0%, #f8faff 55%, #f0fdf4 100%);
             border: 1px solid #bfdbfe;
             border-left: 5px solid var(--accent);
             border-radius: 14px;
-            padding: 2rem 2.2rem;
+            padding: 2rem 2.4rem;
             overflow: hidden;
         }
-        .doctoral-card::before {
+        .doctoral-card::after {
             content: '';
             position: absolute;
-            top: -40px; right: -40px;
-            width: 160px; height: 160px;
-            background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
+            top: -50px; right: -50px;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
         }
         .doctoral-topic {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: var(--accent);
-            margin: 0 0 0.8rem 0;
+            margin: 0 0 0.75rem 0;
             letter-spacing: -0.3px;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.55rem;
         }
-        .doctoral-topic .material-symbols-outlined { font-size: 1.4rem; }
+        .doctoral-topic .material-symbols-outlined { font-size: 1.35rem; }
         .doctoral-desc {
-            font-size: 0.97rem;
+            font-size: 0.96rem;
             color: #374151;
-            line-height: 1.75;
+            line-height: 1.8;
             margin: 0;
-            max-width: 820px;
         }
 
-        /* 3. Research Areas */
-        .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 4rem; }
-        .area-card { background: #f8fafc; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); transition: transform 0.2s; }
-        .area-card:hover { transform: translateY(-3px); border-color: var(--accent); }
-        .area-card h3 { margin: 0 0 0.8rem 0; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
-        .area-card p { margin: 0; font-size: 0.9rem; color: var(--text-light); line-height: 1.5; }
+        /* ── 3. Research Areas ── */
+        .areas-section { margin-bottom: 4rem; }
+        .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+        .area-card {
+            background: var(--card-bg); padding: 1.4rem 1.5rem;
+            border-radius: 12px; border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+        .area-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 6px 20px rgba(37,99,235,0.08); }
+        .area-card h3 { margin: 0 0 0.6rem 0; font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
+        .area-card p { margin: 0; font-size: 0.88rem; color: var(--text-light); line-height: 1.55; }
 
-        /* 3. Current Research */
+        /* ── 4. Current Research ── */
         .research-section { margin-bottom: 4rem; }
-        .research-list { display: flex; flex-direction: column; gap: 1.1rem; }
+        .research-list { display: flex; flex-direction: column; gap: 1rem; }
         .research-item {
             display: flex;
             align-items: flex-start;
-            gap: 1.5rem;
-            padding: 1.4rem 1.6rem;
+            gap: 1.4rem;
+            padding: 1.3rem 1.6rem;
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            background: #fafbfd;
+            background: var(--card-bg);
             transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
         }
         .research-item:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 20px rgba(37,99,235,0.08);
-            border-color: var(--accent);
+            transform: translateX(5px);
+            box-shadow: 0 4px 20px rgba(37,99,235,0.07);
+            border-color: #93c5fd;
         }
         .research-num {
-            font-size: 2rem;
+            font-size: 1.9rem;
             font-weight: 800;
             color: #dbeafe;
             letter-spacing: -2px;
             line-height: 1;
-            min-width: 3rem;
+            min-width: 2.8rem;
             text-align: center;
-            padding-top: 2px;
+            padding-top: 3px;
             user-select: none;
+            transition: color 0.2s;
         }
         .research-item:hover .research-num { color: #bfdbfe; }
         .research-body { flex: 1; }
-        .research-title { font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.4rem; line-height: 1.4; }
-        .research-keywords { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .research-title { font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.4rem; line-height: 1.4; }
+        .research-keywords { display: flex; gap: 0.35rem; flex-wrap: wrap; }
         .research-kw {
-            background: #eff6ff;
-            color: #3b82f6;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            background: #eff6ff; color: #3b82f6;
+            padding: 2px 10px; border-radius: 20px;
+            font-size: 0.73rem; font-weight: 600;
             border: 1px solid #bfdbfe;
         }
 
-        /* 4. Publications */
+        /* ── 5. Publications ── */
         .pub-section { margin-bottom: 4rem; }
-        .pub-category { font-size: 1rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; margin: 1.5rem 0 1rem 0; }
+        .pub-category {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 2rem 0 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .pub-category::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
         .pub-item {
-            margin-bottom: 1.2rem;
-            padding: 1rem 1rem 1rem 1.2rem;
-            border-left: 3px solid var(--border-color);
+            margin-bottom: 1rem;
+            padding: 1.1rem 1.2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             gap: 1.5rem;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: #fff;
         }
-        .pub-item:hover { border-left-color: var(--accent); }
+        .pub-item:hover {
+            border-color: #93c5fd;
+            box-shadow: 0 3px 16px rgba(37,99,235,0.07);
+        }
         .pub-main { flex: 1; min-width: 0; }
         .pub-badge {
             display: inline-block;
             background: var(--accent);
             color: white;
-            padding: 1px 8px;
+            padding: 1px 7px;
             border-radius: 4px;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            margin-right: 0.5rem;
+            margin-right: 0.45rem;
             vertical-align: middle;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.04em;
         }
         .pub-badge.conf { background: #d97706; }
-        .pub-title { font-weight: 700; display: block; margin-bottom: 0.3rem; line-height: 1.4; }
-        .pub-authors { color: var(--text-light); font-size: 0.88rem; margin-bottom: 0.2rem; }
-        .pub-venue { color: var(--accent); font-size: 0.85rem; font-weight: 600; font-style: italic; }
+        .pub-title {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.3rem;
+            line-height: 1.45;
+            font-size: 0.97rem;
+        }
+        .pub-title a {
+            color: var(--text-main);
+            border-bottom: 1.5px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .pub-title a:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+        .pub-authors { color: var(--text-light); font-size: 0.86rem; margin-bottom: 0.2rem; }
+        .pub-venue { color: var(--accent); font-size: 0.83rem; font-weight: 600; font-style: italic; }
 
         /* 논문 이미지 버튼 */
         .pub-thumb {
@@ -210,13 +276,13 @@
         .pub-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; }
         .pub-thumb .material-symbols-outlined { font-size: 2rem; }
 
-        /* 반응형 */
+        /* ── 반응형 ── */
         @media (max-width: 768px) {
             .profile-section { flex-direction: column; align-items: center; text-align: center; }
             .profile-info { width: 100%; }
             .keyword-box, .btn-group { justify-content: center; }
             .areas-grid { grid-template-columns: 1fr; }
-            .pub-item { flex-direction: column; }
+            .pub-item { flex-direction: column; align-items: flex-start; }
             .pub-thumb { width: 100%; height: 180px; }
         }
     </style>
@@ -228,7 +294,6 @@
         <a href="index.html" class="nav-logo">Junwoo Kim</a>
         <div class="nav-menu">
             <a href="index.html" class="active">Home</a>
-            <a href="publications.html">Publications</a>
         </div>
     </div>
 </nav>
@@ -243,21 +308,21 @@
             <h1>Junwoo Kim</h1>
             <div class="profile-role">
                 Ph.D. Student in CSE, <strong style="color: var(--postech-color);">POSTECH</strong>, South Korea<br>
-                <a href="https://interaction.postech.ac.kr/" target="_blank" style="color:var(--accent); font-weight:600;">Interaction Lab</a> (Advisor: Prof. Seungmoon Choi)<br>
-                <span style="font-size: 0.9rem; color: #888; display:inline-block; margin-top:4px;">
-                    B.S. in Electronics Engineering (EE), PNU, South Korea<br>
+                <a href="https://interaction.postech.ac.kr/" target="_blank" style="color:var(--accent); font-weight:600;">Interaction Lab</a> &nbsp;·&nbsp; Advisor: Prof. Seungmoon Choi<br>
+                <span style="font-size: 0.88rem; color: #94a3b8; display:inline-block; margin-top:3px;">
+                    B.S. in Electronics Engineering, PNU, South Korea
                 </span>
             </div>
 
             <div class="profile-bio">
                 I am an HCI researcher studying haptic perception and rendering techniques that provide physically grounded sensations in virtual and immersive environments.
-                My research focuses on leveraging signal processing and AI-based methods to translate digital content into meaningful haptic feedback.
+                My research focuses on leveraging signal processing and multimodal AI to translate digital content into meaningful haptic feedback.
             </div>
 
             <div class="keyword-box">
                 <span class="tag"># HCI</span>
                 <span class="tag"># Haptics</span>
-                <span class="tag"># AI</span>
+                <span class="tag"># Multimodal AI</span>
                 <span class="tag"># XR / VR / AR</span>
             </div>
 
@@ -286,22 +351,24 @@
                 Automatic Haptic Generation for Viewing Experiences
             </div>
             <p class="doctoral-desc">
-                My doctoral research focuses on developing <strong>automatic haptic authoring methods</strong> that enrich user immersion in <strong>Virtual Reality (VR)</strong> and virtual environments. By analyzing audiovisual content and leveraging AI-driven signal processing, this work aims to seamlessly translate digital media into meaningful, physically grounded haptic feedback — enabling users to not just see and hear, but <em>feel</em> virtual experiences.
+                My doctoral research focuses on developing <strong>automatic haptic authoring methods</strong> that enrich user immersion in <strong>Virtual Reality (VR)</strong> and virtual environments. By analyzing multimodal content — including audio and video — and applying <strong>Multimodal AI</strong>, this work aims to seamlessly translate digital media into meaningful, physically grounded haptic feedback, enabling users to not just see and hear, but <em>feel</em> virtual experiences.
             </p>
         </div>
     </section>
 
     <!-- Research Areas -->
-    <section>
-        <div class="section-title">Research Areas</div>
+    <section class="areas-section">
+        <div class="section-title">
+            <span class="material-symbols-outlined">hub</span> Research Areas
+        </div>
         <div class="areas-grid">
             <div class="area-card">
                 <h3><span class="material-symbols-outlined" style="color:#ef4444;">touch_app</span> Haptic Perception &amp; Rendering</h3>
                 <p>Designing psychophysics-based tactile rendering algorithms to enhance realism in virtual environments.</p>
             </div>
             <div class="area-card">
-                <h3><span class="material-symbols-outlined" style="color:#3b82f6;">smart_toy</span> AI</h3>
-                <p>Utilizing AI techniques to creating haptic signals from multimodal data automatically.</p>
+                <h3><span class="material-symbols-outlined" style="color:#3b82f6;">smart_toy</span> Multimodal AI</h3>
+                <p>Utilizing multimodal AI to automatically generate haptic signals from audiovisual data.</p>
             </div>
             <div class="area-card">
                 <h3><span class="material-symbols-outlined" style="color:#10b981;">view_in_ar</span> VR / AR / XR</h3>
@@ -365,7 +432,6 @@
             <span class="material-symbols-outlined">article</span> Publications
         </div>
 
-        <!-- Journal Papers -->
         <div class="pub-category">Journal Papers</div>
 
         <div class="pub-item">
@@ -375,7 +441,7 @@
             <div class="pub-main">
                 <span class="pub-title">
                     <span class="pub-badge">J2</span>
-                    Representing Egocentric Directions With Torso-Applied Vibrotactile Stimuli
+                    <a href="https://ieeexplore.ieee.org/abstract/document/11408227" target="_blank">Representing Egocentric Directions With Torso-Applied Vibrotactile Stimuli</a>
                 </span>
                 <div class="pub-authors"><u>Junwoo Kim</u>, Jaejun Park, Chaeyong Park, Junseok Park, and Seungmoon Choi</div>
                 <div class="pub-venue">IEEE Transactions on Haptics (ToH), 2026</div>
@@ -389,14 +455,13 @@
             <div class="pub-main">
                 <span class="pub-title">
                     <span class="pub-badge">J1</span>
-                    Telemetry-based Haptic Rendering for Racing Game Experience Improvement
+                    <a href="https://ieeexplore.ieee.org/document/10413623" target="_blank">Telemetry-based Haptic Rendering for Racing Game Experience Improvement</a>
                 </span>
                 <div class="pub-authors">Jiwan Lee, <u>Junwoo Kim</u>, Jeonggoo Kang, Eunsoo Jo, Dong Chul Park, and Seungmoon Choi</div>
                 <div class="pub-venue">IEEE Transactions on Haptics (ToH), 2024</div>
             </div>
         </div>
 
-        <!-- Conference Papers -->
         <div class="pub-category">Conference Papers</div>
 
         <div class="pub-item">
@@ -406,7 +471,7 @@
             <div class="pub-main">
                 <span class="pub-title">
                     <span class="pub-badge conf">C3</span>
-                    Human Identification Performance of Vibrotactile Stimuli Applied on the Torso along Azimuth or Elevation
+                    <a href="https://link.springer.com/chapter/10.1007/978-3-031-70058-3_1" target="_blank">Human Identification Performance of Vibrotactile Stimuli Applied on the Torso along Azimuth or Elevation</a>
                 </span>
                 <div class="pub-authors"><u>Junwoo Kim</u>, Jaejun Park, Chaeyong Park, and Seungmoon Choi</div>
                 <div class="pub-venue">2024 EuroHaptics Conference (EH'24)</div>
@@ -420,7 +485,7 @@
             <div class="pub-main">
                 <span class="pub-title">
                     <span class="pub-badge conf">C2</span>
-                    Information Transfer of Full-Body Vibrotactile Stimuli: An Initial Study with One to Three Sequential Vibrations
+                    <a href="https://ieeexplore.ieee.org/abstract/document/10224391" target="_blank">Information Transfer of Full-Body Vibrotactile Stimuli: An Initial Study with One to Three Sequential Vibrations</a>
                 </span>
                 <div class="pub-authors">Jaejun Park, <u>Junwoo Kim</u>, Sangyoon Han, Chaeyong Park, and Seungmoon Choi</div>
                 <div class="pub-venue">2023 IEEE World Haptics Conference (WHC'23)</div>
@@ -434,7 +499,7 @@
             <div class="pub-main">
                 <span class="pub-title">
                     <span class="pub-badge conf">C1</span>
-                    Human Recognition Performance of Simple Spatial Vibrotactile Patterns on the Torso
+                    <a href="https://ieeexplore.ieee.org/abstract/document/10224430" target="_blank">Human Recognition Performance of Simple Spatial Vibrotactile Patterns on the Torso</a>
                 </span>
                 <div class="pub-authors"><u>Junwoo Kim</u>*, Heeyeon Kim*, Chaeyong Park, and Seungmoon Choi</div>
                 <div class="pub-venue">2023 IEEE World Haptics Conference (WHC'23)</div>
@@ -445,9 +510,8 @@
 
 </div>
 
-<footer style="text-align:center; padding: 3rem 0; color:#94a3b8; font-size:0.85rem; border-top:1px solid #eee; margin-top:4rem;">
-    © 2025 Junwoo Kim. All rights reserved.<br>
-    Ph.D. Student in CSE, POSTECH
+<footer style="text-align:center; padding: 3rem 0; color:#94a3b8; font-size:0.83rem; border-top:1px solid #f1f5f9; margin-top:4rem; background:#fafbfd;">
+    © 2025 Junwoo Kim · Ph.D. Student in CSE, POSTECH
 </footer>
 
 </body>
