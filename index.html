@@ -136,7 +136,7 @@
             vertical-align: middle;
             letter-spacing: 0.03em;
         }
-        .pub-badge.conf { background: #64748b; }
+        .pub-badge.conf { background: #d97706; }
         .pub-title { font-weight: 700; display: block; margin-bottom: 0.3rem; line-height: 1.4; }
         .pub-authors { color: var(--text-light); font-size: 0.88rem; margin-bottom: 0.2rem; }
         .pub-venue { color: var(--accent); font-size: 0.85rem; font-weight: 600; font-style: italic; }
@@ -144,10 +144,10 @@
         /* 논문 이미지 버튼 */
         .pub-thumb {
             flex-shrink: 0;
-            width: 88px;
-            height: 88px;
+            width: 264px;
+            height: 176px;
             border: 1.5px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -165,12 +165,10 @@
         }
         .pub-thumb:hover {
             border-color: var(--accent);
-            background: #eff6ff;
-            color: var(--accent);
+            box-shadow: 0 4px 16px rgba(37,99,235,0.15);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37,99,235,0.12);
         }
-        .pub-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 7px; }
+        .pub-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; }
         .pub-thumb .material-symbols-outlined { font-size: 2rem; }
 
         /* 반응형 */
@@ -179,7 +177,8 @@
             .profile-info { width: 100%; }
             .keyword-box, .btn-group { justify-content: center; }
             .areas-grid { grid-template-columns: 1fr; }
-            .pub-thumb { width: 72px; height: 72px; }
+            .pub-item { flex-direction: column; }
+            .pub-thumb { width: 100%; height: 180px; }
         }
     </style>
 </head>
@@ -199,7 +198,7 @@
 
     <!-- Profile -->
     <section class="profile-section">
-        <img src="contents/main.png" alt="Junwoo Kim" class="profile-img">
+        <img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/main.jpg" alt="Junwoo Kim" class="profile-img" onerror="this.src='contents/main.png';">
 
         <div class="profile-info">
             <h1>Junwoo Kim</h1>
@@ -315,6 +314,9 @@
         <div class="pub-category">Journal Papers</div>
 
         <div class="pub-item">
+            <a href="https://ieeexplore.ieee.org/abstract/document/11408227" target="_blank" class="pub-thumb" title="View Paper">
+                <img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/IEEE_TOH_26_TorsoAziEle.png" alt="J2 thumbnail">
+            </a>
             <div class="pub-main">
                 <span class="pub-title">
                     <span class="pub-badge">J2</span>
@@ -323,12 +325,12 @@
                 <div class="pub-authors"><u>Junwoo Kim</u>, Jaejun Park, Chaeyong Park, Junseok Park, and Seungmoon Choi</div>
                 <div class="pub-venue">IEEE Transactions on Haptics (ToH), 2026</div>
             </div>
-            <a href="https://ieeexplore.ieee.org/abstract/document/11408227" target="_blank" class="pub-thumb" title="View Paper">
-                <img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/IEEE_TOH_26_TorsoAziEle.png" alt="J2 thumbnail">
-            </a>
         </div>
 
         <div class="pub-item">
+            <a href="https://ieeexplore.ieee.org/document/10413623" target="_blank" class="pub-thumb" title="View Paper">
+                <img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/IEEE_TOH_24_Telemetry.jpg" alt="J1 thumbnail">
+            </a>
             <div class="pub-main">
                 <span class="pub-title">
                     <span class="pub-badge">J1</span>
@@ -337,15 +339,15 @@
                 <div class="pub-authors">Jiwan Lee, <u>Junwoo Kim</u>, Jeonggoo Kang, Eunsoo Jo, Dong Chul Park, and Seungmoon Choi</div>
                 <div class="pub-venue">IEEE Transactions on Haptics (ToH), 2024</div>
             </div>
-            <a href="https://ieeexplore.ieee.org/document/10413623" target="_blank" class="pub-thumb" title="View Paper">
-                <img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/IEEE_TOH_24_Telemetry.jpg" alt="J1 thumbnail">
-            </a>
         </div>
 
         <!-- Conference Papers -->
         <div class="pub-category">Conference Papers</div>
 
         <div class="pub-item">
+            <a href="https://link.springer.com/chapter/10.1007/978-3-031-70058-3_1" target="_blank" class="pub-thumb" title="View Paper">
+                <img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/EuroHaptics_24_AziEle.png" alt="C3 thumbnail">
+            </a>
             <div class="pub-main">
                 <span class="pub-title">
                     <span class="pub-badge conf">C3</span>
@@ -354,37 +356,34 @@
                 <div class="pub-authors"><u>Junwoo Kim</u>, Jaejun Park, Chaeyong Park, and Seungmoon Choi</div>
                 <div class="pub-venue">2024 EuroHaptics Conference (EH'24)</div>
             </div>
-            <a href="https://link.springer.com/chapter/10.1007/978-3-031-70058-3_1" target="_blank" class="pub-thumb" title="View Paper">
-                <img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/EuroHaptics_24_AziEle.png" alt="C3 thumbnail">
-            </a>
         </div>
 
         <div class="pub-item">
+            <a href="https://ieeexplore.ieee.org/abstract/document/10224391" target="_blank" class="pub-thumb" title="View Paper">
+                <img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/IEEE_WHC_232_Fullbody.png" alt="C2 thumbnail">
+            </a>
             <div class="pub-main">
                 <span class="pub-title">
                     <span class="pub-badge conf">C2</span>
                     Information Transfer of Full-Body Vibrotactile Stimuli: An Initial Study with One to Three Sequential Vibrations
                 </span>
                 <div class="pub-authors">Jaejun Park, <u>Junwoo Kim</u>, Sangyoon Han, Chaeyong Park, and Seungmoon Choi</div>
-                <div class="pub-venue">2023 IEEE World Haptics Conference (WHC'23), p. 41–47</div>
+                <div class="pub-venue">2023 IEEE World Haptics Conference (WHC'23)</div>
             </div>
-            <a href="https://ieeexplore.ieee.org/abstract/document/10224391" target="_blank" class="pub-thumb" title="View Paper">
-                <img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/IEEE_WHC_232_Fullbody.png" alt="C2 thumbnail">
-            </a>
         </div>
 
         <div class="pub-item">
+            <a href="https://ieeexplore.ieee.org/abstract/document/10224430" target="_blank" class="pub-thumb" title="View Paper">
+                <img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/IEEE_WHC_23_TorsoSimultaneoursStimuli.png" alt="C1 thumbnail">
+            </a>
             <div class="pub-main">
                 <span class="pub-title">
                     <span class="pub-badge conf">C1</span>
                     Human Recognition Performance of Simple Spatial Vibrotactile Patterns on the Torso
                 </span>
                 <div class="pub-authors"><u>Junwoo Kim</u>*, Heeyeon Kim*, Chaeyong Park, and Seungmoon Choi</div>
-                <div class="pub-venue">2023 IEEE World Haptics Conference (WHC'23), p. 20–27</div>
+                <div class="pub-venue">2023 IEEE World Haptics Conference (WHC'23)</div>
             </div>
-            <a href="https://ieeexplore.ieee.org/abstract/document/10224430" target="_blank" class="pub-thumb" title="View Paper">
-                <img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/IEEE_WHC_23_TorsoSimultaneoursStimuli.png" alt="C1 thumbnail">
-            </a>
         </div>
 
     </section>
