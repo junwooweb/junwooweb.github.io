@@ -36,18 +36,18 @@
 
         /* ── 섹션 타이틀 ── */
         .section-title {
-            font-size: 1.35rem;
+            font-size: 1.55rem;
             font-weight: 800;
             color: var(--text-main);
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding-bottom: 0.6rem;
-            border-bottom: 2px solid var(--border-color);
-            letter-spacing: -0.3px;
+            padding-bottom: 0.65rem;
+            border-bottom: 2.5px solid var(--border-color);
+            letter-spacing: -0.5px;
         }
-        .section-title .material-symbols-outlined { font-size: 1.3rem; color: var(--accent); }
+        .section-title .material-symbols-outlined { font-size: 1.4rem; color: var(--accent); }
 
         /* ── 1. 프로필 ── */
         .profile-section { display: flex; gap: 3rem; margin-bottom: 4rem; align-items: flex-start; }
@@ -60,14 +60,14 @@
             flex-shrink: 0;
         }
         .profile-info h1 {
-            margin: 0 0 0.4rem 0;
-            font-size: 2.6rem;
+            margin: 0 0 0.45rem 0;
+            font-size: 2.9rem;
             font-weight: 800;
-            letter-spacing: -1.5px;
+            letter-spacing: -2px;
             color: var(--text-main);
         }
-        .profile-role { font-size: 1rem; color: var(--text-light); margin-bottom: 1rem; line-height: 1.7; }
-        .profile-bio { margin-bottom: 1.4rem; color: #374151; line-height: 1.75; font-size: 0.96rem; }
+        .profile-role { font-size: 1rem; color: var(--text-light); margin-bottom: 1rem; line-height: 1.75; }
+        .profile-bio { margin-bottom: 1.4rem; color: #374151; line-height: 1.8; font-size: 0.97rem; }
 
         /* 키워드 태그 */
         .keyword-box { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
@@ -81,11 +81,17 @@
         .btn-group { display: flex; gap: 0.75rem; flex-wrap: wrap; }
         .btn {
             display: inline-flex; align-items: center; gap: 0.4rem;
-            padding: 7px 15px; border: 1.5px solid var(--border-color); border-radius: 8px;
+            padding: 8px 16px; border: 1.5px solid var(--border-color); border-radius: 8px;
             font-size: 0.88rem; font-weight: 600; color: var(--text-main);
-            transition: all 0.18s;
+            transition: all 0.18s; cursor: pointer;
         }
         .btn:hover { background: var(--text-main); color: #fff; border-color: var(--text-main); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        /* 주요 버튼 (Email) — 색상 채움으로 강조 */
+        .btn-primary {
+            background: var(--accent); color: #fff;
+            border-color: var(--accent);
+        }
+        .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; color: #fff; }
         .material-symbols-outlined { font-size: 1.1rem; }
 
         /* ── 2. Doctoral Research ── */
@@ -109,20 +115,20 @@
             pointer-events: none;
         }
         .doctoral-topic {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 800;
             color: var(--accent);
             margin: 0 0 0.75rem 0;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.4px;
             display: flex;
             align-items: center;
             gap: 0.55rem;
         }
-        .doctoral-topic .material-symbols-outlined { font-size: 1.35rem; }
+        .doctoral-topic .material-symbols-outlined { font-size: 1.4rem; }
         .doctoral-desc {
-            font-size: 0.96rem;
+            font-size: 0.97rem;
             color: #374151;
-            line-height: 1.8;
+            line-height: 1.85;
             margin: 0;
         }
 
@@ -135,8 +141,8 @@
             transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
         }
         .area-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 6px 20px rgba(37,99,235,0.08); }
-        .area-card h3 { margin: 0 0 0.6rem 0; font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
-        .area-card p { margin: 0; font-size: 0.88rem; color: var(--text-light); line-height: 1.55; }
+        .area-card h3 { margin: 0 0 0.6rem 0; font-size: 1.02rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
+        .area-card p { margin: 0; font-size: 0.89rem; color: var(--text-light); line-height: 1.6; }
 
         /* ── 4. Current Research ── */
         .research-section { margin-bottom: 4rem; }
@@ -170,7 +176,7 @@
         }
         .research-item:hover .research-num { color: #bfdbfe; }
         .research-body { flex: 1; }
-        .research-title { font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.4rem; line-height: 1.4; }
+        .research-title { font-size: 1.03rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.45rem; line-height: 1.45; }
         .research-keywords { display: flex; gap: 0.35rem; flex-wrap: wrap; }
         .research-kw {
             background: #eff6ff; color: #3b82f6;
@@ -230,21 +236,28 @@
         .pub-title {
             font-weight: 700;
             display: block;
-            margin-bottom: 0.3rem;
-            line-height: 1.45;
-            font-size: 0.97rem;
+            margin-bottom: 0.35rem;
+            line-height: 1.5;
+            font-size: 1rem;
         }
+        /* 논문 제목 링크 — 기본 밑줄 + ↗ 아이콘으로 클릭 가능 표시 */
         .pub-title a {
             color: var(--text-main);
-            border-bottom: 1.5px solid transparent;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 1px;
             transition: color 0.2s, border-color 0.2s;
         }
-        .pub-title a:hover {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
+        .pub-title a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+        .pub-title a::after {
+            content: ' ↗';
+            font-size: 0.78em;
+            color: #94a3b8;
+            font-weight: 500;
+            transition: color 0.2s;
         }
-        .pub-authors { color: var(--text-light); font-size: 0.86rem; margin-bottom: 0.2rem; }
-        .pub-venue { color: var(--accent); font-size: 0.83rem; font-weight: 600; font-style: italic; }
+        .pub-title a:hover::after { color: var(--accent); }
+        .pub-authors { color: var(--text-light); font-size: 0.87rem; margin-bottom: 0.25rem; }
+        .pub-venue { color: var(--accent); font-size: 0.85rem; font-weight: 600; font-style: italic; }
 
         /* 논문 이미지 버튼 */
         .pub-thumb {
@@ -253,6 +266,7 @@
             height: 176px;
             border: 1.5px solid var(--border-color);
             border-radius: 10px;
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -262,7 +276,7 @@
             font-size: 0.65rem;
             font-weight: 600;
             gap: 0.3rem;
-            transition: all 0.2s;
+            transition: all 0.22s;
             text-decoration: none;
             text-align: center;
             overflow: hidden;
@@ -270,9 +284,27 @@
         }
         .pub-thumb:hover {
             border-color: var(--accent);
-            box-shadow: 0 4px 16px rgba(37,99,235,0.15);
-            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.18);
+            transform: translateY(-3px);
         }
+        /* hover 시 "View Paper ↗" 오버레이 */
+        .pub-thumb::after {
+            content: 'View Paper  ↗';
+            position: absolute;
+            inset: 0;
+            background: rgba(30, 64, 175, 0.82);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            border-radius: 9px;
+            opacity: 0;
+            transition: opacity 0.22s;
+        }
+        .pub-thumb:hover::after { opacity: 1; }
         .pub-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; }
         .pub-thumb .material-symbols-outlined { font-size: 2rem; }
 
@@ -327,7 +359,7 @@
             </div>
 
             <div class="btn-group">
-                <a href="mailto:kjw8515@postech.ac.kr" class="btn">
+                <a href="mailto:kjw8515@postech.ac.kr" class="btn btn-primary">
                     <span class="material-symbols-outlined">mail</span> Email
                 </a>
                 <a href="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/cv.pdf" target="_blank" class="btn">
