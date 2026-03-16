@@ -66,14 +66,6 @@
         .area-card h3 { margin: 0 0 0.8rem 0; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
         .area-card p { margin: 0; font-size: 0.9rem; color: var(--text-light); line-height: 1.5; }
 
-        /* 3. News & Publications (2단 레이아웃) */
-        .split-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; }
-        
-        /* News 리스트 */
-        .news-item { margin-bottom: 1rem; font-size: 0.95rem; display: flex; gap: 1rem; }
-        .news-date { font-weight: 700; color: var(--text-main); min-width: 80px; font-size: 0.9rem; }
-        .news-content { color: var(--text-light); }
-
         /* Publications 리스트 */
         .pub-item { margin-bottom: 1.5rem; padding-left: 1rem; border-left: 3px solid var(--border-color); }
         .pub-title { font-weight: 700; display: block; margin-bottom: 0.2rem; }
@@ -88,7 +80,7 @@
             .profile-section { flex-direction: column; align-items: center; text-align: center; }
             .profile-info { width: 100%; }
             .keyword-box, .btn-group { justify-content: center; }
-            .areas-grid, .split-layout { grid-template-columns: 1fr; }
+            .areas-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -163,64 +155,39 @@
         </div>
     </section>
 
-    <div class="split-layout">
-        
-        <section>
-            <div class="section-title"><span class="material-symbols-outlined">campaign</span> News</div>
-            
-            <div class="news-item">
-                <div class="news-date">Dec 2025</div>
-                <div class="news-content">Passed Ph.D. Candidacy exam.</div>
-            </div>
-            <div class="news-item">
-                <div class="news-date">Nov 2025</div>
-                <div class="news-content">Paper published in <strong>npj Flexible Electronics</strong>.</div>
-            </div>
-            <div class="news-item">
-                <div class="news-date">Jan 2025</div>
-                <div class="news-content">Paper conditionally accepted to <strong>CHI 2025</strong>.</div>
-            </div>
-            <div class="news-item">
-                <div class="news-date">Jun 2024</div>
-                <div class="news-content">Selected for NRF Ph.D. Fellowship.</div>
-            </div>
-        </section>
+    <section>
+        <div class="section-title">
+            <span class="material-symbols-outlined">article</span> Publications
+        </div>
 
-        <section>
-            <div class="section-title">
-                <span class="material-symbols-outlined">star</span> Selected Publications
-                <a href="publications.html" style="font-size:0.8rem; margin-left:auto; font-weight:normal;">View All →</a>
+        <div class="pub-item">
+            <span class="pub-title">Human Identification Performance of Vibrotactile Stimuli Applied on the Torso along Azimuth or Elevation</span>
+            <div class="pub-authors"><u>Junwoo Kim</u>, Jaejun Park, Chaeyong Park, and Seungmoon Choi</div>
+            <div class="pub-venue">2024 EuroHaptics Conference (EH'24)</div>
+            <div class="pub-links">
+                <a href="https://link.springer.com/chapter/10.1007/978-3-031-70058-3_1" target="_blank">[Link]</a>
             </div>
+        </div>
 
-            <div class="pub-item">
-                <span class="pub-title">Zero-Shot Audio-to-Haptic Generation via Diffusion Models</span>
-                <div class="pub-authors"><u>Junwoo Kim</u>, Co-author Name, Seungmoon Choi</div>
-                <div class="pub-venue">ACM CHI Conference on Human Factors in Computing Systems (CHI), 2026</div>
-                <div class="pub-links">
-                    <a href="#">[PDF]</a> <a href="#">[Video]</a> <a href="#">[Code]</a>
-                </div>
+        <div class="pub-item">
+            <span class="pub-title">Information Transfer of Full-Body Vibrotactile Stimuli: An Initial Study with One to Three Sequential Vibrations</span>
+            <div class="pub-authors">Jaejun Park, <u>Junwoo Kim</u>, Sangyoon Han, Chaeyong Park, and Seungmoon Choi</div>
+            <div class="pub-venue">2023 IEEE World Haptics Conference (WHC'23), p. 41–47</div>
+            <div class="pub-links">
+                <a href="https://ieeexplore.ieee.org/abstract/document/10224391" target="_blank">[Link]</a>
             </div>
+        </div>
 
-            <div class="pub-item">
-                <span class="pub-title">Egocentric Tactile Space: Mapping Spatial Coordinates on the Torso</span>
-                <div class="pub-authors"><u>Junwoo Kim</u>, Co-author Name, Seungmoon Choi</div>
-                <div class="pub-venue">ACM Symposium on User Interface Software and Technology (UIST), 2025</div>
-                <div class="pub-links">
-                    <a href="#">[PDF]</a> <a href="#">[Video]</a>
-                </div>
+        <div class="pub-item">
+            <span class="pub-title">Human Recognition Performance of Simple Spatial Vibrotactile Patterns on the Torso</span>
+            <div class="pub-authors"><u>Junwoo Kim</u>*, Heeyeon Kim*, Chaeyong Park, and Seungmoon Choi</div>
+            <div class="pub-venue">2023 IEEE World Haptics Conference (WHC'23), p. 20–27</div>
+            <div class="pub-links">
+                <a href="https://ieeexplore.ieee.org/abstract/document/10224430" target="_blank">[Link]</a>
             </div>
-            
-             <div class="pub-item">
-                <span class="pub-title">Research on Flexible Tactile Actuators for VR</span>
-                <div class="pub-authors"><u>Junwoo Kim</u>, Co-author Name, Seungmoon Choi</div>
-                <div class="pub-venue">npj Flexible Electronics, 2025</div>
-                <div class="pub-links">
-                    <a href="#">[Link]</a>
-                </div>
-            </div>
+        </div>
 
-        </section>
-    </div>
+    </section>
 
 </div>
 
