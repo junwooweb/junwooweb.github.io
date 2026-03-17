@@ -189,7 +189,12 @@
         }
         .research-item:hover .research-num { color: #bfdbfe; }
         .research-body { flex: 1; }
-        .research-title { font-size: 1.03rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.45rem; line-height: 1.45; }
+        .research-title { font-size: 1.03rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.45rem; line-height: 1.45; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .research-main-badge {
+            display: inline-block; background: var(--accent); color: #fff;
+            font-size: 0.68rem; font-weight: 700; padding: 1px 8px; border-radius: 4px;
+            letter-spacing: 0.04em; text-transform: uppercase; flex-shrink: 0;
+        }
         .research-keywords { display: flex; gap: 0.35rem; flex-wrap: wrap; }
         .research-kw {
             background: #eff6ff; color: #3b82f6;
@@ -546,6 +551,19 @@
             <div class="research-item">
                 <div class="research-num">01</div>
                 <div class="research-body">
+                    <div class="research-title">Directional Cueing in 3D Space <span class="research-main-badge">Main</span></div>
+                    <div class="research-keywords">
+                        <span class="research-kw"># Spatial Haptics</span>
+                        <span class="research-kw"># Directional Cue</span>
+                        <span class="research-kw"># 3D Perception</span>
+                        <span class="research-kw"># Torso Display</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-item">
+                <div class="research-num">02</div>
+                <div class="research-body">
                     <div class="research-title">Real-Time Audiovisual-to-Haptic Rendering System for Cinematic Content</div>
                     <div class="research-keywords">
                         <span class="research-kw"># Haptic Rendering</span>
@@ -557,7 +575,7 @@
             </div>
 
             <div class="research-item">
-                <div class="research-num">02</div>
+                <div class="research-num">03</div>
                 <div class="research-body">
                     <div class="research-title">Full-Body Haptics for VR Interaction</div>
                     <div class="research-keywords">
@@ -565,19 +583,6 @@
                         <span class="research-kw"># VR</span>
                         <span class="research-kw"># Vibrotactile</span>
                         <span class="research-kw"># User Interaction</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="research-item">
-                <div class="research-num">03</div>
-                <div class="research-body">
-                    <div class="research-title">Directional Cueing in 3D Space</div>
-                    <div class="research-keywords">
-                        <span class="research-kw"># Spatial Haptics</span>
-                        <span class="research-kw"># Directional Cue</span>
-                        <span class="research-kw"># 3D Perception</span>
-                        <span class="research-kw"># Torso Display</span>
                     </div>
                 </div>
             </div>
