@@ -144,6 +144,19 @@
         .area-card h3 { margin: 0 0 0.6rem 0; font-size: 1.02rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
         .area-card p { margin: 0; font-size: 0.89rem; color: var(--text-light); line-height: 1.6; }
 
+        /* ── AI Skills ── */
+        .skills-section { margin-bottom: 4rem; }
+        .skills-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+        .skill-card {
+            text-align: center; padding: 1.5rem 1rem; border-radius: 12px;
+            border: 1px solid var(--border-color); background: var(--card-bg);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+        .skill-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 6px 20px rgba(37,99,235,0.08); }
+        .skill-icon { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
+        .skill-card h4 { margin: 0 0 0.4rem 0; font-size: 0.92rem; font-weight: 700; color: var(--text-main); }
+        .skill-card p { margin: 0; font-size: 0.78rem; color: var(--text-light); line-height: 1.4; }
+
         /* ── 4. Current Research ── */
         .research-section { margin-bottom: 4rem; }
         .research-list { display: flex; flex-direction: column; gap: 1rem; }
@@ -370,6 +383,7 @@
             .profile-info { width: 100%; }
             .keyword-box, .btn-group { justify-content: center; }
             .areas-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: repeat(3, 1fr); }
             .pub-item { flex-direction: column; align-items: flex-start; }
             .pub-thumb { width: 100%; height: 180px; }
         }
@@ -479,6 +493,40 @@
             <div class="area-card">
                 <h3><span class="material-symbols-outlined" style="color:#10b981;">view_in_ar</span> VR / AR / XR</h3>
                 <p>Designing and evaluating immersive applications to enhance user experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Technical Skills -->
+    <section class="skills-section">
+        <div class="section-title">
+            <span class="material-symbols-outlined">psychology</span> AI Technical Skills
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <span class="skill-icon material-symbols-outlined" style="color:#3b82f6;">database</span>
+                <h4>Data Collection & Analysis</h4>
+                <p>Collecting experimental and sensor data, building structured datasets, and performing statistical analysis to derive research insights</p>
+            </div>
+            <div class="skill-card">
+                <span class="skill-icon material-symbols-outlined" style="color:#8b5cf6;">code</span>
+                <h4>Application Development</h4>
+                <p>Developing AI-integrated applications from prototype to deployment, including real-time rendering systems and interactive tools</p>
+            </div>
+            <div class="skill-card">
+                <span class="skill-icon material-symbols-outlined" style="color:#10b981;">group</span>
+                <h4>User Evaluation</h4>
+                <p>Designing and conducting user studies and psychophysical experiments to validate system performance and user experience</p>
+            </div>
+            <div class="skill-card">
+                <span class="skill-icon material-symbols-outlined" style="color:#f59e0b;">hub</span>
+                <h4>Multimodal AI</h4>
+                <p>Leveraging audio, video, and haptic modalities with deep learning models for cross-modal signal translation and generation</p>
+            </div>
+            <div class="skill-card">
+                <span class="skill-icon material-symbols-outlined" style="color:#ef4444;">graphic_eq</span>
+                <h4>Signal Processing</h4>
+                <p>Applying time-frequency analysis, filtering, and feature extraction techniques to process and enhance haptic and audio signals</p>
             </div>
         </div>
     </section>
