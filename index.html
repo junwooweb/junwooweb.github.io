@@ -32,7 +32,7 @@
         .nav-menu a:hover, .nav-menu a.active { color: var(--accent); }
 
         /* ── 컨테이너 ── */
-        .container { max-width: 1400px; margin: 3.5rem auto; padding: 0 1.5rem; }
+        .container { max-width: 1500px; margin: 3.5rem auto; padding: 0 1.5rem; }
         .two-col { display: flex; gap: 5rem; align-items: flex-start; }
         .col-left { flex: 1; min-width: 0; order: -1; }
         .col-right { flex: 1; min-width: 0; }
@@ -396,8 +396,8 @@
         /* ── 반응형 ── */
         @media (max-width: 1100px) {
             .two-col { flex-direction: column; }
-            .col-left { order: 0; }
-            .col-right { width: 100%; }
+            .col-left { order: -1; }
+            .col-right { order: 0; width: 100%; }
             .col-left .pub-item { flex-direction: row; align-items: center; gap: 1.5rem; padding: 1.1rem 1.2rem; }
             .col-left .pub-thumb { width: 264px; height: 176px; }
             .container { max-width: 1000px; }
@@ -509,50 +509,6 @@
         </div>
     </section>
 
-    <!-- Technical Skills -->
-    <section class="skills-section">
-        <div class="section-title">
-            <span class="material-symbols-outlined">psychology</span> Technical Skills
-        </div>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <span class="skill-icon material-symbols-outlined" style="color:#ef4444;">touch_app</span>
-                <h4>Haptic Perception & Rendering</h4>
-                <p>Psychophysics-based tactile rendering for realistic virtual environments</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon material-symbols-outlined" style="color:#f97316;">graphic_eq</span>
-                <h4>Signal Processing</h4>
-                <p>Time-frequency analysis, filtering, and feature extraction for haptic/audio signals</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon material-symbols-outlined" style="color:#3b82f6;">hub</span>
-                <h4>Multimodal AI</h4>
-                <p>Utilizing multimodal models for audiovisual understanding and haptic content creation</p>
-                <div style="display:flex; gap:0.3rem; flex-wrap:wrap; justify-content:center; margin-top:0.5rem;">
-                    <span class="research-kw" style="font-size:0.65rem; padding:1px 7px;">CLAP</span>
-                    <span class="research-kw" style="font-size:0.65rem; padding:1px 7px;">CLIP</span>
-                    <span class="research-kw" style="font-size:0.65rem; padding:1px 7px;">Sound Source Localization</span>
-                </div>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon material-symbols-outlined" style="color:#8b5cf6;">database</span>
-                <h4>Data Collection & Analysis</h4>
-                <p>Dataset construction, statistical analysis, and experimental data processing</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon material-symbols-outlined" style="color:#10b981;">group</span>
-                <h4>User Evaluation</h4>
-                <p>User studies, psychophysical experiments, and subjective quality assessment</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon material-symbols-outlined" style="color:#64748b;">code</span>
-                <h4>Application Development</h4>
-                <p>AI-integrated real-time systems and interactive application development</p>
-            </div>
-        </div>
-    </section>
-
     <!-- Current Research -->
     <section class="research-section">
         <div class="section-title">
@@ -599,6 +555,45 @@
                 </div>
             </div>
 
+        </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section class="skills-section">
+        <div class="section-title">
+            <span class="material-symbols-outlined">psychology</span> Technical Skills
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <span class="skill-icon material-symbols-outlined" style="color:#ef4444;">touch_app</span>
+                <h4>Haptic Perception & Rendering</h4>
+                <p>Psychophysics-based tactile rendering for realistic virtual environments</p>
+            </div>
+            <div class="skill-card">
+                <span class="skill-icon material-symbols-outlined" style="color:#f97316;">graphic_eq</span>
+                <h4>Signal Processing</h4>
+                <p>Time-frequency analysis, filtering, and feature extraction for haptic/audio signals</p>
+            </div>
+            <div class="skill-card">
+                <span class="skill-icon material-symbols-outlined" style="color:#3b82f6;">hub</span>
+                <h4>Multimodal AI</h4>
+                <p>Utilizing multimodal models for audiovisual understanding and haptic content creation</p>
+            </div>
+            <div class="skill-card">
+                <span class="skill-icon material-symbols-outlined" style="color:#8b5cf6;">database</span>
+                <h4>Data Collection & Analysis</h4>
+                <p>Dataset construction, statistical analysis, and experimental data processing</p>
+            </div>
+            <div class="skill-card">
+                <span class="skill-icon material-symbols-outlined" style="color:#10b981;">group</span>
+                <h4>User Evaluation</h4>
+                <p>User studies, psychophysical experiments, and subjective quality assessment</p>
+            </div>
+            <div class="skill-card">
+                <span class="skill-icon material-symbols-outlined" style="color:#64748b;">code</span>
+                <h4>Application Development</h4>
+                <p>AI-integrated real-time systems and interactive application development</p>
+            </div>
         </div>
     </section>
 
