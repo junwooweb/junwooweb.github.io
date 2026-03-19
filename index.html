@@ -32,7 +32,12 @@
         .nav-menu a:hover, .nav-menu a.active { color: var(--accent); }
 
         /* ── 컨테이너 ── */
-        .container { max-width: 1000px; margin: 3.5rem auto; padding: 0 1.5rem; }
+        .container { max-width: 1400px; margin: 3.5rem auto; padding: 0 1.5rem; }
+        .two-col { display: flex; gap: 2.5rem; align-items: flex-start; }
+        .col-left { flex: 1; min-width: 0; }
+        .col-right { width: 420px; flex-shrink: 0; position: sticky; top: 70px; max-height: calc(100vh - 90px); overflow-y: auto; scrollbar-width: thin; }
+        .col-right::-webkit-scrollbar { width: 4px; }
+        .col-right::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 
         /* ── 섹션 타이틀 ── */
         .section-title {
@@ -382,7 +387,27 @@
         }
         #lb-close:hover { background: rgba(255,255,255,0.28); }
 
+        /* ── 우측 컬럼 컴팩트 스타일 ── */
+        .col-right .pub-section { margin-bottom: 2rem; }
+        .col-right .section-title { font-size: 1.25rem; margin-bottom: 1rem; }
+        .col-right .pub-thumb { display: none; }
+        .col-right .pub-item { flex-direction: column; align-items: flex-start; gap: 0; padding: 0.9rem 1rem; margin-bottom: 0.7rem; }
+        .col-right .pub-title { font-size: 0.88rem; }
+        .col-right .pub-authors { font-size: 0.8rem; }
+        .col-right .pub-venue { font-size: 0.78rem; }
+        .col-right .pub-category { font-size: 0.88rem; margin: 1.2rem 0 0.6rem 0; }
+
         /* ── 반응형 ── */
+        @media (max-width: 1100px) {
+            .two-col { flex-direction: column; }
+            .col-right { width: 100%; position: static; max-height: none; overflow-y: visible; }
+            .col-right .pub-thumb { display: flex; }
+            .col-right .pub-item { flex-direction: row; align-items: center; gap: 1.5rem; padding: 1.1rem 1.2rem; }
+            .col-right .pub-title { font-size: 1rem; }
+            .col-right .pub-authors { font-size: 0.87rem; }
+            .col-right .pub-venue { font-size: 0.85rem; }
+            .container { max-width: 1000px; }
+        }
         @media (max-width: 768px) {
             .profile-section { flex-direction: column; align-items: center; text-align: center; }
             .profile-info { width: 100%; }
@@ -465,6 +490,9 @@
             </div>
         </div>
     </section>
+
+    <div class="two-col">
+    <div class="col-left">
 
     <!-- Doctoral Research -->
     <section class="doctoral-section">
@@ -579,6 +607,9 @@
 
         </div>
     </section>
+
+    </div><!-- end col-left -->
+    <div class="col-right">
 
     <!-- Patents -->
     <section class="pub-section">
@@ -712,6 +743,9 @@
         </div>
 
     </section>
+
+    </div><!-- end col-right -->
+    </div><!-- end two-col -->
 
 </div>
 
