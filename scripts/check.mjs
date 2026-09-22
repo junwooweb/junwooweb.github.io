@@ -2,6 +2,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const papers = JSON.parse(await readFile(join(root, 'data/publications.json'), 'utf8'));
@@ -23,11 +24,17 @@ for (const [path, {html}] of pages) {
   for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
     const value = match[1].replaceAll('&amp;', '&');
     if (/^(https?:|mailto:|data:)/.test(value)) continue;
-    const [pathname, hash] = value.split('#');
+    const [pathAndQuery, hash] = value.split('#');
+    const [pathname, query] = pathAndQuery.split('?');
     let target = pathname ? resolve(dirname(path), decodeURIComponent(pathname)) : path;
     try {
       if ((await stat(target)).isDirectory()) target = join(target, 'index.html');
       await stat(target);
+      if (/\.(css|js)$/.test(pathname)) {
+        const content = (await readFile(target, 'utf8')).replaceAll('\r\n', '\n');
+        const version = createHash('sha256').update(content).digest('hex').slice(0, 12);
+        if (new URLSearchParams(query).get('v') !== version) errors.push(`Stale asset version ${value} in ${path}`);
+      }
       if (hash && pages.has(target) && !pages.get(target).ids.includes(hash)) errors.push(`Missing anchor ${value} in ${path}`);
       checked++;
     } catch { errors.push(`Missing local target ${value} in ${path}`); }

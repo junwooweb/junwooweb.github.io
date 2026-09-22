@@ -64,4 +64,4 @@ Current Research는 Audiovisual-to-Haptic Rendering System, Haptic Rendering wit
 
 원본의 `jounal` 오타와 지난 저작권 연도는 수정했습니다. 인용 정확성을 위해 출판사 기준으로 보완한 공동저자 정보는 유지합니다. 새 Project 페이지와 Citation 기능은 기존 내용에 추가한 기능입니다.
 
-GitHub Pages에 반영하려면 저장소의 배포 브랜치에 변경 사항을 push해야 합니다. 로컬 수정과 미리보기만으로 공개 홈페이지가 바뀌지는 않습니다.
+GitHub Pages에 반영하려면 저장소의 배포 브랜치에 변경 사항을 push해야 합니다. 로컬 수정과 미리보기만으로 공개 홈페이지가 바뀌지는 않습니다. 빌드는 각 CSS·JavaScript 링크에 파일 내용 기반 버전을 붙이며, 파일이 변경되면 방문자의 기존 캐시 대신 새 파일을 불러옵니다. 검증 과정에서도 자산 버전과 실제 내용이 일치하는지 확인합니다.

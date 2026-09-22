@@ -1,5 +1,16 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
+
+async function writePage(url, html) {
+  // Changed styles and behavior must not reuse a visitor's previous cached asset.
+  for (const [, path] of html.matchAll(/\b(?:href|src)="((?:\.\.\/)*assets\/[^"?]+\.(?:css|js))"/g)) {
+    const content = (await readFile(new URL(path, url), 'utf8')).replaceAll('\r\n', '\n');
+    const version = createHash('sha256').update(content).digest('hex').slice(0, 12);
+    html = html.replaceAll(`"${path}"`, `"${path}?v=${version}"`);
+  }
+  await writeFile(url, html);
+}
 
 const root = new URL('../', import.meta.url);
 const papers = JSON.parse(await readFile(new URL('data/publications.json', root), 'utf8'));
@@ -185,7 +196,7 @@ function layout({ title, description, content, base = '', page = '', active = 'h
 
 const homeTemplate = await readFile(new URL('templates/home.html', root), 'utf8');
 const home = homeTemplate.replace('{{PUBLICATIONS}}', byYear(listedPapers)).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replace('{{FIRST_AUTHOR_COUNT}}', papers.filter(isFirstAuthor).length).replace('{{YEAR}}', new Date().getFullYear());
-await writeFile(new URL('index.html', root), home.replace(/[ \t]+$/gm, ''));
+await writePage(new URL('index.html', root), home.replace(/[ \t]+$/gm, ''));
 
 const archive = home.replace(/<title>.*?<\/title>/, '<title>Publications | Junwoo Kim</title>')
   .replace('href="https://junwooweb.github.io/"', 'href="https://junwooweb.github.io/publications.html"')
@@ -197,7 +208,7 @@ const archive = home.replace(/<title>.*?<\/title>/, '<title>Publications | Junwo
   ${publicationFilters()}
   <div class="publication-list">${byYear(listedPapers)}</div></main>`)
   .replace(/<dialog[\s\S]*?<\/dialog>/, '');
-await writeFile(new URL('publications.html', root), archive.replace(/[ \t]+$/gm, ''));
+await writePage(new URL('publications.html', root), archive.replace(/[ \t]+$/gm, ''));
 
 await mkdir(new URL('citations/', root), { recursive:true });
 for (const p of papers) {
@@ -221,7 +232,7 @@ for (const p of papers) {
   const dir = new URL(`projects/${p.slug}/`, root);
   await mkdir(dir, { recursive:true });
   const metadata = `<meta name="citation_title" content="${esc(p.title)}">${p.authors.map(a => `<meta name="citation_author" content="${esc(a)}">`).join('')}<meta name="citation_publication_date" content="${p.citationYear || p.year}">${p.doi ? `<meta name="citation_doi" content="${p.doi}">` : ''}`;
-  await writeFile(new URL('index.html', dir), layout({title:`${p.title} | Junwoo Kim`,description:p.summary,content,base,page:`projects/${p.slug}/`,active:'publications',metadata}));
+  await writePage(new URL('index.html', dir), layout({title:`${p.title} | Junwoo Kim`,description:p.summary,content,base,page:`projects/${p.slug}/`,active:'publications',metadata}));
   await writeFile(new URL(`citations/${p.slug}.bib`, root), `${bibtex(p)}\n`);
 }
 await writeFile(new URL('citations/all-publications.bib', root), papers.map(bibtex).join('\n\n') + '\n');
