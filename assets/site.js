@@ -18,7 +18,31 @@ if (portraitLink && portraitDialog?.showModal) {
 
 const copyButtons = [...document.querySelectorAll('[data-copy]')];
 const copyLabels = new Map(copyButtons.map(button => [button, button.textContent]));
+const citationDisclosures = [...document.querySelectorAll('.citation-disclosure')];
 let activeCopyRequest = 0;
+function resetCopyFeedback() {
+  copyButtons.forEach(button => { button.textContent = copyLabels.get(button); });
+  document.querySelectorAll('.copy-status').forEach(message => { message.textContent = ''; });
+  return ++activeCopyRequest;
+}
+function closeCitationsExcept(keep = null) {
+  const open = citationDisclosures.filter(disclosure => disclosure.open && disclosure !== keep);
+  if (!open.length) return;
+  resetCopyFeedback();
+  open.forEach(disclosure => { disclosure.open = false; });
+}
+document.addEventListener('click', event => {
+  const copyButton = event.target.closest('[data-copy]');
+  const disclosure = event.target.closest('.citation-disclosure') || document.getElementById(copyButton?.dataset.copy)?.closest('.citation-disclosure');
+  closeCitationsExcept(disclosure);
+  if (disclosure?.open && event.target.closest('.citation-disclosure > summary')) resetCopyFeedback();
+}, { capture: true });
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape') return;
+  const disclosure = document.activeElement.closest('.citation-disclosure[open]');
+  if (disclosure) document.querySelector(`[aria-controls="${disclosure.id}"]`)?.focus({ preventScroll: true });
+  closeCitationsExcept();
+});
 copyButtons.forEach(button => {
   const block = document.getElementById(button.dataset.copy);
   const status = button.parentElement.querySelector('[role="status"]');
@@ -31,9 +55,8 @@ copyButtons.forEach(button => {
     disclosure.addEventListener('toggle', syncExpanded);
   }
   button.addEventListener('click', async () => {
-    const request = ++activeCopyRequest;
-    copyButtons.forEach(item => { item.textContent = copyLabels.get(item); });
-    document.querySelectorAll('.copy-status').forEach(message => { message.textContent = ''; });
+    closeCitationsExcept(disclosure);
+    const request = resetCopyFeedback();
     const text = block.textContent;
     if (disclosure && !disclosure.open) {
       disclosure.open = true;
@@ -68,7 +91,9 @@ copyButtons.forEach(button => {
 
 function openCitationHash() {
   const disclosure = document.getElementById(location.hash.slice(1));
-  if (disclosure?.matches('.citation-disclosure')) disclosure.open = true;
+  const target = disclosure?.matches('.citation-disclosure') ? disclosure : null;
+  closeCitationsExcept(target);
+  if (target) target.open = true;
 }
 openCitationHash();
 window.addEventListener('hashchange', openCitationHash);
