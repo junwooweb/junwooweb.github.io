@@ -36,7 +36,7 @@ npm start
 
 ## 인용과 자료 출처
 
-기출판 논문 5편의 BibTeX는 출판사에서 가져온 `data/bibtex/` 원본을 사용하며, 화면과 생성 파일에서는 인용 키를 `첫 저자 성 + 두 자리 인용 연도 + 키워드`로 바꿉니다(예: `Kim26CineHaptic`, `Lee24Telemetry`). 원본 파일은 그대로 보관하고, 화면·복사·생성된 BibTeX에서는 abstract와 keywords 필드를 제외합니다. 그 외 서지 필드는 출판사 원문을 유지합니다. IEEE 4편은 각 논문의 Cite This → BibTeX에서, Springer 1편은 Download citation → .BIB에서 가져왔습니다. 출처는 각 Citation 상자에 표시합니다. 출판 예정 2편은 공식 내보내기가 아직 없어 제공된 정보로 만든 임시 인용임을 표시합니다. 목록의 Citation 버튼은 BibTeX를 바로 복사하고 카드 아래에 원문을 펼칩니다. 펼친 원문은 Citation · BibTeX 제목으로 다시 접을 수 있습니다. Project 페이지에는 학술지·학회, 연도, 권·호·쪽수, DOI 등 확인된 서지정보와 선택 가능한 BibTeX를 표시합니다. 형식 선택과 개별·전체 다운로드 버튼은 제공하지 않습니다. 자동 복사는 HTTPS 또는 localhost에서 브라우저가 허용하는 경우 동작하며, 복사가 차단되면 원문을 펼쳐 선택합니다. JavaScript 없이도 Citation을 펼쳐 수동 복사할 수 있습니다.
+기출판 논문 5편의 BibTeX는 출판사에서 가져온 `data/bibtex/` 원본을 사용하며, 화면과 생성 파일에서는 인용 키를 `첫 저자 성 + 두 자리 인용 연도 + 키워드`로 바꿉니다(예: `Kim26CineHaptic`, `Lee24Telemetry`). 원본 파일은 그대로 보관하고, 화면·복사·생성된 BibTeX에서는 abstract와 keywords 필드를 제외합니다. 그 외 서지 필드는 출판사 원문을 유지합니다. IEEE 4편은 각 논문의 Cite This → BibTeX에서, Springer 1편은 Download citation → .BIB에서 가져왔습니다. 출처는 각 Citation 상자에 표시합니다. 출판 예정 2편은 공식 내보내기가 아직 없어 제공된 정보로 만든 임시 인용임을 표시합니다. 목록의 Citation 버튼은 BibTeX를 바로 복사하고 카드 아래에 원문을 펼칩니다. 복사 상태는 페이지에서 가장 최근에 누른 버튼 하나에만 표시하며, 이전 버튼의 라벨과 알림은 초기화합니다. 펼친 원문은 Citation · BibTeX 제목으로 다시 접을 수 있습니다. Project 페이지에는 학술지·학회, 연도, 권·호·쪽수, DOI 등 확인된 서지정보와 선택 가능한 BibTeX를 표시합니다. 형식 선택과 개별·전체 다운로드 버튼은 제공하지 않습니다. 자동 복사는 HTTPS 또는 localhost에서 브라우저가 허용하는 경우 동작하며, 복사가 차단되면 원문을 펼쳐 선택합니다. JavaScript 없이도 Citation을 펼쳐 수동 복사할 수 있습니다.
 
 EuroHaptics C3는 2024년 행사 및 온라인 공개를 기준으로 목록의 2024년에 배치하지만, Springer 공식 BibTeX의 연도는 2025이므로 인용에서는 2025를 그대로 유지합니다(`citationYear`). 인용 키도 `Kim25Azimuth`로 표시합니다. 원본은 DOI를 키로 사용하고 별도 DOI 필드가 없으므로, 키 변경 시 그 DOI를 `doi` 필드로 추가하여 보존합니다.
 
@@ -48,13 +48,13 @@ EuroHaptics C3는 2024년 행사 및 온라인 공개를 기준으로 목록의 
 
 All / Journal / Conference / 1st Papers에는 게재 확정된 논문만 표시하고 집계합니다. 출판된 논문과 To appear를 포함하여 All 7편, Journal 3편, Conference 4편, 1st Papers 4편입니다. 제출·작성 중인 연구는 Submitted / Writing에서 각각 볼 수 있으며 숫자 개수는 표시하지 않습니다. 2027년 배지는 Ongoing work로 표시합니다. Research Output의 Accepted Papers와 First Author도 게재 확정 기준으로 집계합니다. Ongoing Work의 세 논문 항목을 누르면 해당 상태 필터가 선택되고 2027년 카드로 이동합니다.
 
-UIST'26 CineHaptic(C4)과 TVCG / ISMAR 2026 Compliance(J3)는 저자 제공 제목·저자·그림으로 추가했습니다. 출판 예정 표기는 박스 없는 큰 글씨의 `- To appear`입니다. TVCG / ISMAR 구분과 공동 제1저자 표기는 https://www.jiwanlee.me/ 에서, CineHaptic의 학회 정보는 https://ami.kaist.ac.kr/publications 에서 확인했습니다. 논문 URL, DOI, 권·호·쪽수가 미정인 항목은 해당 필드를 생략하며 인용에는 출판 예정 상태를 기록합니다. 모든 논문의 썸네일과 제목은 로컬 Project 페이지로 연결됩니다. Paper 버튼은 항상 표시하며 링크가 없으면 회색으로 비활성화합니다.
+UIST'26 CineHaptic(C4)과 TVCG / ISMAR 2026 Compliance(J3)는 저자 제공 제목·저자·그림으로 추가했습니다. Publications의 출판 예정 표기는 박스 없는 큰 글씨의 `- To appear`입니다. 홈 Ongoing Work에서는 기존 파란색 `To appear` 배지를 유지합니다. TVCG / ISMAR 구분과 공동 제1저자 표기는 https://www.jiwanlee.me/ 에서, CineHaptic의 학회 정보는 https://ami.kaist.ac.kr/publications 에서 확인했습니다. 논문 URL, DOI, 권·호·쪽수가 미정인 항목은 해당 필드를 생략하며 인용에는 출판 예정 상태를 기록합니다. 모든 논문의 썸네일과 제목은 로컬 Project 페이지로 연결됩니다. Paper 버튼은 항상 표시하며 링크가 없으면 회색으로 비활성화합니다.
 
 두 신규 이미지는 `assets/images/`에 저장했습니다. 목록의 썸네일은 원본 비율을 유지하며 이미지 박스 안에 전체 그림이 들어오도록 표시합니다(`object-fit: contain`). Project에서도 전체 그림을 표시합니다. 신규 Project 설명은 제공된 제목과 그림에 근거한 연구 개요이며 실험 결과를 추가로 추정하지 않습니다. Ongoing Work의 해당 두 요약 항목도 `To appear`로 표시합니다. 논문 수는 출판 예정 논문을 포함합니다.
 
 ## 원본 사이트 유지 기준
 
-공개 홈페이지의 프로필, 흰색 배경, 파란색 `#2563eb`, POSTECH 색상 `#c9006c`, Inter 글꼴, CV·Scholar·Email 버튼과 논문 카드 디자인을 유지합니다. 소개 원문, 학위 정보, 진행 중인 연구 6개 항목과 특허도 보존합니다. Research Output과 Current Research 아래에 Patents, Publications 순서로 배치합니다. 특허 한 건은 제목과 국가별 출원정보를 2열로 나눕니다. 논문은 연도별 최신순으로 한 행에 한 편씩 전체 너비를 사용하며, 각 카드 안에서 이미지와 정보를 2열로 나눕니다. 모바일에서는 카드 내부를 한 열로 전환합니다.
+공개 홈페이지의 프로필, 흰색 배경, 파란색 `#2563eb`, POSTECH 색상 `#c9006c`, Inter 글꼴, CV·Scholar·Email 버튼과 논문 카드 디자인을 유지합니다. 학력은 Ph.D. Student(2021.09~2028.02(Expected))와 B.S.(2014.03~2021.09)로 표시합니다. POSTECH은 대학 풀명칭과 함께 적되 POSTECH 약어에만 고유 색상을 적용합니다. 학사 항목은 Electronics Engineering와 PNU만 굵게 표시합니다. 소개는 지각 실험·신호처리·멀티모달 AI, 센싱·시스템 개발·사용자 평가를 연결하는 연구 강점을 네 문장으로 설명합니다. 진행 중인 연구 6개 항목과 특허는 보존합니다. Research Output과 Current Research 아래에 Patents, Publications 순서로 배치합니다. 특허 한 건은 제목과 국가별 출원정보를 2열로 나눕니다. 논문은 연도별 최신순으로 한 행에 한 편씩 전체 너비를 사용하며, 각 카드 안에서 이미지와 정보를 2열로 나눕니다. 모바일에서는 카드 내부를 한 열로 전환합니다.
 
 홈과 Publications 페이지에서 All / Journal / Conference / 1st Papers / Submitted / Writing 중 하나만 선택할 수 있습니다. All / Journal / Conference / 1st Papers를 주요 필터로 표시하고 Submitted / Writing은 그 아래에 작게 배치합니다. 게재 확정 논문 수는 큰 파란색 글씨로 강조하며 설명 문장은 표시하지 않습니다. 다른 카테고리를 누르면 이전 선택이 해제되며, 1st Papers는 공동 제1저자를 포함합니다. 빈 연도는 숨기고 표시 논문 수를 갱신합니다. 게재 확정 논문의 연도 옆에는 `3 papers`처럼 의미가 명확한 개수 배지를 표시하며, 필터에 따라 `1 paper` 또는 `N papers`로 갱신합니다. 상단 표기는 `ACM UIST'26`, `IEEE ToH`, `IEEE TVCG (ISMAR'26)` 형식이며, 저자 바로 아래에 학술지·학회의 풀명칭 (약어), 연도를 표시합니다. Project와 Related research도 같은 약어 규칙을 사용합니다. Research Output의 논문 수와 제1저자 논문 수 역시 같은 데이터에서 계산합니다.
 

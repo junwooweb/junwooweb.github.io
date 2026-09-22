@@ -16,7 +16,10 @@ if (portraitLink && portraitDialog?.showModal) {
   });
 }
 
-document.querySelectorAll('[data-copy]').forEach(button => {
+const copyButtons = [...document.querySelectorAll('[data-copy]')];
+const copyLabels = new Map(copyButtons.map(button => [button, button.textContent]));
+let activeCopyRequest = 0;
+copyButtons.forEach(button => {
   const block = document.getElementById(button.dataset.copy);
   const status = button.parentElement.querySelector('[role="status"]');
   if (!block || !status) return;
@@ -28,6 +31,9 @@ document.querySelectorAll('[data-copy]').forEach(button => {
     disclosure.addEventListener('toggle', syncExpanded);
   }
   button.addEventListener('click', async () => {
+    const request = ++activeCopyRequest;
+    copyButtons.forEach(item => { item.textContent = copyLabels.get(item); });
+    document.querySelectorAll('.copy-status').forEach(message => { message.textContent = ''; });
     const text = block.textContent;
     if (disclosure && !disclosure.open) {
       disclosure.open = true;
@@ -38,9 +44,11 @@ document.querySelectorAll('[data-copy]').forEach(button => {
     try {
       if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
       await navigator.clipboard.writeText(text);
+      if (request !== activeCopyRequest) return;
       status.textContent = 'Copied to clipboard.';
       button.textContent = 'Copied';
     } catch {
+      if (request !== activeCopyRequest) return;
       // A denied clipboard permission still leaves a selectable, usable citation.
       if (disclosure) disclosure.open = true;
       block.scrollIntoView({ block: 'nearest' });
