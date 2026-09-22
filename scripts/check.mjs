@@ -42,6 +42,7 @@ for (const p of papers) {
   if (p.doi) assert.ok(bib.includes(p.doi), `Missing DOI for ${p.id}`);
   else assert.ok(!/\bdoi\s*=/.test(bib), `Unexpected DOI for ${p.id}`);
   assert.ok(!bib.includes('undefined'), `Missing citation data rendered for ${p.id}`);
+  assert.doesNotMatch(bib, /^\s*(?:abstract|keywords)\s*=/im, `Unwanted citation fields for ${p.id}`);
   if (p.status) assert.ok(bib.includes(p.status), `Missing publication status for ${p.id}`);
   const title = bib.match(/\btitle\s*=\s*(?:\{\{([\s\S]*?)\}\}|\{([\s\S]*?)\}|"([\s\S]*?)")\s*,/i);
   const normalized = value => value.replace(/\s+/g, ' ').trim();
@@ -51,7 +52,8 @@ for (const p of papers) {
     const source = await readFile(join(root, p.bibtexFile), 'utf8');
     const withoutKey = value => value.trim().replace(/^(@\w+\s*\{)[^,]+,/, '$1CITATION_KEY,');
     const originalFields = /\bdoi\s*=/i.test(source) ? bib : bib.replace(/^\s*doi\s*=\s*\{[^}]*\},\r?\n/im, '');
-    assert.equal(withoutKey(originalFields), withoutKey(source), `Publisher BibTeX fields changed for ${p.id}`);
+    const citationSource = source.replace(/^[ \t]*(?:abstract|keywords)\s*=.*\r?\n/gim, '');
+    assert.equal(withoutKey(originalFields), withoutKey(citationSource), `Publisher bibliographic fields changed for ${p.id}`);
     assert.ok(/^@(article|inproceedings)\{/i.test(source.trim()), `Invalid publisher export for ${p.id}`);
   }
 }

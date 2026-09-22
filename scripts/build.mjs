@@ -15,18 +15,23 @@ const external = (url, label, cls = '') => `<a class="${cls}" href="${esc(url)}"
 const imageUrl = (p, base = '') => p.image.startsWith('assets/') ? `${base}${p.image}` : `${release}${p.image}`;
 const venueLabel = p => {
   const year = String(p.year).slice(-2);
-  if (p.presentationShort) return `${p.venueShort} · ${p.presentationShort}'${year}`;
+  if (p.presentationShort) return `${p.venueShort} (${p.presentationShort}'${year})`;
   return p.type === 'conference' ? `${p.venueShort}'${year}` : p.venueShort;
 };
-const venueLine = p => `${p.venue}, ${p.year}`;
+const venueLine = p => `${p.venue} (${p.venueShort}), ${p.year}`;
 const venueBadge = p => `<span class="venue-label ${p.type}">${esc(venueLabel(p))}</span>`;
-const statusBadge = p => p.status ? ` <span class="publication-status" data-status="${esc(p.status)}">${esc(p.status)}</span>` : '';
+const statusBadge = p => p.status ? ` <span class="publication-status${p.status === 'To appear' ? ' to-appear' : ''}" data-status="${esc(p.status)}">${p.status === 'To appear' ? '- ' : ''}${esc(p.status)}</span>` : '';
+const paperButton = (p, cls = 'paper-link') => p.paper
+  ? `<a class="${cls}" href="${esc(p.paper)}" target="_blank" rel="noopener noreferrer">Paper</a>`
+  : `<button class="${cls}" type="button" disabled title="Paper link is not yet available">Paper</button>`;
 const authors = p => p.authors.map(name => `${name === 'Junwoo Kim' ? `<strong>${esc(name)}</strong>` : esc(name)}${p.equalContribution?.includes(name) ? '<sup>*</sup>' : ''}`).join(', ');
 const contributionNote = p => p.equalContribution ? ' <span class="equal-note">(* Equal contribution)</span>' : '';
 
 function bibtex(p) {
   if (publisherBibtex.has(p.slug)) {
     let exported = publisherBibtex.get(p.slug).replace(/^(@\w+\s*\{)[^,]+,/, (_, prefix) => `${prefix}${p.citationKey},`);
+    // Publisher exports store abstract and keywords on individual lines.
+    exported = exported.replace(/^[ \t]*(?:abstract|keywords)\s*=.*\r?\n/gim, '');
     // Springer may use the DOI as its key without a separate DOI field.
     if (p.doi && !/\bdoi\s*=/i.test(exported)) exported = exported.replace(/^(.*\r?\n)/, `$1  doi={${p.doi}},\n`);
     return exported;
@@ -83,16 +88,15 @@ function bibliographicDetails(p) {
 function publication(p, base = '') {
   if (p.ongoing) return ongoingPublication(p);
   const project = `${base}projects/${p.slug}/`;
-  const imageLink = p.paper || project;
-  const titleLink = p.paper ? `<a href="${esc(p.paper)}" target="_blank" rel="noopener noreferrer">${esc(p.title)}</a>` : `<a href="${project}">${esc(p.title)}</a>`;
+  const titleLink = `<a href="${project}">${esc(p.title)}</a>`;
   return `<article class="pub-item publication" id="${p.id.toLowerCase()}" data-type="${p.type}" data-first-author="${Boolean(isFirstAuthor(p))}">
-    <a class="pub-thumb${p.paper ? '' : ' project-thumb'}" href="${esc(imageLink)}"${p.paper ? ' target="_blank" rel="noopener noreferrer"' : ''} title="${p.paper ? 'View Paper' : 'View Project'}" aria-label="${p.paper ? 'Paper' : 'Project'}: ${esc(p.title)}"><img src="${esc(imageUrl(p, base))}" alt="${esc(p.imageAlt)}" loading="lazy" width="${p.imageWidth || 560}" height="${p.imageHeight || 360}"></a>
+    <a class="pub-thumb project-thumb" href="${project}" title="View Project" aria-label="Project: ${esc(p.title)}"><img src="${esc(imageUrl(p, base))}" alt="${esc(p.imageAlt)}" loading="lazy" width="${p.imageWidth || 560}" height="${p.imageHeight || 360}"></a>
     <div class="pub-main">
       <div class="pub-venue">${venueBadge(p)}${statusBadge(p)}</div>
       <h3 class="pub-title"><span class="pub-badge${p.type === 'conference' ? ' conf' : ''}">${p.id}</span>${titleLink}</h3>
       <div class="pub-authors">${authors(p).replaceAll('<strong>', '<span class="me">').replaceAll('</strong>', '</span>')}${contributionNote(p)}</div>
       <div class="pub-venue-full">${esc(venueLine(p))}</div>
-      <div class="publication-links">${p.paper ? external(p.paper, 'Paper', 'paper-link') : ''}<a class="project-link" href="${project}">Project <span aria-hidden="true">↗</span></a>${copyButton(p, 'Citation', 'cite-copy')}<p class="copy-status" role="status" aria-live="polite"></p></div>
+      <div class="publication-links">${paperButton(p)}<a class="project-link" href="${project}">Project</a>${copyButton(p, 'Citation', 'cite-copy')}<p class="copy-status" role="status" aria-live="polite"></p></div>
     </div>
     <details class="citation-disclosure" id="cite-${p.id.toLowerCase()}"><summary>Citation · BibTeX</summary>${citation(p)}</details>
   </article>`;
@@ -112,6 +116,7 @@ function ongoingPublication(p) {
       <h3 class="pub-title">${esc(p.topic)}</h3>
       <div class="pub-authors">${authors(p)} <span class="author-role">(${isFirstAuthor(p) ? '1st author' : 'Co-author'})</span></div>
       <div class="pub-venue-full">${esc(venueLine(p))}</div>
+      <div class="publication-links">${paperButton(p)}<button class="project-link" type="button" disabled title="Project is not yet available">Project</button><button class="cite-copy" type="button" disabled title="Citation is not yet available">Citation</button></div>
     </div>
   </article>`;
 }
@@ -132,13 +137,14 @@ function publicationFilters() {
         <button type="button" data-filter="all" aria-pressed="true">All <span>${papers.length}</span></button>
         <button type="button" data-filter="journal" aria-pressed="false">Journal <span>${papers.filter(p => p.type === 'journal').length}</span></button>
         <button type="button" data-filter="conference" aria-pressed="false">Conference <span>${papers.filter(p => p.type === 'conference').length}</span></button>
-        <button type="button" data-filter="first-author" aria-pressed="false">1st Paper <span>${papers.filter(isFirstAuthor).length}</span></button>
-        <button type="button" data-filter="submitted" aria-pressed="false">Submitted</button>
-        <button type="button" data-filter="writing" aria-pressed="false">Writing</button>
+        <button type="button" data-filter="first-author" aria-pressed="false">1st Papers <span>${papers.filter(isFirstAuthor).length}</span></button>
       </div>
     </div>
     <div class="archive-tools"><p class="archive-count" role="status" aria-live="polite">${papers.length} accepted papers</p></div>
-  </div><p class="filter-note">Counts include accepted papers only (published or to appear). View ongoing work under Submitted or Writing. 1st author includes equal first authorship.</p><p class="publication-empty" role="status" hidden>No papers in this category.</p>`;
+  </div><div class="filter-group secondary-filters js-only" role="group" aria-label="Ongoing research status" hidden>
+    <button type="button" data-filter="submitted" aria-pressed="false">Submitted</button>
+    <button type="button" data-filter="writing" aria-pressed="false">Writing</button>
+  </div><p class="publication-empty" role="status" hidden>No papers in this category.</p>`;
 }
 
 function layout({ title, description, content, base = '', page = '', active = 'about', metadata = '' }) {
@@ -202,7 +208,7 @@ for (const p of papers) {
     ? `${esc(p.overviewSource)}${p.publicationSource ? ` ${external(p.publicationSource, esc(p.publicationSourceLabel))}.` : ''}`
     : `Summary based on ${external(p.source, esc(p.sourceLabel))}.`;
   const content = `<a class="back-link" href="${base}publications.html#${p.id.toLowerCase()}">← All publications</a>
-  <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${esc(publicationDetails)}</p><div class="project-actions">${p.paper ? external(p.paper, 'Read paper', 'button filled') : ''}${copyButton(p, 'Copy BibTeX', 'button')}<a class="button" href="#citation">Citation details</a><p class="copy-status" role="status" aria-live="polite"></p></div></header>
+  <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${esc(publicationDetails)}</p><div class="project-actions">${paperButton(p, 'button paper-link')}${copyButton(p, 'Copy BibTeX', 'button citation-link')}<a class="button citation-link" href="#citation">Citation details</a><p class="copy-status" role="status" aria-live="polite"></p></div></header>
   <figure class="project-figure"><img src="${esc(imageUrl(p, base))}" alt="${esc(p.imageAlt)}" width="${p.imageWidth || 1100}" height="${p.imageHeight || 620}"><figcaption>${esc(p.imageAlt)}.</figcaption></figure>
   <div class="project-content"><section class="project-overview"><p class="eyebrow">At a glance</p><h2>${esc(p.question)}</h2><p class="lead">${esc(p.summary)}</p><div class="tags">${p.tags.map(tag => `<span>${esc(tag)}</span>`).join('')}</div></section>
   <section class="project-section"><h2>The approach</h2><p>${esc(p.approach)}</p></section>

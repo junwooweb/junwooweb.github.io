@@ -39,7 +39,7 @@ document.querySelectorAll('[data-copy]').forEach(button => {
       if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
       await navigator.clipboard.writeText(text);
       status.textContent = 'Copied to clipboard.';
-      button.textContent = 'Copied ✓';
+      button.textContent = 'Copied';
     } catch {
       // A denied clipboard permission still leaves a selectable, usable citation.
       if (disclosure) disclosure.open = true;
