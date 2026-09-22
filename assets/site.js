@@ -69,7 +69,11 @@ copyButtons.forEach(button => {
       await navigator.clipboard.writeText(text);
       if (request !== activeCopyRequest) return;
       status.textContent = 'Copied to clipboard.';
-      button.textContent = 'Copied';
+      const check = document.createElement('span');
+      check.className = 'copy-check';
+      check.setAttribute('aria-hidden', 'true');
+      check.textContent = '✓';
+      button.replaceChildren(check, document.createTextNode('Copied'));
     } catch {
       if (request !== activeCopyRequest) return;
       // A denied clipboard permission still leaves a selectable, usable citation.

@@ -29,8 +29,8 @@ const venueLabel = p => {
   if (p.presentationShort) return `${p.venueShort} (${p.presentationShort}'${year})`;
   return p.type === 'conference' ? `${p.venueShort}'${year}` : p.venueShort;
 };
-const venueLine = p => `${p.venue} (${p.venueShort}), ${p.year}`;
-const venueLineMarkup = p => `${esc(p.venue)} (${p.venueShort === 'IEEE ToH' ? `<strong>${esc(p.venueShort)}</strong>` : esc(p.venueShort)}), ${p.year}`;
+const venueMarkup = p => `${esc(p.venue)} (<strong>${esc(p.venueShort)}</strong>)`;
+const venueLineMarkup = p => `${venueMarkup(p)}, ${p.year}`;
 const venueBadge = p => `<span class="venue-label ${p.type}">${esc(venueLabel(p))}</span>`;
 const statusBadge = p => p.status ? ` <span class="publication-status${p.status === 'To appear' ? ' to-appear' : ''}" data-status="${esc(p.status)}">${p.status === 'To appear' ? '- ' : ''}${esc(p.status)}</span>` : '';
 const paperButton = (p, cls = 'paper-link') => p.paper
@@ -83,7 +83,7 @@ function citation(p) {
 
 function bibliographicDetails(p) {
   const fields = [
-    [p.type === 'journal' ? 'Journal' : 'Conference', esc(p.venue)],
+    [p.type === 'journal' ? 'Journal' : 'Conference', venueMarkup(p)],
     ['Proceedings', p.booktitle && esc(p.booktitle)],
     ['Year', p.citationYear || p.year],
     ['Conference year', p.citationYear && p.citationYear !== p.year ? p.year : null],
@@ -127,7 +127,7 @@ function ongoingPublication(p) {
       <p class="research-topic-label">Research topic</p>
       <h3 class="pub-title">${esc(p.topic)}</h3>
       <div class="pub-authors">${authors(p)} <span class="author-role">(${isFirstAuthor(p) ? '1st author' : 'Co-author'})</span></div>
-      <div class="pub-venue-full">${esc(venueLine(p))}</div>
+      <div class="pub-venue-full">${venueLineMarkup(p)}</div>
       <div class="publication-links">${paperButton(p)}<button class="project-link" type="button" disabled title="Project is not yet available">Project</button><button class="cite-copy" type="button" disabled title="Citation is not yet available">Citation</button></div>
     </div>
   </article>`;
@@ -154,8 +154,8 @@ function publicationFilters() {
     </div>
     <div class="archive-tools"><p class="archive-count" role="status" aria-live="polite">${papers.length} accepted papers</p></div>
   </div><div class="filter-group secondary-filters js-only" role="group" aria-label="Ongoing research status" hidden>
-    <button type="button" data-filter="submitted" aria-pressed="false">Submitted</button>
-    <button type="button" data-filter="writing" aria-pressed="false">Writing</button>
+    <button type="button" data-filter="submitted" aria-pressed="false">Submitted <span>${ongoing.filter(p => p.status === 'Submitted').length}</span></button>
+    <button type="button" data-filter="writing" aria-pressed="false">Writing <span>${ongoing.filter(p => p.status === 'Writing').length}</span></button>
   </div><p class="publication-empty" role="status" hidden>No papers in this category.</p>`;
 }
 
@@ -215,12 +215,12 @@ for (const p of papers) {
   const base = '../../';
   const related = papers.filter(other => other.slug !== p.slug && (other.tags.some(tag => p.tags.includes(tag)) || (p.slug.includes('torso') && other.slug === 'azimuth-elevation'))).slice(0,2);
   const highlights = p.findings || p.highlights;
-  const publicationDetails = `${venueLine(p)}${p.volume ? ` · ${p.volume}${p.number ? `(${p.number})` : ''}` : ''}${p.pages ? ` · pp. ${p.pages}` : ''}`;
+  const publicationDetails = `${venueLineMarkup(p)}${p.volume ? ` · ${esc(p.volume)}${p.number ? `(${esc(p.number)})` : ''}` : ''}${p.pages ? ` · pp. ${esc(p.pages)}` : ''}`;
   const sourceNote = p.overviewSource
     ? `${esc(p.overviewSource)}${p.publicationSource ? ` ${external(p.publicationSource, esc(p.publicationSourceLabel))}.` : ''}`
     : `Summary based on ${external(p.source, esc(p.sourceLabel))}.`;
   const content = `<a class="back-link" href="${base}publications.html#${p.id.toLowerCase()}">← All publications</a>
-  <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${esc(publicationDetails)}</p><div class="project-actions">${paperButton(p, 'button paper-link')}<a class="button citation-link" href="#citation">Citation details</a></div></header>
+  <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${publicationDetails}</p><div class="project-actions">${paperButton(p, 'button paper-link')}<a class="button citation-link" href="#citation">Citation details</a></div></header>
   <figure class="project-figure"><img src="${esc(imageUrl(p, base))}" alt="${esc(p.imageAlt)}" width="${p.imageWidth || 1100}" height="${p.imageHeight || 620}"><figcaption>${esc(p.imageAlt)}.</figcaption></figure>
   <div class="project-content"><section class="project-overview"><p class="eyebrow">At a glance</p><h2>${esc(p.question)}</h2><p class="lead">${esc(p.summary)}</p><div class="tags">${p.tags.map(tag => `<span>${esc(tag)}</span>`).join('')}</div></section>
   <section class="project-section"><h2>The approach</h2><p>${esc(p.approach)}</p></section>
