@@ -3,17 +3,71 @@
 document.documentElement.classList.add('has-js');
 document.querySelectorAll('.js-only').forEach(element => { element.hidden = false; });
 
-const portraitLink = document.querySelector('[data-open-profile]');
+const portraitGallery = document.querySelector('[data-profile-gallery]');
+const portraitLinks = [...document.querySelectorAll('[data-open-profile]')];
 const portraitDialog = document.querySelector('.portrait-dialog');
-if (portraitLink && portraitDialog?.showModal) {
-  portraitLink.addEventListener('click', event => {
-    event.preventDefault();
-    portraitDialog.showModal();
+if (portraitGallery && portraitLinks.length) {
+  let photoIndex = 0;
+  let suppressClickUntil = 0;
+  const fullPortrait = portraitDialog?.querySelector('[data-portrait-image]');
+  function showPhoto(index) {
+    photoIndex = (index + portraitLinks.length) % portraitLinks.length;
+    portraitLinks.forEach((link, i) => { link.hidden = i !== photoIndex; });
+    const selected = portraitLinks[photoIndex];
+    if (fullPortrait) {
+      fullPortrait.src = selected.href;
+      fullPortrait.alt = selected.querySelector('img').alt;
+    }
+    document.querySelectorAll('[data-photo-count]').forEach(counter => {
+      counter.textContent = `${photoIndex + 1} / ${portraitLinks.length}`;
+    });
+    if (portraitDialog) portraitDialog.setAttribute('aria-label', `Junwoo Kim profile photo ${photoIndex + 1} of ${portraitLinks.length}`);
+  }
+  document.querySelectorAll('[data-profile-controls]').forEach(controls => {
+    controls.hidden = portraitLinks.length < 2;
   });
-  portraitDialog.addEventListener('click', event => {
-    const rect = portraitDialog.getBoundingClientRect();
-    if (event.target === portraitDialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) portraitDialog.close();
+  document.querySelectorAll('[data-photo-step]').forEach(button => {
+    button.addEventListener('click', () => showPhoto(photoIndex + Number(button.dataset.photoStep)));
   });
+  portraitLinks.forEach(link => link.addEventListener('click', event => {
+    if (performance.now() < suppressClickUntil) { event.preventDefault(); return; }
+    if (portraitDialog?.showModal) {
+      event.preventDefault();
+      portraitDialog.showModal();
+    }
+  }));
+  [portraitGallery, portraitDialog].filter(Boolean).forEach(surface => {
+    surface.addEventListener('keydown', event => {
+      if (portraitLinks.length < 2 || !['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+      event.preventDefault();
+      const focusWasPhoto = portraitLinks.includes(document.activeElement);
+      showPhoto(photoIndex + (event.key === 'ArrowRight' ? 1 : -1));
+      if (focusWasPhoto) portraitLinks[photoIndex].focus({ preventScroll: true });
+    });
+    let touchStart = null;
+    surface.addEventListener('pointerdown', event => {
+      if (event.pointerType === 'touch') touchStart = { x: event.clientX, y: event.clientY };
+    });
+    surface.addEventListener('pointercancel', () => { touchStart = null; });
+    surface.addEventListener('pointerup', event => {
+      if (!touchStart || event.pointerType !== 'touch') return;
+      const dx = event.clientX - touchStart.x;
+      const dy = event.clientY - touchStart.y;
+      touchStart = null;
+      if (portraitLinks.length > 1 && Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        suppressClickUntil = performance.now() + 500;
+        showPhoto(photoIndex + (dx < 0 ? 1 : -1));
+      }
+    });
+  });
+  if (portraitDialog) {
+    portraitDialog.addEventListener('click', event => {
+      const rect = portraitDialog.getBoundingClientRect();
+      if (event.target === portraitDialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) portraitDialog.close();
+    });
+    portraitDialog.addEventListener('close', () => portraitLinks[photoIndex].focus({ preventScroll: true }));
+  }
+  showPhoto(0);
 }
 
 const copyButtons = [...document.querySelectorAll('[data-copy]')];

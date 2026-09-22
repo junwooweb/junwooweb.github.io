@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 
@@ -24,6 +24,25 @@ const site = 'https://junwooweb.github.io/';
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const external = (url, label, cls = '') => `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${label}<span aria-hidden="true"> ↗</span></a>`;
 const imageUrl = (p, base = '') => p.image.startsWith('assets/') ? `${base}${p.image}` : `${release}${p.image}`;
+const portraitDirectory = new URL('assets/images/profile/', root);
+const portraitFiles = (await readdir(portraitDirectory, { withFileTypes: true }))
+  .filter(file => file.isFile() && /\.(?:jpe?g|png|webp|avif|gif)$/i.test(file.name))
+  .map(file => file.name).sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
+const portraits = await Promise.all(portraitFiles.map(async name => {
+  const content = await readFile(new URL(encodeURIComponent(name), portraitDirectory));
+  const version = createHash('sha256').update(content).digest('hex').slice(0, 12);
+  return `assets/images/profile/${encodeURIComponent(name)}?v=${version}`;
+}));
+if (!portraits.length) portraits.push(`${release}main.png`);
+const portraitControls = () => `<div class="portrait-controls" data-profile-controls hidden>
+  <button type="button" data-photo-step="-1" aria-label="Previous profile photo"><span aria-hidden="true">‹</span></button>
+  <span class="portrait-count" data-photo-count role="status" aria-live="polite" aria-atomic="true">1 / ${portraits.length}</span>
+  <button type="button" data-photo-step="1" aria-label="Next profile photo"><span aria-hidden="true">›</span></button>
+</div>`;
+const portraitGallery = `<div class="profile-gallery" data-profile-gallery role="region" aria-roledescription="carousel" aria-label="Junwoo Kim profile photos" tabindex="0">
+  <div class="profile-photo-stage">${portraits.map((src, index) => `<a class="profile-image-link" href="${esc(src)}" data-open-profile aria-label="Enlarge profile photo ${index + 1} of ${portraits.length}"${index ? ' hidden' : ''}><img src="${esc(src)}" alt="Junwoo Kim — photo ${index + 1} of ${portraits.length}" class="profile-img" width="260" height="260"${index ? ' loading="lazy"' : ' fetchpriority="high"'}></a>`).join('\n')}</div>
+  ${portraitControls()}
+</div>`;
 const venueLabel = p => {
   const year = String(p.year).slice(-2);
   if (p.presentationShort) return `${p.venueShort} (${p.presentationShort}'${year})`;
@@ -195,7 +214,7 @@ function layout({ title, description, content, base = '', page = '', active = 'h
 }
 
 const homeTemplate = await readFile(new URL('templates/home.html', root), 'utf8');
-const home = homeTemplate.replace('{{PUBLICATIONS}}', byYear(listedPapers)).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replace('{{FIRST_AUTHOR_COUNT}}', papers.filter(isFirstAuthor).length).replace('{{YEAR}}', new Date().getFullYear());
+const home = homeTemplate.replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{PUBLICATIONS}}', byYear(listedPapers)).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replace('{{FIRST_AUTHOR_COUNT}}', papers.filter(isFirstAuthor).length).replace('{{YEAR}}', new Date().getFullYear());
 await writePage(new URL('index.html', root), home.replace(/[ \t]+$/gm, ''));
 
 const archive = home.replace(/<title>.*?<\/title>/, '<title>Publications | Junwoo Kim</title>')

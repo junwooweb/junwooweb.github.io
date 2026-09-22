@@ -9,11 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/original.css?v=338d41491d7a">
-    <link rel="stylesheet" href="assets/publication-tools.css?v=6d568dbc711f">
+    <link rel="stylesheet" href="assets/publication-tools.css?v=59b04b6bfd15">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="canonical" href="https://junwooweb.github.io/">
     <meta name="description" content="Junwoo Kim, a Ph.D. student at POSTECH researching haptic perception, rendering, and multimodal AI. Publications, project summaries, and citations.">
-    <script src="assets/site.js?v=76c907dd9d0f" defer></script>
+    <script src="assets/site.js?v=d67b5f204afb" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -32,7 +32,14 @@
 
     <!-- Profile -->
     <section class="profile-section" id="about" style="margin-bottom:2.5rem;">
-        <a class="profile-image-link" href="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/main.png" data-open-profile aria-label="Enlarge profile photo"><img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/main.png" alt="Junwoo Kim" class="profile-img" width="220" height="220"></a>
+        <div class="profile-gallery" data-profile-gallery role="region" aria-roledescription="carousel" aria-label="Junwoo Kim profile photos" tabindex="0">
+  <div class="profile-photo-stage"><a class="profile-image-link" href="assets/images/profile/01-main.png?v=d688ad4fab63" data-open-profile aria-label="Enlarge profile photo 1 of 1"><img src="assets/images/profile/01-main.png?v=d688ad4fab63" alt="Junwoo Kim — photo 1 of 1" class="profile-img" width="260" height="260" fetchpriority="high"></a></div>
+  <div class="portrait-controls" data-profile-controls hidden>
+  <button type="button" data-photo-step="-1" aria-label="Previous profile photo"><span aria-hidden="true">‹</span></button>
+  <span class="portrait-count" data-photo-count role="status" aria-live="polite" aria-atomic="true">1 / 1</span>
+  <button type="button" data-photo-step="1" aria-label="Next profile photo"><span aria-hidden="true">›</span></button>
+</div>
+</div>
 
         <div class="profile-info">
             <h1>Junwoo Kim</h1>
@@ -556,8 +563,13 @@ isbn=&quot;978-3-031-70058-3&quot;
 </footer>
 
 <dialog class="portrait-dialog" aria-label="Junwoo Kim profile photo">
-    <form method="dialog"><button type="submit" aria-label="Close profile photo">×</button></form>
-    <img src="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/main.png" alt="Junwoo Kim" width="480" height="480">
+    <form method="dialog"><button class="portrait-close" type="submit" aria-label="Close profile photo">×</button></form>
+    <img src="assets/images/profile/01-main.png?v=d688ad4fab63" alt="Junwoo Kim" data-portrait-image>
+    <div class="portrait-controls" data-profile-controls hidden>
+  <button type="button" data-photo-step="-1" aria-label="Previous profile photo"><span aria-hidden="true">‹</span></button>
+  <span class="portrait-count" data-photo-count role="status" aria-live="polite" aria-atomic="true">1 / 1</span>
+  <button type="button" data-photo-step="1" aria-label="Next profile photo"><span aria-hidden="true">›</span></button>
+</div>
 </dialog>
 
 </body>

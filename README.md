@@ -14,6 +14,14 @@ npm start
 
 브라우저에서 http://127.0.0.1:4173 을 엽니다. Windows PowerShell 실행 정책이 `npm.ps1`을 막으면 `npm` 대신 `npm.cmd`를 사용하세요.
 
+## 프로필 사진 추가
+
+사진은 `assets/images/profile/`에 넣으세요. 현재 사진도 `01-main.png`로 이 폴더에 보관합니다. JPG, JPEG, PNG, WebP, AVIF, GIF를 지원하며 `01-main.png`, `02-conference.jpg`, `03-lab.webp`처럼 번호로 순서를 지정할 수 있습니다. 코드나 사진 목록을 직접 수정할 필요는 없습니다.
+
+두 장 이상이면 이전·다음 버튼과 사진 번호가 나타나며, 프로필과 확대 화면에서 같은 사진을 유지합니다. 좌우 방향키와 터치 스와이프도 지원하고 자동 재생은 하지 않습니다. 사진이 한 장이면 이동 버튼은 숨깁니다. 원본은 확대 화면에서 잘리지 않고 표시됩니다.
+
+`npm start` 실행 중에는 사진 추가·교체·삭제를 감지해 목록을 다시 생성합니다. 새로고침하면 확인할 수 있습니다. 공개 홈페이지에 반영하려면 `npm run build` 후 사진과 생성된 HTML을 함께 커밋·push하세요. 같은 파일명으로 사진을 교체해도 내용 기반 버전이 바뀌어 새 사진이 표시됩니다. 폴더에 사진이 하나도 없으면 기존 GitHub Release 프로필 사진으로 돌아갑니다.
+
 ## 수정하는 곳
 
 - `templates/home.html`: 원본 홈 UI, 소개, 연구 주제, 진행 중인 연구, 학력, 특허, 주석 처리된 섹션
@@ -42,7 +50,7 @@ EuroHaptics C3는 2024년 행사 및 온라인 공개를 기준으로 목록의 
 
 2026-09-22에 DOI 등록 정보(Crossref), Springer, PubMed에 수록된 출판 초록, POSTECH CSE 연구 소개를 확인하여 초기 데이터를 정리했습니다. 프로젝트별 `source`에 요약 출처를 기록했습니다. Project 본문은 초록 전문이 아닌 짧은 편집 요약입니다. C3와 C2의 기존 홈페이지 목록에서 누락된 Junseok Park를 DOI 등록 정보에 맞춰 추가했습니다. C2 저자 순서는 Crossref 등록 순서를 따릅니다.
 
-기존 프로필·논문 이미지와 CV는 이 저장소의 GitHub Release `images` 링크를 사용합니다. Ongoing work의 상태는 기존 홈페이지 내용을 유지했습니다.
+기존 논문 이미지와 CV는 이 저장소의 GitHub Release `images` 링크를 사용합니다. 프로필은 `assets/images/profile/`의 로컬 사진을 사용하고, 폴더가 비었을 때만 Release 프로필 사진을 사용합니다. Ongoing work의 상태는 기존 홈페이지 내용을 유지했습니다.
 
 2027년에는 IEEE VR 제출 연구 2편(General Egocentric Direction, 4D Cinematic Experiences)과 Extreme Mechanics Letters 작성 연구 1편(Finger Contact Dynamics and Perception Analysis)을 표시합니다. 정식 논문 제목 대신 Research topic으로 표시하며 저자는 `Anonymous`입니다. Submitted/Writing 상태를 이미지 칸과 배지에 모두 표시합니다. IEEE VR의 풀명칭은 https://ieeevr.org/ 에서 확인했습니다. 정식 서지정보가 없으므로 Project·Paper·Citation 자료는 생성하지 않고, 해당 버튼을 회색 비활성 상태로 표시합니다. 첫 번째 IEEE VR 연구는 제1저자, 두 번째는 공동저자로 처리하고 EML은 기존 Ongoing Work의 제1저자 정보를 유지합니다. 연도는 사용자 지정 계획 연도이며 출판 확정을 뜻하지 않습니다.
 
@@ -58,7 +66,7 @@ UIST'26 CineHaptic(C4)과 TVCG / ISMAR 2026 Compliance(J3)는 저자 제공 제�
 
 홈과 Publications 페이지에서 All / Journal / Conference / 1st Papers / Submitted / Writing 중 하나만 선택할 수 있습니다. All / Journal / Conference / 1st Papers를 주요 필터로 표시하고 Submitted / Writing은 그 아래에 작게 배치합니다. 게재 확정 논문 수는 큰 파란색 글씨로 강조하며 설명 문장은 표시하지 않습니다. 다른 카테고리를 누르면 이전 선택이 해제되며, 1st Papers는 공동 제1저자를 포함합니다. 빈 연도는 숨기고 표시 논문 수를 갱신합니다. 게재 확정 논문의 연도 옆에는 `3 papers`처럼 의미가 명확한 개수 배지를 표시하며, 필터에 따라 `1 paper` 또는 `N papers`로 갱신합니다. 상단 표기는 `ACM UIST'26`, `IEEE ToH`, `IEEE TVCG (ISMAR'26)` 형식이며, 저자 바로 아래에 학술지·학회의 풀명칭 (약어), 연도를 표시합니다. Project와 Related research도 같은 약어 규칙을 사용합니다. Research Output의 논문 수와 제1저자 논문 수 역시 같은 데이터에서 계산합니다.
 
-학술지·학회와 상태 배지는 이미지 위가 아닌 오른쪽 정보 칸의 맨 위에 표시합니다. 진행 중인 연구는 Research topic 바로 위, 게재 확정 논문은 제목 위에 배치합니다. 저널은 파랑, 학회는 POSTECH 색상과 어울리는 분홍 포인트를 사용하며 흰 배경을 유지합니다. 카드 본문은 왼쪽 이미지와 오른쪽 논문 제목·저자·풀명칭·링크의 가로 배치입니다. 프로필 사진은 220px로 표시합니다. 논문 카드의 이미지 칸은 가로 공간의 약 44%를 사용합니다. 이미지와 정보는 최소 280px 높이를 공유하며 긴 내용이 있으면 함께 늘어납니다. 이미지는 원본 비율을 유지하면서 칸 안에 전체가 들어오도록 가운데 정렬합니다(`object-fit: contain`). 비율 차이로 남는 공간은 흰색으로 표시합니다. 수동 복사를 위해 펼친 인용문은 카드 전체 너비를 사용합니다. 제목은 진한 색과 큰 글씨, 저자는 중간 명도, 서지정보는 보조 색으로 구분합니다. Paper는 앰버(#b45309), Project는 퍼플(#7e22ce), Citation은 차콜(#334155)로 구분하며 기본 버튼에는 아이콘을 사용하지 않으며 복사 완료 상태에서만 체크 아이콘을 표시합니다. 사용할 수 없는 버튼은 회색 비활성 상태로 표시합니다. 공동 기여 표시는 저자 목록 뒤에 `(* Equal contribution)`을 이탤릭체로 붙이며, 문구와 저자별 별표는 굵게 표시합니다. 모든 Publications 항목과 Project의 저자 아래 서지정보는 풀명칭 (굵은 약어), 연도 형식을 사용합니다. Project의 Citation 상세정보에도 같은 약어를 굵게 추가합니다. 700px 이하 화면에서는 이미지 칸을 본문 위에 카드 전체 너비의 4:3 영역으로 넓혀 배치하고 그 안에서 원본 비율을 유지합니다.
+학술지·학회와 상태 배지는 이미지 위가 아닌 오른쪽 정보 칸의 맨 위에 표시합니다. 진행 중인 연구는 Research topic 바로 위, 게재 확정 논문은 제목 위에 배치합니다. 저널은 파랑, 학회는 POSTECH 색상과 어울리는 분홍 포인트를 사용하며 흰 배경을 유지합니다. 카드 본문은 왼쪽 이미지와 오른쪽 논문 제목·저자·풀명칭·링크의 가로 배치입니다. 프로필 사진은 260px로 표시하며 사진 폴더에서 구성되는 갤러리를 사용합니다. 논문 카드의 이미지 칸은 가로 공간의 약 44%를 사용합니다. 이미지와 정보는 최소 280px 높이를 공유하며 긴 내용이 있으면 함께 늘어납니다. 이미지는 원본 비율을 유지하면서 칸 안에 전체가 들어오도록 가운데 정렬합니다(`object-fit: contain`). 비율 차이로 남는 공간은 흰색으로 표시합니다. 수동 복사를 위해 펼친 인용문은 카드 전체 너비를 사용합니다. 제목은 진한 색과 큰 글씨, 저자는 중간 명도, 서지정보는 보조 색으로 구분합니다. Paper는 앰버(#b45309), Project는 퍼플(#7e22ce), Citation은 차콜(#334155)로 구분하며 기본 버튼에는 아이콘을 사용하지 않으며 복사 완료 상태에서만 체크 아이콘을 표시합니다. 사용할 수 없는 버튼은 회색 비활성 상태로 표시합니다. 공동 기여 표시는 저자 목록 뒤에 `(* Equal contribution)`을 이탤릭체로 붙이며, 문구와 저자별 별표는 굵게 표시합니다. 모든 Publications 항목과 Project의 저자 아래 서지정보는 풀명칭 (굵은 약어), 연도 형식을 사용합니다. Project의 Citation 상세정보에도 같은 약어를 굵게 추가합니다. 700px 이하 화면에서는 이미지 칸을 본문 위에 카드 전체 너비의 4:3 영역으로 넓혀 배치하고 그 안에서 원본 비율을 유지합니다.
 
 Current Research는 Audiovisual-to-Haptic Rendering System, Haptic Rendering with Funneling Illusions in VR, Correlation Analysis with 3D DIC for Contact Dynamics and Perception, 3D Reconstruction of Haptic Object for Digital Twin의 네 항목입니다. Doctoral Research와 Technical Skills의 HTML은 `templates/home.html`에서 주석 처리하여 보관합니다. 다시 표시하려면 해당 섹션을 감싼 주석을 제거하고 빌드하세요.
 
