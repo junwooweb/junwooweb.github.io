@@ -86,9 +86,9 @@ function publication(p, base = '') {
   const imageLink = p.paper || project;
   const titleLink = p.paper ? `<a href="${esc(p.paper)}" target="_blank" rel="noopener noreferrer">${esc(p.title)}</a>` : `<a href="${project}">${esc(p.title)}</a>`;
   return `<article class="pub-item publication" id="${p.id.toLowerCase()}" data-type="${p.type}" data-first-author="${Boolean(isFirstAuthor(p))}">
-    <div class="pub-venue">${venueBadge(p)}${statusBadge(p)}</div>
     <a class="pub-thumb${p.paper ? '' : ' project-thumb'}" href="${esc(imageLink)}"${p.paper ? ' target="_blank" rel="noopener noreferrer"' : ''} title="${p.paper ? 'View Paper' : 'View Project'}" aria-label="${p.paper ? 'Paper' : 'Project'}: ${esc(p.title)}"><img src="${esc(imageUrl(p, base))}" alt="${esc(p.imageAlt)}" loading="lazy" width="${p.imageWidth || 560}" height="${p.imageHeight || 360}"></a>
     <div class="pub-main">
+      <div class="pub-venue">${venueBadge(p)}${statusBadge(p)}</div>
       <h3 class="pub-title"><span class="pub-badge${p.type === 'conference' ? ' conf' : ''}">${p.id}</span>${titleLink}</h3>
       <div class="pub-authors">${authors(p).replaceAll('<strong>', '<span class="me">').replaceAll('</strong>', '</span>')}${contributionNote(p)}</div>
       <div class="pub-venue-full">${esc(venueLine(p))}</div>
@@ -100,14 +100,14 @@ function publication(p, base = '') {
 
 function ongoingPublication(p) {
   const submitted = p.status === 'Submitted';
-  return `<article class="pub-item publication ongoing-publication" id="${p.id.toLowerCase()}" data-type="${p.type}" data-first-author="${isFirstAuthor(p)}" data-ongoing="true">
-    <div class="pub-venue">${venueBadge(p)}${statusBadge(p)}</div>
+  return `<article class="pub-item publication ongoing-publication" id="${p.id.toLowerCase()}" data-type="${p.type}" data-first-author="${isFirstAuthor(p)}" data-ongoing="true" data-status="${p.status.toLowerCase()}">
     <div class="pub-thumb manuscript-placeholder ${submitted ? 'submitted' : 'writing'}">
       <span class="material-symbols-outlined" aria-hidden="true">${submitted ? 'description' : 'edit_note'}</span>
       <strong>${esc(p.status)}</strong>
       <span>${submitted ? 'Manuscript submitted' : 'Manuscript in preparation'}</span>
     </div>
     <div class="pub-main">
+      <div class="pub-venue">${venueBadge(p)}${statusBadge(p)}</div>
       <p class="research-topic-label">Research topic</p>
       <h3 class="pub-title">${esc(p.topic)}</h3>
       <div class="pub-authors">${authors(p)} <span class="author-role">(${isFirstAuthor(p) ? '1st author' : 'Co-author'})</span></div>
@@ -128,11 +128,17 @@ function byYear(items, base = '') {
 function publicationFilters() {
   return `<div class="archive-toolbar">
     <div class="filter-controls js-only" hidden>
-      <div class="filter-group" role="group" aria-label="Publication type"><button type="button" data-filter="all" aria-pressed="true">All <span>${papers.length}</span></button><button type="button" data-filter="journal" aria-pressed="false">Journal <span>${papers.filter(p => p.type === 'journal').length}</span></button><button type="button" data-filter="conference" aria-pressed="false">Conference <span>${papers.filter(p => p.type === 'conference').length}</span></button></div>
-      <button class="first-author-filter" type="button" data-first-author-filter aria-pressed="false">1st Paper <span>${papers.filter(isFirstAuthor).length}</span></button>
+      <div class="filter-group" role="group" aria-label="Publication category">
+        <button type="button" data-filter="all" aria-pressed="true">All <span>${papers.length}</span></button>
+        <button type="button" data-filter="journal" aria-pressed="false">Journal <span>${papers.filter(p => p.type === 'journal').length}</span></button>
+        <button type="button" data-filter="conference" aria-pressed="false">Conference <span>${papers.filter(p => p.type === 'conference').length}</span></button>
+        <button type="button" data-filter="first-author" aria-pressed="false">1st Paper <span>${papers.filter(isFirstAuthor).length}</span></button>
+        <button type="button" data-filter="submitted" aria-pressed="false">Submitted</button>
+        <button type="button" data-filter="writing" aria-pressed="false">Writing</button>
+      </div>
     </div>
     <div class="archive-tools"><p class="archive-count" role="status" aria-live="polite">${papers.length} accepted papers</p></div>
-  </div><p class="filter-note">Counts include accepted papers only (published or to appear). 1st author includes equal first authorship.</p><p class="publication-empty" role="status" hidden>No publications match these filters.</p>`;
+  </div><p class="filter-note">Counts include accepted papers only (published or to appear). View ongoing work under Submitted or Writing. 1st author includes equal first authorship.</p><p class="publication-empty" role="status" hidden>No papers in this category.</p>`;
 }
 
 function layout({ title, description, content, base = '', page = '', active = 'about', metadata = '' }) {

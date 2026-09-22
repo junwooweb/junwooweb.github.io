@@ -67,14 +67,18 @@ window.addEventListener('hashchange', openCitationHash);
 
 document.querySelectorAll('[data-publication-browser]').forEach(browser => {
   const filters = [...browser.querySelectorAll('[data-filter]')];
-  const firstAuthor = browser.querySelector('[data-first-author-filter]');
   let filter = 'all';
-  let firstOnly = false;
+  function matchesFilter(paper) {
+    if (filter === 'submitted' || filter === 'writing') return paper.dataset.ongoing === 'true' && paper.dataset.status === filter;
+    if (paper.dataset.ongoing === 'true') return false;
+    if (filter === 'first-author') return paper.dataset.firstAuthor === 'true';
+    return filter === 'all' || paper.dataset.type === filter;
+  }
   function applyFilters() {
     let count = 0;
     let visibleCount = 0;
     browser.querySelectorAll('.publication').forEach(paper => {
-      paper.hidden = (filter !== 'all' && paper.dataset.type !== filter) || (firstOnly && paper.dataset.firstAuthor !== 'true');
+      paper.hidden = !matchesFilter(paper);
       if (!paper.hidden) {
         visibleCount++;
         if (paper.dataset.ongoing !== 'true') count++;
@@ -86,28 +90,27 @@ document.querySelectorAll('[data-publication-browser]').forEach(browser => {
       group.hidden = visible.length === 0;
       group.querySelector('[data-year-count]').textContent = acceptedCount ? `${acceptedCount} ${acceptedCount === 1 ? 'paper' : 'papers'}` : 'Ongoing work';
     });
-    browser.querySelector('.archive-count').textContent = `${count} accepted ${firstOnly ? 'first-author ' : ''}${filter === 'all' ? '' : `${filter} `}paper${count === 1 ? '' : 's'}`;
+    const category = filter === 'all' ? '' : `${filter} `;
+    browser.querySelector('.archive-count').textContent = filter === 'submitted' ? 'Submitted manuscripts' : filter === 'writing' ? 'Manuscripts in preparation' : `${count} accepted ${category}paper${count === 1 ? '' : 's'}`;
     browser.querySelector('.publication-empty').hidden = visibleCount !== 0;
   }
+  function selectFilter(value) {
+    filter = value;
+    filters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === filter)));
+    applyFilters();
+  }
   filters.forEach(button => button.addEventListener('click', () => {
-    filter = button.dataset.filter;
-    filters.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-    applyFilters();
+    selectFilter(button.dataset.filter);
   }));
-  firstAuthor.addEventListener('click', () => {
-    firstOnly = !firstOnly;
-    firstAuthor.setAttribute('aria-pressed', String(firstOnly));
-    applyFilters();
-  });
-  window.addEventListener('hashchange', () => {
+  function revealHashTarget() {
     const target = document.getElementById(location.hash.slice(1));
-    const paper = target?.closest('.publication');
-    if (!paper?.hidden || !browser.contains(paper)) return;
-    filter = 'all';
-    firstOnly = false;
-    filters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === 'all')));
-    firstAuthor.setAttribute('aria-pressed', 'false');
-    applyFilters();
-    target.scrollIntoView({ block: 'start' });
-  });
+    if (!target || !browser.contains(target)) return;
+    const group = target.closest('.publication-group');
+    const paper = target.closest('.publication') || (group?.hidden ? group.querySelector('.publication') : null);
+    if (paper?.hidden) selectFilter(paper.dataset.ongoing === 'true' ? paper.dataset.status : 'all');
+    if (paper) target.scrollIntoView({ block: 'start' });
+  }
+  applyFilters();
+  revealHashTarget();
+  window.addEventListener('hashchange', revealHashTarget);
 });
