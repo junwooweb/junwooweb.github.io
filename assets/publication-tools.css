@@ -13,7 +13,7 @@ html { scroll-padding-top: 5rem; }
 .current-label { color: #1d4ed8; font-size: .78rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 .education-period { display: inline-block; padding: 2px 9px; border-radius: 20px; background: #dbeafe; color: #1d4ed8; font-size: .78rem; font-weight: 600; white-space: nowrap; }
 .education-degree { margin: 0 0 .3rem; color: #1e293b; font-size: 1.3rem; font-weight: 800; line-height: 1.45; }
-.education-degree span { font-size: 1.05rem; font-weight: 600; }
+.education-degree span { font-size: 1.05rem; font-weight: 700; }
 .education-institution { margin: 0; font-size: .94rem; line-height: 1.65; }
 .postech-name { color: var(--postech-color); }
 .education-lab { display: flex; flex-wrap: wrap; gap: .2rem .5rem; margin: .4rem 0 0; font-size: .88rem; color: #475569; }
@@ -21,7 +21,7 @@ html { scroll-padding-top: 5rem; }
 .education-lab .advisor-link { color: #475569; }
 .education-previous { margin-top: .85rem; border-color: #e2e8f0; border-left-color: #cbd5e1; background: #f8fafc; color: #64748b; }
 .completed-label { color: #64748b; font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
-.education-previous .education-degree { color: #475569; font-size: 1.02rem; font-weight: 400; }
+.education-previous .education-degree { color: #475569; font-size: 1.02rem; font-weight: 700; }
 .education-previous .education-institution { font-size: .88rem; }
 .education-previous .education-period { background: #e2e8f0; color: #475569; font-size: .75rem; }
 .profile-bio { margin: 0 0 1.2rem; font-size: 1rem; }
