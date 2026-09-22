@@ -32,14 +32,15 @@ html { scroll-padding-top: 5rem; }
   background: var(--accent-light); font: 600 .85rem/1.6 'Inter', sans-serif; cursor: pointer;
 }
 .publication-links a:hover, .publication-links button:hover, .citation-toolbar .button:hover { border-color: var(--accent); background: #dbeafe; }
-.publication-links .paper-link { color: #fff; background: #1d4ed8; border-color: #1d4ed8; }
-.publication-links .paper-link:hover { background: #1e40af; }
-.publication-links .project-link { color: #115e59; background: #f0fdfa; border-color: #99f6e4; }
-.publication-links .project-link:hover { color: #134e4a; background: #ccfbf1; border-color: #2dd4bf; }
-.publication-links .cite-copy { color: #6b21a8; background: #faf5ff; border-color: #e9d5ff; }
-.publication-links .cite-copy:hover { color: #581c87; background: #f3e8ff; border-color: #c084fc; }
+.publication-links .paper-link { color: #fff; background: #b45309; border-color: #b45309; }
+.publication-links .paper-link:hover { background: #92400e; border-color: #92400e; }
+.publication-links .project-link { color: #fff; background: #7e22ce; border-color: #7e22ce; }
+.publication-links .project-link:hover { color: #fff; background: #6b21a8; border-color: #6b21a8; }
+.publication-links .cite-copy, .citation-toolbar .button { color: #fff; background: #334155; border-color: #334155; }
+.publication-links .cite-copy:hover, .citation-toolbar .button:hover { color: #fff; background: #1e293b; border-color: #1e293b; }
 .publication-links button:disabled, .publication-links button:disabled:hover { color: #64748b; background: #f1f5f9; border-color: #e2e8f0; cursor: not-allowed; }
-.equal-note { display: inline; color: #475569; font-size: .875em; white-space: nowrap; }
+.equal-note { display: inline; color: #475569; font-size: .875em; font-style: italic; white-space: nowrap; }
+.equal-note b, .contribution-marker { font-weight: 700; }
 .citation-disclosure { margin-top: .7rem; min-width: 0; }
 .citation-disclosure summary { font-size: .8rem; font-weight: 600; color: var(--accent); cursor: pointer; }
 .has-js .citation-disclosure:not([open]) { margin-top: 0; }
