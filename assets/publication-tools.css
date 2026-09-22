@@ -5,6 +5,7 @@ html { scroll-padding-top: 5rem; }
 .skip-link { position: absolute; left: 1rem; top: -5rem; z-index: 1000; background: #fff; padding: .7rem 1rem; border: 1px solid var(--accent); }
 .skip-link:focus { top: .7rem; }
 .profile-image-link { display: block; flex-shrink: 0; line-height: 0; border-radius: 50%; }
+.profile-img { width: 220px; height: 220px; }
 .profile-info { min-width: 0; }
 .profile-subheading { display: flex; align-items: center; gap: .7rem; margin: 1.3rem 0 .75rem; color: #475569; font-size: .9rem; font-weight: 700; letter-spacing: .04em; }
 .profile-subheading::after { content: ''; height: 1px; background: var(--border-color); flex: 1; }
@@ -20,7 +21,7 @@ html { scroll-padding-top: 5rem; }
 .education-lab a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 .education-lab .advisor-link { color: #475569; }
 .education-previous { margin-top: .85rem; border-color: #e2e8f0; border-left-color: #cbd5e1; background: #f8fafc; color: #64748b; }
-.completed-label { color: #64748b; font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.graduated-label { color: #64748b; font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
 .education-previous .education-degree { color: #475569; font-size: 1.02rem; font-weight: 700; }
 .education-previous .education-institution { font-size: .88rem; }
 .education-previous .education-period { background: #e2e8f0; color: #475569; font-size: .75rem; }
@@ -102,13 +103,13 @@ html { scroll-padding-top: 5rem; }
 .patent-inventors { margin: .5rem 0 .1rem; }
 .patent-publication-note { margin: 0; color: #64748b; font-size: .88rem; }
 .publication-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
-.publication-grid .pub-item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr); align-items: stretch; gap: 1.15rem 1.75rem; padding: 1.4rem; margin: 0; min-width: 0; border-top: 3px solid #93c5fd; box-shadow: 0 3px 14px #1e3a8a06; }
+.publication-grid .pub-item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); align-items: stretch; gap: 1.15rem 1.75rem; padding: 1.4rem; margin: 0; min-width: 0; border-top: 3px solid #93c5fd; box-shadow: 0 3px 14px #1e3a8a06; }
 .publication-grid .pub-item[data-type="conference"] { border-top-color: #f9a8d4; }
 .publication-grid .pub-venue { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin: 0 0 .9rem; line-height: 1.55; font-style: normal; overflow-wrap: anywhere; text-wrap: pretty; }
-.publication-grid .pub-main { min-width: 0; min-height: 240px; display: flex; flex-direction: column; justify-content: center; overflow-wrap: anywhere; }
+.publication-grid .pub-main { min-width: 0; min-height: 280px; display: flex; flex-direction: column; justify-content: center; overflow-wrap: anywhere; }
 .publication-grid .citation-disclosure { grid-column: 1 / -1; margin-top: 0; }
 .has-js .publication-grid .citation-disclosure:not([open]) { display: none; }
-.publication-grid .pub-thumb { width: 100%; height: auto; min-height: 240px; align-self: stretch; aspect-ratio: auto; background: #fff; }
+.publication-grid .pub-thumb { width: 100%; height: auto; min-height: 280px; align-self: stretch; aspect-ratio: auto; background: #fff; }
 .publication-grid .pub-thumb img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
 .publication-grid .manuscript-placeholder { padding: 1rem; gap: .55rem; border-style: dashed; cursor: default; }
 .publication-grid .manuscript-placeholder.submitted { color: #166534; background: #f0fdf4; border-color: #bbf7d0; }
@@ -150,7 +151,7 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .patent-card { grid-template-columns: minmax(0, 1fr); }
   .patent-card { gap: 1rem; }
   .publication-grid .pub-item { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding: 1.1rem; }
-  .publication-grid .pub-thumb { min-height: 0; aspect-ratio: 16 / 9; }
+  .publication-grid .pub-thumb { width: calc(100% + 2.2rem); margin: -1.1rem -1.1rem 0; min-height: 0; aspect-ratio: 4 / 3; border-width: 0 0 1px; border-radius: 8px 8px 0 0; }
   .publication-grid .pub-main { min-height: 0; }
   .pub-title { font-size: 1.2rem; }
 }

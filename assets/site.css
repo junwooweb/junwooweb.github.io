@@ -204,8 +204,8 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
 .project-authors strong { color: #1d4ed8; }
 .project-venue { font-size: 16px; margin-top: 10px; color: #475569; line-height: 1.7; }
 .project-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
-.project-figure { margin: 35px 0 48px; }
-.project-figure img { background: white; border: 1px solid var(--line); border-radius: 6px; width: 100%; height: auto; object-fit: contain; padding: 24px; display: block; }
+.project-figure { position: relative; left: 50%; transform: translateX(-50%); width: min(1200px, calc(100vw - 32px)); margin: 35px 0 48px; }
+.project-figure img { background: white; border: 1px solid var(--line); border-radius: 6px; width: 100%; height: auto; object-fit: contain; padding: 12px; display: block; }
 .publication-status { display: inline-block; padding: 2px 8px; border: 1px solid #e2e8f0; border-radius: 5px; background: #f8fafc; color: #475569; font-size: 13px; font-weight: 600; white-space: nowrap; letter-spacing: 0; }
 .publication-status.to-appear { padding: 0; border: 0; border-radius: 0; background: none; color: #9d174d; font-size: 17px; font-weight: 600; text-transform: none; }
 .project-actions .paper-link { color: #fff; background: #b45309; border-color: #b45309; }
@@ -321,7 +321,7 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .project-header h1 { font-size: 30px; }
   .project-authors { font-size: 16px; }
   .project-figure { margin: 28px 0 35px; }
-  .project-figure img { padding: 10px; }
+  .project-figure img { padding: 6px; }
   .project-overview { padding: 20px; }
   .project-overview h2 { font-size: 25px; }
   .project-overview .lead { font-size: 17px; }
