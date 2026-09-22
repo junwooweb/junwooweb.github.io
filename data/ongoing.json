@@ -1,0 +1,35 @@
+[
+  {
+    "id": "W1",
+    "year": 2027,
+    "type": "conference",
+    "topic": "General Egocentric Direction",
+    "authors": ["Anonymous"],
+    "firstAuthor": true,
+    "venue": "IEEE Conference on Virtual Reality and 3D User Interfaces",
+    "venueShort": "IEEE VR",
+    "status": "Submitted"
+  },
+  {
+    "id": "W2",
+    "year": 2027,
+    "type": "conference",
+    "topic": "4D Cinematic Experiences",
+    "authors": ["Anonymous"],
+    "firstAuthor": false,
+    "venue": "IEEE Conference on Virtual Reality and 3D User Interfaces",
+    "venueShort": "IEEE VR",
+    "status": "Submitted"
+  },
+  {
+    "id": "W3",
+    "year": 2027,
+    "type": "journal",
+    "topic": "Finger Contact Dynamics and Perception Analysis",
+    "authors": ["Anonymous"],
+    "firstAuthor": true,
+    "venue": "Extreme Mechanics Letters",
+    "venueShort": "EML",
+    "status": "Writing"
+  }
+]
