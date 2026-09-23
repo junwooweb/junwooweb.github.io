@@ -40,7 +40,7 @@ const portraitControls = () => `<div class="portrait-controls" data-profile-cont
   <button type="button" data-photo-step="1" aria-label="Next profile photo"><span aria-hidden="true">›</span></button>
 </div>`;
 const portraitGallery = `<div class="profile-gallery" data-profile-gallery role="region" aria-roledescription="carousel" aria-label="Junwoo Kim profile photos" tabindex="0">
-  <div class="profile-photo-stage">${portraits.map((src, index) => `<a class="profile-image-link" href="${esc(src)}" data-open-profile aria-label="Enlarge profile photo ${index + 1} of ${portraits.length}"${index ? ' hidden' : ''}><img src="${esc(src)}" alt="Junwoo Kim — photo ${index + 1} of ${portraits.length}" class="profile-img" width="260" height="260"${index ? ' loading="lazy"' : ' fetchpriority="high"'}></a>`).join('\n')}</div>
+  <div class="profile-photo-stage">${portraits.map((src, index) => `<a class="profile-image-link" href="${esc(src)}" data-open-profile aria-label="Enlarge profile photo ${index + 1} of ${portraits.length}"${index ? ' hidden' : ''}><img src="${esc(src)}" alt="Junwoo Kim — photo ${index + 1} of ${portraits.length}" class="profile-img" width="420" height="420"${index ? ' loading="lazy"' : ' fetchpriority="high"'}></a>`).join('\n')}</div>
   ${portraitControls()}
 </div>`;
 const venueLabel = p => {
@@ -52,6 +52,9 @@ const venueMarkup = p => `${esc(p.venue)} (<strong>${esc(p.venueShort)}</strong>
 const venueLineMarkup = p => `${venueMarkup(p)}, ${p.year}`;
 const venueBadge = p => `<span class="venue-label ${p.type}">${esc(venueLabel(p))}</span>`;
 const statusBadge = p => p.status ? ` <span class="publication-status${p.status === 'To appear' ? ' to-appear' : ''}" data-status="${esc(p.status)}">${p.status === 'To appear' ? '- ' : ''}${esc(p.status)}</span>` : '';
+const researchKeywords = p => p.researchKeywords?.length
+  ? `<ul class="pub-keywords" aria-label="Research fields and technologies">${p.researchKeywords.map(keyword => `<li>#${esc(keyword)}</li>`).join('')}</ul>`
+  : '';
 const paperButton = (p, cls = 'paper-link') => p.paper
   ? `<a class="${cls}" href="${esc(p.paper)}" target="_blank" rel="noopener noreferrer">Paper</a>`
   : `<button class="${cls}" type="button" disabled title="Paper link is not yet available">Paper</button>`;
@@ -123,7 +126,7 @@ function publication(p, base = '') {
   return `<article class="pub-item publication" id="${p.id.toLowerCase()}" data-type="${p.type}" data-first-author="${Boolean(isFirstAuthor(p))}">
     <a class="pub-thumb project-thumb" href="${project}" title="View Project" aria-label="Project: ${esc(p.title)}"><img src="${esc(imageUrl(p, base))}" alt="${esc(p.imageAlt)}" loading="lazy" width="${p.imageWidth || 560}" height="${p.imageHeight || 360}"></a>
     <div class="pub-main">
-      <div class="pub-venue">${venueBadge(p)}${statusBadge(p)}</div>
+      <div class="pub-venue"><span class="pub-venue-labels">${venueBadge(p)}${statusBadge(p)}</span>${researchKeywords(p)}</div>
       <h3 class="pub-title"><span class="pub-badge${p.type === 'conference' ? ' conf' : ''}">${p.id}</span>${titleLink}</h3>
       <div class="pub-authors">${authors(p).replaceAll('<strong>', '<span class="me">').replaceAll('</strong>', '</span>')}${contributionNote(p)}</div>
       <div class="pub-venue-full">${venueLineMarkup(p)}</div>
@@ -142,7 +145,7 @@ function ongoingPublication(p) {
       <span>${submitted ? 'Manuscript submitted' : 'Manuscript in preparation'}</span>
     </div>
     <div class="pub-main">
-      <div class="pub-venue">${venueBadge(p)}${statusBadge(p)}</div>
+      <div class="pub-venue"><span class="pub-venue-labels">${venueBadge(p)}${statusBadge(p)}</span>${researchKeywords(p)}</div>
       <p class="research-topic-label">Research topic</p>
       <h3 class="pub-title">${esc(p.topic)}</h3>
       <div class="pub-authors">${authors(p)} <span class="author-role">(${isFirstAuthor(p) ? '1st author' : 'Co-author'})</span></div>
