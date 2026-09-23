@@ -113,8 +113,8 @@ html { scroll-padding-top: 5rem; }
 .publication-grid .pub-item[data-type="conference"] { border-top-color: #f9a8d4; }
 .publication-grid .pub-venue { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin: 0 0 .9rem; line-height: 1.55; font-style: normal; overflow-wrap: anywhere; text-wrap: pretty; }
 .pub-venue-labels { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
-.pub-keywords { display: flex; flex: 1 1 180px; flex-wrap: wrap; align-items: center; gap: .2rem .65rem; margin: 0; padding: 0; list-style: none; color: #0f766e; font-size: .8rem; font-weight: 500; line-height: 1.7; }
-.pub-keywords li { white-space: nowrap; }
+.pub-keywords { display: flex; flex: 1 1 180px; flex-wrap: wrap; align-items: center; gap: .3rem .4rem; margin: 0; padding: 0; list-style: none; color: #4b5563; font-size: .8rem; font-weight: 500; line-height: 1.6; }
+.pub-keywords li { padding: .12rem .45rem; border: 1px solid #e5e7eb; border-radius: 6px; background: #f3f4f6; white-space: nowrap; }
 .publication-grid .pub-main { min-width: 0; min-height: 280px; display: flex; flex-direction: column; justify-content: center; overflow-wrap: anywhere; }
 .publication-grid .citation-disclosure { grid-column: 1 / -1; margin-top: 0; }
 .has-js .publication-grid .citation-disclosure:not([open]) { display: none; }
@@ -166,6 +166,7 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .publication-grid .pub-item { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding: 1.1rem; }
   .publication-grid .pub-thumb { width: calc(100% + 2.2rem); margin: -1.1rem -1.1rem 0; min-height: 0; aspect-ratio: 4 / 3; border-width: 0 0 1px; border-radius: 8px 8px 0 0; }
   .publication-grid .pub-main { min-height: 0; }
+  .pub-keywords { flex-basis: 100%; }
   .pub-title { font-size: 1.2rem; }
 }
 @media (prefers-reduced-motion: reduce) {

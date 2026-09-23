@@ -171,7 +171,7 @@ function publicationFilters() {
         <button type="button" data-filter="all" aria-pressed="true">All <span>${papers.length}</span></button>
         <button type="button" data-filter="journal" aria-pressed="false">Journal <span>${papers.filter(p => p.type === 'journal').length}</span></button>
         <button type="button" data-filter="conference" aria-pressed="false">Conference <span>${papers.filter(p => p.type === 'conference').length}</span></button>
-        <button type="button" data-filter="first-author" aria-pressed="false">1st Papers <span>${papers.filter(isFirstAuthor).length}</span></button>
+        <button type="button" data-filter="first-author" aria-pressed="false">1st Author <span>${papers.filter(isFirstAuthor).length}</span></button>
       </div>
     </div>
     <div class="archive-tools"><p class="archive-count" role="status" aria-live="polite">${papers.length} accepted papers</p></div>
