@@ -13,7 +13,7 @@ html { scroll-padding-top: 5rem; }
 .portrait-controls button:hover { background: #dbeafe; border-color: var(--accent); }
 .portrait-count { min-width: 3rem; color: #475569; text-align: center; font-size: .9rem; font-weight: 600; font-variant-numeric: tabular-nums; }
 .profile-info { min-width: 0; }
-.profile-subheading { display: flex; align-items: center; gap: .7rem; margin: 1.3rem 0 .75rem; color: #475569; font-size: .9rem; font-weight: 700; letter-spacing: .04em; }
+.profile-subheading { display: flex; align-items: center; gap: 1rem; margin: 1.6rem 0 .9rem; color: #1e293b; font-size: 1.5rem; font-weight: 800; line-height: 1.35; letter-spacing: -.02em; }
 .profile-subheading::after { content: ''; height: 1px; background: var(--border-color); flex: 1; }
 .education-current, .education-previous { padding: 1rem 1.2rem; border: 1px solid #dbeafe; border-left: 4px solid var(--accent); border-radius: 10px; background: #f5f9ff; }
 .education-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .8rem; margin-bottom: .4rem; }
@@ -143,6 +143,7 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
 }
 @media (max-width: 768px) {
   .profile-gallery { width: min(360px, 100%); }
+  .profile-subheading { font-size: 1.35rem; }
   .profile-education, .profile-introduction { text-align: left; }
   .education-current, .education-previous { padding: .9rem 1rem; }
   .education-degree span { display: block; margin-top: .2rem; }
