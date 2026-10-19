@@ -1,0 +1,71 @@
+{
+  "paperDates": {
+    "C4": {
+      "date": "2026-11-02",
+      "endDate": "2026-11-05",
+      "label": "Nov 2–5, 2026",
+      "kind": "Conference",
+      "source": "https://uist.acm.org/2026/"
+    },
+    "J3": {
+      "date": "2026-10-05",
+      "endDate": "2026-10-09",
+      "label": "Oct 5–9, 2026",
+      "kind": "Conference",
+      "source": "https://www.ieeeismar.net/2026/overview/"
+    },
+    "J2": {
+      "date": "2026-04",
+      "endDate": "2026-06",
+      "label": "Apr–Jun 2026",
+      "kind": "Journal issue",
+      "source": "https://pubmed.ncbi.nlm.nih.gov/41729660/"
+    },
+    "C3": {
+      "date": "2024-11-03",
+      "label": "Nov 3, 2024",
+      "kind": "Published",
+      "source": "https://link.springer.com/chapter/10.1007/978-3-031-70058-3_1"
+    },
+    "J1": {
+      "date": "2024-01",
+      "endDate": "2024-03",
+      "label": "Jan–Mar 2024",
+      "kind": "Journal issue",
+      "source": "https://pubmed.ncbi.nlm.nih.gov/38265896/"
+    },
+    "C2": {
+      "date": "2023-07-10",
+      "endDate": "2023-07-13",
+      "label": "Jul 10–13, 2023",
+      "kind": "Conference",
+      "source": "https://2023.worldhaptics.org/"
+    },
+    "C1": {
+      "date": "2023-07-10",
+      "endDate": "2023-07-13",
+      "label": "Jul 10–13, 2023",
+      "kind": "Conference",
+      "source": "https://2023.worldhaptics.org/"
+    }
+  },
+  "patents": [
+    {
+      "id": "P2",
+      "title": "Audiovisual-to-Haptic Rendering System",
+      "summary": "We filed a patent application for an audiovisual-to-haptic rendering system.",
+      "role": "Co-inventor",
+      "dateNote": "Patent pending"
+    },
+    {
+      "id": "P1",
+      "title": "Apparatus And Method For Controlling Haptic Feedback",
+      "summary": "Our US patent application on haptic feedback control was published.",
+      "role": "Co-inventor",
+      "date": "2025-06-19",
+      "label": "Jun 19, 2025",
+      "kind": "Published",
+      "source": "https://patents.google.com/patent/US20250195997A1/en"
+    }
+  ]
+}

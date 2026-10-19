@@ -182,7 +182,8 @@ document.querySelectorAll('[data-publication-browser]').forEach(browser => {
       group.querySelector('[data-year-count]').textContent = acceptedCount ? `${acceptedCount} ${acceptedCount === 1 ? 'paper' : 'papers'}` : 'Ongoing work';
     });
     const category = filter === 'all' ? '' : `${filter} `;
-    browser.querySelector('.archive-count').textContent = filter === 'submitted' ? 'Submitted manuscripts' : filter === 'writing' ? 'Manuscripts in preparation' : `${count} accepted ${category}paper${count === 1 ? '' : 's'}`;
+    browser.querySelector('.archive-count').textContent = filter === 'submitted' ? `Submission · ${visibleCount} paper${visibleCount === 1 ? '' : 's'}` : filter === 'writing' ? 'Manuscripts in preparation' : `${count} accepted ${category}paper${count === 1 ? '' : 's'}`;
+    browser.querySelector('.archive-submitted-count').hidden = filter !== 'all';
     browser.querySelector('.publication-empty').hidden = visibleCount !== 0;
   }
   function selectFilter(value) {

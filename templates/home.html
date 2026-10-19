@@ -194,7 +194,7 @@
 
     <div class="col-left">
 
-    <div class="section-title">
+    <div class="section-title" id="research-output-heading">
         <span class="material-symbols-outlined">emoji_events</span> Research Output
     </div>
 
@@ -203,49 +203,37 @@
         <div style="flex:1; text-align:center; background:#eff6ff; border-radius:10px; padding:0.8rem 0.5rem; border:1px solid #bfdbfe;">
             <div style="font-size:1.8rem; font-weight:800; color:var(--accent); line-height:1;">{{PAPER_COUNT}}</div>
             <div style="font-size:0.72rem; font-weight:600; color:#64748b; margin-top:0.25rem;">Accepted Papers</div>
+            <div class="research-submitted-count">{{SUBMITTED_COUNT}} submitted papers</div>
         </div>
         <div style="flex:1; text-align:center; background:#f0fdf4; border-radius:10px; padding:0.8rem 0.5rem; border:1px solid #bbf7d0;">
             <div style="font-size:1.8rem; font-weight:800; color:#16a34a; line-height:1;">{{FIRST_AUTHOR_COUNT}}</div>
             <div style="font-size:0.72rem; font-weight:600; color:#64748b; margin-top:0.25rem;">First Author</div>
         </div>
         <div style="flex:1; text-align:center; background:#f8fafc; border-radius:10px; padding:0.8rem 0.5rem; border:1px solid #e2e8f0;">
-            <div style="font-size:1.8rem; font-weight:800; color:#475569; line-height:1;">1</div>
-            <div style="font-size:0.72rem; font-weight:600; color:#64748b; margin-top:0.25rem;">Patents</div>
+            <div style="font-size:1.8rem; font-weight:800; color:#475569; line-height:1;">{{PATENT_COUNT}}</div>
+            <div style="font-size:0.72rem; font-weight:600; color:#64748b; margin-top:0.25rem;">Patent Applications</div>
         </div>
     </div>
 
     <!-- Ongoing Work -->
-    <div style="background:linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%); border:1px solid #e2e8f0; border-radius:12px; padding:1.2rem 1.5rem; margin-bottom:1.8rem;">
-        <div style="font-weight:700; color:var(--text-main); margin-bottom:0.8rem; font-size:0.92rem; display:flex; align-items:center; gap:0.4rem;">
-            <span class="material-symbols-outlined" style="font-size:1.1rem; color:var(--accent);">pending</span> Ongoing Work
+    <section class="research-updates ongoing-work" aria-labelledby="ongoing-work-heading">
+        <div class="research-updates-header">
+            <h2 id="ongoing-work-heading"><span class="material-symbols-outlined" aria-hidden="true">pending</span> Ongoing Work</h2>
+            <span class="research-updates-count">{{SUBMITTED_COUNT}} submissions</span>
         </div>
-        <div style="display:flex; flex-direction:column; gap:0.55rem;">
-            <div style="display:flex; align-items:center; gap:0.6rem; padding:0.45rem 0.7rem; background:#fff; border-radius:8px; border:1px solid #e2e8f0; font-size:0.85rem; color:#374151;">
-                <span style="display:inline-block; background:#dcfce7; color:#166534; font-size:0.65rem; font-weight:700; padding:2px 10px; border-radius:4px; white-space:nowrap;">Submitted</span>
-                <span>1 conference paper &mdash; <a href="#w1">IEEE VR'27</a> <span style="color:#94a3b8; font-size:0.75rem;">(1st author)</span></span>
-            </div>
-            <div style="display:flex; align-items:center; gap:0.6rem; padding:0.45rem 0.7rem; background:#fff; border-radius:8px; border:1px solid #e2e8f0; font-size:0.85rem; color:#374151;">
-                <span style="display:inline-block; background:#dcfce7; color:#166534; font-size:0.65rem; font-weight:700; padding:2px 10px; border-radius:4px; white-space:nowrap;">Submitted</span>
-                <span>1 conference paper &mdash; <a href="#w2">IEEE VR'27</a> <span style="color:#94a3b8; font-size:0.75rem;">(Co-author)</span></span>
-            </div>
-            <div style="display:flex; align-items:center; gap:0.6rem; padding:0.45rem 0.7rem; background:#fff; border-radius:8px; border:1px solid #e2e8f0; font-size:0.85rem; color:#374151;">
-                <span style="display:inline-block; background:#dcfce7; color:#166534; font-size:0.65rem; font-weight:700; padding:2px 10px; border-radius:4px; white-space:nowrap;">Submitted</span>
-                <span><a href="#p2">1 patent &mdash; Audiovisual-to-Haptic Rendering System</a></span>
-            </div>
-            <div style="display:flex; align-items:center; gap:0.6rem; padding:0.45rem 0.7rem; background:#fff; border-radius:8px; border:1px solid #e2e8f0; font-size:0.85rem; color:#374151;">
-                <span style="display:inline-block; background:#fef3c7; color:#92400e; font-size:0.65rem; font-weight:700; padding:2px 10px; border-radius:4px; white-space:nowrap;">Writing</span>
-                <span>1 journal paper &mdash; <a href="#w3">Extreme Mechanics Letters</a> <span style="color:#94a3b8; font-size:0.75rem;">(1st author)</span></span>
-            </div>
-            <div style="display:flex; align-items:center; gap:0.6rem; padding:0.45rem 0.7rem; background:#fff; border-radius:8px; border:1px solid #e2e8f0; font-size:0.85rem; color:#374151;">
-                <span style="display:inline-block; background:#dbeafe; color:#1e40af; font-size:0.65rem; font-weight:700; padding:2px 10px; border-radius:4px; white-space:nowrap;">To appear</span>
-                <span>1 journal paper &mdash; <a href="#j3">IEEE TVCG (ISMAR'26)</a> <span style="color:#94a3b8; font-size:0.75rem;">(Co-author)</span></span>
-            </div>
-            <div style="display:flex; align-items:center; gap:0.6rem; padding:0.45rem 0.7rem; background:#fff; border-radius:8px; border:1px solid #e2e8f0; font-size:0.85rem; color:#374151;">
-                <span style="display:inline-block; background:#dbeafe; color:#1e40af; font-size:0.65rem; font-weight:700; padding:2px 10px; border-radius:4px; white-space:nowrap;">To appear</span>
-                <span>1 conference paper &mdash; <a href="#c4">ACM UIST'26</a> <span style="color:#94a3b8; font-size:0.75rem;">(1st author)</span></span>
-            </div>
+        {{ONGOING_WORK}}
+    </section>
+
+    <!-- Research Updates -->
+    <section class="research-updates" aria-labelledby="research-updates-heading">
+        <div class="research-updates-header">
+            <h2 id="research-updates-heading"><span class="material-symbols-outlined" aria-hidden="true">history</span> Research Updates</h2>
+            <span class="research-updates-hint" id="research-updates-hint">Scroll for earlier updates</span>
         </div>
-    </div>
+        <div class="research-updates-scroll" tabindex="0" role="region" aria-labelledby="research-updates-heading" aria-describedby="research-updates-hint">
+            {{RESEARCH_UPDATES}}
+        </div>
+    </section>
 
     </div><!-- end col-left -->
     </div><!-- end two-col -->
@@ -261,7 +249,7 @@
                 <h3 class="pub-title"><span class="pub-badge">P2</span>Audiovisual-to-Haptic Rendering System <span class="patent-title-note">(Tentative title)</span></h3>
             </div>
             <div class="pub-authors patent-applications">
-                <span class="publication-status" data-status="Submitted">Submitted</span>
+                <span class="publication-status" data-status="Submitted">Submission</span>
                 <p class="patent-inventors">Inventors: Anonymous</p>
                 <p class="patent-publication-note">Patent pending.</p>
             </div>

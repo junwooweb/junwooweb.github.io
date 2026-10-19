@@ -2,6 +2,35 @@
 [hidden] { display: none !important; }
 html { scroll-padding-top: 5rem; }
 :focus-visible { outline: 3px solid #2563eb; outline-offset: 4px; }
+.research-updates { padding: 1.2rem 1.5rem; margin-bottom: 1.8rem; border: 1px solid #e2e8f0; border-radius: 12px; background: linear-gradient(135deg, #f8fafc, #eff6ff); }
+.research-updates h2 { display: flex; align-items: center; gap: .4rem; margin: 0 0 .8rem; color: var(--text-main); font-size: .92rem; font-weight: 700; }
+.research-updates h2 .material-symbols-outlined { color: var(--accent); font-size: 1.1rem; }
+.research-updates-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .3rem .8rem; margin-bottom: .8rem; }
+.research-updates-header h2 { margin-bottom: 0; }
+.research-updates-count, .research-updates-hint { color: #78648a; font-size: .7rem; }
+.research-updates-scroll { max-height: 26rem; overflow-y: scroll; scrollbar-gutter: stable; scrollbar-width: auto; scrollbar-color: #94a3b8 #e2e8f0; padding-right: .55rem; border-radius: 8px; }
+.research-updates-scroll::-webkit-scrollbar { width: 9px; }
+.research-updates-scroll::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 8px; }
+.research-updates-scroll::-webkit-scrollbar-thumb { background: #94a3b8; border: 2px solid #e2e8f0; border-radius: 8px; }
+.research-updates-scroll::-webkit-scrollbar-thumb:hover { background: #64748b; }
+.research-updates-list { display: flex; flex-direction: column; gap: .55rem; padding: 0; margin: 0; list-style: none; }
+.research-update { display: grid; grid-template-columns: 3.6rem minmax(0, 1fr); align-items: start; gap: .6rem; padding: .6rem .7rem; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; color: #374151; font-size: .85rem; }
+.research-update-category { margin-top: .15rem; padding: 2px 7px; border-radius: 4px; font-size: .65rem; font-weight: 700; text-align: center; }
+.research-update-category.paper { color: #1e40af; background: #dbeafe; }
+.research-update-category.patent { color: #166534; background: #dcfce7; }
+.research-update-content { min-width: 0; }
+.research-update-content p { margin: 0; overflow-wrap: anywhere; }
+.research-update-link:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.research-update-role { color: #64748b; font-size: .75rem; white-space: nowrap; }
+.research-update[data-first-author="true"] { border-left: 3px solid #93c5fd; }
+.research-update[data-first-author="true"] .research-update-role,
+.ongoing-publication[data-first-author="true"] .author-role { display: inline-block; padding: 1px 5px; border-radius: 4px; color: #1d4ed8; background: #eff6ff; font-weight: 600; }
+.research-update[data-update-category="patent"] { border-left: 3px solid #6ee7b7; }
+.research-update[data-update-category="patent"] .research-update-role { display: inline-block; padding: 1px 5px; border-radius: 4px; color: #166534; background: #ecfdf5; font-weight: 600; }
+.research-update-content .research-update-topic { margin-top: .25rem; color: #64748b; font-size: .73rem; }
+.research-submitted-count { margin-top: .45rem; color: #78648a; font-size: .7rem; font-weight: 500; line-height: 1.5; }
+.research-update-date { display: inline-block; margin-top: .2rem; color: #64748b; font-size: .7rem; font-variant-numeric: tabular-nums; }
+a.research-update-date:hover { color: var(--accent); text-decoration: underline; }
 .skip-link { position: absolute; left: 1rem; top: -5rem; z-index: 1000; background: #fff; padding: .7rem 1rem; border: 1px solid var(--accent); }
 .skip-link:focus { top: .7rem; }
 .profile-image-link { display: block; flex-shrink: 0; line-height: 0; border-radius: 50%; }
@@ -49,7 +78,6 @@ html { scroll-padding-top: 5rem; }
 .pub-badge.conf { background: #9d174d; }
 .pub-category-count { display: inline-flex; align-items: center; padding: .2rem .7rem; margin-left: .25rem; border: 1px solid #dbeafe; border-radius: 999px; background: #eff6ff; color: #1e40af; font-size: .875rem; line-height: 1.5; font-weight: 600; text-transform: none; letter-spacing: 0; white-space: nowrap; }
 .publication-status { display: inline-block; padding: 2px 8px; border: 1px solid #e2e8f0; border-radius: 5px; background: #f8fafc; color: #475569; font-size: .8rem; font-weight: 600; font-style: normal; white-space: nowrap; }
-.publication-status.to-appear { padding: 0; border: 0; border-radius: 0; background: none; color: #9d174d; font-size: 1.05rem; font-weight: 600; }
 .publication-status[data-status="Submitted"] { color: #166534; background: #f0fdf4; border-color: #bbf7d0; }
 .publication-status[data-status="Writing"] { color: #92400e; background: #fffbeb; border-color: #fde68a; }
 .project-thumb::after { content: 'View Project'; }
@@ -87,9 +115,10 @@ html { scroll-padding-top: 5rem; }
 .archive-page { max-width: 1200px; }
 .archive-toolbar, .archive-tools, .filter-group, .filter-controls { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem; }
 .archive-toolbar { justify-content: space-between; gap: 1rem; margin-bottom: .6rem; }
-.archive-tools { gap: 1rem; font-size: .9rem; }
+.archive-tools { flex-direction: column; align-items: flex-end; gap: .2rem; font-size: .9rem; }
 .archive-tools a { color: var(--accent); text-decoration: underline; }
 .archive-count { margin: 0; color: #1d4ed8; font-size: 1.3rem; font-weight: 750; line-height: 1.4; }
+.archive-submitted-count { margin: 0; color: #78648a; font-size: .82rem; font-weight: 500; line-height: 1.5; }
 .filter-group button { font: 600 .9rem/1.5 'Inter', sans-serif; padding: .55rem .85rem; border: 1px solid var(--border-color); border-radius: 8px; background: #fff; color: #475569; cursor: pointer; }
 .filter-group button[aria-pressed="true"] { background: var(--accent-light); border-color: #bfdbfe; color: var(--accent); }
 .filter-group button[data-filter="submitted"][aria-pressed="true"] { background: #f0fdf4; border-color: #bbf7d0; color: #166534; }
@@ -156,6 +185,9 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .nav-menu a { margin-left: 1rem; }
 }
 @media (max-width: 480px) {
+  .research-updates-scroll { max-height: 23rem; }
+  .research-updates { padding: 1rem; }
+  .research-update { gap: .5rem; padding: .6rem; }
   .nav-inner { padding-inline: 1rem; gap: .75rem; }
   .nav-logo { white-space: nowrap; }
   .nav-menu { display: flex; gap: .75rem; }

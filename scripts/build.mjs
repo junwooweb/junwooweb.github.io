@@ -16,7 +16,10 @@ const root = new URL('../', import.meta.url);
 const papers = JSON.parse(await readFile(new URL('data/publications.json', root), 'utf8'));
 papers.sort((a, b) => b.year - a.year);
 const ongoing = JSON.parse(await readFile(new URL('data/ongoing.json', root), 'utf8')).map(p => ({ ...p, ongoing: true }));
+const submittedCount = ongoing.filter(p => p.status === 'Submitted').length;
+const writingCount = ongoing.filter(p => p.status === 'Writing').length;
 const listedPapers = [...ongoing, ...papers].sort((a, b) => b.year - a.year);
+const researchUpdates = JSON.parse(await readFile(new URL('data/research-updates.json', root), 'utf8'));
 const publisherBibtex = new Map(await Promise.all(papers.filter(p => p.bibtexFile).map(async p => [p.slug, (await readFile(new URL(p.bibtexFile, root), 'utf8')).trim()])));
 const isFirstAuthor = p => p.firstAuthor ?? (p.authors[0] === 'Junwoo Kim' || p.equalContribution?.includes('Junwoo Kim'));
 const release = 'https://github.com/junwooweb/junwooweb.github.io/releases/download/images/';
@@ -51,7 +54,8 @@ const venueLabel = p => {
 const venueMarkup = p => `${esc(p.venue)} (<strong>${esc(p.venueShort)}</strong>)`;
 const venueLineMarkup = p => `${venueMarkup(p)}, ${p.year}`;
 const venueBadge = p => `<span class="venue-label ${p.type}">${esc(venueLabel(p))}</span>`;
-const statusBadge = p => p.status ? ` <span class="publication-status${p.status === 'To appear' ? ' to-appear' : ''}" data-status="${esc(p.status)}">${p.status === 'To appear' ? '- ' : ''}${esc(p.status)}</span>` : '';
+const statusLabel = p => p.status === 'Submitted' ? 'Submission' : p.status;
+const statusBadge = p => p.status && p.status !== 'Accepted' ? ` <span class="publication-status" data-status="${esc(p.status)}">${esc(statusLabel(p))}</span>` : '';
 const researchKeywords = p => p.researchKeywords?.length
   ? `<ul class="pub-keywords" aria-label="Research fields and technologies">${p.researchKeywords.map(keyword => `<li>#${esc(keyword)}</li>`).join('')}</ul>`
   : '';
@@ -99,7 +103,7 @@ function citation(p) {
       ${copyButton(p)}<p class="copy-status" role="status" aria-live="polite"></p>
     </div>
     <pre id="bibtex-${p.id.toLowerCase()}" data-format="bibtex" tabindex="0" aria-label="BibTeX citation for ${esc(p.id)}"><code>${esc(bibtex(p))}</code></pre>
-    <p class="citation-source">${p.bibtexFile ? `BibTeX: ${external(p.paper || p.bibtexSource, esc(p.bibtexSourceLabel || 'Publisher export'))}` : 'Provisional citation · To appear'}</p>
+    <p class="citation-source">${p.bibtexFile ? `BibTeX: ${external(p.paper || p.bibtexSource, esc(p.bibtexSourceLabel || 'Publisher export'))}` : 'Provisional citation · Accepted'}</p>
   </div>`;
 }
 
@@ -141,7 +145,7 @@ function ongoingPublication(p) {
   return `<article class="pub-item publication ongoing-publication" id="${p.id.toLowerCase()}" data-type="${p.type}" data-first-author="${isFirstAuthor(p)}" data-ongoing="true" data-status="${p.status.toLowerCase()}">
     <div class="pub-thumb manuscript-placeholder ${submitted ? 'submitted' : 'writing'}">
       <span class="material-symbols-outlined" aria-hidden="true">${submitted ? 'description' : 'edit_note'}</span>
-      <strong>${esc(p.status)}</strong>
+      <strong>${esc(statusLabel(p))}</strong>
       <span>${submitted ? 'Manuscript submitted' : 'Manuscript in preparation'}</span>
     </div>
     <div class="pub-main">
@@ -174,11 +178,59 @@ function publicationFilters() {
         <button type="button" data-filter="first-author" aria-pressed="false">1st Author <span>${papers.filter(isFirstAuthor).length}</span></button>
       </div>
     </div>
-    <div class="archive-tools"><p class="archive-count" role="status" aria-live="polite">${papers.length} accepted papers</p></div>
+    <div class="archive-tools"><p class="archive-count" role="status" aria-live="polite">${papers.length} accepted papers</p><p class="archive-submitted-count">${submittedCount} submitted papers</p></div>
   </div><div class="filter-group secondary-filters js-only" role="group" aria-label="Ongoing research status" hidden>
-    <button type="button" data-filter="submitted" aria-pressed="false">Submitted <span>${ongoing.filter(p => p.status === 'Submitted').length}</span></button>
-    <button type="button" data-filter="writing" aria-pressed="false">Writing <span>${ongoing.filter(p => p.status === 'Writing').length}</span></button>
+    <button type="button" data-filter="submitted" aria-pressed="false">Submission <span>${submittedCount}</span></button>
+    ${writingCount ? `<button type="button" data-filter="writing" aria-pressed="false">Writing <span>${writingCount}</span></button>` : ''}
   </div><p class="publication-empty" role="status" hidden>No papers in this category.</p>`;
+}
+
+function paperUpdate(p) {
+  const venue = venueLabel(p);
+  const summary = p.ongoing
+    ? `Submitted to ${venue}.`
+    : p.status === 'Accepted'
+      ? `Our paper was accepted ${p.type === 'conference' ? 'to' : 'for publication in'} ${venue}.`
+      : `Our paper was published in ${p.type === 'conference' ? 'the proceedings of ' : ''}${venue}.`;
+  return {
+    ...researchUpdates.paperDates[p.id],
+    id: p.id,
+    category: 'Paper',
+    title: p.title || p.topic,
+    topic: p.ongoing ? p.topic : null,
+    summary,
+    role: isFirstAuthor(p) ? '1st author' : 'Co-author',
+    firstAuthor: Boolean(isFirstAuthor(p)),
+    year: p.year
+  };
+}
+
+function researchUpdateList(updates) {
+  return `<ol class="research-updates-list">${updates.map(update => {
+    const period = update.date
+      ? `<time datetime="${esc(update.date)}"${update.endDate ? ` data-end-date="${esc(update.endDate)}"` : ''}>${esc(update.label || update.date)}</time>`
+      : esc(update.dateNote || update.year || '');
+    const dateLabel = `${update.kind ? `${esc(update.kind)} · ` : ''}${period}`;
+    const date = update.source ? external(update.source, dateLabel, 'research-update-date') : `<span class="research-update-date">${dateLabel}</span>`;
+    return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-first-author="${Boolean(update.firstAuthor)}">
+      <span class="research-update-category ${update.category.toLowerCase()}">${update.category}</span>
+      <div class="research-update-content">
+        <p><a class="research-update-link" href="#${update.id.toLowerCase()}" title="${esc(update.title)}">${esc(update.summary)}</a>${update.role ? ` <span class="research-update-role">(${esc(update.role)})</span>` : ''}</p>
+        ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : date}
+      </div>
+    </li>`;
+  }).join('\n')}</ol>`;
+}
+
+function researchTimeline() {
+  const updates = [...papers.map(paperUpdate), ...researchUpdates.patents.map(p => ({ ...p, category: 'Patent' }))]
+    // Keep undated filing announcements first; dated records run newest to oldest.
+    .sort((a, b) => String(b.date || b.year || '9999').localeCompare(String(a.date || a.year || '9999')));
+  return researchUpdateList(updates);
+}
+
+function ongoingWork() {
+  return researchUpdateList(ongoing.filter(p => p.status === 'Submitted').map(paperUpdate));
 }
 
 function layout({ title, description, content, base = '', page = '', active = 'home', metadata = '' }) {
@@ -217,7 +269,7 @@ function layout({ title, description, content, base = '', page = '', active = 'h
 }
 
 const homeTemplate = await readFile(new URL('templates/home.html', root), 'utf8');
-const home = homeTemplate.replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{PUBLICATIONS}}', byYear(listedPapers)).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replace('{{FIRST_AUTHOR_COUNT}}', papers.filter(isFirstAuthor).length).replace('{{YEAR}}', new Date().getFullYear());
+const home = homeTemplate.replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{ONGOING_WORK}}', ongoingWork()).replace('{{RESEARCH_UPDATES}}', researchTimeline()).replace('{{PUBLICATIONS}}', byYear(listedPapers)).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replaceAll('{{SUBMITTED_COUNT}}', submittedCount).replace('{{FIRST_AUTHOR_COUNT}}', papers.filter(isFirstAuthor).length).replace('{{PATENT_COUNT}}', researchUpdates.patents.length).replace('{{YEAR}}', new Date().getFullYear());
 await writePage(new URL('index.html', root), home.replace(/[ \t]+$/gm, ''));
 
 const archive = home.replace(/<title>.*?<\/title>/, '<title>Publications | Junwoo Kim</title>')
