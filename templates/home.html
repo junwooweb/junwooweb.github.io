@@ -199,19 +199,19 @@
     </div>
 
     <!-- Stats -->
-    <div style="display:flex; gap:0.7rem; margin-bottom:1.2rem;">
-        <div style="flex:1; text-align:center; background:#eff6ff; border-radius:10px; padding:0.8rem 0.5rem; border:1px solid #bfdbfe;">
-            <div style="font-size:1.8rem; font-weight:800; color:var(--accent); line-height:1;">{{PAPER_COUNT}}</div>
-            <div style="font-size:0.72rem; font-weight:600; color:#64748b; margin-top:0.25rem;">Accepted Papers</div>
+    <div class="research-stats">
+        <div class="research-stat papers-stat">
+            <div class="research-stat-value">{{PAPER_COUNT}}</div>
+            <div class="research-stat-label">Accepted Papers</div>
             <div class="research-submitted-count">{{SUBMITTED_COUNT}} submitted papers</div>
         </div>
-        <div style="flex:1; text-align:center; background:#f0fdf4; border-radius:10px; padding:0.8rem 0.5rem; border:1px solid #bbf7d0;">
-            <div style="font-size:1.8rem; font-weight:800; color:#16a34a; line-height:1;">{{FIRST_AUTHOR_COUNT}}</div>
-            <div style="font-size:0.72rem; font-weight:600; color:#64748b; margin-top:0.25rem;">First Author</div>
+        <div class="research-stat authors-stat">
+            <div class="research-stat-value">{{FIRST_AUTHOR_COUNT}}</div>
+            <div class="research-stat-label">First Author</div>
         </div>
-        <div style="flex:1; text-align:center; background:#f8fafc; border-radius:10px; padding:0.8rem 0.5rem; border:1px solid #e2e8f0;">
-            <div style="font-size:1.8rem; font-weight:800; color:#475569; line-height:1;">{{PATENT_COUNT}}</div>
-            <div style="font-size:0.72rem; font-weight:600; color:#64748b; margin-top:0.25rem;">Patent Applications</div>
+        <div class="research-stat patents-stat">
+            <div class="research-stat-value">{{PATENT_COUNT}}</div>
+            <div class="research-stat-label">Patent Applications</div>
         </div>
     </div>
 

@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/original.css?v=338d41491d7a">
-    <link rel="stylesheet" href="assets/publication-tools.css?v=ea73ff463be7">
+    <link rel="stylesheet" href="assets/publication-tools.css?v=cafa060fc965">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="canonical" href="https://junwooweb.github.io/">
     <meta name="description" content="Junwoo Kim, a Ph.D. student at POSTECH researching haptic perception, rendering, and multimodal AI. Publications, project summaries, and citations.">
@@ -206,19 +206,19 @@
     </div>
 
     <!-- Stats -->
-    <div style="display:flex; gap:0.7rem; margin-bottom:1.2rem;">
-        <div style="flex:1; text-align:center; background:#eff6ff; border-radius:10px; padding:0.8rem 0.5rem; border:1px solid #bfdbfe;">
-            <div style="font-size:1.8rem; font-weight:800; color:var(--accent); line-height:1;">7</div>
-            <div style="font-size:0.72rem; font-weight:600; color:#64748b; margin-top:0.25rem;">Accepted Papers</div>
+    <div class="research-stats">
+        <div class="research-stat papers-stat">
+            <div class="research-stat-value">7</div>
+            <div class="research-stat-label">Accepted Papers</div>
             <div class="research-submitted-count">3 submitted papers</div>
         </div>
-        <div style="flex:1; text-align:center; background:#f0fdf4; border-radius:10px; padding:0.8rem 0.5rem; border:1px solid #bbf7d0;">
-            <div style="font-size:1.8rem; font-weight:800; color:#16a34a; line-height:1;">4</div>
-            <div style="font-size:0.72rem; font-weight:600; color:#64748b; margin-top:0.25rem;">First Author</div>
+        <div class="research-stat authors-stat">
+            <div class="research-stat-value">4</div>
+            <div class="research-stat-label">First Author</div>
         </div>
-        <div style="flex:1; text-align:center; background:#f8fafc; border-radius:10px; padding:0.8rem 0.5rem; border:1px solid #e2e8f0;">
-            <div style="font-size:1.8rem; font-weight:800; color:#475569; line-height:1;">2</div>
-            <div style="font-size:0.72rem; font-weight:600; color:#64748b; margin-top:0.25rem;">Patent Applications</div>
+        <div class="research-stat patents-stat">
+            <div class="research-stat-value">2</div>
+            <div class="research-stat-label">Patent Applications</div>
         </div>
     </div>
 
@@ -228,24 +228,24 @@
             <h2 id="ongoing-work-heading"><span class="material-symbols-outlined" aria-hidden="true">pending</span> Ongoing Work</h2>
             <span class="research-updates-count">3 submissions</span>
         </div>
-        <ol class="research-updates-list"><li class="research-update" data-update-id="W1" data-update-category="paper" data-first-author="true">
-      <span class="research-update-category paper">Paper</span>
+        <ol class="research-updates-list"><li class="research-update" data-update-id="W1" data-update-category="paper" data-update-type="conference" data-first-author="true">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">groups</span><span>Paper</span><small>Conference</small></div>
       <div class="research-update-content">
         <p><a class="research-update-link" href="#w1" title="General Egocentric Direction">Submitted to IEEE VR&#39;27.</a> <span class="research-update-role">(1st author)</span></p>
         <p class="research-update-topic">General Egocentric Direction</p>
       </div>
     </li>
-<li class="research-update" data-update-id="W2" data-update-category="paper" data-first-author="false">
-      <span class="research-update-category paper">Paper</span>
+<li class="research-update" data-update-id="W2" data-update-category="paper" data-update-type="conference" data-first-author="false">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">groups</span><span>Paper</span><small>Conference</small></div>
       <div class="research-update-content">
         <p><a class="research-update-link" href="#w2" title="4D Cinematic Experiences">Submitted to IEEE VR&#39;27.</a> <span class="research-update-role">(Co-author)</span></p>
         <p class="research-update-topic">4D Cinematic Experiences</p>
       </div>
     </li>
-<li class="research-update" data-update-id="W3" data-update-category="paper" data-first-author="true">
-      <span class="research-update-category paper">Paper</span>
+<li class="research-update" data-update-id="W3" data-update-category="paper" data-update-type="journal" data-first-author="true">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">auto_stories</span><span>Paper</span><small>Journal</small></div>
       <div class="research-update-content">
-        <p><a class="research-update-link" href="#w3" title="Finger Contact Dynamics and Perception Analysis">Submitted to EML.</a> <span class="research-update-role">(1st author)</span></p>
+        <p><a class="research-update-link" href="#w3" title="Finger Contact Dynamics and Perception Analysis">Submitted to Extreme Mechanics Letters.</a> <span class="research-update-role">(1st author)</span></p>
         <p class="research-update-topic">Finger Contact Dynamics and Perception Analysis</p>
       </div>
     </li></ol>
@@ -258,64 +258,64 @@
             <span class="research-updates-hint" id="research-updates-hint">Scroll for earlier updates</span>
         </div>
         <div class="research-updates-scroll" tabindex="0" role="region" aria-labelledby="research-updates-heading" aria-describedby="research-updates-hint">
-            <ol class="research-updates-list"><li class="research-update" data-update-id="P2" data-update-category="patent" data-first-author="false">
-      <span class="research-update-category patent">Patent</span>
+            <ol class="research-updates-list"><li class="research-update" data-update-id="P2" data-update-category="patent" data-update-type="patent" data-first-author="false">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">lightbulb</span><span>Patent</span><small>Application</small></div>
       <div class="research-update-content">
-        <p><a class="research-update-link" href="#p2" title="Audiovisual-to-Haptic Rendering System">We filed a patent application for an audiovisual-to-haptic rendering system.</a> <span class="research-update-role">(Co-inventor)</span></p>
+        <p><a class="research-update-link" href="#p2" title="Audiovisual-to-Haptic Rendering System">We filed a patent application for an audiovisual-to-haptic rendering system.</a></p>
         <span class="research-update-date">Patent pending</span>
       </div>
     </li>
-<li class="research-update" data-update-id="C4" data-update-category="paper" data-first-author="true">
-      <span class="research-update-category paper">Paper</span>
+<li class="research-update" data-update-id="J3" data-update-category="paper" data-update-type="journal" data-first-author="false">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">auto_stories</span><span>Paper</span><small>Journal</small></div>
+      <div class="research-update-content">
+        <p><a class="research-update-link" href="#j3" title="Perceiving Compliance in Virtual Reality: Effects of Interaction Direction and Sensory Discrepancy on Visuo-Haptic Weighting">Our paper was published in IEEE TVCG.</a> <span class="research-update-role">(Co-author)</span></p>
+        <a class="research-update-date" href="https://www.jiwanlee.me/" target="_blank" rel="noopener noreferrer">Published · <time datetime="2026">2026</time><span aria-hidden="true"> ↗</span></a>
+      </div>
+    </li>
+<li class="research-update" data-update-id="C4" data-update-category="paper" data-update-type="conference" data-first-author="true">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">groups</span><span>Paper</span><small>Conference</small></div>
       <div class="research-update-content">
         <p><a class="research-update-link" href="#c4" title="CineHaptic: Context-Aware Real-Time Audiovisual-to-Haptic Rendering System for In-Vehicle 4D Cinematic Experiences">Our paper was accepted to ACM UIST&#39;26.</a> <span class="research-update-role">(1st author)</span></p>
         <a class="research-update-date" href="https://uist.acm.org/2026/" target="_blank" rel="noopener noreferrer">Conference · <time datetime="2026-11-02" data-end-date="2026-11-05">Nov 2–5, 2026</time><span aria-hidden="true"> ↗</span></a>
       </div>
     </li>
-<li class="research-update" data-update-id="J3" data-update-category="paper" data-first-author="false">
-      <span class="research-update-category paper">Paper</span>
-      <div class="research-update-content">
-        <p><a class="research-update-link" href="#j3" title="Perceiving Compliance in Virtual Reality: Effects of Interaction Direction and Sensory Discrepancy on Visuo-Haptic Weighting">Our paper was accepted for publication in IEEE TVCG (ISMAR&#39;26).</a> <span class="research-update-role">(Co-author)</span></p>
-        <a class="research-update-date" href="https://www.ieeeismar.net/2026/overview/" target="_blank" rel="noopener noreferrer">Conference · <time datetime="2026-10-05" data-end-date="2026-10-09">Oct 5–9, 2026</time><span aria-hidden="true"> ↗</span></a>
-      </div>
-    </li>
-<li class="research-update" data-update-id="J2" data-update-category="paper" data-first-author="true">
-      <span class="research-update-category paper">Paper</span>
+<li class="research-update" data-update-id="J2" data-update-category="paper" data-update-type="journal" data-first-author="true">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">auto_stories</span><span>Paper</span><small>Journal</small></div>
       <div class="research-update-content">
         <p><a class="research-update-link" href="#j2" title="Representing Egocentric Directions with Torso-Applied Vibrotactile Stimuli">Our paper was published in IEEE ToH.</a> <span class="research-update-role">(1st author)</span></p>
         <a class="research-update-date" href="https://pubmed.ncbi.nlm.nih.gov/41729660/" target="_blank" rel="noopener noreferrer">Journal issue · <time datetime="2026-04" data-end-date="2026-06">Apr–Jun 2026</time><span aria-hidden="true"> ↗</span></a>
       </div>
     </li>
-<li class="research-update" data-update-id="P1" data-update-category="patent" data-first-author="false">
-      <span class="research-update-category patent">Patent</span>
+<li class="research-update" data-update-id="P1" data-update-category="patent" data-update-type="patent" data-first-author="false">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">lightbulb</span><span>Patent</span><small>Application</small></div>
       <div class="research-update-content">
-        <p><a class="research-update-link" href="#p1" title="Apparatus And Method For Controlling Haptic Feedback">Our US patent application on haptic feedback control was published.</a> <span class="research-update-role">(Co-inventor)</span></p>
+        <p><a class="research-update-link" href="#p1" title="Apparatus And Method For Controlling Haptic Feedback">Our US patent application on haptic feedback control was published.</a></p>
         <a class="research-update-date" href="https://patents.google.com/patent/US20250195997A1/en" target="_blank" rel="noopener noreferrer">Published · <time datetime="2025-06-19">Jun 19, 2025</time><span aria-hidden="true"> ↗</span></a>
       </div>
     </li>
-<li class="research-update" data-update-id="C3" data-update-category="paper" data-first-author="true">
-      <span class="research-update-category paper">Paper</span>
+<li class="research-update" data-update-id="C3" data-update-category="paper" data-update-type="conference" data-first-author="true">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">groups</span><span>Paper</span><small>Conference</small></div>
       <div class="research-update-content">
         <p><a class="research-update-link" href="#c3" title="Human Identification Performance of Vibrotactile Stimuli Applied on the Torso Along Azimuth or Elevation">Our paper was published in the proceedings of EuroHaptics&#39;24.</a> <span class="research-update-role">(1st author)</span></p>
         <a class="research-update-date" href="https://link.springer.com/chapter/10.1007/978-3-031-70058-3_1" target="_blank" rel="noopener noreferrer">Published · <time datetime="2024-11-03">Nov 3, 2024</time><span aria-hidden="true"> ↗</span></a>
       </div>
     </li>
-<li class="research-update" data-update-id="J1" data-update-category="paper" data-first-author="false">
-      <span class="research-update-category paper">Paper</span>
+<li class="research-update" data-update-id="J1" data-update-category="paper" data-update-type="journal" data-first-author="false">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">auto_stories</span><span>Paper</span><small>Journal</small></div>
       <div class="research-update-content">
         <p><a class="research-update-link" href="#j1" title="Telemetry-Based Haptic Rendering for Racing Game Experience Improvement">Our paper was published in IEEE ToH.</a> <span class="research-update-role">(Co-author)</span></p>
         <a class="research-update-date" href="https://pubmed.ncbi.nlm.nih.gov/38265896/" target="_blank" rel="noopener noreferrer">Journal issue · <time datetime="2024-01" data-end-date="2024-03">Jan–Mar 2024</time><span aria-hidden="true"> ↗</span></a>
       </div>
     </li>
-<li class="research-update" data-update-id="C2" data-update-category="paper" data-first-author="false">
-      <span class="research-update-category paper">Paper</span>
+<li class="research-update" data-update-id="C2" data-update-category="paper" data-update-type="conference" data-first-author="false">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">groups</span><span>Paper</span><small>Conference</small></div>
       <div class="research-update-content">
         <p><a class="research-update-link" href="#c2" title="Information Transfer of Full-Body Vibrotactile Stimuli: An Initial Study with One to Three Sequential Vibrations">Our paper was published in the proceedings of IEEE WHC&#39;23.</a> <span class="research-update-role">(Co-author)</span></p>
         <a class="research-update-date" href="https://2023.worldhaptics.org/" target="_blank" rel="noopener noreferrer">Conference · <time datetime="2023-07-10" data-end-date="2023-07-13">Jul 10–13, 2023</time><span aria-hidden="true"> ↗</span></a>
       </div>
     </li>
-<li class="research-update" data-update-id="C1" data-update-category="paper" data-first-author="true">
-      <span class="research-update-category paper">Paper</span>
+<li class="research-update" data-update-id="C1" data-update-category="paper" data-update-type="conference" data-first-author="true">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">groups</span><span>Paper</span><small>Conference</small></div>
       <div class="research-update-content">
         <p><a class="research-update-link" href="#c1" title="Human Recognition Performance of Simple Spatial Vibrotactile Patterns on the Torso">Our paper was published in the proceedings of IEEE WHC&#39;23.</a> <span class="research-update-role">(1st author)</span></p>
         <a class="research-update-date" href="https://2023.worldhaptics.org/" target="_blank" rel="noopener noreferrer">Conference · <time datetime="2023-07-10" data-end-date="2023-07-13">Jul 10–13, 2023</time><span aria-hidden="true"> ↗</span></a>
@@ -423,18 +423,18 @@
       <span>Manuscript submitted</span>
     </div>
     <div class="pub-main">
-      <div class="pub-venue"><span class="pub-venue-labels"><span class="venue-label journal">EML</span> <span class="publication-status" data-status="Submitted">Submission</span></span><ul class="pub-keywords" aria-label="Research fields and technologies"><li>#Sensing</li><li>#Perception</li><li>#Contact Mechanics</li></ul></div>
+      <div class="pub-venue"><span class="pub-venue-labels"><span class="venue-label journal">Extreme Mechanics Letters</span> <span class="publication-status" data-status="Submitted">Submission</span></span><ul class="pub-keywords" aria-label="Research fields and technologies"><li>#Sensing</li><li>#Perception</li><li>#Contact Mechanics</li></ul></div>
       <p class="research-topic-label">Research topic</p>
       <h3 class="pub-title">Finger Contact Dynamics and Perception Analysis</h3>
       <div class="pub-authors">Anonymous <span class="author-role">(1st author)</span></div>
-      <div class="pub-venue-full">Extreme Mechanics Letters (<strong>EML</strong>), 2027</div>
+      <div class="pub-venue-full">Extreme Mechanics Letters, 2027</div>
       <div class="publication-links"><button class="paper-link" type="button" disabled title="Paper link is not yet available">Paper</button><button class="project-link" type="button" disabled title="Project is not yet available">Project</button><button class="cite-copy" type="button" disabled title="Citation is not yet available">Citation</button></div>
     </div>
   </article></div></section>
 <section class="publication-group" aria-labelledby="year-2026"><h2 class="pub-category" id="year-2026">2026 <span class="pub-category-count" data-year-count>3 papers</span></h2><div class="publication-grid"><article class="pub-item publication" id="j3" data-type="journal" data-first-author="false">
     <a class="pub-thumb project-thumb" href="projects/vr-compliance/" title="View Project" aria-label="Project: Perceiving Compliance in Virtual Reality: Effects of Interaction Direction and Sensory Discrepancy on Visuo-Haptic Weighting"><img src="assets/images/vr-compliance.png" alt="Haptic and visual stiffness rendering with baseline, top-down, front-back, and side-to-side VR interaction configurations" loading="lazy" width="1778" height="875"></a>
     <div class="pub-main">
-      <div class="pub-venue"><span class="pub-venue-labels"><span class="venue-label journal">IEEE TVCG (ISMAR&#39;26)</span></span><ul class="pub-keywords" aria-label="Research fields and technologies"><li>#Perception</li><li>#Haptic Rendering</li><li>#VR</li></ul></div>
+      <div class="pub-venue"><span class="pub-venue-labels"><span class="venue-label journal">IEEE TVCG</span></span><ul class="pub-keywords" aria-label="Research fields and technologies"><li>#Perception</li><li>#Haptic Rendering</li><li>#VR</li></ul></div>
       <h3 class="pub-title"><span class="pub-badge">J3</span><a href="projects/vr-compliance/">Perceiving Compliance in Virtual Reality: Effects of Interaction Direction and Sensory Discrepancy on Visuo-Haptic Weighting</a></h3>
       <div class="pub-authors">Taehyeong Jung<sup class="contribution-marker">*</sup>, Jiwan Lee<sup class="contribution-marker">*</sup>, <span class="me">Junwoo Kim</span>, Seungmoon Choi <span class="equal-note">(<b>*</b> Equal contribution)</span></div>
       <div class="pub-venue-full">IEEE Transactions on Visualization and Computer Graphics (<strong>IEEE TVCG</strong>), 2026</div>
@@ -451,9 +451,9 @@
   journal = {IEEE Transactions on Visualization and Computer Graphics},
   year = {2026},
   publisher = {IEEE},
-  note = {Accepted; IEEE ISMAR 2026}
+  note = {IEEE ISMAR 2026}
 }</code></pre>
-    <p class="citation-source">Provisional citation · Accepted</p>
+    <p class="citation-source">Provisional citation · Bibliographic details pending</p>
   </div></details>
   </article>
 <article class="pub-item publication" id="c4" data-type="conference" data-first-author="true">

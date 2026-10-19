@@ -48,10 +48,10 @@ const portraitGallery = `<div class="profile-gallery" data-profile-gallery role=
 </div>`;
 const venueLabel = p => {
   const year = String(p.year).slice(-2);
-  if (p.presentationShort) return `${p.venueShort} (${p.presentationShort}'${year})`;
-  return p.type === 'conference' ? `${p.venueShort}'${year}` : p.venueShort;
+  const name = p.venueDisplay || p.venueShort;
+  return p.type === 'conference' ? `${name}'${year}` : name;
 };
-const venueMarkup = p => `${esc(p.venue)} (<strong>${esc(p.venueShort)}</strong>)`;
+const venueMarkup = p => p.venueDisplay === p.venue ? esc(p.venue) : `${esc(p.venue)} (<strong>${esc(p.venueShort)}</strong>)`;
 const venueLineMarkup = p => `${venueMarkup(p)}, ${p.year}`;
 const venueBadge = p => `<span class="venue-label ${p.type}">${esc(venueLabel(p))}</span>`;
 const statusLabel = p => p.status === 'Submitted' ? 'Submission' : p.status;
@@ -103,7 +103,7 @@ function citation(p) {
       ${copyButton(p)}<p class="copy-status" role="status" aria-live="polite"></p>
     </div>
     <pre id="bibtex-${p.id.toLowerCase()}" data-format="bibtex" tabindex="0" aria-label="BibTeX citation for ${esc(p.id)}"><code>${esc(bibtex(p))}</code></pre>
-    <p class="citation-source">${p.bibtexFile ? `BibTeX: ${external(p.paper || p.bibtexSource, esc(p.bibtexSourceLabel || 'Publisher export'))}` : 'Provisional citation · Accepted'}</p>
+    <p class="citation-source">${p.bibtexFile ? `BibTeX: ${external(p.paper || p.bibtexSource, esc(p.bibtexSourceLabel || 'Publisher export'))}` : `Provisional citation · ${p.status === 'Accepted' ? 'Accepted' : 'Bibliographic details pending'}`}</p>
   </div>`;
 }
 
@@ -196,6 +196,7 @@ function paperUpdate(p) {
     ...researchUpdates.paperDates[p.id],
     id: p.id,
     category: 'Paper',
+    type: p.type,
     title: p.title || p.topic,
     topic: p.ongoing ? p.topic : null,
     summary,
@@ -212,8 +213,11 @@ function researchUpdateList(updates) {
       : esc(update.dateNote || update.year || '');
     const dateLabel = `${update.kind ? `${esc(update.kind)} · ` : ''}${period}`;
     const date = update.source ? external(update.source, dateLabel, 'research-update-date') : `<span class="research-update-date">${dateLabel}</span>`;
-    return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-first-author="${Boolean(update.firstAuthor)}">
-      <span class="research-update-category ${update.category.toLowerCase()}">${update.category}</span>
+    const type = update.type || 'patent';
+    const typeLabel = type === 'conference' ? 'Conference' : type === 'journal' ? 'Journal' : 'Application';
+    const icon = type === 'conference' ? 'groups' : type === 'journal' ? 'auto_stories' : 'lightbulb';
+    return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-update-type="${type}" data-first-author="${Boolean(update.firstAuthor)}">
+      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">${icon}</span><span>${update.category}</span><small>${typeLabel}</small></div>
       <div class="research-update-content">
         <p><a class="research-update-link" href="#${update.id.toLowerCase()}" title="${esc(update.title)}">${esc(update.summary)}</a>${update.role ? ` <span class="research-update-role">(${esc(update.role)})</span>` : ''}</p>
         ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : date}
@@ -224,8 +228,9 @@ function researchUpdateList(updates) {
 
 function researchTimeline() {
   const updates = [...papers.map(paperUpdate), ...researchUpdates.patents.map(p => ({ ...p, category: 'Patent' }))]
-    // Keep undated filing announcements first; dated records run newest to oldest.
-    .sort((a, b) => String(b.date || b.year || '9999').localeCompare(String(a.date || a.year || '9999')));
+    // Unknown months sort first within their year, without inventing a publication date.
+    // Undated filing announcements stay above the dated history.
+    .sort((a, b) => String(b.date || b.year || '9999').padEnd(10, '9').localeCompare(String(a.date || a.year || '9999').padEnd(10, '9')));
   return researchUpdateList(updates);
 }
 
