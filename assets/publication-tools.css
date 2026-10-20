@@ -21,7 +21,10 @@ html { scroll-padding-top: 5rem; }
 .research-updates-list { display: flex; flex-direction: column; gap: .5rem; padding: 0; margin: 0; list-style: none; }
 .research-update { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); align-items: stretch; min-height: 4.4rem; padding: 0; gap: 0; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; color: #334155; font-size: .84rem; overflow: hidden; }
 .research-update-category { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .15rem; margin: 0; padding: .6rem .3rem; border-right: 1px solid #e5e7eb; background: #f8fafc; color: #475569; font-size: .73rem; font-weight: 650; text-align: center; }
-.research-update-category small { color: #64748b; font-size: .6rem; font-weight: 400; }
+.research-update-category small { color: inherit; font-size: .6rem; font-weight: 400; }
+.research-update[data-update-type="conference"] .research-update-category { color: #65518a; background: #f3eff9; border-right-color: #e8e1f2; }
+.research-update[data-update-type="journal"] .research-update-category { color: #326d65; background: #edf6f3; border-right-color: #dcece7; }
+.research-update[data-update-type="patent"] .research-update-category { color: #876437; background: #faf4e9; border-right-color: #eee3ce; }
 .research-update-content { min-width: 0; padding: .7rem .85rem; align-self: center; }
 .research-update-content p { margin: 0; overflow-wrap: anywhere; }
 .research-update-link { color: #334155; font-weight: 500; }
