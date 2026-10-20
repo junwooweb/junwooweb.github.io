@@ -83,9 +83,6 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .venue-label.conference { color: #6d28d9; background: #f5f3ff; border-color: #ddd6fe; }
 .publication-issue, .publication-acceptance { margin: .3rem 0 0; font-size: .82rem; line-height: 1.65; color: #475569; }
 .publication-issue { color: #25665b; font-weight: 600; }
-.acceptance-rate { color: #475569; text-decoration: underline; text-decoration-color: #cbd5e1; text-underline-offset: 3px; }
-.acceptance-rate:hover { color: #1e293b; text-decoration-color: currentColor; }
-.acceptance-scope { color: #64748b; }
 .pub-badge { font-size: .75rem; background: #0f766e; }
 .pub-badge.conf { background: #6d28d9; }
 .pub-category-count { display: inline-flex; align-items: center; padding: .2rem .7rem; margin-left: .25rem; border: 1px solid #dbeafe; border-radius: 999px; background: #eff6ff; color: #1e40af; font-size: .875rem; line-height: 1.5; font-weight: 600; text-transform: none; letter-spacing: 0; white-space: nowrap; }

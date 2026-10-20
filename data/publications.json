@@ -119,12 +119,6 @@
     "authors": ["Junwoo Kim", "Jaejun Park", "Chaeyong Park", "Junseok Park", "Seungmoon Choi"],
     "venue": "EuroHaptics Conference",
     "venueShort": "EuroHaptics",
-    "acceptanceRate": {
-      "value": "57.0%",
-      "scope": "Full papers · 81/142",
-      "source": "https://link.springer.com/book/10.1007/978-3-031-70058-3",
-      "note": "Calculated from the publisher's 81 full papers selected from 142 submissions; includes oral and poster presentations."
-    },
     "booktitle": "Haptics: Understanding Touch; Technology and Systems; Applications and Interaction",
     "series": "Lecture Notes in Computer Science",
     "volume": "14768",
@@ -191,12 +185,6 @@
     "authors": ["Jaejun Park", "Junwoo Kim", "Sangyoon Han", "Chaeyong Park", "Junseok Park", "Seungmoon Choi"],
     "venue": "IEEE World Haptics Conference",
     "venueShort": "IEEE WHC",
-    "acceptanceRate": {
-      "value": "<40%",
-      "scope": "WHC 2023",
-      "source": "https://www.design.kyushu-u.ac.jp/en/topics/18612/",
-      "note": "Reported as less than 40% by the university of a WHC 2023 associate editor; an exact percentage was not verified."
-    },
     "pages": "41–47",
     "publisher": "IEEE",
     "doi": "10.1109/WHC56415.2023.10224391",
@@ -229,12 +217,6 @@
     "equalContribution": ["Junwoo Kim", "Heeyeon Kim"],
     "venue": "IEEE World Haptics Conference",
     "venueShort": "IEEE WHC",
-    "acceptanceRate": {
-      "value": "<40%",
-      "scope": "WHC 2023",
-      "source": "https://www.design.kyushu-u.ac.jp/en/topics/18612/",
-      "note": "Reported as less than 40% by the university of a WHC 2023 associate editor; an exact percentage was not verified."
-    },
     "pages": "20–27",
     "publisher": "IEEE",
     "doi": "10.1109/WHC56415.2023.10224430",

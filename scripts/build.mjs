@@ -55,7 +55,7 @@ const venueMarkup = p => p.venueDisplay === p.venue ? esc(p.venue) : `${esc(p.ve
 const venueLineMarkup = p => `${venueMarkup(p)}, ${p.year}${p.volume ? ` · Vol. ${esc(p.volume)}` : ''}${p.number ? `, Issue ${esc(p.number)}` : ''}${p.pages ? ` · pp. ${esc(p.pages)}` : ''}`;
 const venueBadge = p => `<span class="venue-label ${p.type}"><span>${esc(venueLabel(p))}</span><small>${p.type === 'journal' ? 'Journal' : 'Conference'}</small></span>`;
 const acceptanceRateMarkup = p => p.acceptanceRate
-  ? `<a class="acceptance-rate" href="${esc(p.acceptanceRate.source)}" target="_blank" rel="noopener noreferrer">Acceptance rate: <strong>${esc(p.acceptanceRate.value)}</strong></a> <span class="acceptance-scope">(${esc(p.acceptanceRate.scope)})</span>`
+  ? `Acceptance rate: <strong>${esc(p.acceptanceRate.value)}</strong>`
   : '';
 const publicationContext = p => [
   p.specialIssue ? `<p class="publication-issue">${esc(p.specialIssue)}</p>` : '',
@@ -123,7 +123,7 @@ function bibliographicDetails(p) {
     ['Series', p.series && esc(p.series)],
     ['Volume', p.volume], ['Issue', p.number], ['Pages', p.pages],
     ['Special issue', p.specialIssue && external(p.specialIssueSource, esc(p.specialIssue))],
-    ['Acceptance rate', p.acceptanceRate && `${external(p.acceptanceRate.source, esc(p.acceptanceRate.value))} (${esc(p.acceptanceRate.scope)})`],
+    ['Acceptance rate', p.acceptanceRate && esc(p.acceptanceRate.value)],
     ['Publisher', p.publisher && esc(p.publisher)],
     ['Presentation', p.presentation && esc(p.presentation)],
     ['Status', p.status && esc(p.status)],
