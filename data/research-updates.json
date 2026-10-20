@@ -10,6 +10,7 @@
     "J3": {
       "date": "2026",
       "label": "2026",
+      "linkToPaper": false,
       "kind": "Published",
       "source": "https://www.jiwanlee.me/"
     },

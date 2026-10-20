@@ -52,8 +52,15 @@ const venueLabel = p => {
   return p.type === 'conference' ? `${name}'${year}` : name;
 };
 const venueMarkup = p => p.venueDisplay === p.venue ? esc(p.venue) : `${esc(p.venue)} (<strong>${esc(p.venueShort)}</strong>)`;
-const venueLineMarkup = p => `${venueMarkup(p)}, ${p.year}`;
-const venueBadge = p => `<span class="venue-label ${p.type}">${esc(venueLabel(p))}</span>`;
+const venueLineMarkup = p => `${venueMarkup(p)}, ${p.year}${p.volume ? ` · Vol. ${esc(p.volume)}` : ''}${p.number ? `, Issue ${esc(p.number)}` : ''}${p.pages ? ` · pp. ${esc(p.pages)}` : ''}`;
+const venueBadge = p => `<span class="venue-label ${p.type}"><span>${esc(venueLabel(p))}</span><small>${p.type === 'journal' ? 'Journal' : 'Conference'}</small></span>`;
+const acceptanceRateMarkup = p => p.acceptanceRate
+  ? `<a class="acceptance-rate" href="${esc(p.acceptanceRate.source)}" target="_blank" rel="noopener noreferrer">Acceptance rate: <strong>${esc(p.acceptanceRate.value)}</strong></a> <span class="acceptance-scope">(${esc(p.acceptanceRate.scope)})</span>`
+  : '';
+const publicationContext = p => [
+  p.specialIssue ? `<p class="publication-issue">${esc(p.specialIssue)}</p>` : '',
+  p.acceptanceRate ? `<p class="publication-acceptance">${acceptanceRateMarkup(p)}</p>` : ''
+].join('');
 const statusLabel = p => p.status === 'Submitted' ? 'Submission' : p.status;
 const statusBadge = p => p.status && p.status !== 'Accepted' ? ` <span class="publication-status" data-status="${esc(p.status)}">${esc(statusLabel(p))}</span>` : '';
 const researchKeywords = p => p.researchKeywords?.length
@@ -115,6 +122,8 @@ function bibliographicDetails(p) {
     ['Conference year', p.citationYear && p.citationYear !== p.year ? p.year : null],
     ['Series', p.series && esc(p.series)],
     ['Volume', p.volume], ['Issue', p.number], ['Pages', p.pages],
+    ['Special issue', p.specialIssue && external(p.specialIssueSource, esc(p.specialIssue))],
+    ['Acceptance rate', p.acceptanceRate && `${external(p.acceptanceRate.source, esc(p.acceptanceRate.value))} (${esc(p.acceptanceRate.scope)})`],
     ['Publisher', p.publisher && esc(p.publisher)],
     ['Presentation', p.presentation && esc(p.presentation)],
     ['Status', p.status && esc(p.status)],
@@ -134,6 +143,7 @@ function publication(p, base = '') {
       <h3 class="pub-title"><span class="pub-badge${p.type === 'conference' ? ' conf' : ''}">${p.id}</span>${titleLink}</h3>
       <div class="pub-authors">${authors(p).replaceAll('<strong>', '<span class="me">').replaceAll('</strong>', '</span>')}${contributionNote(p)}</div>
       <div class="pub-venue-full">${venueLineMarkup(p)}</div>
+      ${publicationContext(p)}
       <div class="publication-links">${paperButton(p)}<a class="project-link" href="${project}">Project</a>${copyButton(p, 'Citation', 'cite-copy')}<p class="copy-status" role="status" aria-live="polite"></p></div>
     </div>
     <details class="citation-disclosure" id="cite-${p.id.toLowerCase()}"><summary>Citation · BibTeX</summary>${citation(p)}</details>
@@ -187,13 +197,15 @@ function publicationFilters() {
 
 function paperUpdate(p) {
   const venue = venueLabel(p);
+  const dateInfo = researchUpdates.paperDates[p.id];
   const summary = p.ongoing
     ? `Submitted to ${venue}.`
     : p.status === 'Accepted'
       ? `Our paper was accepted ${p.type === 'conference' ? 'to' : 'for publication in'} ${venue}.`
       : `Our paper was published in ${p.type === 'conference' ? 'the proceedings of ' : ''}${venue}.`;
   return {
-    ...researchUpdates.paperDates[p.id],
+    ...dateInfo,
+    dateLink: dateInfo?.linkToPaper === false ? null : p.paper || (p.doi ? `https://doi.org/${p.doi}` : null),
     id: p.id,
     category: 'Paper',
     type: p.type,
@@ -210,15 +222,16 @@ function researchUpdateList(updates) {
   return `<ol class="research-updates-list">${updates.map(update => {
     const period = update.date
       ? `<time datetime="${esc(update.date)}"${update.endDate ? ` data-end-date="${esc(update.endDate)}"` : ''}>${esc(update.label || update.date)}</time>`
-      : esc(update.dateNote || update.year || '');
-    const dateLabel = `${update.kind ? `${esc(update.kind)} · ` : ''}${period}`;
-    const date = update.source ? external(update.source, dateLabel, 'research-update-date') : `<span class="research-update-date">${dateLabel}</span>`;
+      : '';
+    const date = !period ? '' : update.dateLink
+      ? `<a class="research-update-date" href="${esc(update.dateLink)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(update.label || update.date)} — ${update.category === 'Paper' ? 'view paper' : 'view patent'}">${period}</a>`
+      : `<span class="research-update-date">${period}</span>`;
     const type = update.type || 'patent';
     const typeLabel = type === 'conference' ? 'Conference' : type === 'journal' ? 'Journal' : 'Application';
     return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-update-type="${type}" data-first-author="${Boolean(update.firstAuthor)}">
       <div class="research-update-category"><span>${update.category}</span><small>${typeLabel}</small></div>
       <div class="research-update-content">
-        <p><a class="research-update-link" href="#${update.id.toLowerCase()}" title="${esc(update.title)}">${esc(update.summary)}</a>${update.role ? ` <span class="research-update-role">(${esc(update.role)})</span>` : ''}</p>
+        <p><a class="research-update-link" href="#${update.id.toLowerCase()}" title="${esc(update.title)}">${esc(update.summary)}</a>${update.role ? ` <span class="research-update-role">${esc(update.role)}</span>` : ''}</p>
         ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : date}
       </div>
     </li>`;
@@ -226,7 +239,7 @@ function researchUpdateList(updates) {
 }
 
 function researchTimeline() {
-  const updates = [...papers.map(paperUpdate), ...researchUpdates.patents.map(p => ({ ...p, category: 'Patent' }))]
+  const updates = [...papers.map(paperUpdate), ...researchUpdates.patents.map(p => ({ ...p, category: 'Patent', dateLink: p.source }))]
     // Unknown months sort first within their year, without inventing a publication date.
     // Undated filing announcements stay above the dated history.
     .sort((a, b) => String(b.date || b.year || '9999').padEnd(10, '9').localeCompare(String(a.date || a.year || '9999').padEnd(10, '9')));
@@ -293,7 +306,7 @@ for (const p of papers) {
   const base = '../../';
   const related = papers.filter(other => other.slug !== p.slug && (other.tags.some(tag => p.tags.includes(tag)) || (p.slug.includes('torso') && other.slug === 'azimuth-elevation'))).slice(0,2);
   const highlights = p.findings || p.highlights;
-  const publicationDetails = `${venueLineMarkup(p)}${p.volume ? ` · ${esc(p.volume)}${p.number ? `(${esc(p.number)})` : ''}` : ''}${p.pages ? ` · pp. ${esc(p.pages)}` : ''}`;
+  const publicationDetails = venueLineMarkup(p);
   const sourceNote = p.overviewSource
     ? `${esc(p.overviewSource)}${p.publicationSource ? ` ${external(p.publicationSource, esc(p.publicationSourceLabel))}.` : ''}`
     : `Summary based on ${external(p.source, esc(p.sourceLabel))}.`;
