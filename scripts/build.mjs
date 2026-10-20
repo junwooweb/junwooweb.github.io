@@ -215,9 +215,8 @@ function researchUpdateList(updates) {
     const date = update.source ? external(update.source, dateLabel, 'research-update-date') : `<span class="research-update-date">${dateLabel}</span>`;
     const type = update.type || 'patent';
     const typeLabel = type === 'conference' ? 'Conference' : type === 'journal' ? 'Journal' : 'Application';
-    const icon = type === 'conference' ? 'groups' : type === 'journal' ? 'auto_stories' : 'lightbulb';
     return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-update-type="${type}" data-first-author="${Boolean(update.firstAuthor)}">
-      <div class="research-update-category"><span class="material-symbols-outlined" aria-hidden="true">${icon}</span><span>${update.category}</span><small>${typeLabel}</small></div>
+      <div class="research-update-category"><span>${update.category}</span><small>${typeLabel}</small></div>
       <div class="research-update-content">
         <p><a class="research-update-link" href="#${update.id.toLowerCase()}" title="${esc(update.title)}">${esc(update.summary)}</a>${update.role ? ` <span class="research-update-role">(${esc(update.role)})</span>` : ''}</p>
         ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : date}
