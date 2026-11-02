@@ -1,18 +1,16 @@
 {
   "paperDates": {
     "C4": {
-      "date": "2026-11-02",
-      "endDate": "2026-11-05",
-      "label": "Nov 2–5, 2026",
-      "kind": "Conference",
-      "source": "https://uist.acm.org/2026/"
+      "date": "2026-11-01",
+      "label": "Nov 1, 2026",
+      "kind": "Online publication",
+      "source": "https://dl.acm.org/doi/10.1145/3830398.3830655"
     },
     "J3": {
-      "date": "2026",
-      "label": "2026",
-      "linkToPaper": false,
-      "kind": "Published",
-      "source": "https://www.jiwanlee.me/"
+      "date": "2026-10-27",
+      "label": "Oct 27, 2026",
+      "kind": "Online publication",
+      "source": "https://ieeexplore.ieee.org/abstract/document/11755405"
     },
     "J2": {
       "date": "2026-04",

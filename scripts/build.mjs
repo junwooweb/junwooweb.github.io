@@ -52,7 +52,11 @@ const venueLabel = p => {
   return p.type === 'conference' ? `${name}'${year}` : name;
 };
 const venueMarkup = p => p.venueDisplay === p.venue ? esc(p.venue) : `${esc(p.venue)} (<strong>${esc(p.venueShort)}</strong>)`;
-const venueLineMarkup = p => `${venueMarkup(p)}, ${p.year}${p.volume ? ` · Vol. ${esc(p.volume)}` : ''}${p.number ? `, Issue ${esc(p.number)}` : ''}${p.pages ? ` · pp. ${esc(p.pages)}` : ''}`;
+const venueLineMarkup = p => `${venueMarkup(p)}, ${p.year}${p.volume ? ` · Vol. ${esc(p.volume)}` : ''}${p.number ? `, Issue ${esc(p.number)}` : ''}${p.publicationStage ? ` · ${esc(p.publicationStage)}` : ''}${p.articleNumber ? ` · Article ${esc(p.articleNumber)}` : ''}${p.pages ? ` · pp. ${esc(p.pages)}` : ''}`;
+const onlinePublication = p => {
+  const record = researchUpdates.paperDates[p.id];
+  return record?.kind === 'Online publication' ? record : null;
+};
 const venueBadge = p => `<span class="venue-label ${p.type}"><span>${esc(venueLabel(p))}</span><small>${p.type === 'journal' ? 'Journal' : 'Conference'}</small></span>`;
 const acceptanceRateMarkup = p => p.acceptanceRate
   ? `Acceptance rate: <strong>${esc(p.acceptanceRate.value)}</strong>`
@@ -121,6 +125,8 @@ function bibliographicDetails(p) {
     ['Year', p.citationYear || p.year],
     ['Conference year', p.citationYear && p.citationYear !== p.year ? p.year : null],
     ['Series', p.series && esc(p.series)],
+    ['Published online', onlinePublication(p)?.label], ['Publication stage', p.publicationStage],
+    ['Article number', p.articleNumber],
     ['Volume', p.volume], ['Issue', p.number], ['Pages', p.pages],
     ['Special issue', p.specialIssue && external(p.specialIssueSource, esc(p.specialIssue))],
     ['Acceptance rate', p.acceptanceRate && esc(p.acceptanceRate.value)],
@@ -322,7 +328,7 @@ for (const p of papers) {
   </div>`;
   const dir = new URL(`projects/${p.slug}/`, root);
   await mkdir(dir, { recursive:true });
-  const metadata = `<meta name="citation_title" content="${esc(p.title)}">${p.authors.map(a => `<meta name="citation_author" content="${esc(a)}">`).join('')}<meta name="citation_publication_date" content="${p.citationYear || p.year}">${p.doi ? `<meta name="citation_doi" content="${p.doi}">` : ''}`;
+  const metadata = `<meta name="citation_title" content="${esc(p.title)}">${p.authors.map(a => `<meta name="citation_author" content="${esc(a)}">`).join('')}<meta name="citation_publication_date" content="${onlinePublication(p)?.date || p.citationYear || p.year}">${p.doi ? `<meta name="citation_doi" content="${p.doi}">` : ''}`;
   await writePage(new URL('index.html', dir), layout({title:`${p.title} | Junwoo Kim`,description:p.summary,content,base,page:`projects/${p.slug}/`,active:'publications',metadata}));
   await writeFile(new URL(`citations/${p.slug}.bib`, root), `${bibtex(p)}\n`);
 }
