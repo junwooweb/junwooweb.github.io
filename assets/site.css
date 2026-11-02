@@ -218,6 +218,7 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
 .citation-source a { color: var(--accent); text-decoration: underline; }
 .project-figure figcaption { color: var(--muted); font-size: 13px; text-align: center; margin-top: 12px; }
 .project-content { max-width: 820px; margin: auto; }
+.project-video iframe { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; border-radius: 8px; background: #0f172a; }
 .project-overview { border: 1px solid #dbeafe; border-left: 4px solid var(--accent); border-radius: 12px; padding: 28px; background: #f5f9ff; }
 .project-overview .eyebrow { font-size: 13px; letter-spacing: 1.2px; }
 .project-overview h2 { font-size: 28px; margin: 12px 0 16px; }

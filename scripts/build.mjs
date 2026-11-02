@@ -138,6 +138,15 @@ function bibliographicDetails(p) {
   return `<dl class="publication-details">${fields.filter(([, value]) => value).map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join('')}</dl>`;
 }
 
+function projectVideo(p) {
+  if (!p.youtubeId) return '';
+  const id = encodeURIComponent(p.youtubeId);
+  return `<section id="video" class="project-section project-video" aria-labelledby="video-heading">
+    <div class="section-heading"><h2 id="video-heading">Project video</h2>${external(`https://www.youtube.com/watch?v=${id}`, 'Watch on YouTube', 'text-link')}</div>
+    <iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${esc(p.title)} — project video" width="800" height="450" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+  </section>`;
+}
+
 function publication(p, base = '') {
   if (p.ongoing) return ongoingPublication(p);
   const project = `${base}projects/${p.slug}/`;
@@ -317,9 +326,9 @@ for (const p of papers) {
     ? `${esc(p.overviewSource)}${p.publicationSource ? ` ${external(p.publicationSource, esc(p.publicationSourceLabel))}.` : ''}`
     : `Summary based on ${external(p.source, esc(p.sourceLabel))}.`;
   const content = `<a class="back-link" href="${base}publications.html#${p.id.toLowerCase()}">← All publications</a>
-  <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${publicationDetails}</p><div class="project-actions">${paperButton(p, 'button paper-link')}<a class="button citation-link" href="#citation">Citation details</a></div></header>
+  <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${publicationDetails}</p><div class="project-actions">${paperButton(p, 'button paper-link')}${p.youtubeId ? '<a class="button" href="#video">Watch video</a>' : ''}<a class="button citation-link" href="#citation">Citation details</a></div></header>
   <figure class="project-figure"><img src="${esc(imageUrl(p, base))}" alt="${esc(p.imageAlt)}" width="${p.imageWidth || 1100}" height="${p.imageHeight || 620}"><figcaption>${esc(p.imageAlt)}.</figcaption></figure>
-  <div class="project-content"><section class="project-overview"><p class="eyebrow">At a glance</p><h2>${esc(p.question)}</h2><p class="lead">${esc(p.summary)}</p><div class="tags">${p.tags.map(tag => `<span>${esc(tag)}</span>`).join('')}</div></section>
+  <div class="project-content"><section class="project-overview"><p class="eyebrow">At a glance</p><h2>${esc(p.question)}</h2><p class="lead">${esc(p.summary)}</p><div class="tags">${p.tags.map(tag => `<span>${esc(tag)}</span>`).join('')}</div></section>${p.youtubeId ? `\n  ${projectVideo(p)}` : ''}
   <section class="project-section"><h2>The approach</h2><p>${esc(p.approach)}</p></section>
   <section class="project-section"><h2>${p.findings ? 'Key takeaways' : 'Research highlights'}</h2><ol class="takeaways">${highlights.map((f,i) => `<li><span class="takeaway-num" aria-hidden="true">0${i+1}</span><div><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p></div></li>`).join('')}</ol></section>
   <p class="source-note">${sourceNote}</p>
