@@ -13,4 +13,4 @@
   --first-author-border: #d4d4d8;
 }
 
-.pub-keywords li { padding: .12rem .45rem; border: 1px solid #c8dbed; border-radius: 6px; background: #eef6fc; white-space: nowrap; }
+.pub-keywords li { padding: .12rem .45rem; color: #604d78; border: 1px solid #dacfe6; border-radius: 6px; background: #f4eff8; white-space: nowrap; }

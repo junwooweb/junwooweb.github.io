@@ -201,7 +201,6 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
 .project-header .eyebrow { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; align-items: center; text-transform: none; letter-spacing: .6px; }
 .project-header h1 { font-size: clamp(30px, 3.3vw, 42px); line-height: 1.3; letter-spacing: -1px; margin: 20px 0 24px; }
 .project-authors { font-size: 17px; color: #475569; line-height: 1.8; }
-.project-authors[data-first-author="true"] strong { color: var(--first-author-color); }
 .project-venue { font-size: 16px; margin-top: 10px; color: #475569; line-height: 1.7; }
 .project-header .pub-keywords { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; margin: .8rem 0 0; padding: 0; list-style: none; font-size: .84rem; font-weight: 600; color: #365778; }
 .project-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
