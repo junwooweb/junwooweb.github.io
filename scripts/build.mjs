@@ -14,12 +14,13 @@ async function writePage(url, html) {
 
 const root = new URL('../', import.meta.url);
 const papers = JSON.parse(await readFile(new URL('data/publications.json', root), 'utf8'));
-papers.sort((a, b) => b.year - a.year);
+const researchUpdates = JSON.parse(await readFile(new URL('data/research-updates.json', root), 'utf8'));
+const paperDate = p => researchUpdates.paperDates[p.id]?.date || String(p.year);
+papers.sort((a, b) => b.year - a.year || paperDate(b).localeCompare(paperDate(a)));
 const ongoing = JSON.parse(await readFile(new URL('data/ongoing.json', root), 'utf8')).map(p => ({ ...p, ongoing: true }));
 const submittedCount = ongoing.filter(p => p.status === 'Submitted').length;
 const writingCount = ongoing.filter(p => p.status === 'Writing').length;
 const listedPapers = [...ongoing, ...papers].sort((a, b) => b.year - a.year);
-const researchUpdates = JSON.parse(await readFile(new URL('data/research-updates.json', root), 'utf8'));
 const publisherBibtex = new Map(await Promise.all(papers.filter(p => p.bibtexFile).map(async p => [p.slug, (await readFile(new URL(p.bibtexFile, root), 'utf8')).trim()])));
 const isFirstAuthor = p => p.firstAuthor ?? (p.authors[0] === 'Junwoo Kim' || p.equalContribution?.includes('Junwoo Kim'));
 const release = 'https://github.com/junwooweb/junwooweb.github.io/releases/download/images/';
