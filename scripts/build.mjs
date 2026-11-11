@@ -225,7 +225,7 @@ function paperUpdate(p) {
   const venue = venueLabel(p);
   const dateInfo = researchUpdates.paperDates[p.id];
   const summary = p.ongoing
-    ? `Submitted to ${venue}${p.reviewStage ? ` (${p.reviewStage})` : ''}.`
+    ? `Submitted to ${venue}`
     : `“${p.title}” was accepted ${p.type === 'conference' ? 'to' : 'for publication in'} ${venue}.`;
   return {
     ...dateInfo,
@@ -237,6 +237,7 @@ function paperUpdate(p) {
     type: p.type,
     title: p.title || p.topic,
     topic: p.ongoing ? p.topic : null,
+    reviewStage: p.reviewStage,
     summary,
     firstAuthor: Boolean(isFirstAuthor(p)),
     year: p.year
@@ -246,6 +247,10 @@ function paperUpdate(p) {
 function updateMessage(update) {
   const { summary, venue, id } = update;
   const url = researchUpdates.venueLinks[venue];
+  if (update.category === 'Paper' && update.topic) {
+    const stage = update.reviewStage ? ` <strong>(${esc(update.reviewStage)})</strong>` : '';
+    return `<a class="research-update-link" href="#${esc(id.toLowerCase())}">${esc(summary)}${stage}.</a>`;
+  }
   if (update.category === 'Patent') {
     const label = `“${esc(update.title)}”`;
     const link = update.source ? external(update.source, label, 'news-paper') : `<a class="news-paper" href="#${esc(id.toLowerCase())}">${label}</a>`;
