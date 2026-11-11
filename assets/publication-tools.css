@@ -16,7 +16,7 @@ html { scroll-padding-top: 5rem; }
 .stat-breakdown { display: flex; flex-wrap: wrap; gap: .35rem 1.2rem; margin-top: .5rem; font-size: .85rem; font-weight: 600; }
 .patents-stat { --stat-ink: #71564a; --stat-bg: #faf8f6; --stat-accent: #b2a097; }
 .patents-stat .stat-breakdown { gap: .4rem; }
-.patents-stat .stat-breakdown > span { display: inline-flex; align-items: baseline; gap: .35rem; padding: .18rem .5rem; border: 1px solid #dcc7bd; border-radius: 5px; background: #fffaf7; }
+.patents-stat .stat-breakdown > span { display: inline-flex; align-items: baseline; gap: .25rem; border: 1px solid #dcc7bd; background: #fffaf7; }
 .research-stat { padding: .9rem .8rem; border: 1px solid #dce2e6; border-top: 4px solid var(--stat-accent, var(--stat-ink)); border-radius: 10px; background: var(--stat-bg); color: var(--stat-ink); }
 .research-stat-label { margin: 0 0 .65rem; font-size: 1.05rem; font-weight: 650; line-height: 1.35; }
 .research-stat-value { font-size: 2.25rem; font-weight: 800; line-height: 1; letter-spacing: -.04em; }
@@ -73,7 +73,8 @@ html { scroll-padding-top: 5rem; }
 .news-venue { color: #173e78; font-weight: 750; text-decoration: underline; text-underline-offset: .16em; }
 .news-venue:hover, .news-venue:focus-visible { color: #102e5d; text-decoration-thickness: 2px; }
 .research-update-link:hover { color: #1e293b; text-decoration: underline; text-underline-offset: 3px; }
-.research-update-role { display: inline-block; padding: 1px 6px; border: 1px solid #d1d5db; border-radius: 5px; background: #f3f4f6; color: #374151; font-size: .72rem; font-weight: 700; line-height: 1.5; vertical-align: baseline; }
+.research-update-role, .patents-stat .stat-breakdown > span { padding: 1px 6px; border-radius: 5px; font-size: .72rem; font-weight: 700; line-height: 1.5; }
+.research-update-role { display: inline-block; border: 1px solid #d1d5db; background: #f3f4f6; color: #374151; vertical-align: baseline; }
 .research-update[data-first-author="true"] .research-update-role, .first-author-count .research-update-role { color: #fff; background: var(--paper-ink); border-color: var(--paper-ink); }
 .research-update-content .research-update-topic { margin-top: .25rem; color: #64748b; font-size: .73rem; }
 .papers-stat .research-stat-value { display: flex; align-items: center; gap: .55rem; }

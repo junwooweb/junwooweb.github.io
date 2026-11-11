@@ -369,7 +369,7 @@ function layout({ title, description, content, base = '', page = '', active = 'h
 
 const homeTemplate = await readFile(new URL('templates/home.html', root), 'utf8');
 const firstAuthorCount = papers.filter(isFirstAuthor).length;
-const patentRegions = Object.entries({ KR: 'Domestic', US: 'USA', CN: 'CHINA' }).map(([code, label]) => {
+const patentRegions = Object.entries({ KR: 'KR', US: 'USA', CN: 'CHINA' }).map(([code, label]) => {
   const count = researchUpdates.patents.filter(patent => patent.jurisdictions.includes(code)).length;
   return `<span>${label} <strong>${count}</strong></span>`;
 }).join('');
