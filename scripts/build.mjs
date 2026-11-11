@@ -360,7 +360,12 @@ function layout({ title, description, content, base = '', page = '', active = 'h
 }
 
 const homeTemplate = await readFile(new URL('templates/home.html', root), 'utf8');
-const home = homeTemplate.replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{ONGOING_WORK}}', ongoingWork()).replace('{{NEWS_VENUES}}', newsVenues()).replace('{{RESEARCH_UPDATES}}', researchTimeline()).replace('{{PUBLICATIONS}}', byYear(listedPapers)).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replaceAll('{{SUBMITTED_COUNT}}', submittedCount).replace('{{FIRST_AUTHOR_COUNT}}', papers.filter(isFirstAuthor).length).replace('{{PATENT_COUNT}}', researchUpdates.patents.length).replace('{{YEAR}}', new Date().getFullYear());
+const firstAuthorCount = papers.filter(isFirstAuthor).length;
+const patentRegions = Object.entries({ KR: 'Domestic', US: 'USA', CN: 'China' }).map(([code, label]) => {
+  const count = researchUpdates.patents.filter(patent => patent.jurisdictions.includes(code)).length;
+  return `<span>${label} <strong>${count}</strong></span>`;
+}).join('');
+const home = homeTemplate.replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{ONGOING_WORK}}', ongoingWork()).replace('{{NEWS_VENUES}}', newsVenues()).replace('{{RESEARCH_UPDATES}}', researchTimeline()).replace('{{PUBLICATIONS}}', byYear(listedPapers)).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replaceAll('{{SUBMITTED_COUNT}}', submittedCount).replace('{{FIRST_AUTHOR_COUNT}}', firstAuthorCount).replace('{{CO_AUTHOR_COUNT}}', papers.length - firstAuthorCount).replace('{{PATENT_REGIONS}}', patentRegions).replace('{{PATENT_COUNT}}', researchUpdates.patents.length).replace('{{YEAR}}', new Date().getFullYear());
 await writePage(new URL('index.html', root), home.replace(/[ \t]+$/gm, ''));
 
 const archive = home.replace(/<title>.*?<\/title>/, '<title>Publications | Junwoo Kim</title>')

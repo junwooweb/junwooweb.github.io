@@ -204,12 +204,16 @@
         <div class="research-stat papers-stat">
             <h3 class="research-stat-label">Accepted Papers</h3>
             <div class="research-stat-value">{{PAPER_COUNT}}</div>
-            <div class="first-author-count"><span class="research-update-role">1st author</span> {{FIRST_AUTHOR_COUNT}} papers</div>
+            <div class="stat-breakdown">
+                <span class="first-author-count"><span class="research-update-role">1st author</span> {{FIRST_AUTHOR_COUNT}} papers</span>
+                <span><span class="research-update-role">Co-author</span> {{CO_AUTHOR_COUNT}} papers</span>
+            </div>
             <div class="research-submitted-count">+ {{SUBMITTED_COUNT}} submitted papers</div>
         </div>
         <div class="research-stat patents-stat">
             <h3 class="research-stat-label">Patent Applications</h3>
             <div class="research-stat-value">{{PATENT_COUNT}}</div>
+            <div class="stat-breakdown">{{PATENT_REGIONS}}</div>
         </div>
     </div>
 
@@ -250,7 +254,7 @@
             <div class="pub-authors patent-applications">
                 <span class="publication-status" data-status="Submitted">Submission</span>
                 <p class="patent-inventors">Inventors: Anonymous</p>
-                <p class="patent-publication-note">Patent pending.</p>
+                <p class="patent-publication-note">Filed in South Korea only. Patent pending.</p>
             </div>
         </article>
 

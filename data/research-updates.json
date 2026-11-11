@@ -70,12 +70,14 @@
   "patents": [
     {
       "id": "P2",
+      "jurisdictions": ["KR"],
       "title": "Audiovisual-to-Haptic Rendering System",
       "summary": "(tentative title) is the subject of our pending patent application.",
       "dateNote": "Patent pending"
     },
     {
       "id": "P1",
+      "jurisdictions": ["KR", "US", "CN"],
       "title": "Apparatus And Method For Controlling Haptic Feedback",
       "summary": "was published as a US patent application.",
       "date": "2025-06-19",
