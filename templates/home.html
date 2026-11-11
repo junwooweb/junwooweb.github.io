@@ -131,18 +131,24 @@
     <!-- Stats -->
     <div class="research-stats">
         <div class="research-stat papers-stat">
-            <h3 class="research-stat-label">Accepted Papers</h3>
-            <div class="research-stat-value">{{PAPER_COUNT}} <small class="research-submitted-count">(+ {{SUBMITTED_COUNT}} submission)</small></div>
-            <div class="stat-breakdown">
-                <span class="first-author-count"><span class="research-update-role">1st author</span> {{FIRST_AUTHOR_COUNT}} papers</span>
-                <span><span class="research-update-role">Co-author</span> {{CO_AUTHOR_COUNT}} papers</span>
+            <div class="stat-summary">
+                <h3 class="research-stat-label">Accepted Papers</h3>
+                <div class="research-stat-value">{{PAPER_COUNT}} <small class="research-submitted-count">(+ {{SUBMITTED_COUNT}} submission)</small></div>
             </div>
-            {{PUBLICATION_VENUES}}
+            <div class="stat-details">
+                <div class="stat-breakdown">
+                    <span class="first-author-count"><span class="research-update-role">1st author</span> {{FIRST_AUTHOR_COUNT}} papers</span>
+                    <span><span class="research-update-role">Co-author</span> {{CO_AUTHOR_COUNT}} papers</span>
+                </div>
+                {{PUBLICATION_VENUES}}
+            </div>
         </div>
         <div class="research-stat patents-stat">
-            <h3 class="research-stat-label">Patent Applications</h3>
-            <div class="research-stat-value">{{PATENT_COUNT}}</div>
-            <div class="stat-breakdown">{{PATENT_REGIONS}}</div>
+            <div class="stat-summary">
+                <h3 class="research-stat-label">Patent Applications</h3>
+                <div class="research-stat-value">{{PATENT_COUNT}}</div>
+            </div>
+            <div class="stat-details"><div class="stat-breakdown">{{PATENT_REGIONS}}</div></div>
         </div>
     </div>
     </section>

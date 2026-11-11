@@ -318,7 +318,7 @@ function publicationVenues() {
     ['Conferences', ["ACM UIST'26", "IEEE ISMAR'26", "IEEE WHC'23", "EuroHaptics'24"]]
   ];
   return `<dl class="publication-venues">${groups.map(([label, venues]) => {
-    const links = venues.map(key => external(researchUpdates.venueLinks[key], esc(key.replace(/^(?:IEEE|ACM) /, '')), 'news-venue'));
+    const links = venues.map(key => external(researchUpdates.venueLinks[key], esc(key), 'news-venue'));
     return `<div><dt>${label}</dt><dd>${links.join(' · ')}</dd></div>`;
   }).join('')}</dl>`;
 }
