@@ -24,6 +24,7 @@ const publisherBibtex = new Map(await Promise.all(papers.filter(p => p.bibtexFil
 const isFirstAuthor = p => p.firstAuthor ?? (p.authors[0] === 'Junwoo Kim' || p.equalContribution?.includes('Junwoo Kim'));
 const release = 'https://github.com/junwooweb/junwooweb.github.io/releases/download/images/';
 const site = 'https://junwooweb.github.io/';
+const scholarProfile = 'https://scholar.google.com/citations?user=HhAuvvgAAAAJ&hl=ko';
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const external = (url, label, cls = '') => `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${label}</a>`;
 const imageUrl = (p, base = '') => `${base}${p.image}`;
@@ -73,7 +74,14 @@ const researchKeywords = p => p.researchKeywords?.length
 const paperButton = (p, cls = 'paper-link') => p.paper
   ? `<a class="${cls}" href="${esc(p.paper)}" target="_blank" rel="noopener noreferrer">Paper</a>`
   : `<button class="${cls}" type="button" disabled title="Paper link is not yet available">Paper</button>`;
-const authors = p => p.authors.map(name => `${name === 'Junwoo Kim' ? `<strong>${esc(name)}</strong>` : esc(name)}${p.equalContribution?.includes(name) ? '<sup class="contribution-marker">*</sup>' : ''}`).join(', ');
+function authors(p, linkScholar = false) {
+  return p.authors.map(name => {
+    let label = esc(name);
+    if (name === 'Junwoo Kim') label = linkScholar ? external(scholarProfile, label, 'me') : `<strong>${label}</strong>`;
+    const marker = p.equalContribution?.includes(name) ? '<sup class="contribution-marker">*</sup>' : '';
+    return label + marker;
+  }).join(', ');
+}
 const contributionNote = p => p.equalContribution ? ' <span class="equal-note">(<b>*</b> Equal contribution)</span>' : '';
 
 function bibtex(p) {
@@ -166,7 +174,7 @@ function publication(p, base = '') {
     <div class="pub-main">
       <div class="pub-venue"><span class="pub-venue-labels">${venueBadge(p)}${statusBadge(p)}</span>${researchKeywords(p)}</div>
       <h3 class="pub-title"><span class="pub-badge${p.type === 'conference' ? ' conf' : ''}">${p.id}</span>${titleLink}</h3>
-      <div class="pub-authors">${authors(p).replaceAll('<strong>', '<span class="me">').replaceAll('</strong>', '</span>')}${contributionNote(p)}</div>
+      <div class="pub-authors">${authors(p, true)}${contributionNote(p)}</div>
       <div class="pub-venue-full">${venueLineMarkup(p)}</div>
       ${publicationContext(p)}
       <div class="publication-links">${paperButton(p)}<a class="project-link" href="${project}">Project</a>${copyButton(p, 'Citation', 'cite-copy')}<p class="copy-status" role="status" aria-live="polite"></p></div>
@@ -187,7 +195,7 @@ function ongoingPublication(p) {
       <div class="pub-venue"><span class="pub-venue-labels">${venueBadge(p)}${submitted ? '' : statusBadge(p)}</span>${researchKeywords(p)}</div>
       <p class="research-topic-label">Research topic</p>
       <h3 class="pub-title">${esc(p.topic)}</h3>
-      <div class="pub-authors">${authors(p)}</div>
+      <div class="pub-authors">${authors(p, true)}</div>
       <div class="pub-venue-full">${venueLineMarkup(p)}</div>
       <div class="publication-links">${paperButton(p)}<button class="project-link" type="button" disabled title="Project is not yet available">Project</button><button class="cite-copy" type="button" disabled title="Citation is not yet available">Citation</button></div>
     </div>
@@ -373,7 +381,7 @@ const patentRegions = Object.entries({ KR: 'KR', US: 'USA', CN: 'CHINA' }).map((
   const count = researchUpdates.patents.filter(patent => patent.jurisdictions.includes(code)).length;
   return `<span>${label} <strong>${count}</strong></span>`;
 }).join('');
-const home = homeTemplate.replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{ONGOING_WORK}}', ongoingWork()).replace('{{PUBLICATION_VENUES}}', publicationVenues()).replace('{{RESEARCH_UPDATES}}', researchTimeline()).replace('{{PUBLICATIONS}}', publicationGroups()).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replaceAll('{{SUBMITTED_COUNT}}', submittedCount).replace('{{FIRST_AUTHOR_COUNT}}', firstAuthorCount).replace('{{CO_AUTHOR_COUNT}}', papers.length - firstAuthorCount).replace('{{PATENT_REGIONS}}', patentRegions).replace('{{PATENT_COUNT}}', researchUpdates.patents.length).replace('{{YEAR}}', new Date().getFullYear());
+const home = homeTemplate.replace('{{SCHOLAR_PROFILE}}', esc(scholarProfile)).replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{ONGOING_WORK}}', ongoingWork()).replace('{{PUBLICATION_VENUES}}', publicationVenues()).replace('{{RESEARCH_UPDATES}}', researchTimeline()).replace('{{PUBLICATIONS}}', publicationGroups()).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replaceAll('{{SUBMITTED_COUNT}}', submittedCount).replace('{{FIRST_AUTHOR_COUNT}}', firstAuthorCount).replace('{{CO_AUTHOR_COUNT}}', papers.length - firstAuthorCount).replace('{{PATENT_REGIONS}}', patentRegions).replace('{{PATENT_COUNT}}', researchUpdates.patents.length).replace('{{YEAR}}', new Date().getFullYear());
 await writePage(new URL('index.html', root), home.replace(/[ \t]+$/gm, ''));
 
 const archive = home.replace(/<title>.*?<\/title>/, '<title>Publications | Junwoo Kim</title>')
