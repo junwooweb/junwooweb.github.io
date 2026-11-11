@@ -122,10 +122,10 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
   background: var(--accent-light); font: 600 .85rem/1.6 'Inter', sans-serif; cursor: pointer;
 }
 .publication-links a:hover, .publication-links button:hover, .citation-toolbar .button:hover { border-color: var(--accent); background: #dbeafe; }
-.publication-links .paper-link { color: #fff; background: var(--paper-ink); border-color: var(--paper-ink); }
-.publication-links .paper-link:hover { background: var(--paper-hover); border-color: var(--paper-hover); }
-.publication-links .project-link { color: #fff; background: #615476; border-color: #615476; }
-.publication-links .project-link:hover { color: #fff; background: #504361; border-color: #504361; }
+.publication-links .paper-link { color: #fff; background: #b91c1c; border-color: #b91c1c; }
+.publication-links .paper-link:hover { background: #991b1b; border-color: #991b1b; }
+.publication-links .project-link { color: #fff; background: #7e22ce; border-color: #7e22ce; }
+.publication-links .project-link:hover { color: #fff; background: #6b21a8; border-color: #6b21a8; }
 .publication-links .cite-copy, .citation-toolbar .button { color: #fff; background: #334155; border-color: #334155; }
 .publication-links .cite-copy:hover, .citation-toolbar .button:hover { color: #fff; background: #1e293b; border-color: #1e293b; }
 .publication-links button:disabled, .publication-links button:disabled:hover { color: #64748b; background: #f1f5f9; border-color: #e2e8f0; cursor: not-allowed; }
@@ -156,7 +156,7 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .filter-group button { font: 600 .9rem/1.5 'Inter', sans-serif; padding: .55rem .85rem; border: 1px solid var(--border-color); border-radius: 8px; background: #fff; color: #475569; cursor: pointer; }
 .filter-group button[aria-pressed="true"] { background: var(--accent-light); border-color: #bfdbfe; color: var(--accent); }
 .filter-group button[data-filter="first-author"] { color: var(--first-author-color); }
-.filter-group button[data-filter="first-author"][aria-pressed="true"] { background: var(--first-author-background); border-color: var(--first-author-border); }
+.filter-group button[data-filter="first-author"][aria-pressed="true"] { background: var(--first-author-color); color: #fff; border-color: var(--first-author-color); }
 .filter-group button[data-filter="writing"][aria-pressed="true"] { background: #fffbeb; border-color: #fde68a; color: #92400e; }
 .filter-group span { margin-left: .35rem; }
 .secondary-filters { margin: .75rem 0 1.5rem; gap: .45rem; }
