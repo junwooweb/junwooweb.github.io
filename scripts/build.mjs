@@ -220,6 +220,7 @@ function paperUpdate(p) {
     ...dateInfo,
     dateLink: dateInfo?.linkToPaper === false ? null : p.paper || (p.doi ? `https://doi.org/${p.doi}` : null),
     id: p.id,
+    venue,
     category: 'Paper',
     type: p.type,
     title: p.title || p.topic,
@@ -229,6 +230,23 @@ function paperUpdate(p) {
     firstAuthor: Boolean(isFirstAuthor(p)),
     year: p.year
   };
+}
+
+function updateMessage(update) {
+  const { summary, venue, id } = update;
+  const url = researchUpdates.venueLinks[venue];
+  if (url && update.category === 'Paper' && !update.topic) {
+    const titleLink = `<a class="research-update-link" href="#${id.toLowerCase()}">“${esc(update.title)}”</a>`;
+    const accepted = update.type === 'conference' ? 'accepted to' : 'accepted for publication in';
+    return `${titleLink} was ${accepted} ${external(url, esc(venue), 'news-venue')}.`;
+  }
+  if (url && update.category === 'Award' && summary.includes(venue)) {
+    const at = summary.lastIndexOf(venue);
+    const prefix = summary.slice(0, at);
+    const suffix = summary.slice(at + venue.length);
+    return `${esc(prefix)}${external(url, esc(venue), 'news-venue')}${esc(suffix)}`;
+  }
+  return update.category === 'Award' ? esc(summary) : `<a class="research-update-link" href="#${id.toLowerCase()}">${esc(summary)}</a>`;
 }
 
 function researchUpdateList(updates) {
@@ -246,7 +264,7 @@ function researchUpdateList(updates) {
     return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-update-type="${type}" data-first-author="${Boolean(update.firstAuthor)}">
       <div class="research-update-category"><span>${update.category}</span><small>${typeLabel}</small></div>
       <div class="research-update-content">
-        <p>${iconMarkup}&nbsp;${update.role ? `<span class="research-update-role">${esc(update.role)}</span> ` : ''}${update.category === 'Award' ? esc(update.summary) : `<a class="research-update-link" href="#${update.id.toLowerCase()}">${esc(update.summary)}</a>`}</p>
+        <p>${iconMarkup}&nbsp;${update.role ? `<span class="research-update-role">${esc(update.role)}</span> ` : ''}${updateMessage(update)}</p>
         ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : date}
       </div>
     </li>`;

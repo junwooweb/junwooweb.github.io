@@ -51,12 +51,14 @@
     {
       "id": "A2",
       "date": "2023",
-      "summary": "Our team received an Encouragement Award in the Korean Haptics Society’s Hyundai Student Innovation Contest."
+      "summary": "Our team received an Encouragement Award in the Korea Haptics Society’s Hyundai Student Innovation Contest.",
+      "venue": "Korea Haptics Society"
     },
     {
       "id": "A1",
       "date": "2023",
-      "summary": "“Estimating Information Transfer for Sequential Full Body Vibrotactile Stimuli” received an Outstanding Paper Award at HCI Korea 2023."
+      "summary": "“Estimating Information Transfer for Sequential Full Body Vibrotactile Stimuli” received an Outstanding Paper Award at HCI Korea 2023.",
+      "venue": "HCI Korea 2023"
     }
   ],
   "patents": [
@@ -75,5 +77,14 @@
       "kind": "Published",
       "source": "https://patents.google.com/patent/US20250195997A1/en"
     }
-  ]
+  ],
+  "venueLinks": {
+    "ACM UIST'26": "https://uist.acm.org/2026/",
+    "IEEE TVCG": "https://ieeexplore.ieee.org/xpl/aboutJournal.jsp?punumber=2945",
+    "IEEE ToH": "https://ieeexplore.ieee.org/xpl/aboutJournal.jsp?punumber=4543165",
+    "EuroHaptics'24": "https://eurohaptics.org/ehc2024/",
+    "IEEE WHC'23": "https://2023.worldhaptics.org/",
+    "HCI Korea 2023": "https://conference.hcikorea.org/hcik2023/programs/awarded_paper.asp",
+    "Korea Haptics Society": "https://haptics.or.kr/"
+  }
 }

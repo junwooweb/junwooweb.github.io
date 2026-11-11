@@ -30,6 +30,8 @@ html { scroll-padding-top: 5rem; }
 .research-update-content { min-width: 0; padding: .7rem .85rem; align-self: center; }
 .research-update-content p { margin: 0; overflow-wrap: anywhere; }
 .research-update-link { color: #334155; font-weight: 500; }
+.news-venue { color: #075e75; font-weight: 700; text-decoration: underline; text-underline-offset: .16em; }
+.news-venue:hover, .news-venue:focus-visible { color: #063f50; }
 .research-update-link:hover { color: #1e293b; text-decoration: underline; text-underline-offset: 3px; }
 .research-update-role { color: #64748b; font-size: .72rem; white-space: nowrap; }
 .research-update[data-first-author="false"] .research-update-role,
