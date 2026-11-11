@@ -43,6 +43,7 @@ html { scroll-padding-top: 5rem; }
   border-left: 4px solid #478375;
 }
 .research-update-category { color: var(--update-ink); background: var(--update-bg); }
+.research-update[data-update-type="travel"] .research-update-category small { color: var(--postech-color); }
 .research-update-content { min-width: 0; padding: .7rem .85rem; align-self: center; }
 .research-update-content p { margin: 0; overflow-wrap: anywhere; }
 .research-update-link { color: #334155; font-weight: 500; }
