@@ -7,7 +7,9 @@ html { scroll-padding-top: 5rem; }
 .research-overview > section { min-width: 0; margin: 0; }
 #research, #news { grid-column: 1 / -1; }
 #research .research-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.research-overview .section-title { margin: 0 0 1rem; padding: 0; border: 0; font-size: clamp(1.55rem, 2.2vw, 2rem); font-weight: 750; letter-spacing: -.035em; line-height: 1.2; }
+.research-overview .section-title { margin: 0 0 1rem; font-size: clamp(1.55rem, 2.2vw, 2rem); font-weight: 750; letter-spacing: -.035em; line-height: 1.2; }
+.container h2.section-title, .profile-subheading, .research-updates-header { padding-bottom: .65rem; border-bottom: 1px solid #dce1e6; }
+.container h2.section-title .material-symbols-outlined, .profile-subheading .material-symbols-outlined { color: #5d6d7c; font-size: 1.35rem; flex-shrink: 0; }
 .research-overview .research-item { background: #fafafa; border-color: #e3e5e7; }
 .research-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; }
 .papers-stat { --stat-ink: var(--paper-ink); --stat-bg: var(--paper-card-bg); --stat-accent: var(--paper-card-accent); }
@@ -27,7 +29,7 @@ html { scroll-padding-top: 5rem; }
 }
 .research-updates-header { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem 1rem; margin-bottom: 1rem; }
 #news .research-update-content { font-size: .97rem; line-height: 1.5; }
-.research-overview .research-updates-header h2 { margin-bottom: 0; }
+.research-overview .research-updates-header h2 { margin-bottom: 0; padding: 0; border: 0; }
 .research-updates-count, .research-updates-hint { color: #64748b; font-size: .7rem; }
 .research-updates-scroll { max-height: 24rem; overflow-y: scroll; scrollbar-gutter: stable; scrollbar-width: thin; scrollbar-color: #cbd5e1 #f8fafc; padding-right: .55rem; border-radius: 8px; }
 .research-updates-scroll::-webkit-scrollbar { width: 9px; }
@@ -90,8 +92,7 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .portrait-controls button:hover { background: #dbeafe; border-color: var(--accent); }
 .portrait-count { min-width: 3rem; color: #475569; text-align: center; font-size: .9rem; font-weight: 600; font-variant-numeric: tabular-nums; }
 .profile-info { min-width: 0; }
-.profile-subheading { display: flex; align-items: center; gap: 1rem; margin: 1.6rem 0 .9rem; color: #1e293b; font-size: 1.5rem; font-weight: 800; line-height: 1.35; letter-spacing: -.02em; }
-.profile-subheading::after { content: ''; height: 1px; background: var(--border-color); flex: 1; }
+.profile-subheading { display: flex; align-items: center; gap: .5rem; margin: 1.6rem 0 .9rem; color: #1e293b; font-size: 1.5rem; font-weight: 800; line-height: 1.35; letter-spacing: -.02em; }
 .education-current, .education-previous { padding: 1rem 1.2rem; border: 1px solid #dbeafe; border-left: 4px solid var(--accent); border-radius: 10px; background: #f5f9ff; }
 .education-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .8rem; margin-bottom: .4rem; }
 .current-label { color: #1d4ed8; font-size: .78rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
