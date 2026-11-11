@@ -110,9 +110,10 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .profile-bio { margin: 0 0 1.2rem; font-size: 1rem; }
 .profile-bio strong { color: #1e3a5f; font-weight: 700; }
 .pub-main { width: 100%; }
-.research-title { font-size: 1.1rem; }
+#research .research-title { font-size: 1rem; }
+#research .research-num { font-size: 1.65rem; }
 .research-kw { font-size: .82rem; color: #1d4ed8; }
-#research .research-kw { color: #475569; background: #f2f3f5; border-color: #d5d9df; }
+#research .research-kw { font-size: .78rem; color: #475569; background: #f2f3f5; border-color: #d5d9df; }
 .pub-title { margin: 0 0 .65rem; font-size: 1.3rem; line-height: 1.45; letter-spacing: -.25px; }
 .pub-title a { color: #0f172a; }
 .pub-title a::after { content: none; }
