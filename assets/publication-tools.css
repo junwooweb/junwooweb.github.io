@@ -16,9 +16,11 @@ html { scroll-padding-top: 5rem; }
 .papers-stat { --stat-ink: var(--paper-ink); --stat-bg: var(--paper-card-bg); --stat-accent: var(--paper-card-accent); }
 .stat-breakdown { display: grid; gap: .35rem; font-size: .85rem; font-weight: 600; }
 .patents-stat { --stat-ink: #71564a; --stat-bg: #faf8f6; --stat-accent: #b2a097; }
-.papers-stat .stat-breakdown > span { display: grid; grid-template-columns: var(--label-width) 1fr; align-items: baseline; justify-items: start; gap: .45rem; }
+.papers-stat .stat-breakdown { display: flex; flex-wrap: wrap; gap: .35rem 1rem; }
+.papers-stat .stat-breakdown > span { white-space: nowrap; }
+.patents-stat .stat-breakdown > span { display: grid; grid-template-columns: var(--label-width) 1fr; align-items: baseline; justify-items: start; gap: .45rem; }
 .patents-stat .stat-breakdown { justify-items: start; }
-.patents-stat .stat-breakdown > span { display: inline-flex; justify-content: space-between; width: var(--label-width); box-sizing: border-box; align-items: baseline; border: 1px solid #dcc7bd; background: #fffaf7; }
+.country-badge { border: 1px solid #dcc7bd; background: #fffaf7; }
 .research-stat { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; gap: .85rem; padding: .9rem .8rem; border: 1px solid #dce2e6; border-top: 4px solid var(--stat-accent, var(--stat-ink)); border-radius: 10px; background: var(--stat-bg); color: var(--stat-ink); }
 .stat-summary { align-self: start; }
 .stat-details { display: grid; align-content: center; min-width: 0; padding-left: .85rem; border-left: 1px solid #d5dade; }
@@ -88,7 +90,7 @@ html { scroll-padding-top: 5rem; }
 .news-venue { color: #173e78; font-weight: 750; text-decoration: underline; text-underline-offset: .16em; }
 .news-venue:hover, .news-venue:focus-visible { color: #102e5d; text-decoration-thickness: 2px; }
 .research-update-link:hover { color: #1e293b; text-decoration: underline; text-underline-offset: 3px; }
-.research-update-role, .publication-venues dt, .patents-stat .stat-breakdown > span { padding: 1px 6px; border-radius: 5px; font-size: .72rem; font-weight: 700; line-height: 1.5; }
+.research-update-role, .publication-venues dt, .country-badge { padding: 1px 6px; border-radius: 5px; font-size: .72rem; font-weight: 700; line-height: 1.5; }
 .research-update-role { display: inline-block; border: 1px solid #d1d5db; background: #f3f4f6; color: #374151; vertical-align: baseline; }
 .research-update[data-first-author="true"] .research-update-role, .first-author-count .research-update-role, .publication-venues dt { color: #fff; background: var(--paper-ink); border: 1px solid var(--paper-ink); }
 .research-update-content .research-update-topic { margin-top: .25rem; color: #64748b; font-size: .73rem; }

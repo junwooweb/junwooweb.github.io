@@ -376,9 +376,9 @@ function layout({ title, description, content, base = '', page = '', active = 'h
 
 const homeTemplate = await readFile(new URL('templates/home.html', root), 'utf8');
 const firstAuthorCount = papers.filter(isFirstAuthor).length;
-const patentRegions = Object.entries({ KR: 'KR', US: 'USA', CN: 'CHINA' }).map(([code, label]) => {
+const patentRegions = Object.entries({ KR: 'KOREA', US: 'USA', CN: 'CHINA' }).map(([code, label]) => {
   const count = researchUpdates.patents.filter(patent => patent.jurisdictions.includes(code)).length;
-  return `<span>${label} <strong>${count}</strong></span>`;
+  return `<span><span class="country-badge">${label}</span> <strong>${count}</strong></span>`;
 }).join('');
 const home = homeTemplate.replace('{{SCHOLAR_PROFILE}}', esc(scholarProfile)).replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{ONGOING_WORK}}', ongoingWork()).replace('{{PUBLICATION_VENUES}}', publicationVenues()).replace('{{RESEARCH_UPDATES}}', researchTimeline()).replace('{{PUBLICATIONS}}', publicationGroups()).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replaceAll('{{SUBMITTED_COUNT}}', submittedCount).replace('{{FIRST_AUTHOR_COUNT}}', firstAuthorCount).replace('{{CO_AUTHOR_COUNT}}', papers.length - firstAuthorCount).replace('{{PATENT_REGIONS}}', patentRegions).replace('{{PATENT_COUNT}}', researchUpdates.patents.length).replace('{{YEAR}}', new Date().getFullYear());
 await writePage(new URL('index.html', root), home.replace(/[ \t]+$/gm, ''));
