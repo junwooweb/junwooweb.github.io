@@ -11,6 +11,8 @@ html { scroll-padding-top: 5rem; }
 .research-updates { padding: 1.1rem; margin-bottom: 1.25rem; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; }
 .research-updates h2 { margin: 0 0 .8rem; color: #1e293b; font-size: .98rem; font-weight: 700; letter-spacing: -.02em; }
 .research-updates-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .3rem .8rem; margin-bottom: .8rem; }
+#news h2 { font-size: clamp(1.25rem, 2vw, 1.55rem); }
+#news .research-update-content { font-size: .97rem; line-height: 1.5; }
 .research-updates-header h2 { margin-bottom: 0; }
 .research-updates-count, .research-updates-hint { color: #64748b; font-size: .7rem; }
 .research-updates-scroll { max-height: 24rem; overflow-y: scroll; scrollbar-gutter: stable; scrollbar-width: thin; scrollbar-color: #cbd5e1 #f8fafc; padding-right: .55rem; border-radius: 8px; }
