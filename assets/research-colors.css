@@ -1,13 +1,14 @@
 /* Semantic colors shared by the homepage, archive and project pages. */
 :root {
-  --paper-ink: #12665c;
-  --paper-bg: #e9f6f2;
-  --paper-border: #a4d7cb;
-  --patent-ink: #85480e;
-  --patent-bg: #fff3df;
-  --award-ink: #843c72;
-  --award-bg: #f9edf6;
-  --first-author-color: #305995;
-  --first-author-background: #eaf1fb;
-  --first-author-border: #b8cceb;
+  --paper-ink: #354f77;
+  --paper-hover: #263c5c;
+  --paper-bg: #eff3f9;
+  --paper-border: #c2cfe0;
+  --patent-ink: #8a4d40;
+  --patent-bg: #fbf1ed;
+  --award-ink: #785c21;
+  --award-bg: #faf5e7;
+  --first-author-color: #665084;
+  --first-author-background: #f3eff8;
+  --first-author-border: #d6cae2;
 }

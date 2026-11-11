@@ -40,7 +40,7 @@ html { scroll-padding-top: 5rem; }
 .research-update-content p { margin: 0; overflow-wrap: anywhere; }
 .research-update-link { color: #334155; font-weight: 500; }
 .news-paper { color: var(--update-ink); font-weight: 600; text-decoration: underline; text-underline-offset: .17em; }
-.news-paper:hover, .news-paper:focus-visible { color: #153e75; text-decoration-thickness: 2px; }
+.news-paper:hover, .news-paper:focus-visible { color: var(--update-ink); text-decoration-thickness: 2px; }
 #news .research-updates-header { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 1.2rem; }
 #news .research-updates-hint { grid-column: 1 / -1; justify-self: end; }
 .news-venues { margin: 0; font-size: .9rem; }
@@ -48,8 +48,8 @@ html { scroll-padding-top: 5rem; }
 .news-venues dt { font-weight: 700; }
 .news-venues dd { margin: 0; }
 .news-venues a { white-space: nowrap; }
-.news-venue { color: #075e75; font-weight: 700; text-decoration: underline; text-underline-offset: .16em; }
-.news-venue:hover, .news-venue:focus-visible { color: #063f50; }
+.news-venue { color: #4d6080; font-weight: 700; text-decoration: underline; text-underline-offset: .16em; }
+.news-venue:hover, .news-venue:focus-visible { color: var(--paper-hover); }
 .research-update-link:hover { color: #1e293b; text-decoration: underline; text-underline-offset: 3px; }
 .research-update-role { color: #64748b; font-size: .72rem; white-space: nowrap; }
 .research-update[data-first-author="false"] .research-update-role,
@@ -105,7 +105,7 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .venue-label { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .3rem .65rem; padding: .35rem .75rem; border: 1px solid var(--paper-border); border-radius: 8px; background: var(--paper-bg); color: var(--paper-ink); font-size: .95rem; font-weight: 700; line-height: 1.5; }
 .venue-label small { padding-left: .65rem; border-left: 1px solid currentColor; font-size: .72rem; font-weight: 600; }
 .publication-issue, .publication-acceptance { margin: .3rem 0 0; font-size: .82rem; line-height: 1.65; color: #475569; }
-.publication-issue { color: #25665b; font-weight: 600; }
+.publication-issue { color: var(--paper-ink); font-weight: 600; }
 .pub-badge, .pub-badge.conf { font-size: .75rem; background: var(--paper-ink); }
 .pub-category-count { display: inline-flex; align-items: center; padding: .2rem .7rem; margin-left: .25rem; border: 1px solid #dbeafe; border-radius: 999px; background: #eff6ff; color: #1e40af; font-size: .875rem; line-height: 1.5; font-weight: 600; text-transform: none; letter-spacing: 0; white-space: nowrap; }
 .publication-status { display: inline-block; padding: 2px 8px; border: 1px solid #e2e8f0; border-radius: 5px; background: #f8fafc; color: #475569; font-size: .8rem; font-weight: 600; font-style: normal; white-space: nowrap; }
@@ -120,9 +120,9 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 }
 .publication-links a:hover, .publication-links button:hover, .citation-toolbar .button:hover { border-color: var(--accent); background: #dbeafe; }
 .publication-links .paper-link { color: #fff; background: var(--paper-ink); border-color: var(--paper-ink); }
-.publication-links .paper-link:hover { background: #0d5149; border-color: #0d5149; }
-.publication-links .project-link { color: #fff; background: #7e22ce; border-color: #7e22ce; }
-.publication-links .project-link:hover { color: #fff; background: #6b21a8; border-color: #6b21a8; }
+.publication-links .paper-link:hover { background: var(--paper-hover); border-color: var(--paper-hover); }
+.publication-links .project-link { color: #fff; background: #615476; border-color: #615476; }
+.publication-links .project-link:hover { color: #fff; background: #504361; border-color: #504361; }
 .publication-links .cite-copy, .citation-toolbar .button { color: #fff; background: #334155; border-color: #334155; }
 .publication-links .cite-copy:hover, .citation-toolbar .button:hover { color: #fff; background: #1e293b; border-color: #1e293b; }
 .publication-links button:disabled, .publication-links button:disabled:hover { color: #64748b; background: #f1f5f9; border-color: #e2e8f0; cursor: not-allowed; }
