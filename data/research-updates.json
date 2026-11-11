@@ -51,7 +51,8 @@
     {
       "id": "A2",
       "date": "2023",
-      "summary": "Our team received an Encouragement Award in the Korea Haptics Society’s Hyundai Student Innovation Contest.",
+      "title": "Multimedia-to-Haptic Rendering Using an In-Vehicle Haptic Interface",
+      "summary": "received an Encouragement Award in the Korea Haptics Society’s Hyundai Student Innovation Contest.",
       "venue": "Korea Haptics Society"
     },
     {
@@ -66,13 +67,13 @@
     {
       "id": "P2",
       "title": "Audiovisual-to-Haptic Rendering System",
-      "summary": "We filed a patent application for an audiovisual-to-haptic rendering system.",
+      "summary": "(tentative title) is the subject of our pending patent application.",
       "dateNote": "Patent pending"
     },
     {
       "id": "P1",
       "title": "Apparatus And Method For Controlling Haptic Feedback",
-      "summary": "Our US patent application “Apparatus and Method for Controlling Haptic Feedback” was published.",
+      "summary": "was published as a US patent application.",
       "date": "2025-06-19",
       "label": "Jun 19, 2025",
       "kind": "Published",

@@ -237,6 +237,11 @@ function paperUpdate(p) {
 function updateMessage(update) {
   const { summary, venue, id } = update;
   const url = researchUpdates.venueLinks[venue];
+  if (update.category === 'Patent') {
+    const label = `“${esc(update.title)}”`;
+    const link = update.source ? external(update.source, label, 'news-paper') : `<a class="news-paper" href="#${esc(id.toLowerCase())}">${label}</a>`;
+    return `${link} ${esc(summary)}`;
+  }
   if (url && update.category === 'Paper' && !update.topic) {
     const titleLink = `<a class="news-paper" href="${esc(update.project)}">“${esc(update.title)}”</a>`;
     const accepted = update.type === 'conference' ? 'accepted to' : 'accepted for publication in';
