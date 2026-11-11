@@ -32,6 +32,8 @@ html { scroll-padding-top: 5rem; }
 .research-update-link { color: #334155; font-weight: 500; }
 .research-update-link:hover { color: #1e293b; text-decoration: underline; text-underline-offset: 3px; }
 .research-update-role { color: #64748b; font-size: .72rem; white-space: nowrap; }
+.research-update[data-first-author="false"] .research-update-role,
+.ongoing-publication[data-first-author="false"] .author-role { display: inline-block; padding: 2px 7px; border: 1px solid #d1d5db; border-radius: 5px; color: #374151; background: #f3f4f6; font-weight: 600; line-height: 1.5; }
 .research-update[data-first-author="true"] .research-update-role,
 .ongoing-publication[data-first-author="true"] .author-role { display: inline-block; padding: 2px 7px; border: 1px solid var(--first-author-color); border-radius: 5px; color: #fff; background: var(--first-author-color); font-weight: 700; line-height: 1.5; vertical-align: baseline; }
 .research-update-content .research-update-topic { margin-top: .25rem; color: #64748b; font-size: .73rem; }
