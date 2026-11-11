@@ -48,8 +48,8 @@
     }
   },
   "travelSupport": [
-    {"id": "T2", "date": "2026-11", "label": "Nov 2026"},
-    {"id": "T1", "date": "2024-07", "label": "Jul 2024"}
+    {"id": "T2", "date": "2026-11", "label": "Nov 2026", "amountKRW": 3000000},
+    {"id": "T1", "date": "2024-07", "label": "Jul 2024", "amountKRW": 3000000}
   ],
   "awards": [
     {

@@ -300,7 +300,7 @@ function newsVenues() {
 function researchTimeline() {
   const travel = researchUpdates.travelSupport.map(entry => ({
     ...entry, category: 'Travel Support', type: 'travel',
-    summary: 'I received BK21 travel support from POSTECH to attend an international conference abroad.'
+    summary: `I received BK21 travel support${entry.amountKRW == null ? '' : ` (KRW ${entry.amountKRW.toLocaleString('en-US')})`} from POSTECH to attend an international conference abroad.`
   }));
   const updates = [...travel, ...papers.map(paperUpdate), ...researchUpdates.awards.map(a => ({ ...a, category: 'Award' })), ...researchUpdates.patents.map(p => ({ ...p, category: 'Patent', dateLink: p.source }))]
     // Unknown months sort first within their year, without inventing a publication date.
