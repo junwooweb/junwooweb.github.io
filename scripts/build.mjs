@@ -277,7 +277,7 @@ function researchUpdateList(updates) {
 function newsVenues() {
   const groups = [
     ['Journals', ['IEEE TVCG', 'IEEE ToH']],
-    ['Conferences', ["ACM UIST'26", "IEEE ISMAR'26", "IEEE WHC'23", "EuroHaptics'24", 'HCI Korea 2023']]
+    ['Conferences', ["ACM UIST'26", "IEEE ISMAR'26", "IEEE WHC'23", "EuroHaptics'24"]]
   ];
   return `<dl class="news-venues">${groups.map(([label, venues]) => {
     const links = venues.map(key => external(researchUpdates.venueLinks[key], esc(key.replace(/(?:'\d{2}| 20\d{2})$/, '')), 'news-venue'));
