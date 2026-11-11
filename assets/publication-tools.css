@@ -48,8 +48,8 @@ html { scroll-padding-top: 5rem; }
 .news-venues dt { font-weight: 700; }
 .news-venues dd { margin: 0; }
 .news-venues a { white-space: nowrap; }
-.news-venue { color: #4d6080; font-weight: 700; text-decoration: underline; text-underline-offset: .16em; }
-.news-venue:hover, .news-venue:focus-visible { color: var(--paper-hover); }
+.news-venue { color: #111; font-weight: 700; text-decoration: underline; text-underline-offset: .16em; }
+.news-venue:hover, .news-venue:focus-visible { color: #111; text-decoration-thickness: 2px; }
 .research-update-link:hover { color: #1e293b; text-decoration: underline; text-underline-offset: 3px; }
 .research-update-role { color: #64748b; font-size: .72rem; white-space: nowrap; }
 .research-update[data-first-author="false"] .research-update-role,
