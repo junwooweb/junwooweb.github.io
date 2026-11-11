@@ -32,7 +32,7 @@ html { scroll-padding-top: 5rem; }
 .research-update { display: grid; grid-template-columns: 5.8rem minmax(0, 1fr); align-items: stretch; min-height: 4.4rem; padding: 0; gap: 0; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; color: #334155; font-size: .84rem; overflow: hidden; }
 .research-update-category { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2rem; margin: 0; padding: .65rem .3rem; border-right: 1px solid #e5e7eb; background: #f8fafc; color: #475569; font-size: .85rem; font-weight: 800; text-align: center; }
 .research-update-category small { color: inherit; font-size: .67rem; font-weight: 600; }
-.research-update[data-update-category="paper"] { --update-ink: var(--paper-ink); --update-bg: #f3f4f6; }
+.research-update[data-update-category="paper"] { --update-ink: var(--paper-ink); --update-bg: #daeffd; --update-surface: #eff8ff; --update-border: #bedff2; --update-accent: #6aa5ca; }
 .research-update[data-update-category="patent"] { --update-ink: var(--patent-ink); --update-bg: var(--patent-bg); }
 .research-update[data-update-category="award"] { --update-ink: var(--award-ink); --update-bg: var(--award-bg); }
 .research-update[data-update-type="travel"] {
@@ -42,7 +42,6 @@ html { scroll-padding-top: 5rem; }
   --update-border: #d6e8df;
   --update-accent: #7fa99b;
 }
-.research-update[data-update-category="paper"] { --update-surface: #f6f8fc; --update-border: #d2dce9; --update-accent: #58749a; }
 .research-update[data-update-category="patent"] { --update-surface: #fdf7f4; --update-border: #e8d4ca; --update-accent: #a66a55; }
 .research-update[data-update-category="award"] { --update-surface: #fdfaf1; --update-border: #e7dcb9; --update-accent: #a28439; }
 .research-update {
@@ -116,7 +115,7 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .publication .pub-authors .me { color: #1e4f94; font-weight: 700; text-decoration: underline; text-underline-offset: .16em; }
 .pub-venue-full { margin-top: .45rem; color: #475569; font-size: .95rem; font-style: normal; line-height: 1.65; }
 .pub-category { font-size: 1.2rem; color: #1e40af; }
-.venue-label { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .3rem .65rem; padding: .35rem .75rem; border: 1px solid #a0b9d6; border-left: 3px solid #587ca6; border-radius: 8px; background: #deebf9; color: var(--paper-ink); font-size: .95rem; font-weight: 700; line-height: 1.5; }
+.venue-label { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .3rem .65rem; padding: .35rem .75rem; border: 1px solid #253b55; border-radius: 8px; background: #253b55; color: #fff; font-size: .95rem; font-weight: 700; line-height: 1.5; }
 .venue-label small { padding-left: .65rem; border-left: 1px solid currentColor; font-size: .72rem; font-weight: 600; }
 .publication-issue, .publication-acceptance { margin: .3rem 0 0; font-size: .82rem; line-height: 1.65; color: #475569; }
 .publication-issue { color: var(--paper-ink); font-weight: 600; }

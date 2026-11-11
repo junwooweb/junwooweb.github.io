@@ -161,20 +161,20 @@ nav { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bot
     align-items: flex-start;
     gap: 1.4rem;
     padding: 1.3rem 1.6rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid #dedee1;
     border-radius: 12px;
-    background: var(--card-bg);
+    background: #f7f7f8;
     transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 .research-item:hover {
     transform: translateX(5px);
-    box-shadow: 0 4px 20px rgba(37,99,235,0.07);
-    border-color: #93c5fd;
+    box-shadow: 0 4px 20px rgba(63,63,70,0.07);
+    border-color: #b4b4bc;
 }
 .research-num {
     font-size: 1.9rem;
     font-weight: 800;
-    color: #dbeafe;
+    color: #71717a;
     letter-spacing: -2px;
     line-height: 1;
     min-width: 2.8rem;
@@ -183,7 +183,7 @@ nav { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bot
     user-select: none;
     transition: color 0.2s;
 }
-.research-item:hover .research-num { color: #bfdbfe; }
+.research-item:hover .research-num { color: #52525b; }
 .research-body { flex: 1; }
 .research-title { font-size: 1.03rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.45rem; line-height: 1.45; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .research-main-badge {
