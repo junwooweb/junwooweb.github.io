@@ -285,11 +285,11 @@ function updateMessage(update) {
   return update.category !== 'Paper' ? esc(summary) : `<a class="research-update-link" href="#${id.toLowerCase()}">${esc(summary)}</a>`;
 }
 
-function researchUpdateList(updates) {
+function researchUpdateList(updates, { timeline = false } = {}) {
   return `<ol class="research-updates-list">${updates.map(update => {
     const period = update.date
-      ? `${update.kind ? esc(update.kind) + " · " : ""}<time datetime="${esc(update.date)}"${update.endDate ? ` data-end-date="${esc(update.endDate)}"` : ''}>${esc(update.label || update.date)}</time>`
-      : '';
+      ? `<time datetime="${esc(update.date)}"${update.endDate ? ` data-end-date="${esc(update.endDate)}"` : ''}>${esc(update.label || update.date)}</time>${update.kind ? `<small>${esc(update.kind)}</small>` : ''}`
+      : esc(update.dateNote || '');
     const date = !period ? '' : update.dateLink
       ? `<a class="research-update-date" href="${esc(update.dateLink)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(update.label || update.date)} — ${update.category === 'Paper' ? 'view paper' : 'view patent'}">${period}</a>`
       : `<span class="research-update-date">${period}</span>`;
@@ -301,12 +301,13 @@ function researchUpdateList(updates) {
       : '';
     const typeLabel = { conference: 'Conference', journal: 'Journal', award: 'Recognition', patent: 'Application' }[type];
     return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-update-type="${type}" data-first-author="${Boolean(update.firstAuthor)}">
+      ${timeline ? date : ''}
       <div class="research-update-category">
         <span>${update.category}</span>${typeLabel ? `<small>${typeLabel}</small>` : ''}
       </div>
       <div class="research-update-content">
         <p>${iconMarkup}&nbsp;${roleBadge}${updateMessage(update)}</p>
-        ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : date}
+        ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : ''}
       </div>
     </li>`;
   }).join('\n')}</ol>`;
@@ -329,10 +330,9 @@ function researchTimeline() {
     summary: `I received BK21 travel support${entry.amountKRW == null ? '' : ` (KRW ${entry.amountKRW.toLocaleString('en-US')})`} from POSTECH to attend an international conference abroad.`
   }));
   const updates = [...travel, ...papers.map(paperUpdate), ...researchUpdates.awards.map(a => ({ ...a, category: 'Award' })), ...researchUpdates.patents.map(p => ({ ...p, category: 'Patent', dateLink: p.source }))]
-    // Unknown months sort first within their year, without inventing a publication date.
-    // Undated filing announcements stay above the dated history.
-    .sort((a, b) => String(b.date || b.year || '9999').padEnd(10, '9').localeCompare(String(a.date || a.year || '9999').padEnd(10, '9')));
-  return researchUpdateList(updates);
+    // ISO dates sort newest first, with partial dates after dated entries in the same period.
+    .sort((a, b) => String(b.date || b.year || '').localeCompare(String(a.date || a.year || '')));
+  return researchUpdateList(updates, { timeline: true });
 }
 
 function ongoingWork() {
