@@ -67,15 +67,15 @@ html { scroll-padding-top: 5rem; }
 #news .research-updates-hint { margin-left: auto; }
 .publication-venues { grid-column: 1 / -1; display: grid; gap: .45rem; margin: .85rem 0 0; padding-top: .65rem; border-top: 1px solid #d9dfe4; font-size: .85rem; line-height: 1.5; }
 .publication-venues > div { display: grid; grid-template-columns: 6rem minmax(0, 1fr); align-items: baseline; gap: .45rem; }
-.publication-venues dt { color: #475569; font-weight: 600; }
+.publication-venues dt { justify-self: start; }
 .publication-venues dd { margin: 0; }
 .publication-venues a { font-weight: 400; white-space: nowrap; }
 .news-venue { color: #173e78; font-weight: 750; text-decoration: underline; text-underline-offset: .16em; }
 .news-venue:hover, .news-venue:focus-visible { color: #102e5d; text-decoration-thickness: 2px; }
 .research-update-link:hover { color: #1e293b; text-decoration: underline; text-underline-offset: 3px; }
-.research-update-role, .patents-stat .stat-breakdown > span { padding: 1px 6px; border-radius: 5px; font-size: .72rem; font-weight: 700; line-height: 1.5; }
+.research-update-role, .publication-venues dt, .patents-stat .stat-breakdown > span { padding: 1px 6px; border-radius: 5px; font-size: .72rem; font-weight: 700; line-height: 1.5; }
 .research-update-role { display: inline-block; border: 1px solid #d1d5db; background: #f3f4f6; color: #374151; vertical-align: baseline; }
-.research-update[data-first-author="true"] .research-update-role, .first-author-count .research-update-role { color: #fff; background: var(--paper-ink); border-color: var(--paper-ink); }
+.research-update[data-first-author="true"] .research-update-role, .first-author-count .research-update-role, .publication-venues dt { color: #fff; background: var(--paper-ink); border: 1px solid var(--paper-ink); }
 .research-update-content .research-update-topic { margin-top: .25rem; color: #64748b; font-size: .73rem; }
 .papers-stat .research-stat-value { display: flex; align-items: center; gap: .55rem; }
 .research-submitted-count { color: #475569; font-size: .8rem; font-weight: 400; letter-spacing: normal; white-space: nowrap; }
