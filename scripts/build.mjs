@@ -273,10 +273,10 @@ function researchUpdateList(updates) {
     const roleBadge = update.category === 'Paper'
       ? `<span class="research-update-role" title="${update.firstAuthor ? 'First author' : 'Co-author'}">${update.firstAuthor ? '1st' : 'Co'}</span> `
       : '';
-    const typeLabel = { conference: 'Conference', journal: 'Journal', award: 'Recognition', patent: 'Application', travel: 'POSTECH' }[type];
+    const typeLabel = { conference: 'Conference', journal: 'Journal', award: 'Recognition', patent: 'Application' }[type];
     return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-update-type="${type}" data-first-author="${Boolean(update.firstAuthor)}">
       <div class="research-update-category">
-        <span>${update.category}</span><small>${typeLabel}</small>
+        <span>${update.category}</span>${typeLabel ? `<small>${typeLabel}</small>` : ''}
       </div>
       <div class="research-update-content">
         <p>${iconMarkup}&nbsp;${roleBadge}${updateMessage(update)}</p>
