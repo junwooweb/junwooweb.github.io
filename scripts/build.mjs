@@ -302,11 +302,11 @@ function researchUpdateList(updates, { timeline = false } = {}) {
     return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-update-type="${type}" data-first-author="${Boolean(update.firstAuthor)}">
       ${timeline ? date : ''}
       <div class="research-update-category">
-        <span>${timeline && update.type === 'travel' ? 'Support' : update.category}</span>${typeLabel && !timeline ? `<small>${typeLabel}</small>` : ''}
+        <span>${timeline && update.type === 'travel' ? 'Support' : update.category}</span>${timeline ? roleBadge : ''}${typeLabel && !timeline ? `<small>${typeLabel}</small>` : ''}
       </div>
       ${sourceLink}
       <div class="research-update-content">
-        <p><span class="update-markers">${iconMarkup}&nbsp;${roleBadge}</span> <span>${updateMessage(update)}</span></p>
+        <p><span class="update-markers">${iconMarkup}${!timeline && roleBadge ? ' ' + roleBadge : ''}</span> <span>${updateMessage(update)}</span></p>
         ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : ''}
       </div>
     </li>`;
