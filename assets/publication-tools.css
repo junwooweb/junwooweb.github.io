@@ -7,6 +7,8 @@ html { scroll-padding-top: 5rem; }
 .papers-stat { --stat-ink: var(--paper-ink); --stat-bg: var(--paper-card-bg); --stat-accent: var(--paper-card-accent); }
 .stat-breakdown { display: flex; flex-wrap: wrap; gap: .35rem 1.2rem; margin-top: .5rem; font-size: .85rem; font-weight: 600; }
 .patents-stat { --stat-ink: var(--patent-ink); --stat-bg: var(--patent-bg); }
+.patents-stat .stat-breakdown { gap: .4rem; }
+.patents-stat .stat-breakdown > span { display: inline-flex; align-items: baseline; gap: .35rem; padding: .18rem .5rem; border: 1px solid #dcc7bd; border-radius: 5px; background: #fffaf7; }
 .research-stat { padding: .9rem .8rem; border: 1px solid #dce2e6; border-top: 4px solid var(--stat-accent, var(--stat-ink)); border-radius: 10px; background: var(--stat-bg); color: var(--stat-ink); }
 .research-stat-label { margin: 0 0 .65rem; min-height: 2.4em; font-size: clamp(1.05rem, 1.35vw, 1.3rem); font-weight: 700; line-height: 1.2; text-wrap: balance; }
 .research-stat-value { font-size: 2.25rem; font-weight: 800; line-height: 1; letter-spacing: -.04em; }
