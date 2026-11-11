@@ -69,9 +69,11 @@ html { scroll-padding-top: 5rem; }
 .news-paper:hover, .news-paper:focus-visible { color: var(--update-ink); text-decoration-thickness: 2px; }
 #news .research-updates-hint { margin-left: auto; }
 #news .research-updates-list { gap: 0; }
-#news .research-update { grid-template-columns: 8rem 5.5rem 2.4rem minmax(0, 1fr); align-items: center; gap: 1rem; min-height: 0; padding: .85rem 0; border: 0; border-bottom: 1px solid var(--border-color); border-radius: 0; background: transparent; }
+#news .research-update { grid-template-columns: 8rem 5.5rem 3rem minmax(0, 1fr); align-items: center; gap: 1rem; min-height: 0; padding: .85rem 0; border: 0; border-bottom: 1px solid var(--border-color); border-radius: 0; background: transparent; }
 #news .research-update-date { margin: 0; font-size: .85rem; font-variant-numeric: tabular-nums; }
-.news-source { grid-column: 3; justify-self: start; color: #0675a8; font-size: .82rem; font-weight: 750; text-decoration: underline; text-decoration-thickness: .1em; text-underline-offset: .18em; }
+.news-source { display: inline-flex; align-items: center; gap: .2rem; grid-column: 3; justify-self: start; color: #0675a8; font-size: .82rem; font-weight: 750; text-decoration: underline; text-decoration-thickness: .1em; text-underline-offset: .18em; }
+.news-source .material-symbols-outlined { font-size: .9rem; }
+#news [data-update-type="conference"] .news-venue { text-decoration: none; }
 .news-source:hover, .news-source:focus-visible { text-decoration-thickness: .15em; }
 #news .research-update-category { align-items: flex-start; justify-self: start; gap: .1rem; padding: 0; border: 0; background: transparent; }
 #news .research-update-category > span { padding: .1rem .55rem; border-radius: 4px; background: var(--update-bg); font-size: .78rem; font-weight: 700; }
@@ -83,6 +85,7 @@ html { scroll-padding-top: 5rem; }
 }
 .publication-venues { grid-column: 1 / -1; display: grid; grid-template-columns: var(--label-width) minmax(0, 1fr); gap: .45rem; margin: 0; font-size: .85rem; line-height: 1.5; }
 .publication-venues .author-totals dd { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.75rem; }
+.publication-venues .author-totals dd > span { display: inline-grid; grid-template-columns: var(--label-width) auto; align-items: baseline; justify-items: start; gap: .45rem; }
 .publication-venues > div { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: baseline; gap: .45rem; }
 .publication-venues dt { justify-self: start; }
 .publication-venues dd { margin: 0; }

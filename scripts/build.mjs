@@ -291,7 +291,7 @@ function researchUpdateList(updates, { timeline = false } = {}) {
       ? `<time datetime="${esc(update.date)}"${update.endDate ? ` data-end-date="${esc(update.endDate)}"` : ''}>${esc(update.label || update.date)}</time>`
       : esc(update.dateNote || '');
     const date = period ? `<span class="research-update-date">${period}</span>` : '';
-    const sourceLink = timeline && update.dateLink ? external(update.dateLink, 'Link', 'news-source') : '';
+    const sourceLink = timeline && update.dateLink ? external(update.dateLink, '<span class="material-symbols-outlined" aria-hidden="true">link</span>Link', 'news-source') : '';
     const type = update.type || update.category.toLowerCase();
     const icon = { Paper: '📄', Award: '🏆', Patent: '💡', 'Travel Support': '✈️' }[update.category];
     const iconMarkup = `<span aria-hidden="true">${icon}</span>`;
