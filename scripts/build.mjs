@@ -231,7 +231,7 @@ function paperUpdate(p) {
   };
 }
 
-function researchUpdateList(updates, { inlineIcons = false } = {}) {
+function researchUpdateList(updates) {
   return `<ol class="research-updates-list">${updates.map(update => {
     const period = update.date
       ? `${update.kind ? esc(update.kind) + " · " : ""}<time datetime="${esc(update.date)}"${update.endDate ? ` data-end-date="${esc(update.endDate)}"` : ''}>${esc(update.label || update.date)}</time>`
@@ -240,13 +240,13 @@ function researchUpdateList(updates, { inlineIcons = false } = {}) {
       ? `<a class="research-update-date" href="${esc(update.dateLink)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(update.label || update.date)} — ${update.category === 'Paper' ? 'view paper' : 'view patent'}">${period}</a>`
       : `<span class="research-update-date">${period}</span>`;
     const type = update.type || update.category.toLowerCase();
-    const icon = { Paper: '📄', Award: '🏆', Patent: '📜' }[update.category];
+    const icon = { Paper: '📄', Award: '🏆', Patent: '💡' }[update.category];
     const iconMarkup = `<span aria-hidden="true">${icon}</span>`;
     const typeLabel = type === 'conference' ? 'Conference' : type === 'journal' ? 'Journal' : type === 'award' ? 'Recognition' : 'Application';
     return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-update-type="${type}" data-first-author="${Boolean(update.firstAuthor)}">
-      <div class="research-update-category">${inlineIcons ? '' : iconMarkup}<span>${update.category}</span><small>${typeLabel}</small></div>
+      <div class="research-update-category"><span>${update.category}</span><small>${typeLabel}</small></div>
       <div class="research-update-content">
-        <p>${inlineIcons ? iconMarkup + '\u00a0' : ''}${update.category === 'Award' ? esc(update.summary) : `<a class="research-update-link" href="#${update.id.toLowerCase()}">${esc(update.summary)}</a>`}${update.role ? ` <span class="research-update-role">${esc(update.role)}</span>` : ''}</p>
+        <p>${iconMarkup}&nbsp;${update.role ? `<span class="research-update-role">${esc(update.role)}</span> ` : ''}${update.category === 'Award' ? esc(update.summary) : `<a class="research-update-link" href="#${update.id.toLowerCase()}">${esc(update.summary)}</a>`}</p>
         ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : date}
       </div>
     </li>`;
@@ -258,7 +258,7 @@ function researchTimeline() {
     // Unknown months sort first within their year, without inventing a publication date.
     // Undated filing announcements stay above the dated history.
     .sort((a, b) => String(b.date || b.year || '9999').padEnd(10, '9').localeCompare(String(a.date || a.year || '9999').padEnd(10, '9')));
-  return researchUpdateList(updates, { inlineIcons: true });
+  return researchUpdateList(updates);
 }
 
 function ongoingWork() {
