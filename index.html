@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="assets/research-colors.css?v=db90024133fe">
     <link rel="stylesheet" href="assets/original.css?v=24cc1fbcd175">
-    <link rel="stylesheet" href="assets/publication-tools.css?v=bf7f975fb215">
+    <link rel="stylesheet" href="assets/publication-tools.css?v=e4d85fb12ca6">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="canonical" href="https://junwooweb.github.io/">
     <meta name="description" content="Junwoo Kim, a Ph.D. student at POSTECH researching haptic perception, rendering, and multimodal AI. Publications, project summaries, and citations.">
@@ -96,8 +96,27 @@
         </div>
     </section>
 
-    <div class="two-col">
-    <div class="col-right">
+    <div class="research-overview">
+    <section class="research-output" aria-labelledby="research-output-heading">
+    <h2 class="section-title" id="research-output-heading">Research Output</h2>
+
+    <!-- Stats -->
+    <div class="research-stats">
+        <div class="research-stat papers-stat">
+            <h3 class="research-stat-label">Accepted Papers</h3>
+            <div class="research-stat-value">7 <small class="research-submitted-count">(+ 3 submission)</small></div>
+            <div class="stat-breakdown">
+                <span class="first-author-count"><span class="research-update-role">1st author</span> 4 papers</span>
+                <span><span class="research-update-role">Co-author</span> 3 papers</span>
+            </div>
+        </div>
+        <div class="research-stat patents-stat">
+            <h3 class="research-stat-label">Patent Applications</h3>
+            <div class="research-stat-value">2</div>
+            <div class="stat-breakdown"><span>Domestic <strong>2</strong></span><span>USA <strong>1</strong></span><span>CHINA <strong>1</strong></span></div>
+        </div>
+    </div>
+    </section>
 
     <!-- Doctoral Research -->
     <!-- Doctoral Research temporarily hidden; remove this comment wrapper to restore.
@@ -123,8 +142,8 @@
     -->
 
     <!-- Current Research -->
-    <section class="research-section" id="research">
-        <div class="section-title"><span class="material-symbols-outlined" aria-hidden="true">science</span> Current Research</div>
+    <section class="research-section" id="research" aria-labelledby="current-research-heading">
+        <h2 class="section-title" id="current-research-heading">Current Research</h2>
         <div class="research-list">
             <div class="research-item">
                 <div class="research-num">01</div>
@@ -198,35 +217,10 @@
     </section>
     -->
 
-    </div><!-- end col-right -->
-
-    <div class="col-left">
-
-    <h2 class="section-title" id="research-output-heading">
-        <span class="material-symbols-outlined">emoji_events</span> Research Output
-    </h2>
-
-    <!-- Stats -->
-    <div class="research-stats">
-        <div class="research-stat papers-stat">
-            <h3 class="research-stat-label">Accepted Papers</h3>
-            <div class="research-stat-value">7 <small class="research-submitted-count">(+ 3 submission)</small></div>
-            <div class="stat-breakdown">
-                <span class="first-author-count"><span class="research-update-role">1st author</span> 4 papers</span>
-                <span><span class="research-update-role">Co-author</span> 3 papers</span>
-            </div>
-        </div>
-        <div class="research-stat patents-stat">
-            <h3 class="research-stat-label">Patent Applications</h3>
-            <div class="research-stat-value">2</div>
-            <div class="stat-breakdown"><span>Domestic <strong>2</strong></span><span>USA <strong>1</strong></span><span>CHINA <strong>1</strong></span></div>
-        </div>
-    </div>
-
     <!-- Ongoing Work -->
     <section class="research-updates ongoing-work" aria-labelledby="ongoing-work-heading">
         <div class="research-updates-header">
-            <h2 id="ongoing-work-heading">Ongoing Work</h2>
+            <h2 class="section-title" id="ongoing-work-heading">Ongoing Work</h2>
             <span class="research-updates-count">3 submissions</span>
         </div>
         <ol class="research-updates-list"><li class="research-update" data-update-id="W1" data-update-category="paper" data-update-type="conference" data-first-author="true">
@@ -258,13 +252,10 @@
     </li></ol>
     </section>
 
-    </div><!-- end col-left -->
-    </div><!-- end two-col -->
-
     <!-- News -->
     <section class="research-updates" id="news" aria-labelledby="research-updates-heading">
         <div class="research-updates-header">
-            <h2 id="research-updates-heading">News</h2>
+            <h2 class="section-title" id="research-updates-heading">News</h2>
             <dl class="news-venues"><div><dt>Journals</dt><dd><a class="news-venue" href="https://ieeexplore.ieee.org/xpl/aboutJournal.jsp?punumber=2945" target="_blank" rel="noopener noreferrer">IEEE TVCG</a> · <a class="news-venue" href="https://ieeexplore.ieee.org/xpl/aboutJournal.jsp?punumber=4543165" target="_blank" rel="noopener noreferrer">IEEE ToH</a></dd></div><div><dt>Conferences</dt><dd><a class="news-venue" href="https://uist.acm.org/2026/" target="_blank" rel="noopener noreferrer">ACM UIST&#39;26</a> · <a class="news-venue" href="https://www.ieeeismar.net/2026/papers/" target="_blank" rel="noopener noreferrer">IEEE ISMAR&#39;26</a> · <a class="news-venue" href="https://2023.worldhaptics.org/" target="_blank" rel="noopener noreferrer">IEEE WHC&#39;23</a> · <a class="news-venue" href="https://eurohaptics.org/ehc2024/" target="_blank" rel="noopener noreferrer">EuroHaptics&#39;24</a></dd></div></dl>
             <span class="research-updates-hint" id="research-updates-hint">Scroll for earlier updates</span>
         </div>
@@ -388,6 +379,7 @@
     </li></ol>
         </div>
     </section>
+    </div>
 
     <!-- Patents -->
     <section class="pub-section patents-section" id="patents">

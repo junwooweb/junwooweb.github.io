@@ -89,8 +89,27 @@
         </div>
     </section>
 
-    <div class="two-col">
-    <div class="col-right">
+    <div class="research-overview">
+    <section class="research-output" aria-labelledby="research-output-heading">
+    <h2 class="section-title" id="research-output-heading">Research Output</h2>
+
+    <!-- Stats -->
+    <div class="research-stats">
+        <div class="research-stat papers-stat">
+            <h3 class="research-stat-label">Accepted Papers</h3>
+            <div class="research-stat-value">{{PAPER_COUNT}} <small class="research-submitted-count">(+ {{SUBMITTED_COUNT}} submission)</small></div>
+            <div class="stat-breakdown">
+                <span class="first-author-count"><span class="research-update-role">1st author</span> {{FIRST_AUTHOR_COUNT}} papers</span>
+                <span><span class="research-update-role">Co-author</span> {{CO_AUTHOR_COUNT}} papers</span>
+            </div>
+        </div>
+        <div class="research-stat patents-stat">
+            <h3 class="research-stat-label">Patent Applications</h3>
+            <div class="research-stat-value">{{PATENT_COUNT}}</div>
+            <div class="stat-breakdown">{{PATENT_REGIONS}}</div>
+        </div>
+    </div>
+    </section>
 
     <!-- Doctoral Research -->
     <!-- Doctoral Research temporarily hidden; remove this comment wrapper to restore.
@@ -116,8 +135,8 @@
     -->
 
     <!-- Current Research -->
-    <section class="research-section" id="research">
-        <div class="section-title"><span class="material-symbols-outlined" aria-hidden="true">science</span> Current Research</div>
+    <section class="research-section" id="research" aria-labelledby="current-research-heading">
+        <h2 class="section-title" id="current-research-heading">Current Research</h2>
         <div class="research-list">
             <div class="research-item">
                 <div class="research-num">01</div>
@@ -191,47 +210,19 @@
     </section>
     -->
 
-    </div><!-- end col-right -->
-
-    <div class="col-left">
-
-    <h2 class="section-title" id="research-output-heading">
-        <span class="material-symbols-outlined">emoji_events</span> Research Output
-    </h2>
-
-    <!-- Stats -->
-    <div class="research-stats">
-        <div class="research-stat papers-stat">
-            <h3 class="research-stat-label">Accepted Papers</h3>
-            <div class="research-stat-value">{{PAPER_COUNT}} <small class="research-submitted-count">(+ {{SUBMITTED_COUNT}} submission)</small></div>
-            <div class="stat-breakdown">
-                <span class="first-author-count"><span class="research-update-role">1st author</span> {{FIRST_AUTHOR_COUNT}} papers</span>
-                <span><span class="research-update-role">Co-author</span> {{CO_AUTHOR_COUNT}} papers</span>
-            </div>
-        </div>
-        <div class="research-stat patents-stat">
-            <h3 class="research-stat-label">Patent Applications</h3>
-            <div class="research-stat-value">{{PATENT_COUNT}}</div>
-            <div class="stat-breakdown">{{PATENT_REGIONS}}</div>
-        </div>
-    </div>
-
     <!-- Ongoing Work -->
     <section class="research-updates ongoing-work" aria-labelledby="ongoing-work-heading">
         <div class="research-updates-header">
-            <h2 id="ongoing-work-heading">Ongoing Work</h2>
+            <h2 class="section-title" id="ongoing-work-heading">Ongoing Work</h2>
             <span class="research-updates-count">{{SUBMITTED_COUNT}} submissions</span>
         </div>
         {{ONGOING_WORK}}
     </section>
 
-    </div><!-- end col-left -->
-    </div><!-- end two-col -->
-
     <!-- News -->
     <section class="research-updates" id="news" aria-labelledby="research-updates-heading">
         <div class="research-updates-header">
-            <h2 id="research-updates-heading">News</h2>
+            <h2 class="section-title" id="research-updates-heading">News</h2>
             {{NEWS_VENUES}}
             <span class="research-updates-hint" id="research-updates-hint">Scroll for earlier updates</span>
         </div>
@@ -239,6 +230,7 @@
             {{RESEARCH_UPDATES}}
         </div>
     </section>
+    </div>
 
     <!-- Patents -->
     <section class="pub-section patents-section" id="patents">
