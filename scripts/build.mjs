@@ -20,7 +20,6 @@ papers.sort((a, b) => b.year - a.year || paperDate(b).localeCompare(paperDate(a)
 const ongoing = JSON.parse(await readFile(new URL('data/ongoing.json', root), 'utf8')).map(p => ({ ...p, ongoing: true }));
 const submittedCount = ongoing.filter(p => p.status === 'Submitted').length;
 const writingCount = ongoing.filter(p => p.status === 'Writing').length;
-const listedPapers = [...ongoing, ...papers].sort((a, b) => b.year - a.year);
 const publisherBibtex = new Map(await Promise.all(papers.filter(p => p.bibtexFile).map(async p => [p.slug, (await readFile(new URL(p.bibtexFile, root), 'utf8')).trim()])));
 const isFirstAuthor = p => p.firstAuthor ?? (p.authors[0] === 'Junwoo Kim' || p.equalContribution?.includes('Junwoo Kim'));
 const release = 'https://github.com/junwooweb/junwooweb.github.io/releases/download/images/';
@@ -195,13 +194,17 @@ function ongoingPublication(p) {
   </article>`;
 }
 
-function byYear(items, base = '') {
-  return [...new Set(items.map(p => p.year))].sort((a, b) => b - a).map(year => {
-    const group = items.filter(p => p.year === year);
-    const acceptedCount = group.filter(p => !p.ongoing).length;
-    const countLabel = acceptedCount ? `${acceptedCount} ${acceptedCount === 1 ? 'paper' : 'papers'}` : 'Ongoing work';
-    return `<section class="publication-group" aria-labelledby="year-${year}"><h2 class="pub-category" id="year-${year}">${year} <span class="pub-category-count" data-year-count>${countLabel}</span></h2><div class="publication-grid">${group.map(p => publication(p, base)).join('\n')}</div></section>`;
-  }).join('\n');
+function publicationGroups() {
+  const groups = [
+    { id: 'submission', label: 'Submission', items: ongoing.filter(p => p.status === 'Submitted') },
+    { id: 'writing', label: 'Writing', items: ongoing.filter(p => p.status === 'Writing') },
+    ...[...new Set(papers.map(p => p.year))].map(year => ({
+      id: `year-${year}`, label: year, items: papers.filter(p => p.year === year), open: true
+    }))
+  ];
+  return groups.filter(group => group.items.length).map(({ id, label, items, open }) =>
+    `<details class="publication-group" id="${id}"${open ? ' open' : ''}><summary><h2 class="pub-category">${label} <span class="pub-category-count" data-year-count>${items.length} ${items.length === 1 ? 'paper' : 'papers'}</span></h2></summary><div class="publication-grid">${items.map(p => publication(p)).join('\n')}</div></details>`
+  ).join('\n');
 }
 
 function publicationFilters() {
@@ -370,7 +373,7 @@ const patentRegions = Object.entries({ KR: 'Domestic', US: 'USA', CN: 'China' })
   const count = researchUpdates.patents.filter(patent => patent.jurisdictions.includes(code)).length;
   return `<span>${label} <strong>${count}</strong></span>`;
 }).join('');
-const home = homeTemplate.replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{ONGOING_WORK}}', ongoingWork()).replace('{{NEWS_VENUES}}', newsVenues()).replace('{{RESEARCH_UPDATES}}', researchTimeline()).replace('{{PUBLICATIONS}}', byYear(listedPapers)).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replaceAll('{{SUBMITTED_COUNT}}', submittedCount).replace('{{FIRST_AUTHOR_COUNT}}', firstAuthorCount).replace('{{CO_AUTHOR_COUNT}}', papers.length - firstAuthorCount).replace('{{PATENT_REGIONS}}', patentRegions).replace('{{PATENT_COUNT}}', researchUpdates.patents.length).replace('{{YEAR}}', new Date().getFullYear());
+const home = homeTemplate.replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{ONGOING_WORK}}', ongoingWork()).replace('{{NEWS_VENUES}}', newsVenues()).replace('{{RESEARCH_UPDATES}}', researchTimeline()).replace('{{PUBLICATIONS}}', publicationGroups()).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replaceAll('{{SUBMITTED_COUNT}}', submittedCount).replace('{{FIRST_AUTHOR_COUNT}}', firstAuthorCount).replace('{{CO_AUTHOR_COUNT}}', papers.length - firstAuthorCount).replace('{{PATENT_REGIONS}}', patentRegions).replace('{{PATENT_COUNT}}', researchUpdates.patents.length).replace('{{YEAR}}', new Date().getFullYear());
 await writePage(new URL('index.html', root), home.replace(/[ \t]+$/gm, ''));
 
 const archive = home.replace(/<title>.*?<\/title>/, '<title>Publications | Junwoo Kim</title>')
@@ -381,7 +384,7 @@ const archive = home.replace(/<title>.*?<\/title>/, '<title>Publications | Junwo
   .replace(/<main[\s\S]*?<\/main>/, `<main id="main" class="container archive-page" data-publication-browser>
   <h1 class="section-title"><span class="material-symbols-outlined" aria-hidden="true">article</span> Publications</h1>
   ${publicationFilters()}
-  <div class="publication-list">${byYear(listedPapers)}</div></main>`)
+  <div class="publication-list">${publicationGroups()}</div></main>`)
   .replace(/<dialog[\s\S]*?<\/dialog>/, '');
 await writePage(new URL('publications.html', root), archive.replace(/[ \t]+$/gm, ''));
 

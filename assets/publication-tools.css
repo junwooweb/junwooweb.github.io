@@ -116,6 +116,10 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .publication .pub-authors .me { color: #1e4f94; font-weight: 700; text-decoration: underline; text-underline-offset: .16em; }
 .pub-venue-full { margin-top: .45rem; color: #475569; font-size: .95rem; font-style: normal; line-height: 1.65; }
 .pub-category { font-size: 1.2rem; color: #1e40af; }
+.publication-group > summary { cursor: pointer; list-style: none; }
+.publication-group > summary::-webkit-details-marker { display: none; }
+.publication-group > summary .pub-category::before { content: ''; width: .45em; height: .45em; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg); }
+.publication-group[open] > summary .pub-category::before { transform: rotate(45deg); }
 .venue-label { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .3rem .65rem; padding: .35rem .75rem; border: 1px solid #253b55; border-radius: 8px; background: #253b55; color: #fff; font-size: .95rem; font-weight: 700; line-height: 1.5; }
 .venue-label small { padding-left: .65rem; border-left: 1px solid currentColor; font-size: .72rem; font-weight: 600; }
 .publication-issue, .publication-acceptance { margin: .3rem 0 0; font-size: .82rem; line-height: 1.65; color: #475569; }

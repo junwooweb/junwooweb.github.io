@@ -161,7 +161,7 @@ document.querySelectorAll('[data-publication-browser]').forEach(browser => {
   let filter = 'all';
   function matchesFilter(paper) {
     if (filter === 'submitted' || filter === 'writing') return paper.dataset.ongoing === 'true' && paper.dataset.status === filter;
-    if (paper.dataset.ongoing === 'true') return false;
+    if (paper.dataset.ongoing === 'true') return filter === 'all';
     if (filter === 'first-author') return paper.dataset.firstAuthor === 'true';
     return filter === 'all' || paper.dataset.type === filter;
   }
@@ -177,9 +177,8 @@ document.querySelectorAll('[data-publication-browser]').forEach(browser => {
     });
     browser.querySelectorAll('.publication-group').forEach(group => {
       const visible = [...group.querySelectorAll('.publication')].filter(paper => !paper.hidden);
-      const acceptedCount = visible.filter(paper => paper.dataset.ongoing !== 'true').length;
       group.hidden = visible.length === 0;
-      group.querySelector('[data-year-count]').textContent = acceptedCount ? `${acceptedCount} ${acceptedCount === 1 ? 'paper' : 'papers'}` : 'Ongoing work';
+      group.querySelector('[data-year-count]').textContent = `${visible.length} ${visible.length === 1 ? 'paper' : 'papers'}`;
     });
     const category = filter === 'all' ? '' : `${filter} `;
     browser.querySelector('.archive-count').textContent = filter === 'submitted' ? `Submission · ${visibleCount} paper${visibleCount === 1 ? '' : 's'}` : filter === 'writing' ? 'Manuscripts in preparation' : `${count} accepted ${category}paper${count === 1 ? '' : 's'}`;
@@ -193,14 +192,18 @@ document.querySelectorAll('[data-publication-browser]').forEach(browser => {
   }
   filters.forEach(button => button.addEventListener('click', () => {
     selectFilter(button.dataset.filter);
+    if (filter !== 'all') browser.querySelectorAll('.publication-group:not([hidden])').forEach(group => { group.open = true; });
   }));
   function revealHashTarget() {
-    const target = document.getElementById(location.hash.slice(1));
+    const target = document.getElementById(location.hash.slice(1)) || (location.hash === '#year-2027' && document.getElementById('submission'));
     if (!target || !browser.contains(target)) return;
     const group = target.closest('.publication-group');
     const paper = target.closest('.publication') || (group?.hidden ? group.querySelector('.publication') : null);
     if (paper?.hidden) selectFilter(paper.dataset.ongoing === 'true' ? paper.dataset.status : 'all');
-    if (paper) target.scrollIntoView({ block: 'start' });
+    if (group) {
+      group.open = true;
+      target.scrollIntoView({ block: 'start' });
+    }
   }
   applyFilters();
   revealHashTarget();
