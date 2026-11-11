@@ -215,7 +215,7 @@ function paperUpdate(p) {
   const venue = venueLabel(p);
   const dateInfo = researchUpdates.paperDates[p.id];
   const summary = p.ongoing
-    ? `Submitted to ${venue}.`
+    ? `Submitted to ${venue}${p.reviewStage ? ` (${p.reviewStage})` : ''}.`
     : `“${p.title}” was accepted ${p.type === 'conference' ? 'to' : 'for publication in'} ${venue}.`;
   return {
     ...dateInfo,
