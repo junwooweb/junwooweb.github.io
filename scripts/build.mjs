@@ -222,6 +222,7 @@ function paperUpdate(p) {
     dateLink: dateInfo?.linkToPaper === false ? null : p.paper || (p.doi ? `https://doi.org/${p.doi}` : null),
     id: p.id,
     venue,
+    project: p.slug && `projects/${p.slug}/`,
     category: 'Paper',
     type: p.type,
     title: p.title || p.topic,
@@ -237,7 +238,7 @@ function updateMessage(update) {
   const { summary, venue, id } = update;
   const url = researchUpdates.venueLinks[venue];
   if (url && update.category === 'Paper' && !update.topic) {
-    const titleLink = `<a class="research-update-link" href="#${id.toLowerCase()}">“${esc(update.title)}”</a>`;
+    const titleLink = `<a class="news-paper" href="${esc(update.project)}">“${esc(update.title)}”</a>`;
     const accepted = update.type === 'conference' ? 'accepted to' : 'accepted for publication in';
     return `${titleLink} was ${accepted} ${external(url, esc(venue), 'news-venue')}.`;
   }
@@ -245,7 +246,8 @@ function updateMessage(update) {
     const at = summary.lastIndexOf(venue);
     const prefix = summary.slice(0, at);
     const suffix = summary.slice(at + venue.length);
-    return `${esc(prefix)}${external(url, esc(venue), 'news-venue')}${esc(suffix)}`;
+    const titleLink = update.title ? external(url, `“${esc(update.title)}”`, 'news-paper') + ' ' : '';
+    return `${titleLink}${esc(prefix)}${external(url, esc(venue), 'news-venue')}${esc(suffix)}`;
   }
   return update.category === 'Award' ? esc(summary) : `<a class="research-update-link" href="#${id.toLowerCase()}">${esc(summary)}</a>`;
 }
@@ -270,6 +272,17 @@ function researchUpdateList(updates) {
       </div>
     </li>`;
   }).join('\n')}</ol>`;
+}
+
+function newsVenues() {
+  const groups = [
+    ['Journals', ['IEEE TVCG', 'IEEE ToH']],
+    ['Conferences', ["ACM UIST'26", "IEEE ISMAR'26", "IEEE WHC'23", "EuroHaptics'24", 'HCI Korea 2023']]
+  ];
+  return `<dl class="news-venues">${groups.map(([label, venues]) => {
+    const links = venues.map(key => external(researchUpdates.venueLinks[key], esc(key.replace(/(?:'\d{2}| 20\d{2})$/, '')), 'news-venue'));
+    return `<div><dt>${label}</dt><dd>${links.join(' · ')}</dd></div>`;
+  }).join('')}</dl>`;
 }
 
 function researchTimeline() {
@@ -320,7 +333,7 @@ function layout({ title, description, content, base = '', page = '', active = 'h
 }
 
 const homeTemplate = await readFile(new URL('templates/home.html', root), 'utf8');
-const home = homeTemplate.replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{ONGOING_WORK}}', ongoingWork()).replace('{{RESEARCH_UPDATES}}', researchTimeline()).replace('{{PUBLICATIONS}}', byYear(listedPapers)).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replaceAll('{{SUBMITTED_COUNT}}', submittedCount).replace('{{FIRST_AUTHOR_COUNT}}', papers.filter(isFirstAuthor).length).replace('{{PATENT_COUNT}}', researchUpdates.patents.length).replace('{{YEAR}}', new Date().getFullYear());
+const home = homeTemplate.replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{ONGOING_WORK}}', ongoingWork()).replace('{{NEWS_VENUES}}', newsVenues()).replace('{{RESEARCH_UPDATES}}', researchTimeline()).replace('{{PUBLICATIONS}}', byYear(listedPapers)).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replaceAll('{{SUBMITTED_COUNT}}', submittedCount).replace('{{FIRST_AUTHOR_COUNT}}', papers.filter(isFirstAuthor).length).replace('{{PATENT_COUNT}}', researchUpdates.patents.length).replace('{{YEAR}}', new Date().getFullYear());
 await writePage(new URL('index.html', root), home.replace(/[ \t]+$/gm, ''));
 
 const archive = home.replace(/<title>.*?<\/title>/, '<title>Publications | Junwoo Kim</title>')

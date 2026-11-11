@@ -57,8 +57,9 @@
     {
       "id": "A1",
       "date": "2023",
-      "summary": "“Estimating Information Transfer for Sequential Full Body Vibrotactile Stimuli” received an Outstanding Paper Award at HCI Korea 2023.",
-      "venue": "HCI Korea 2023"
+      "summary": "received an Outstanding Paper Award at HCI Korea 2023.",
+      "venue": "HCI Korea 2023",
+      "title": "Estimating Information Transfer for Sequential Full Body Vibrotactile Stimuli"
     }
   ],
   "patents": [
@@ -85,6 +86,7 @@
     "EuroHaptics'24": "https://eurohaptics.org/ehc2024/",
     "IEEE WHC'23": "https://2023.worldhaptics.org/",
     "HCI Korea 2023": "https://conference.hcikorea.org/hcik2023/programs/awarded_paper.asp",
-    "Korea Haptics Society": "https://haptics.or.kr/"
+    "Korea Haptics Society": "https://haptics.or.kr/",
+    "IEEE ISMAR'26": "https://www.ieeeismar.net/2026/papers/"
   }
 }
