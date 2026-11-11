@@ -91,7 +91,7 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .pub-main { width: 100%; }
 .research-title { font-size: 1.1rem; }
 .research-kw { font-size: .82rem; color: #1d4ed8; }
-#research .research-kw { color: #365778; background: #eef6fc; border-color: #c8dbed; }
+#research .research-kw { color: #475569; background: #f2f3f5; border-color: #d5d9df; }
 .pub-title { margin: 0 0 .65rem; font-size: 1.3rem; line-height: 1.45; letter-spacing: -.25px; }
 .pub-title a { color: #0f172a; }
 .pub-title a::after { content: none; }
