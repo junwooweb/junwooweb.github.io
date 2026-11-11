@@ -304,12 +304,12 @@ function researchUpdateList(updates) {
   }).join('\n')}</ol>`;
 }
 
-function newsVenues() {
+function publicationVenues() {
   const groups = [
     ['Journals', ['IEEE TVCG', 'IEEE ToH']],
     ['Conferences', ["ACM UIST'26", "IEEE ISMAR'26", "IEEE WHC'23", "EuroHaptics'24"]]
   ];
-  return `<dl class="news-venues">${groups.map(([label, venues]) => {
+  return `<dl class="publication-venues">${groups.map(([label, venues]) => {
     const links = venues.map(key => external(researchUpdates.venueLinks[key], esc(key), 'news-venue'));
     return `<div><dt>${label}</dt><dd>${links.join(' · ')}</dd></div>`;
   }).join('')}</dl>`;
@@ -373,7 +373,7 @@ const patentRegions = Object.entries({ KR: 'KR', US: 'USA', CN: 'CHINA' }).map((
   const count = researchUpdates.patents.filter(patent => patent.jurisdictions.includes(code)).length;
   return `<span>${label} <strong>${count}</strong></span>`;
 }).join('');
-const home = homeTemplate.replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{ONGOING_WORK}}', ongoingWork()).replace('{{NEWS_VENUES}}', newsVenues()).replace('{{RESEARCH_UPDATES}}', researchTimeline()).replace('{{PUBLICATIONS}}', publicationGroups()).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replaceAll('{{SUBMITTED_COUNT}}', submittedCount).replace('{{FIRST_AUTHOR_COUNT}}', firstAuthorCount).replace('{{CO_AUTHOR_COUNT}}', papers.length - firstAuthorCount).replace('{{PATENT_REGIONS}}', patentRegions).replace('{{PATENT_COUNT}}', researchUpdates.patents.length).replace('{{YEAR}}', new Date().getFullYear());
+const home = homeTemplate.replace('{{PROFILE_GALLERY}}', portraitGallery).replace('{{PROFILE_PHOTO}}', esc(portraits[0])).replace('{{PORTRAIT_CONTROLS}}', portraitControls()).replace('{{ONGOING_WORK}}', ongoingWork()).replace('{{PUBLICATION_VENUES}}', publicationVenues()).replace('{{RESEARCH_UPDATES}}', researchTimeline()).replace('{{PUBLICATIONS}}', publicationGroups()).replace('{{PUBLICATION_FILTERS}}', publicationFilters()).replace('{{PAPER_COUNT}}', papers.length).replaceAll('{{SUBMITTED_COUNT}}', submittedCount).replace('{{FIRST_AUTHOR_COUNT}}', firstAuthorCount).replace('{{CO_AUTHOR_COUNT}}', papers.length - firstAuthorCount).replace('{{PATENT_REGIONS}}', patentRegions).replace('{{PATENT_COUNT}}', researchUpdates.patents.length).replace('{{YEAR}}', new Date().getFullYear());
 await writePage(new URL('index.html', root), home.replace(/[ \t]+$/gm, ''));
 
 const archive = home.replace(/<title>.*?<\/title>/, '<title>Publications | Junwoo Kim</title>')
