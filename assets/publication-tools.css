@@ -37,10 +37,10 @@ html { scroll-padding-top: 5rem; }
 .research-update[data-update-category="award"] { --update-ink: var(--award-ink); --update-bg: var(--award-bg); }
 .research-update[data-update-type="travel"] {
   --update-ink: #235b55;
-  --update-bg: #def1eb;
-  --update-surface: #f5fbf8;
-  --update-border: #c5e0d7;
-  --update-accent: #478375;
+  --update-bg: #eaf5f0;
+  --update-surface: #f8fcfa;
+  --update-border: #d6e8df;
+  --update-accent: #7fa99b;
 }
 .research-update[data-update-category="paper"] { --update-surface: #f6f8fc; --update-border: #d2dce9; --update-accent: #58749a; }
 .research-update[data-update-category="patent"] { --update-surface: #fdf7f4; --update-border: #e8d4ca; --update-accent: #a66a55; }

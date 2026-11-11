@@ -253,6 +253,9 @@ function updateMessage(update) {
     const titleLink = update.title ? external(url, `“${esc(update.title)}”`, 'news-paper') + ' ' : '';
     return `${titleLink}${esc(prefix)}${external(url, esc(venue), 'news-venue')}${esc(suffix)}`;
   }
+  if (update.type === 'travel') {
+    return esc(summary).replace('POSTECH', '<strong class="postech-name">POSTECH</strong>');
+  }
   return update.category !== 'Paper' ? esc(summary) : `<a class="research-update-link" href="#${id.toLowerCase()}">${esc(summary)}</a>`;
 }
 
