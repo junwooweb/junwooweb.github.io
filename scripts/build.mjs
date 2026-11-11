@@ -103,18 +103,27 @@ function bibtex(p) {
   return `@${p.type === 'journal' ? 'article' : 'inproceedings'}{${p.citationKey},\n${Object.entries(fields).filter(([,value]) => value !== undefined).map(([key,value]) => `  ${key} = {${value}}`).join(',\n')}\n}`;
 }
 
-function copyButton(p, label = 'Copy BibTeX', cls = 'button small') {
+function copyButton(p, label = 'Copy BibTeX', cls = 'button small', suffix = '') {
   const showCitation = cls === 'cite-copy';
-  return `<button class="${cls} js-only" type="button" data-copy="bibtex-${p.id.toLowerCase()}" aria-label="Copy${showCitation ? ' and show' : ''} BibTeX for ${esc(p.title)}"${showCitation ? ` aria-controls="cite-${p.id.toLowerCase()}" aria-expanded="false"` : ''} hidden>${label}</button>`;
+  return `<button class="${cls} js-only" type="button" data-copy="bibtex-${p.id.toLowerCase()}${suffix}" aria-label="${showCitation ? 'Copy and show BibTeX' : label} for ${esc(p.title)}"${showCitation ? ` aria-controls="cite-${p.id.toLowerCase()}" aria-expanded="false"` : ''} hidden>${label}</button>`;
 }
 
 function citation(p) {
+  const full = bibtex(p);
+  const abbreviation = p.type === 'journal' && {
+    'IEEE Transactions on Haptics': 'IEEE Trans. Haptics',
+    'IEEE Transactions on Visualization and Computer Graphics': 'IEEE Trans. Vis. Comput. Graph.'
+  }[p.venue];
+  const versions = abbreviation ? [
+    { label: 'v1 · Full journal name', button: 'Copy v1', suffix: '', text: full },
+    { label: 'v2 · Abbreviated journal name', button: 'Copy v2', suffix: '-v2', text: full.replace(/^(\s*journal\s*=\s*)\{[^}]+\}/im, `$1{${abbreviation}}`) }
+  ] : [{ label: 'BibTeX', button: 'Copy BibTeX', suffix: '', text: full }];
   return `<div class="citation-box" data-citation>
-    <div class="citation-toolbar">
-      <span class="citation-label">BibTeX</span>
-      ${copyButton(p)}<p class="copy-status" role="status" aria-live="polite"></p>
+    ${versions.map(({ label, button, suffix, text }) => `<div class="citation-toolbar">
+      <span class="citation-label">${label}</span>
+      ${copyButton(p, button, 'button small', suffix)}<p class="copy-status" role="status" aria-live="polite"></p>
     </div>
-    <pre id="bibtex-${p.id.toLowerCase()}" data-format="bibtex" tabindex="0" aria-label="BibTeX citation for ${esc(p.id)}"><code>${esc(bibtex(p))}</code></pre>
+    <pre id="bibtex-${p.id.toLowerCase()}${suffix}" data-format="bibtex" tabindex="0" aria-label="${label} citation for ${esc(p.id)}"><code>${esc(text)}</code></pre>`).join('\n')}
     <p class="citation-source">${p.bibtexFile ? `BibTeX: ${external(p.paper || p.bibtexSource, esc(p.bibtexSourceLabel || 'Publisher export'))}` : `Provisional citation · ${p.status === 'Accepted' ? 'Accepted' : 'Bibliographic details pending'}`}</p>
   </div>`;
 }
