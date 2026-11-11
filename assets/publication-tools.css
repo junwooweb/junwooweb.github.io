@@ -16,8 +16,9 @@ html { scroll-padding-top: 5rem; }
 .papers-stat { --stat-ink: var(--paper-ink); --stat-bg: var(--paper-card-bg); --stat-accent: var(--paper-card-accent); }
 .stat-breakdown { display: grid; gap: .35rem; font-size: .85rem; font-weight: 600; }
 .patents-stat { --stat-ink: #71564a; --stat-bg: #faf8f6; --stat-accent: #b2a097; }
-.papers-stat .stat-breakdown { display: flex; flex-wrap: wrap; gap: .35rem 1rem; }
-.papers-stat .stat-breakdown > span { white-space: nowrap; }
+.papers-stat .stat-breakdown { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.75rem; }
+.papers-stat .stat-breakdown > span { display: inline-grid; grid-template-columns: auto auto; align-items: baseline; justify-items: start; gap: .45rem; white-space: nowrap; }
+.papers-stat .stat-breakdown > .first-author-count { grid-template-columns: var(--label-width) auto; }
 .patents-stat .stat-breakdown > span { display: grid; grid-template-columns: var(--label-width) 1fr; align-items: baseline; justify-items: start; gap: .45rem; }
 .patents-stat .stat-breakdown { justify-items: start; }
 .country-badge { border: 1px solid #dcc7bd; background: #fffaf7; }
