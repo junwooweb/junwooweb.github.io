@@ -136,11 +136,13 @@
                 <div class="research-stat-value">{{PAPER_COUNT}} <small class="research-submitted-count">(+ {{SUBMITTED_COUNT}} submission)</small></div>
             </div>
             <div class="stat-details">
-                <div class="stat-breakdown">
-                    <span class="first-author-count"><span class="research-update-role">1st author</span> {{FIRST_AUTHOR_COUNT}} papers</span>
-                    <span><span class="research-update-role">Co-author</span> {{CO_AUTHOR_COUNT}} papers</span>
-                </div>
-                {{PUBLICATION_VENUES}}
+                <dl class="publication-venues">
+                    <div class="author-totals">
+                        <dt>1st author</dt>
+                        <dd><strong>{{FIRST_AUTHOR_COUNT}}</strong><span><span class="research-update-role">Co-author</span> <strong>{{CO_AUTHOR_COUNT}}</strong></span></dd>
+                    </div>
+                    {{PUBLICATION_VENUES}}
+                </dl>
             </div>
         </div>
         <div class="research-stat patents-stat">

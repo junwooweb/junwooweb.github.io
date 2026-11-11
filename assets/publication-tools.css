@@ -16,9 +16,6 @@ html { scroll-padding-top: 5rem; }
 .papers-stat { --stat-ink: var(--paper-ink); --stat-bg: var(--paper-card-bg); --stat-accent: var(--paper-card-accent); }
 .stat-breakdown { display: grid; gap: .35rem; font-size: .85rem; font-weight: 600; }
 .patents-stat { --stat-ink: #71564a; --stat-bg: #faf8f6; --stat-accent: #b2a097; }
-.papers-stat .stat-breakdown { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.75rem; }
-.papers-stat .stat-breakdown > span { display: inline-grid; grid-template-columns: auto auto; align-items: baseline; justify-items: start; gap: .45rem; white-space: nowrap; }
-.papers-stat .stat-breakdown > .first-author-count { grid-template-columns: var(--label-width) auto; }
 .patents-stat .stat-breakdown > span { display: grid; grid-template-columns: var(--label-width) 1fr; align-items: baseline; justify-items: start; gap: .45rem; }
 .patents-stat .stat-breakdown { justify-items: start; }
 .country-badge { border: 1px solid #dcc7bd; background: #fffaf7; }
@@ -84,8 +81,9 @@ html { scroll-padding-top: 5rem; }
   #news .research-update { grid-template-columns: auto 1fr; gap: .4rem .85rem; }
   #news .research-update-content { grid-column: 1 / -1; }
 }
-.publication-venues { grid-column: 1 / -1; display: grid; gap: .45rem; margin: .55rem 0 0; font-size: .85rem; line-height: 1.5; }
-.publication-venues > div { display: grid; grid-template-columns: var(--label-width) minmax(0, 1fr); align-items: baseline; gap: .45rem; }
+.publication-venues { grid-column: 1 / -1; display: grid; grid-template-columns: var(--label-width) minmax(0, 1fr); gap: .45rem; margin: 0; font-size: .85rem; line-height: 1.5; }
+.publication-venues .author-totals dd { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.75rem; }
+.publication-venues > div { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: baseline; gap: .45rem; }
 .publication-venues dt { justify-self: start; }
 .publication-venues dd { margin: 0; }
 .publication-venues a { font-weight: 400; white-space: nowrap; }
@@ -94,7 +92,7 @@ html { scroll-padding-top: 5rem; }
 .research-update-link:hover { color: #1e293b; text-decoration: underline; text-underline-offset: 3px; }
 .research-update-role, .publication-venues dt, .country-badge { padding: 1px 6px; border-radius: 5px; font-size: .72rem; font-weight: 700; line-height: 1.5; }
 .research-update-role { display: inline-block; border: 1px solid #d1d5db; background: #f3f4f6; color: #374151; vertical-align: baseline; }
-.research-update[data-first-author="true"] .research-update-role, .first-author-count .research-update-role, .publication-venues dt { color: #fff; background: var(--paper-ink); border: 1px solid var(--paper-ink); }
+.research-update[data-first-author="true"] .research-update-role, .publication-venues dt { color: #fff; background: var(--paper-ink); border: 1px solid var(--paper-ink); }
 .research-update-content .research-update-topic { margin-top: .25rem; color: #64748b; font-size: .73rem; }
 .papers-stat .research-stat-value { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .55rem; }
 .research-submitted-count { color: #475569; font-size: .8rem; font-weight: 400; letter-spacing: normal; white-space: nowrap; }
