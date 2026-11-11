@@ -321,6 +321,7 @@ function layout({ title, description, content, base = '', page = '', active = 'h
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="${base}assets/research-colors.css">
   <link rel="stylesheet" href="${base}assets/site.css">
   <script src="${base}assets/site.js" defer></script>
   ${metadata}
@@ -359,7 +360,7 @@ for (const p of papers) {
   const related = papers.filter(other => other.slug !== p.slug && (other.tags.some(tag => p.tags.includes(tag)) || (p.slug.includes('torso') && other.slug === 'azimuth-elevation'))).slice(0,2);
   const publicationDetails = venueLineMarkup(p);
   const content = `<a class="back-link" href="${base}publications.html#${p.id.toLowerCase()}">All publications</a>
-  <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${publicationDetails}</p><div class="project-actions">${paperButton(p, 'button paper-link')}${p.youtubeId ? '<a class="button" href="#video">Watch video</a>' : ''}<a class="button citation-link" href="#citation">Citation details</a></div></header>
+  <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors" data-first-author="${Boolean(isFirstAuthor(p))}">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${publicationDetails}</p><div class="project-actions">${paperButton(p, 'button paper-link')}${p.youtubeId ? '<a class="button" href="#video">Watch video</a>' : ''}<a class="button citation-link" href="#citation">Citation details</a></div></header>
   <figure class="project-figure"><img src="${esc(imageUrl(p, base))}" alt="${esc(p.imageAlt)}" width="${p.imageWidth || 1100}" height="${p.imageHeight || 620}"><figcaption>${esc(p.imageAlt)}.</figcaption></figure>
   <div class="project-content"><section class="project-section"><h2>Abstract</h2><p>${esc(p.abstract)}</p></section>
   <section class="project-section"><h2>Contributions</h2><p>${esc(p.contribution)}</p></section>${p.youtubeId ? `

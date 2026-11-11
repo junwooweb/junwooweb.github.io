@@ -1,12 +1,11 @@
 /* Additive controls for the original homepage and publication cards. */
-:root { --first-author-color: #315d92; --first-author-background: #e8eff8; --first-author-border: #b9cce4; }
 [hidden] { display: none !important; }
 html { scroll-padding-top: 5rem; }
 :focus-visible { outline: 3px solid #2563eb; outline-offset: 4px; }
 .research-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; margin-bottom: 1.2rem; }
-.papers-stat { --stat-ink: #196354; --stat-bg: #eef8f5; }
-.authors-stat { --stat-ink: var(--first-author-color); --stat-bg: #eff4fb; }
-.patents-stat { --stat-ink: #834d18; --stat-bg: #fcf5e9; }
+.papers-stat { --stat-ink: var(--paper-ink); --stat-bg: var(--paper-bg); }
+.authors-stat { --stat-ink: var(--first-author-color); --stat-bg: var(--first-author-background); }
+.patents-stat { --stat-ink: var(--patent-ink); --stat-bg: var(--patent-bg); }
 .research-stat { padding: .9rem .8rem; border: 1px solid #dce2e6; border-top: 4px solid var(--stat-ink); border-radius: 10px; background: var(--stat-bg); color: var(--stat-ink); }
 .research-stat-label { margin: 0 0 .65rem; min-height: 2.4em; font-size: clamp(1.05rem, 1.35vw, 1.3rem); font-weight: 700; line-height: 1.2; text-wrap: balance; }
 .research-stat-value { font-size: 2.25rem; font-weight: 800; line-height: 1; letter-spacing: -.04em; }
@@ -33,13 +32,14 @@ html { scroll-padding-top: 5rem; }
 .research-update { display: grid; grid-template-columns: 5.8rem minmax(0, 1fr); align-items: stretch; min-height: 4.4rem; padding: 0; gap: 0; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; color: #334155; font-size: .84rem; overflow: hidden; }
 .research-update-category { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2rem; margin: 0; padding: .65rem .3rem; border-right: 1px solid #e5e7eb; background: #f8fafc; color: #475569; font-size: .85rem; font-weight: 800; text-align: center; }
 .research-update-category small { color: inherit; font-size: .67rem; font-weight: 600; }
-.research-update[data-update-type="conference"] .research-update-category { color: #614582; background: #ede5f6; border-right-color: #ddd0ec; }
-.research-update[data-update-type="journal"] .research-update-category { color: #25665b; background: #e1f1eb; border-right-color: #c9e4d9; }
-.research-update[data-update-type="patent"] .research-update-category { color: #805925; background: #f8edd8; border-right-color: #ecddbc; }
+.research-update[data-update-category="paper"] { --update-ink: var(--paper-ink); --update-bg: var(--paper-bg); }
+.research-update[data-update-category="patent"] { --update-ink: var(--patent-ink); --update-bg: var(--patent-bg); }
+.research-update[data-update-category="award"] { --update-ink: var(--award-ink); --update-bg: var(--award-bg); }
+.research-update-category { color: var(--update-ink); background: var(--update-bg); }
 .research-update-content { min-width: 0; padding: .7rem .85rem; align-self: center; }
 .research-update-content p { margin: 0; overflow-wrap: anywhere; }
 .research-update-link { color: #334155; font-weight: 500; }
-.news-paper { color: #334155; font-weight: 600; text-decoration: underline; text-underline-offset: .17em; }
+.news-paper { color: var(--update-ink); font-weight: 600; text-decoration: underline; text-underline-offset: .17em; }
 .news-paper:hover, .news-paper:focus-visible { color: #153e75; text-decoration-thickness: 2px; }
 #news .research-updates-header { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 1.2rem; }
 #news .research-updates-hint { grid-column: 1 / -1; justify-self: end; }
@@ -57,7 +57,7 @@ html { scroll-padding-top: 5rem; }
 .research-update[data-first-author="true"] .research-update-role,
 .ongoing-publication[data-first-author="true"] .author-role { display: inline-block; padding: 2px 7px; border: 1px solid var(--first-author-color); border-radius: 5px; color: #fff; background: var(--first-author-color); font-weight: 700; line-height: 1.5; vertical-align: baseline; }
 .research-update-content .research-update-topic { margin-top: .25rem; color: #64748b; font-size: .73rem; }
-.research-submitted-count { margin-top: .45rem; color: #64748b; font-size: .7rem; font-weight: 400; line-height: 1.5; }
+.research-submitted-count { margin-top: .5rem; color: #475569; font-size: .8rem; font-weight: 400; line-height: 1.5; }
 .research-update-date { display: inline-block; margin-top: .2rem; color: #64748b; font-size: .7rem; font-variant-numeric: tabular-nums; }
 a.research-update-date { text-decoration: underline; text-decoration-color: #cbd5e1; text-underline-offset: 3px; }
 a.research-update-date:hover { color: #334155; text-decoration: underline; }
@@ -99,16 +99,14 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .pub-title a { color: #0f172a; }
 .pub-title a::after { content: none; }
 .pub-authors { font-size: 1rem; line-height: 1.75; color: #334155; }
-.pub-authors .me { color: #1d4ed8; font-weight: 700; }
+.publication[data-first-author="true"] .pub-authors .me { color: var(--first-author-color); font-weight: 700; }
 .pub-venue-full { margin-top: .45rem; color: #475569; font-size: .95rem; font-style: normal; line-height: 1.65; }
 .pub-category { font-size: 1.2rem; color: #1e40af; }
-.venue-label { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .3rem .65rem; padding: .35rem .75rem; border: 1px solid #b7e5db; border-radius: 8px; background: #ecfdf5; color: #0f766e; font-size: .95rem; font-weight: 700; line-height: 1.5; }
+.venue-label { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .3rem .65rem; padding: .35rem .75rem; border: 1px solid var(--paper-border); border-radius: 8px; background: var(--paper-bg); color: var(--paper-ink); font-size: .95rem; font-weight: 700; line-height: 1.5; }
 .venue-label small { padding-left: .65rem; border-left: 1px solid currentColor; font-size: .72rem; font-weight: 600; }
-.venue-label.conference { color: #6d28d9; background: #f5f3ff; border-color: #ddd6fe; }
 .publication-issue, .publication-acceptance { margin: .3rem 0 0; font-size: .82rem; line-height: 1.65; color: #475569; }
 .publication-issue { color: #25665b; font-weight: 600; }
-.pub-badge { font-size: .75rem; background: #0f766e; }
-.pub-badge.conf { background: #6d28d9; }
+.pub-badge, .pub-badge.conf { font-size: .75rem; background: var(--paper-ink); }
 .pub-category-count { display: inline-flex; align-items: center; padding: .2rem .7rem; margin-left: .25rem; border: 1px solid #dbeafe; border-radius: 999px; background: #eff6ff; color: #1e40af; font-size: .875rem; line-height: 1.5; font-weight: 600; text-transform: none; letter-spacing: 0; white-space: nowrap; }
 .publication-status { display: inline-block; padding: 2px 8px; border: 1px solid #e2e8f0; border-radius: 5px; background: #f8fafc; color: #475569; font-size: .8rem; font-weight: 600; font-style: normal; white-space: nowrap; }
 .publication-status[data-status="Submitted"] { color: #166534; background: #f0fdf4; border-color: #bbf7d0; }
@@ -121,8 +119,8 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
   background: var(--accent-light); font: 600 .85rem/1.6 'Inter', sans-serif; cursor: pointer;
 }
 .publication-links a:hover, .publication-links button:hover, .citation-toolbar .button:hover { border-color: var(--accent); background: #dbeafe; }
-.publication-links .paper-link { color: #fff; background: #b45309; border-color: #b45309; }
-.publication-links .paper-link:hover { background: #92400e; border-color: #92400e; }
+.publication-links .paper-link { color: #fff; background: var(--paper-ink); border-color: var(--paper-ink); }
+.publication-links .paper-link:hover { background: #0d5149; border-color: #0d5149; }
 .publication-links .project-link { color: #fff; background: #7e22ce; border-color: #7e22ce; }
 .publication-links .project-link:hover { color: #fff; background: #6b21a8; border-color: #6b21a8; }
 .publication-links .cite-copy, .citation-toolbar .button { color: #fff; background: #334155; border-color: #334155; }
@@ -150,7 +148,7 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .archive-toolbar { justify-content: space-between; gap: 1rem; margin-bottom: .6rem; }
 .archive-tools { flex-direction: column; align-items: flex-end; gap: .2rem; font-size: .9rem; }
 .archive-tools a { color: var(--accent); text-decoration: underline; }
-.archive-count { margin: 0; color: #1d4ed8; font-size: 1.3rem; font-weight: 750; line-height: 1.4; }
+.archive-count { margin: 0; color: var(--paper-ink); font-size: 1.3rem; font-weight: 750; line-height: 1.4; }
 .archive-submitted-count { margin: 0; color: #78648a; font-size: .82rem; font-weight: 500; line-height: 1.5; }
 .filter-group button { font: 600 .9rem/1.5 'Inter', sans-serif; padding: .55rem .85rem; border: 1px solid var(--border-color); border-radius: 8px; background: #fff; color: #475569; cursor: pointer; }
 .filter-group button[aria-pressed="true"] { background: var(--accent-light); border-color: #bfdbfe; color: var(--accent); }
@@ -168,13 +166,13 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .patent-applications a { overflow-wrap: anywhere; }
 .patent-pending { border-style: dashed; }
 .patent-pending .pub-title { margin-bottom: 0; }
-.patent-pending .pub-badge { background: #059669; }
+.patent-card .pub-badge { background: var(--patent-ink); }
+.patent-card { border-left: 4px solid var(--patent-ink); }
 .patent-title-note { color: #64748b; font-size: .9rem; font-weight: 400; font-style: italic; }
 .patent-inventors { margin: .5rem 0 .1rem; }
 .patent-publication-note { margin: 0; color: #64748b; font-size: .88rem; }
 .publication-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
-.publication-grid .pub-item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); align-items: stretch; gap: 1.15rem 1.75rem; padding: 1.4rem; margin: 0; min-width: 0; border-top: 3px solid #93c5fd; box-shadow: 0 3px 14px #1e3a8a06; }
-.publication-grid .pub-item[data-type="conference"] { border-top-color: #f9a8d4; }
+.publication-grid .pub-item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); align-items: stretch; gap: 1.15rem 1.75rem; padding: 1.4rem; margin: 0; min-width: 0; border-top: 3px solid var(--paper-border); box-shadow: 0 3px 14px #1e3a8a06; }
 .publication-grid .pub-venue { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin: 0 0 .9rem; line-height: 1.55; font-style: normal; overflow-wrap: anywhere; text-wrap: pretty; }
 .pub-venue-labels { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
 .pub-keywords { display: flex; flex: 1 1 180px; flex-wrap: wrap; align-items: center; gap: .3rem .4rem; margin: 0; padding: 0; list-style: none; color: #4b5563; font-size: .8rem; font-weight: 500; line-height: 1.6; }

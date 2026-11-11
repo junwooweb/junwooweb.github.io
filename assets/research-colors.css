@@ -1,0 +1,13 @@
+/* Semantic colors shared by the homepage, archive and project pages. */
+:root {
+  --paper-ink: #12665c;
+  --paper-bg: #e9f6f2;
+  --paper-border: #a4d7cb;
+  --patent-ink: #85480e;
+  --patent-bg: #fff3df;
+  --award-ink: #843c72;
+  --award-bg: #f9edf6;
+  --first-author-color: #305995;
+  --first-author-background: #eaf1fb;
+  --first-author-border: #b8cceb;
+}
