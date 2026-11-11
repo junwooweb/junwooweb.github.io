@@ -291,7 +291,7 @@ function researchUpdateList(updates, { timeline = false } = {}) {
       ? `<time datetime="${esc(update.date)}"${update.endDate ? ` data-end-date="${esc(update.endDate)}"` : ''}>${esc(update.label || update.date)}</time>`
       : esc(update.dateNote || '');
     const date = period ? `<span class="research-update-date">${period}</span>` : '';
-    const sourceLink = timeline && update.dateLink ? ' ' + external(update.dateLink, 'Link', 'news-source') : '';
+    const sourceLink = timeline && update.dateLink ? external(update.dateLink, 'Link', 'news-source') : '';
     const type = update.type || update.category.toLowerCase();
     const icon = { Paper: '📄', Award: '🏆', Patent: '💡', 'Travel Support': '✈️' }[update.category];
     const iconMarkup = `<span aria-hidden="true">${icon}</span>`;
@@ -304,8 +304,9 @@ function researchUpdateList(updates, { timeline = false } = {}) {
       <div class="research-update-category">
         <span>${timeline && update.type === 'travel' ? 'Support' : update.category}</span>${typeLabel && !(timeline && update.category === 'Paper') ? `<small>${typeLabel}</small>` : ''}
       </div>
+      ${sourceLink}
       <div class="research-update-content">
-        <p>${iconMarkup}&nbsp;${roleBadge}${updateMessage(update)}${sourceLink}</p>
+        <p>${iconMarkup}&nbsp;${roleBadge}${updateMessage(update)}</p>
         ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : ''}
       </div>
     </li>`;

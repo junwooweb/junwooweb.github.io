@@ -69,16 +69,16 @@ html { scroll-padding-top: 5rem; }
 .news-paper:hover, .news-paper:focus-visible { color: var(--update-ink); text-decoration-thickness: 2px; }
 #news .research-updates-hint { margin-left: auto; }
 #news .research-updates-list { gap: 0; }
-#news .research-update { grid-template-columns: 8rem 7rem minmax(0, 1fr); align-items: center; gap: 1rem; min-height: 0; padding: .85rem 0; border: 0; border-bottom: 1px solid var(--border-color); border-radius: 0; background: transparent; }
+#news .research-update { grid-template-columns: 8rem 5.5rem 2.4rem minmax(0, 1fr); align-items: center; gap: 1rem; min-height: 0; padding: .85rem 0; border: 0; border-bottom: 1px solid var(--border-color); border-radius: 0; background: transparent; }
 #news .research-update-date { margin: 0; font-size: .85rem; font-variant-numeric: tabular-nums; }
-.news-source { display: inline-block; margin-inline-start: .5rem; color: #173e78; font-weight: 750; text-decoration: underline; text-decoration-thickness: .1em; text-underline-offset: .18em; }
+.news-source { grid-column: 3; justify-self: start; color: #0675a8; font-size: .82rem; font-weight: 750; text-decoration: underline; text-decoration-thickness: .1em; text-underline-offset: .18em; }
 .news-source:hover, .news-source:focus-visible { text-decoration-thickness: .15em; }
 #news .research-update-category { align-items: flex-start; justify-self: start; gap: .1rem; padding: 0; border: 0; background: transparent; }
 #news .research-update-category > span { padding: .1rem .55rem; border-radius: 4px; background: var(--update-bg); font-size: .78rem; font-weight: 700; }
 #news .research-update-category small { padding-left: .55rem; color: #64748b; font-weight: 400; }
-#news .research-update-content { padding: 0; }
+#news .research-update-content { grid-column: 4; padding: 0; }
 @media (max-width: 600px) {
-  #news .research-update { grid-template-columns: auto 1fr; gap: .4rem .85rem; }
+  #news .research-update { grid-template-columns: auto auto 1fr; gap: .4rem .85rem; }
   #news .research-update-content { grid-column: 1 / -1; }
 }
 .publication-venues { grid-column: 1 / -1; display: grid; grid-template-columns: var(--label-width) minmax(0, 1fr); gap: .45rem; margin: 0; font-size: .85rem; line-height: 1.5; }
