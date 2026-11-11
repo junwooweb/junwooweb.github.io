@@ -38,17 +38,17 @@ html { scroll-padding-top: 5rem; }
 .research-update[data-update-type="travel"] {
   --update-ink: #235b55;
   --update-bg: #def1eb;
-  --news-surface: #f5fbf8;
-  --news-border: #c5e0d7;
-  --news-accent: #478375;
+  --update-surface: #f5fbf8;
+  --update-border: #c5e0d7;
+  --update-accent: #478375;
 }
-#news [data-update-category="paper"] { --news-surface: #f6f8fc; --news-border: #d2dce9; --news-accent: #58749a; }
-#news [data-update-category="patent"] { --news-surface: #fdf7f4; --news-border: #e8d4ca; --news-accent: #a66a55; }
-#news [data-update-category="award"] { --news-surface: #fdfaf1; --news-border: #e7dcb9; --news-accent: #a28439; }
-#news .research-update {
-  background: var(--news-surface);
-  border-color: var(--news-border);
-  border-left: 4px solid var(--news-accent);
+.research-update[data-update-category="paper"] { --update-surface: #f6f8fc; --update-border: #d2dce9; --update-accent: #58749a; }
+.research-update[data-update-category="patent"] { --update-surface: #fdf7f4; --update-border: #e8d4ca; --update-accent: #a66a55; }
+.research-update[data-update-category="award"] { --update-surface: #fdfaf1; --update-border: #e7dcb9; --update-accent: #a28439; }
+.research-update {
+  background: var(--update-surface);
+  border-color: var(--update-border);
+  border-left: 4px solid var(--update-accent);
 }
 .research-update-category { color: var(--update-ink); background: var(--update-bg); }
 .research-update[data-update-type="travel"] .research-update-category small { color: var(--postech-color); }
