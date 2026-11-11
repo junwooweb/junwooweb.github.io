@@ -135,11 +135,11 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
   background: var(--accent-light); font: 600 .85rem/1.6 'Inter', sans-serif; cursor: pointer;
 }
 .publication-links a:hover, .publication-links button:hover, .citation-toolbar .button:hover { border-color: var(--accent); background: #dbeafe; }
-.publication-links .paper-link { color: #fff; background: #bd2929; border-color: #bd2929; }
+.publication-links .paper-link { color: #fff; background: #ca4040; border-color: #ca4040; }
 .publication-links .paper-link:hover { background: #991b1b; border-color: #991b1b; }
-.publication-links .project-link { color: #fff; background: #852ed1; border-color: #852ed1; }
+.publication-links .project-link { color: #fff; background: #9450d5; border-color: #9450d5; }
 .publication-links .project-link:hover { color: #fff; background: #6b21a8; border-color: #6b21a8; }
-.publication-links .cite-copy, .citation-toolbar .button { color: #fff; background: #404d60; border-color: #404d60; }
+.publication-links .cite-copy, .citation-toolbar .button { color: #fff; background: #59687c; border-color: #59687c; }
 .publication-links .cite-copy:hover, .citation-toolbar .button:hover { color: #fff; background: #1e293b; border-color: #1e293b; }
 .publication-links button:disabled, .publication-links button:disabled:hover { color: #64748b; background: #f1f5f9; border-color: #e2e8f0; cursor: not-allowed; }
 .equal-note { display: inline; color: #475569; font-size: .875em; font-style: italic; white-space: nowrap; }
