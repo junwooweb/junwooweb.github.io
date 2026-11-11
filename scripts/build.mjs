@@ -277,7 +277,7 @@ function updateMessage(update) {
     const prefix = summary.slice(0, at);
     const suffix = summary.slice(at + venue.length);
     const titleLink = update.title ? external(url, `“${esc(update.title)}”`, 'news-paper') + ' ' : '';
-    return `${titleLink}${esc(prefix)}${external(url, esc(venue), 'news-venue')}${esc(suffix)}`;
+    return `${titleLink}${esc(prefix)}<strong>${esc(venue)}</strong>${esc(suffix)}`;
   }
   if (update.type === 'travel') {
     return esc(summary).replace('POSTECH', '<strong class="postech-name">POSTECH</strong>');
@@ -329,7 +329,7 @@ function researchTimeline() {
     ...entry, category: 'Travel Support', type: 'travel',
     summary: `I received BK21 travel support${entry.amountKRW == null ? '' : ` (KRW ${entry.amountKRW.toLocaleString('en-US')})`} from POSTECH to attend an international conference abroad.`
   }));
-  const updates = [...travel, ...papers.map(paperUpdate), ...researchUpdates.awards.map(a => ({ ...a, category: 'Award' })), ...researchUpdates.patents.map(p => ({ ...p, category: 'Patent', dateLink: p.source }))]
+  const updates = [...travel, ...papers.map(paperUpdate), ...researchUpdates.awards.map(a => ({ ...a, category: 'Award', dateLink: researchUpdates.venueLinks[a.venue] })), ...researchUpdates.patents.map(p => ({ ...p, category: 'Patent', dateLink: p.source }))]
     // ISO dates sort newest first, with partial dates after dated entries in the same period.
     .sort((a, b) => String(b.date || b.year || '').localeCompare(String(a.date || a.year || '')));
   return researchUpdateList(updates, { timeline: true });

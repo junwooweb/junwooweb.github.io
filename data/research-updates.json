@@ -54,14 +54,18 @@
   "awards": [
     {
       "id": "A2",
-      "date": "2023",
+      "date": "2023-11-21",
+      "endDate": "2023-11-25",
+      "label": "Nov 21–25, 2023",
       "title": "Multimedia-to-Haptic Rendering Using an In-Vehicle Haptic Interface",
       "summary": "received an Encouragement Award in the Korea Haptics Society’s Hyundai Student Innovation Contest.",
       "venue": "Korea Haptics Society"
     },
     {
       "id": "A1",
-      "date": "2023",
+      "date": "2023-02-01",
+      "endDate": "2023-02-03",
+      "label": "Feb 1–3, 2023",
       "summary": "received an Outstanding Paper Award at HCI Korea 2023.",
       "venue": "HCI Korea 2023",
       "title": "Estimating Information Transfer for Sequential Full Body Vibrotactile Stimuli"
@@ -73,7 +77,8 @@
       "jurisdictions": ["KR"],
       "title": "Audiovisual-to-Haptic Rendering System",
       "summary": "(tentative title) is the subject of our pending patent application.",
-      "dateNote": "Patent pending"
+      "date": "2026-04",
+      "label": "Apr 2026"
     },
     {
       "id": "P1",
