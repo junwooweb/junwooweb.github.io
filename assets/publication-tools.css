@@ -45,9 +45,9 @@ html { scroll-padding-top: 5rem; }
 #news .research-updates-hint { grid-column: 1 / -1; justify-self: end; }
 .news-venues { margin: 0; font-size: .9rem; }
 .news-venues > div { display: grid; grid-template-columns: 6rem minmax(0,1fr); gap: .5rem; margin: .3rem 0; }
-.news-venues dt { font-weight: 700; }
+.news-venues dt { font-weight: 400; }
 .news-venues dd { margin: 0; }
-.news-venues a { white-space: nowrap; }
+.news-venues a { font-weight: 400; white-space: nowrap; }
 .news-venue { color: #173e78; font-weight: 750; text-decoration: underline; text-underline-offset: .16em; }
 .news-venue:hover, .news-venue:focus-visible { color: #102e5d; text-decoration-thickness: 2px; }
 .research-update-link:hover { color: #1e293b; text-decoration: underline; text-underline-offset: 3px; }
