@@ -267,13 +267,16 @@ function researchUpdateList(updates) {
     const type = update.type || update.category.toLowerCase();
     const icon = { Paper: '📄', Award: '🏆', Patent: '💡' }[update.category];
     const iconMarkup = `<span aria-hidden="true">${icon}</span>`;
+    const roleBadge = update.category === 'Paper'
+      ? `<span class="research-update-role" title="${update.firstAuthor ? 'First author' : 'Co-author'}">${update.firstAuthor ? '1st' : 'Co'}</span> `
+      : '';
     const typeLabel = type === 'conference' ? 'Conference' : type === 'journal' ? 'Journal' : type === 'award' ? 'Recognition' : 'Application';
     return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-update-type="${type}" data-first-author="${Boolean(update.firstAuthor)}">
       <div class="research-update-category">
         <span>${update.category}</span><small>${typeLabel}</small>
       </div>
       <div class="research-update-content">
-        <p>${iconMarkup}&nbsp;${update.firstAuthor ? '<span class="research-update-role" title="First author">1st</span> ' : ''}${updateMessage(update)}</p>
+        <p>${iconMarkup}&nbsp;${roleBadge}${updateMessage(update)}</p>
         ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : date}
       </div>
     </li>`;
