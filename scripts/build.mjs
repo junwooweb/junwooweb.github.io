@@ -175,7 +175,7 @@ function ongoingPublication(p) {
       <span>${submitted ? 'Manuscript submitted' : 'Manuscript in preparation'}</span>
     </div>
     <div class="pub-main">
-      <div class="pub-venue"><span class="pub-venue-labels">${venueBadge(p)}${statusBadge(p)}</span>${researchKeywords(p)}</div>
+      <div class="pub-venue"><span class="pub-venue-labels">${venueBadge(p)}${submitted ? '' : statusBadge(p)}</span>${researchKeywords(p)}</div>
       <p class="research-topic-label">Research topic</p>
       <h3 class="pub-title">${esc(p.topic)}</h3>
       <div class="pub-authors">${authors(p)}</div>
