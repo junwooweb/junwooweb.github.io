@@ -2,16 +2,17 @@
 [hidden] { display: none !important; }
 html { scroll-padding-top: 5rem; }
 :focus-visible { outline: 3px solid #2563eb; outline-offset: 4px; }
+:root { --paper-card-bg: #f1f3f5; --paper-card-accent: #83929e; }
 .research-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; margin-bottom: 1.2rem; }
-.papers-stat { --stat-ink: var(--paper-ink); --stat-bg: var(--paper-bg); }
+.papers-stat { --stat-ink: var(--paper-ink); --stat-bg: var(--paper-card-bg); --stat-accent: var(--paper-card-accent); }
 .authors-stat { --stat-ink: var(--first-author-color); --stat-bg: var(--first-author-background); }
 .patents-stat { --stat-ink: var(--patent-ink); --stat-bg: var(--patent-bg); }
-.research-stat { padding: .9rem .8rem; border: 1px solid #dce2e6; border-top: 4px solid var(--stat-ink); border-radius: 10px; background: var(--stat-bg); color: var(--stat-ink); }
+.research-stat { padding: .9rem .8rem; border: 1px solid #dce2e6; border-top: 4px solid var(--stat-accent, var(--stat-ink)); border-radius: 10px; background: var(--stat-bg); color: var(--stat-ink); }
 .research-stat-label { margin: 0 0 .65rem; min-height: 2.4em; font-size: clamp(1.05rem, 1.35vw, 1.3rem); font-weight: 700; line-height: 1.2; text-wrap: balance; }
 .research-stat-value { font-size: 2.25rem; font-weight: 800; line-height: 1; letter-spacing: -.04em; }
 @media (max-width: 540px) {
   .research-stats { grid-template-columns: 1fr; }
-  .research-stat { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 1rem; border-top-width: 1px; border-left: 4px solid var(--stat-ink); }
+  .research-stat { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 1rem; border-top-width: 1px; border-left: 4px solid var(--stat-accent, var(--stat-ink)); }
   .research-stat-label { min-height: 0; margin: 0; }
   .research-stat-value { font-size: 1.85rem; }
   .research-submitted-count { grid-column: 1 / -1; }
@@ -32,7 +33,7 @@ html { scroll-padding-top: 5rem; }
 .research-update { display: grid; grid-template-columns: 5.8rem minmax(0, 1fr); align-items: stretch; min-height: 4.4rem; padding: 0; gap: 0; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; color: #334155; font-size: .84rem; overflow: hidden; }
 .research-update-category { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2rem; margin: 0; padding: .65rem .3rem; border-right: 1px solid #e5e7eb; background: #f8fafc; color: #475569; font-size: .85rem; font-weight: 800; text-align: center; }
 .research-update-category small { color: inherit; font-size: .67rem; font-weight: 600; }
-.research-update[data-update-category="paper"] { --update-ink: var(--paper-ink); --update-bg: #daeffd; --update-surface: #eff8ff; --update-border: #bedff2; --update-accent: #6aa5ca; }
+.research-update[data-update-category="paper"] { --update-ink: var(--paper-ink); --update-bg: #e7ebee; --update-surface: var(--paper-card-bg); --update-border: #d4dbe0; --update-accent: var(--paper-card-accent); }
 .research-update[data-update-category="patent"] { --update-ink: var(--patent-ink); --update-bg: var(--patent-bg); }
 .research-update[data-update-category="award"] { --update-ink: var(--award-ink); --update-bg: var(--award-bg); }
 .research-update[data-update-type="travel"] {
