@@ -35,6 +35,7 @@ html { scroll-padding-top: 5rem; }
 .research-update[data-update-category="paper"] { --update-ink: var(--paper-ink); --update-bg: #f3f4f6; }
 .research-update[data-update-category="patent"] { --update-ink: var(--patent-ink); --update-bg: var(--patent-bg); }
 .research-update[data-update-category="award"] { --update-ink: var(--award-ink); --update-bg: var(--award-bg); }
+.research-update[data-update-type="travel"] { --update-ink: #475569; --update-bg: #f1f5f9; }
 .research-update-category { color: var(--update-ink); background: var(--update-bg); }
 .research-update-content { min-width: 0; padding: .7rem .85rem; align-self: center; }
 .research-update-content p { margin: 0; overflow-wrap: anywhere; }

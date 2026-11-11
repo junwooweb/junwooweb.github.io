@@ -47,6 +47,10 @@
       "source": "https://2023.worldhaptics.org/"
     }
   },
+  "travelSupport": [
+    {"id": "T2", "date": "2026-11", "label": "Nov 2026"},
+    {"id": "T1", "date": "2024-07", "label": "Jul 2024"}
+  ],
   "awards": [
     {
       "id": "A2",
