@@ -38,9 +38,17 @@ html { scroll-padding-top: 5rem; }
 .research-update[data-update-type="travel"] {
   --update-ink: #235b55;
   --update-bg: #def1eb;
-  background: #f5fbf8;
-  border-color: #c5e0d7;
-  border-left: 4px solid #478375;
+  --news-surface: #f5fbf8;
+  --news-border: #c5e0d7;
+  --news-accent: #478375;
+}
+#news [data-update-category="paper"] { --news-surface: #f6f8fc; --news-border: #d2dce9; --news-accent: #58749a; }
+#news [data-update-category="patent"] { --news-surface: #fdf7f4; --news-border: #e8d4ca; --news-accent: #a66a55; }
+#news [data-update-category="award"] { --news-surface: #fdfaf1; --news-border: #e7dcb9; --news-accent: #a28439; }
+#news .research-update {
+  background: var(--news-surface);
+  border-color: var(--news-border);
+  border-left: 4px solid var(--news-accent);
 }
 .research-update-category { color: var(--update-ink); background: var(--update-bg); }
 .research-update[data-update-type="travel"] .research-update-category small { color: var(--postech-color); }
