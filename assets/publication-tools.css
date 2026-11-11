@@ -73,7 +73,8 @@ html { scroll-padding-top: 5rem; }
 #news .research-updates-list { gap: 0; }
 #news .research-update { grid-template-columns: 8rem 7rem minmax(0, 1fr); align-items: center; gap: 1rem; min-height: 0; padding: .85rem 0; border: 0; border-bottom: 1px solid var(--border-color); border-radius: 0; background: transparent; }
 #news .research-update-date { margin: 0; font-size: .85rem; font-variant-numeric: tabular-nums; }
-.news-source { color: #173e78; text-decoration: underline; text-underline-offset: .16em; }
+.news-source { display: inline-block; margin-inline-start: .5rem; color: #173e78; font-weight: 750; text-decoration: underline; text-decoration-thickness: .1em; text-underline-offset: .18em; }
+.news-source:hover, .news-source:focus-visible { text-decoration-thickness: .15em; }
 #news .research-update-category { align-items: flex-start; justify-self: start; gap: .1rem; padding: 0; border: 0; background: transparent; }
 #news .research-update-category > span { padding: .1rem .55rem; border-radius: 4px; background: var(--update-bg); font-size: .78rem; font-weight: 700; }
 #news .research-update-category small { padding-left: .55rem; color: #64748b; font-weight: 400; }
