@@ -26,7 +26,7 @@ const release = 'https://github.com/junwooweb/junwooweb.github.io/releases/downl
 const site = 'https://junwooweb.github.io/';
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const external = (url, label, cls = '') => `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${label}<span aria-hidden="true"> ↗</span></a>`;
-const imageUrl = (p, base = '') => p.image.startsWith('assets/') ? `${base}${p.image}` : `${release}${p.image}`;
+const imageUrl = (p, base = '') => `${base}${p.image}`;
 const portraitDirectory = new URL('assets/images/profile/', root);
 const portraitFiles = (await readdir(portraitDirectory, { withFileTypes: true }))
   .filter(file => file.isFile() && /\.(?:jpe?g|png|webp|avif|gif)$/i.test(file.name))
@@ -215,9 +215,7 @@ function paperUpdate(p) {
   const dateInfo = researchUpdates.paperDates[p.id];
   const summary = p.ongoing
     ? `Submitted to ${venue}.`
-    : p.status === 'Accepted'
-      ? `Our paper was accepted ${p.type === 'conference' ? 'to' : 'for publication in'} ${venue}.`
-      : `Our paper was published in ${p.type === 'conference' ? 'the proceedings of ' : ''}${venue}.`;
+    : `“${p.title}” was accepted ${p.type === 'conference' ? 'to' : 'for publication in'} ${venue}.`;
   return {
     ...dateInfo,
     dateLink: dateInfo?.linkToPaper === false ? null : p.paper || (p.doi ? `https://doi.org/${p.doi}` : null),
@@ -236,17 +234,18 @@ function paperUpdate(p) {
 function researchUpdateList(updates) {
   return `<ol class="research-updates-list">${updates.map(update => {
     const period = update.date
-      ? `<time datetime="${esc(update.date)}"${update.endDate ? ` data-end-date="${esc(update.endDate)}"` : ''}>${esc(update.label || update.date)}</time>`
+      ? `${update.kind ? esc(update.kind) + " · " : ""}<time datetime="${esc(update.date)}"${update.endDate ? ` data-end-date="${esc(update.endDate)}"` : ''}>${esc(update.label || update.date)}</time>`
       : '';
     const date = !period ? '' : update.dateLink
       ? `<a class="research-update-date" href="${esc(update.dateLink)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(update.label || update.date)} — ${update.category === 'Paper' ? 'view paper' : 'view patent'}">${period}</a>`
       : `<span class="research-update-date">${period}</span>`;
-    const type = update.type || 'patent';
-    const typeLabel = type === 'conference' ? 'Conference' : type === 'journal' ? 'Journal' : 'Application';
+    const type = update.type || update.category.toLowerCase();
+    const icon = { Paper: '📄', Award: '🏆', Patent: '📜' }[update.category];
+    const typeLabel = type === 'conference' ? 'Conference' : type === 'journal' ? 'Journal' : type === 'award' ? 'Recognition' : 'Application';
     return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-update-type="${type}" data-first-author="${Boolean(update.firstAuthor)}">
-      <div class="research-update-category"><span>${update.category}</span><small>${typeLabel}</small></div>
+      <div class="research-update-category"><span aria-hidden="true">${icon}</span><span>${update.category}</span><small>${typeLabel}</small></div>
       <div class="research-update-content">
-        <p><a class="research-update-link" href="#${update.id.toLowerCase()}" title="${esc(update.title)}">${esc(update.summary)}</a>${update.role ? ` <span class="research-update-role">${esc(update.role)}</span>` : ''}</p>
+        <p>${update.category === 'Award' ? esc(update.summary) : `<a class="research-update-link" href="#${update.id.toLowerCase()}">${esc(update.summary)}</a>`}${update.role ? ` <span class="research-update-role">${esc(update.role)}</span>` : ''}</p>
         ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : date}
       </div>
     </li>`;
@@ -254,7 +253,7 @@ function researchUpdateList(updates) {
 }
 
 function researchTimeline() {
-  const updates = [...papers.map(paperUpdate), ...researchUpdates.patents.map(p => ({ ...p, category: 'Patent', dateLink: p.source }))]
+  const updates = [...papers.map(paperUpdate), ...researchUpdates.awards.map(a => ({ ...a, category: 'Award' })), ...researchUpdates.patents.map(p => ({ ...p, category: 'Patent', dateLink: p.source }))]
     // Unknown months sort first within their year, without inventing a publication date.
     // Undated filing announcements stay above the dated history.
     .sort((a, b) => String(b.date || b.year || '9999').padEnd(10, '9').localeCompare(String(a.date || a.year || '9999').padEnd(10, '9')));
@@ -320,18 +319,14 @@ await mkdir(new URL('citations/', root), { recursive:true });
 for (const p of papers) {
   const base = '../../';
   const related = papers.filter(other => other.slug !== p.slug && (other.tags.some(tag => p.tags.includes(tag)) || (p.slug.includes('torso') && other.slug === 'azimuth-elevation'))).slice(0,2);
-  const highlights = p.findings || p.highlights;
   const publicationDetails = venueLineMarkup(p);
-  const sourceNote = p.overviewSource
-    ? `${esc(p.overviewSource)}${p.publicationSource ? ` ${external(p.publicationSource, esc(p.publicationSourceLabel))}.` : ''}`
-    : `Summary based on ${external(p.source, esc(p.sourceLabel))}.`;
   const content = `<a class="back-link" href="${base}publications.html#${p.id.toLowerCase()}">← All publications</a>
   <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${publicationDetails}</p><div class="project-actions">${paperButton(p, 'button paper-link')}${p.youtubeId ? '<a class="button" href="#video">Watch video</a>' : ''}<a class="button citation-link" href="#citation">Citation details</a></div></header>
   <figure class="project-figure"><img src="${esc(imageUrl(p, base))}" alt="${esc(p.imageAlt)}" width="${p.imageWidth || 1100}" height="${p.imageHeight || 620}"><figcaption>${esc(p.imageAlt)}.</figcaption></figure>
-  <div class="project-content"><section class="project-overview"><p class="eyebrow">At a glance</p><h2>${esc(p.question)}</h2><p class="lead">${esc(p.summary)}</p><div class="tags">${p.tags.map(tag => `<span>${esc(tag)}</span>`).join('')}</div></section>${p.youtubeId ? `\n  ${projectVideo(p)}` : ''}
-  <section class="project-section"><h2>The approach</h2><p>${esc(p.approach)}</p></section>
-  <section class="project-section"><h2>${p.findings ? 'Key takeaways' : 'Research highlights'}</h2><ol class="takeaways">${highlights.map((f,i) => `<li><span class="takeaway-num" aria-hidden="true">0${i+1}</span><div><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p></div></li>`).join('')}</ol></section>
-  <p class="source-note">${sourceNote}</p>
+  <div class="project-content"><section class="project-section"><h2>Abstract</h2><p>${esc(p.abstract)}</p></section>
+  <section class="project-section"><h2>Contributions</h2><p>${esc(p.contribution)}</p></section>${p.youtubeId ? `
+  ${projectVideo(p)}` : ''}
+  <section class="project-section"><h2>Results &amp; Discussion</h2><p>${esc(p.results)}</p></section>
   <section class="project-section" id="citation"><div class="section-heading"><h2>Citation</h2><span class="muted">Publication details &amp; BibTeX</span></div>${bibliographicDetails(p)}${citation(p)}</section>
   ${related.length ? `<section class="project-section related"><h2>Related research</h2>${related.map(other => `<a href="../${other.slug}/"><span>${esc(venueLabel(other))}</span>${esc(other.title)} <span aria-hidden="true">↗</span></a>`).join('')}</section>` : ''}
   </div>`;

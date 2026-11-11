@@ -32,15 +32,9 @@
     "tags": ["VR", "Compliance perception", "Visuo-haptic weighting"],
     "researchKeywords": ["Perception", "Haptic Rendering", "VR"],
     "summary": "When a virtual object looks softer than it feels, the direction of the press can change which cue a person trusts. The effect depends on how far apart the visual and haptic cues are.",
-    "question": "When judging softness in VR, do people rely more on what they see or what they feel?",
-    "approach": "Participants judged the compliance of virtual objects while the displayed deformation and the force they felt implied different stiffnesses. The experiment compared two sizes of mismatch across three directions of interaction.",
-    "findings": [
-      {"title": "Vision carried more weight when pressing down", "text": "With the larger mismatch, top-down judgments leaned more on the deformation people saw."},
-      {"title": "Touch carried more weight front to back", "text": "At that same mismatch, force feedback had more influence during front-back interaction. Side-to-side judgments drew more evenly on both cues."},
-      {"title": "Smaller discrepancies reduced the directional effect", "text": "Direction made little difference when the cues were closer together. The results suggest accounting for the direction of a press when deciding how to render a deformable object."}
-    ],
-    "source": "https://ieeexplore.ieee.org/abstract/document/11755405",
-    "sourceLabel": "Published abstract · IEEE Xplore",
+    "abstract": "In Virtual Reality (VR), users judge object compliance by combining visually displayed deformation with physically delivered force, yet it remains unclear whether both modalities require equally high rendering fidelity across interaction conditions, particularly when rendering resources are limited. We investigated visuo-haptic weighting in compliance perception across interaction directions and visuo-haptic discrepancy magnitudes. Two discrepancy magnitudes were tested across three representative interaction directions: a smaller magnitude comparable to values commonly used in sensory-weighting studies and a larger magnitude that remained perceptually acceptable in VR. Under the larger discrepancy, visual influence was greater in vertical top-down interaction, whereas haptic influence was greater in front-back interaction, while side-to-side interaction showed more balanced weighting. Directional effects were minimal under the smaller discrepancy. Together, these findings suggest that compliance rendering in VR may benefit from accounting for interaction direction, rather than assuming a single uniform visuo-haptic balance across interaction conditions.",
+    "contribution": "The study separates two factors that can change a compliance judgment: the direction of the hand movement and the size of the mismatch between deformation and force.",
+    "results": "When pressing downward, participants relied more on visible deformation. In front-to-back movements, they relied more on force. Side-to-side judgments were more balanced. These differences were small when the cues agreed more closely, suggesting that rendering fidelity can be allocated according to the interaction.",
     "citationKey": "Jung26Compliance"
   },
   {
@@ -73,15 +67,9 @@
     "tags": ["Audiovisual-to-haptic", "Real-time rendering", "In-vehicle experience"],
     "researchKeywords": ["Haptic Rendering", "System", "Multimodal AI"],
     "summary": "CineHaptic turns an action scene into vibrations a passenger can feel through a car seat. It works during playback without a manually authored haptic track.",
-    "question": "Which movie sounds should a passenger feel, and where on the seat?",
-    "approach": "The system rates each sound event on a four-level scale, then uses the image and sound together to locate its source on screen. The event's importance determines how many of the six seat actuators fire. Its location guides which ones fire, and the sound shapes how the vibration rises and falls.",
-    "findings": [
-      {"title": "Selective feedback", "text": "The seat can skip dialogue and background noise while reproducing impacts at positions that correspond to their sources on screen."},
-      {"title": "Timing held over an hour of playback", "text": "During a 60-minute movie, the seat response lagged the audiovisual event by an average of 38.47 ms."},
-      {"title": "Matching the location improved immersion", "text": "In a parked vehicle, 28 participants compared four rendering methods across six clips. They rated the version that combined event importance and location highest for immersion and preference."}
-    ],
-    "source": "https://dl.acm.org/doi/10.1145/3830398.3830655",
-    "sourceLabel": "Published paper · ACM Digital Library",
+    "abstract": "Haptic feedback significantly enriches cinematic experiences, but existing manual authoring and offline generation methods lack the scalability required for rapidly growing streaming media libraries. To address this, we present CineHaptic, a real-time system that automatically generates haptic effects by extracting the semantic context of audiovisual media for immersive in-vehicle 4D experiences. For each sound event, the system classifies its semantic salience into a four-level hierarchy, determining the necessity and intensity of haptic actuation. Concurrently, a cross-modal audiovisual analysis module estimates the sound’s spatial origin in the scene. CineHaptic then seamlessly synthesizes this semantic and spatial data into coherent spatiotemporal patterns, delivered through a custom six-actuator haptic seat. System-level evaluations confirm strict adherence to real-time processing and multisensory synchrony requirements over full-length cinematic content. Furthermore, an in-car user study demonstrates that haptic feedback integrating semantic salience, spatial location, and temporal dynamics significantly enhances user immersion and preference compared to baseline methods. Ultimately, CineHaptic provides a fully automated, scalable pipeline for high-fidelity multisensory rendering, tailored for next-generation in-vehicle entertainment.",
+    "contribution": "CineHaptic assigns each sound event a salience level, locates its source in the image and maps its timing and intensity to six actuators in a car seat. The system generates a haptic track during playback, without requiring an author to annotate each scene.",
+    "results": "In a parked vehicle, 28 participants compared four rendering methods. Filtering low-salience sounds reduced distracting vibrations. Matching the seat vibration to the event’s on-screen location produced the highest immersion and preference ratings. A full-length playback test also showed that the system could keep the seat feedback synchronized.",
     "citationKey": "Kim26CineHaptic"
   },
   {
@@ -100,20 +88,16 @@
     "pages": "249–261",
     "doi": "10.1109/TOH.2026.3667214",
     "paper": "https://ieeexplore.ieee.org/abstract/document/11408227",
-    "image": "IEEE_TOH_26_TorsoAziEle.png",
+    "image": "assets/images/torso-directions.png",
+    "imageWidth": 930,
+    "imageHeight": 530,
     "imageAlt": "Torso-based vibrotactile display for azimuth and elevation cues",
     "tags": ["Spatial haptics", "Directional perception", "Vibrotactile illusion"],
     "researchKeywords": ["Haptic Perception", "Vibrotactile", "Haptic Suit"],
     "summary": "How can vibrations on the torso communicate directions in 3D space? Four perceptual experiments connect tactile locations to perceived azimuth and elevation.",
-    "question": "A vibration has a location on the skin, but what direction does it suggest in the space around us?",
-    "approach": "The study examines both stimulus identification and direction association, using physical vibrations and virtual locations created by the funneling illusion. Azimuth and elevation are evaluated within a shared experimental framework.",
-    "findings": [
-      {"title": "More directions, fewer actuators", "text": "Illusory stimuli can convey directional information while reducing the number of physical tactors."},
-      {"title": "Perception has spatial biases", "text": "Azimuth shows a lateral bias; elevation shows a downward bias on the back, particularly the upper back."},
-      {"title": "A basis for directional rendering", "text": "Regression models relate stimulus positions to perceived angles. Overall, azimuth cues communicate direction more effectively than elevation cues."}
-    ],
-    "source": "https://pubmed.ncbi.nlm.nih.gov/41729660/",
-    "sourceLabel": "Published abstract · PubMed",
+    "abstract": "This paper investigates egocentric directional perception of azimuth and elevation in response to torso-based vibrotactile stimuli for both stimulus identification and direction association under a common experimental framework. We conducted four perceptual experiments that examined the two tasks for azimuth and elevation, using real vibrations and illusory stimuli generated by the funneling illusion. The results demonstrated that adding illusory stimuli effectively conveyed directional information with fewer tactors than using only real stimuli. Azimuth perception revealed a lateral bias, whereas elevation perception exhibited a downward bias on the dorsal torso, particularly in the upper back. However, both azimuth and elevation cues were generally consistent across vertical and horizontal torso locations. Additionally, we estimated regression models for both egocentric angles and showed that perceived directions could be estimated from actual stimulus positions. Correlation analysis revealed a weak relationship between azimuth and elevation perceptual errors, suggesting that these dimensions are processed with near-independence. Across all findings, azimuth cues proved to be more effective than elevation cues in conveying directional information. This study provides a comprehensive understanding of egocentric directions and offers practical insights for the design of torso-based vibrotactile displays.",
+    "contribution": "Four experiments distinguish recognizing a location on the skin from associating that location with a direction in space. The resulting regression models map stimulation sites to perceived azimuth and elevation for both physical and illusory vibration locations.",
+    "results": "Azimuth judgments tended toward the sides, and vibrations high on the back felt lower than their intended elevation. Errors in the two dimensions were only weakly related. Azimuth cues conveyed direction more effectively overall. The measured biases can guide placement when a vest must point toward a particular angle.",
     "citationKey": "Kim26Egocentric"
   },
   {
@@ -136,20 +120,16 @@
     "publisher": "Springer Nature Switzerland",
     "doi": "10.1007/978-3-031-70058-3_1",
     "paper": "https://link.springer.com/chapter/10.1007/978-3-031-70058-3_1",
-    "image": "EuroHaptics_24_AziEle.png",
+    "image": "assets/images/azimuth-elevation.png",
+    "imageWidth": 1706,
+    "imageHeight": 675,
     "imageAlt": "Experimental torso layouts for identifying azimuth and elevation stimuli",
     "tags": ["Torso display", "Spatial resolution", "Perceptual study"],
     "researchKeywords": ["Haptic Perception", "Vibrotactile", "Haptic Suit"],
     "summary": "Measuring how accurately people identify horizontal and vertical tactile locations, and what happens when illusory stimuli double the available positions.",
-    "question": "Does adding virtual tactile locations increase the information a torso display can communicate?",
-    "approach": "Two absolute-identification experiments compare azimuth and elevation. Physical actuators provide real stimuli, and the funneling illusion adds intermediate locations.",
-    "findings": [
-      {"title": "Reliable physical locations", "text": "Identification accuracy exceeds 95.6% when physical stimuli represent six to eight directions."},
-      {"title": "A resolution–accuracy trade-off", "text": "Doubling the spatial resolution with illusory stimuli reduces accuracy to 74.1–77.8%."},
-      {"title": "More locations do not guarantee more information", "text": "Estimated information transfer remains similar across conditions, informing the design of torso-based navigation cues."}
-    ],
-    "source": "https://link.springer.com/chapter/10.1007/978-3-031-70058-3_1",
-    "sourceLabel": "Published abstract · Springer Nature",
+    "abstract": "This study investigates the human recognition performance of vibrotactile stimuli applied on the torso along azimuth or elevation under the context of tactile egocentric directional cueing. We conducted two absolute identification experiments for azimuth and elevation, respectively, using real tactile stimuli generated by physical actuators and illusory stimuli rendered by funneling illusion. For both azimuth and elevation, the recognition accuracies were very high, over 95.6%, when only real stimuli were used to indicate 6-8 directions. However, combining the real stimuli with the illusory ones to double the spatial resolution resulted in significantly lower accuracies between 74.1% and 77.8%. The estimated information transfer (IT) values also remained very similar. Using identical methods, our results quantify the human identification performance of torso-distributed tactile stimuli for azimuth or elevation. The detailed results provide general guidelines for designing torso-based tactile systems to enhance spatial awareness and navigation.",
+    "contribution": "Two matched experiments compare horizontal and vertical cue identification on the torso. Adding apparent vibration locations between adjacent motors makes it possible to test twice as many positions with the same hardware.",
+    "results": "With physical locations alone, participants identified six to eight directions with over 95.6% accuracy. Doubling the number of positions with illusory cues reduced accuracy to 74.1–77.8%, with little change in estimated information transfer. A vest can therefore offer finer spacing without necessarily conveying more distinguishable information.",
     "citationKey": "Kim25Azimuth"
   },
   {
@@ -169,20 +149,16 @@
     "pages": "72–79",
     "doi": "10.1109/TOH.2024.3357885",
     "paper": "https://ieeexplore.ieee.org/document/10413623",
-    "image": "IEEE_TOH_24_Telemetry.jpg",
+    "image": "assets/images/telemetry-haptics.jpg",
+    "imageWidth": 8388,
+    "imageHeight": 2237,
     "imageAlt": "Telemetry-based haptic rendering pipeline and racing simulator",
     "tags": ["Haptic rendering", "Game telemetry", "User experience"],
     "researchKeywords": ["Haptic Rendering", "System", "Game"],
     "summary": "Turning racing-game telemetry into tactile engine, collision, and road effects, with independent control over each part of the driving experience.",
-    "question": "Can the state of a racing game provide more useful haptic effects than its mixed audio signal?",
-    "approach": "A separate rendering process reads the game's exported telemetry. Engine, collision, and road effects are generated individually, combined with adjustable weights, and delivered through a haptic driving simulator.",
-    "findings": [
-      {"title": "Effects tied to game events", "text": "Separate telemetry signals allow engine, collision, and road sensations to be designed and adjusted individually."},
-      {"title": "A working driving platform", "text": "The system connects the rendering pipeline to bass shakers installed on the simulator and seat."},
-      {"title": "User-experience evaluation", "text": "Comparison with sound-based rendering examines the benefits and tuning trade-offs of telemetry-driven effects."}
-    ],
-    "source": "https://cse.postech.ac.kr/csepostech/research/latest-research.do?articleNo=21070&mode=view",
-    "sourceLabel": "Research highlight · POSTECH CSE",
+    "abstract": "Many recent games, such as racing and flight games, open their game telemetry data to users by storing them in the local memory. Such telemetry data can provide useful information for haptic rendering, and this advantage has been exploited by the industry. This approach applies to any applications that export telemetry data in run time. The haptic rendering module operates as a separate process that accesses the telemetry data in parallel with the application. It is simple, efficient, and modular while retaining the application intact. We examine the approach’s viability for user experience improvement by developing three telemetry-based haptic rendering algorithms for car racing games. They express the car engine response, collisions with external objects, and the road surface texture, respectively. Building a haptics-enabled driving platform, we conducted a user study comparing gaming experiences between our telemetry-based algorithms and conventional sound-to-tactile conversion algorithms. The results showed that the telemetry-based effects elicited better experiences than the sound-based effects.",
+    "contribution": "Three rendering algorithms translate engine response, impacts and road texture into independently adjustable vibrations. A separate process reads the game telemetry and drives the simulator, so the game itself needs no modification.",
+    "results": "Participants rated the telemetry-driven effects more favorably overall than effects derived from game audio. Separating the three sources lets designers tune the feel of a collision without also changing the engine or road vibration. The comparison was against sound-based methods and did not rank commercial telemetry systems.",
     "citationKey": "Lee24Telemetry"
   },
   {
@@ -200,20 +176,16 @@
     "publisher": "IEEE",
     "doi": "10.1109/WHC56415.2023.10224391",
     "paper": "https://ieeexplore.ieee.org/abstract/document/10224391",
-    "image": "IEEE_WHC_232_Fullbody.png",
+    "image": "assets/images/full-body-information.png",
+    "imageWidth": 980,
+    "imageHeight": 963,
     "imageAlt": "Full-body vibrotactile stimulation and sequential vibration patterns",
     "tags": ["Full-body haptics", "Information transfer", "Sequential stimuli"],
     "researchKeywords": ["Haptic Perception", "Vibrotactile", "Full-Body"],
     "summary": "Quantifying how much information people can distinguish when one, two, or three vibrations are delivered in sequence across the body.",
-    "question": "How does the length of a vibration sequence change the amount of information a person can recognize?",
-    "approach": "Absolute-identification experiments compare sequences of one to three vibrations. Information-transfer estimates characterize a large stimulus set while accounting for the practical limits of experimental sampling.",
-    "findings": [
-      {"title": "Sequence length as a design variable", "text": "The study measures how distinguishable information changes with the number of sequential vibrations."},
-      {"title": "Estimating a large stimulus space", "text": "Combined estimation methods make it possible to study many patterns with a limited number of observations."},
-      {"title": "Guidance for full-body messages", "text": "Information capacity and commonly confused patterns help designers choose effective sequences. Frequency and intensity variation remain outside this study's scope."}
-    ],
-    "source": "https://cse.postech.ac.kr/csepostech/research/latest-research.do?article.offset=170&articleLimit=9&articleNo=21095&mode=view",
-    "sourceLabel": "Research highlight · POSTECH CSE",
+    "abstract": "Full-body vibrotactile stimuli are a promising means by which haptic interaction designers can substantially increase information transfer (IT). This paper reports the IT values of full-body sequential vibrotactile stimuli applied to ten body sites. We designed 10, 100, and 1,000 stimuli by increasing the number of vibrations in a sequence from one to three and estimated IT for each condition. We also obtained the lower and upper bounds of the IT estimates using several empirical methods to compensate for their biases. The IT estimate for each condition was 3.32, 6.55, and 8.05 bits, the highest IT ever reported in the haptics literature. This study is the first attempt to quantify the IT of full-body vibrotactile sequences, providing guidelines for the design of effective full-body vibrotactile stimuli.",
+    "contribution": "The study varies sequence length while holding the set of ten stimulation sites fixed. It compares empirical estimates and their bounds to measure information transfer even when three vibrations produce 1,000 possible sequences.",
+    "results": "Estimated information transfer rose from 3.32 bits for one vibration to 6.55 for two and 8.05 for three. The third vibration increased capacity, but by less than the second. These estimates give designers a basis for choosing how many successive body locations to use for a tactile message.",
     "citationKey": "Park23FullBody"
   },
   {
@@ -232,20 +204,16 @@
     "publisher": "IEEE",
     "doi": "10.1109/WHC56415.2023.10224430",
     "paper": "https://ieeexplore.ieee.org/abstract/document/10224430",
-    "image": "IEEE_WHC_23_TorsoSimultaneoursStimuli.png",
+    "image": "assets/images/torso-patterns.png",
+    "imageWidth": 1133,
+    "imageHeight": 568,
     "imageAlt": "Haptic vest and spatial vibration patterns on the front, back, and horizontal torso",
     "tags": ["Spatial patterns", "Haptic vest", "Tactile recognition"],
     "researchKeywords": ["Haptic Perception", "Vibrotactile", "Haptic Suit"],
     "summary": "Investigating which simultaneous vibration patterns people can recognize on the torso, toward a practical vocabulary for haptic vests.",
-    "question": "Which simple spatial patterns remain distinguishable when several torso actuators vibrate together?",
-    "approach": "Sixteen on/off patterns are tested in front, back, and horizontal torso configurations. The study compares recognition across layouts and numbers of active motors.",
-    "findings": [
-      {"title": "High overall recognition", "text": "Recognition accuracy exceeds 91%, with performance varying by the number of active vibrations."},
-      {"title": "A measurable tactile vocabulary", "text": "Estimated information transfer is 3.48–3.66 bits, equivalent to roughly 11–12 perfectly distinguishable patterns."},
-      {"title": "Patterns grounded in perception", "text": "The results inform sets of distinguishable patterns for torso-based communication through haptic vests."}
-    ],
-    "source": "https://cse.postech.ac.kr/csepostech/research/latest-research.do?article.offset=160&articleLimit=9&articleNo=21094&mode=view",
-    "sourceLabel": "Research highlight · POSTECH CSE",
+    "abstract": "This paper presents an experimental study on the fundamental human recognition performance of spatial tactile patterns applied on the torso. The patterns are made by either activating or deactivating four vibration actuators fastened to the body surface in a rectangular shape. Three body areas are considered for stimulation: the torso’s front (chest and stomach), back, and waist. A perceptual experiment shows that the human recognition accuracy of the spatial tactile patterns is high on the torso, over 91%. The accuracy depends on the stimulated body area and the number of simultaneously activated vibrations. In addition, the estimated information transfer ranges from 3.48 bits to 3.66 bits, indicating that the torso can transmit 11–12 spatial patterns without errors. These results can contribute to designing spatial tactile patterns that are effective for recently emerging haptic vests.",
+    "contribution": "The experiments test all 16 on/off patterns of four actuators at three torso locations. Confusion matrices identify which simultaneous patterns can serve as distinct signals in a haptic vest.",
+    "results": "Mean recognition was about 95% on the front and back and 91% around the waist. Estimated information transfer was 3.48–3.66 bits, equivalent to roughly 11–12 perfectly distinguishable patterns. Both the layout and the number of motors activated at once affected recognition.",
     "citationKey": "Kim23Patterns"
   }
 ]

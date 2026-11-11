@@ -47,6 +47,18 @@
       "source": "https://2023.worldhaptics.org/"
     }
   },
+  "awards": [
+    {
+      "id": "A2",
+      "date": "2023",
+      "summary": "Our team received an Encouragement Award in the Korean Haptics Society’s Hyundai Student Innovation Contest."
+    },
+    {
+      "id": "A1",
+      "date": "2023",
+      "summary": "Our paper received an Outstanding Paper Award at HCI Korea 2023."
+    }
+  ],
   "patents": [
     {
       "id": "P2",
@@ -57,7 +69,7 @@
     {
       "id": "P1",
       "title": "Apparatus And Method For Controlling Haptic Feedback",
-      "summary": "Our US patent application on haptic feedback control was published.",
+      "summary": "Our US patent application “Apparatus and Method for Controlling Haptic Feedback” was published.",
       "date": "2025-06-19",
       "label": "Jun 19, 2025",
       "kind": "Published",
