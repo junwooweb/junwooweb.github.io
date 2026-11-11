@@ -157,7 +157,7 @@ function publication(p, base = '') {
     <div class="pub-main">
       <div class="pub-venue"><span class="pub-venue-labels">${venueBadge(p)}${statusBadge(p)}</span>${researchKeywords(p)}</div>
       <h3 class="pub-title"><span class="pub-badge${p.type === 'conference' ? ' conf' : ''}">${p.id}</span>${titleLink}</h3>
-      <div class="pub-authors">${authors(p).replaceAll('<strong>', '<span class="me">').replaceAll('</strong>', '</span>')}${contributionNote(p)}</div>
+      <div class="pub-authors">${authors(p).replaceAll('<strong>', '<span class="me">').replaceAll('</strong>', '</span>')}${contributionNote(p)}${isFirstAuthor(p) ? ' <span class="author-role">1st author</span>' : ''}</div>
       <div class="pub-venue-full">${venueLineMarkup(p)}</div>
       ${publicationContext(p)}
       <div class="publication-links">${paperButton(p)}<a class="project-link" href="${project}">Project</a>${copyButton(p, 'Citation', 'cite-copy')}<p class="copy-status" role="status" aria-live="polite"></p></div>
@@ -228,7 +228,7 @@ function paperUpdate(p) {
     title: p.title || p.topic,
     topic: p.ongoing ? p.topic : null,
     summary,
-    role: isFirstAuthor(p) ? '1st author' : 'Co-author',
+    role: isFirstAuthor(p) ? (p.ongoing ? '1st author' : null) : 'Co-author',
     firstAuthor: Boolean(isFirstAuthor(p)),
     year: p.year
   };
@@ -363,7 +363,7 @@ for (const p of papers) {
   const related = papers.filter(other => other.slug !== p.slug && (other.tags.some(tag => p.tags.includes(tag)) || (p.slug.includes('torso') && other.slug === 'azimuth-elevation'))).slice(0,2);
   const publicationDetails = venueLineMarkup(p);
   const content = `<a class="back-link" href="${base}publications.html#${p.id.toLowerCase()}">All publications</a>
-  <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors" data-first-author="${Boolean(isFirstAuthor(p))}">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${publicationDetails}</p><div class="project-actions">${paperButton(p, 'button paper-link')}${p.youtubeId ? '<a class="button video-link" href="#video">Watch video</a>' : ''}<a class="button citation-link" href="#citation">Citation details</a></div></header>
+  <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors" data-first-author="${Boolean(isFirstAuthor(p))}">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${publicationDetails}</p>${researchKeywords(p)}<div class="project-actions">${paperButton(p, 'button paper-link')}${p.youtubeId ? '<a class="button video-link" href="#video">Watch video</a>' : ''}<a class="button citation-link" href="#citation">Citation details</a></div></header>
   <figure class="project-figure"><img src="${esc(imageUrl(p, base))}" alt="${esc(p.imageAlt)}" width="${p.imageWidth || 1100}" height="${p.imageHeight || 620}"><figcaption>${esc(p.imageAlt)}.</figcaption></figure>
   <div class="project-content"><section class="project-section"><h2>Abstract</h2><p>${esc(p.abstract)}</p></section>
   <section class="project-section"><h2>Contributions</h2><p>${esc(p.contribution)}</p></section>${p.youtubeId ? `
