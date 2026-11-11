@@ -32,7 +32,7 @@ html { scroll-padding-top: 5rem; }
 .research-update { display: grid; grid-template-columns: 5.8rem minmax(0, 1fr); align-items: stretch; min-height: 4.4rem; padding: 0; gap: 0; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; color: #334155; font-size: .84rem; overflow: hidden; }
 .research-update-category { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2rem; margin: 0; padding: .65rem .3rem; border-right: 1px solid #e5e7eb; background: #f8fafc; color: #475569; font-size: .85rem; font-weight: 800; text-align: center; }
 .research-update-category small { color: inherit; font-size: .67rem; font-weight: 600; }
-.research-update[data-update-category="paper"] { --update-ink: var(--paper-ink); --update-bg: var(--paper-bg); }
+.research-update[data-update-category="paper"] { --update-ink: var(--paper-ink); --update-bg: #f3f4f6; }
 .research-update[data-update-category="patent"] { --update-ink: var(--patent-ink); --update-bg: var(--patent-bg); }
 .research-update[data-update-category="award"] { --update-ink: var(--award-ink); --update-bg: var(--award-bg); }
 .research-update-category { color: var(--update-ink); background: var(--update-bg); }
@@ -51,7 +51,7 @@ html { scroll-padding-top: 5rem; }
 .news-venue { color: #111; font-weight: 700; text-decoration: underline; text-underline-offset: .16em; }
 .news-venue:hover, .news-venue:focus-visible { color: #111; text-decoration-thickness: 2px; }
 .research-update-link:hover { color: #1e293b; text-decoration: underline; text-underline-offset: 3px; }
-.research-update-role { color: #64748b; font-size: .72rem; white-space: nowrap; }
+.research-update-role { font-size: .67rem; white-space: nowrap; }
 .research-update[data-first-author="false"] .research-update-role,
 .ongoing-publication[data-first-author="false"] .author-role { display: inline-block; padding: 2px 7px; border: 1px solid #d1d5db; border-radius: 5px; color: #374151; background: #f3f4f6; font-weight: 600; line-height: 1.5; }
 .research-update[data-first-author="true"] .research-update-role,
