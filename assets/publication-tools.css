@@ -3,9 +3,9 @@
 html { scroll-padding-top: 5rem; }
 :focus-visible { outline: 3px solid #2563eb; outline-offset: 4px; }
 :root { --paper-card-bg: #f1f3f5; --paper-card-accent: #83929e; }
-.research-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; margin-bottom: 1.2rem; }
+.research-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; margin-bottom: 1.2rem; }
 .papers-stat { --stat-ink: var(--paper-ink); --stat-bg: var(--paper-card-bg); --stat-accent: var(--paper-card-accent); }
-.authors-stat { --stat-ink: var(--first-author-color); --stat-bg: var(--first-author-background); }
+.first-author-count { font-size: .85rem; font-weight: 600; letter-spacing: normal; vertical-align: middle; white-space: nowrap; }
 .patents-stat { --stat-ink: var(--patent-ink); --stat-bg: var(--patent-bg); }
 .research-stat { padding: .9rem .8rem; border: 1px solid #dce2e6; border-top: 4px solid var(--stat-accent, var(--stat-ink)); border-radius: 10px; background: var(--stat-bg); color: var(--stat-ink); }
 .research-stat-label { margin: 0 0 .65rem; min-height: 2.4em; font-size: clamp(1.05rem, 1.35vw, 1.3rem); font-weight: 700; line-height: 1.2; text-wrap: balance; }
@@ -67,7 +67,7 @@ html { scroll-padding-top: 5rem; }
 .news-venue:hover, .news-venue:focus-visible { color: #102e5d; text-decoration-thickness: 2px; }
 .research-update-link:hover { color: #1e293b; text-decoration: underline; text-underline-offset: 3px; }
 .research-update-role { display: inline-block; padding: 1px 6px; border: 1px solid #d1d5db; border-radius: 5px; background: #f3f4f6; color: #374151; font-size: .72rem; font-weight: 700; line-height: 1.5; vertical-align: baseline; }
-.research-update[data-first-author="true"] .research-update-role { color: #fff; background: var(--paper-ink); border-color: var(--paper-ink); }
+.research-update[data-first-author="true"] .research-update-role, .first-author-count .research-update-role { color: #fff; background: var(--paper-ink); border-color: var(--paper-ink); }
 .research-update-content .research-update-topic { margin-top: .25rem; color: #64748b; font-size: .73rem; }
 .research-submitted-count { margin-top: .5rem; color: #475569; font-size: .8rem; font-weight: 400; line-height: 1.5; }
 .research-update-date { display: inline-block; margin-top: .2rem; color: #64748b; font-size: .7rem; font-variant-numeric: tabular-nums; }
