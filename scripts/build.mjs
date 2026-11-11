@@ -270,7 +270,7 @@ function updateMessage(update) {
   if (url && update.category === 'Paper' && !update.topic) {
     const titleLink = `<a class="news-paper" href="${esc(update.project)}">“${esc(update.title)}”</a>`;
     const accepted = update.type === 'conference' ? 'accepted to' : 'accepted for publication in';
-    return `${titleLink} was ${accepted} ${external(url, esc(venue), 'news-venue')}.`;
+    return `The ${update.type === 'conference' ? 'conference' : 'journal'} paper ${titleLink} was ${accepted} ${external(url, esc(venue), 'news-venue')}.`;
   }
   if (url && update.category === 'Award' && summary.includes(venue)) {
     const at = summary.lastIndexOf(venue);
@@ -288,11 +288,10 @@ function updateMessage(update) {
 function researchUpdateList(updates, { timeline = false } = {}) {
   return `<ol class="research-updates-list">${updates.map(update => {
     const period = update.date
-      ? `<time datetime="${esc(update.date)}"${update.endDate ? ` data-end-date="${esc(update.endDate)}"` : ''}>${esc(update.label || update.date)}</time>${update.kind ? `<small>${esc(update.kind)}</small>` : ''}`
+      ? `<time datetime="${esc(update.date)}"${update.endDate ? ` data-end-date="${esc(update.endDate)}"` : ''}>${esc(update.label || update.date)}</time>`
       : esc(update.dateNote || '');
-    const date = !period ? '' : update.dateLink
-      ? `<a class="research-update-date" href="${esc(update.dateLink)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(update.label || update.date)} — ${update.category === 'Paper' ? 'view paper' : 'view patent'}">${period}</a>`
-      : `<span class="research-update-date">${period}</span>`;
+    const date = period ? `<span class="research-update-date">${period}</span>` : '';
+    const sourceLink = timeline && update.dateLink ? ' ' + external(update.dateLink, 'Link', 'news-source') : '';
     const type = update.type || update.category.toLowerCase();
     const icon = { Paper: '📄', Award: '🏆', Patent: '💡', 'Travel Support': '✈️' }[update.category];
     const iconMarkup = `<span aria-hidden="true">${icon}</span>`;
@@ -303,10 +302,10 @@ function researchUpdateList(updates, { timeline = false } = {}) {
     return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-update-type="${type}" data-first-author="${Boolean(update.firstAuthor)}">
       ${timeline ? date : ''}
       <div class="research-update-category">
-        <span>${update.category}</span>${typeLabel ? `<small>${typeLabel}</small>` : ''}
+        <span>${timeline && update.type === 'travel' ? 'Support' : update.category}</span>${typeLabel && !(timeline && update.category === 'Paper') ? `<small>${typeLabel}</small>` : ''}
       </div>
       <div class="research-update-content">
-        <p>${iconMarkup}&nbsp;${roleBadge}${updateMessage(update)}</p>
+        <p>${iconMarkup}&nbsp;${roleBadge}${updateMessage(update)}${sourceLink}</p>
         ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : ''}
       </div>
     </li>`;
