@@ -14,3 +14,4 @@
 }
 
 .pub-keywords li { padding: .12rem .45rem; color: #475569; border: 1px solid #d5d9df; border-radius: 6px; background: #f2f3f5; white-space: nowrap; }
+.citation-box + .citation-box { margin-top: 1rem; }

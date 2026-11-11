@@ -118,12 +118,13 @@ function citation(p) {
     { label: 'v1 · Full journal name', button: 'Copy v1', suffix: '', text: full },
     { label: 'v2 · Abbreviated journal name', button: 'Copy v2', suffix: '-v2', text: full.replace(/^(\s*journal\s*=\s*)\{[^}]+\}/im, `$1{${abbreviation}}`) }
   ] : [{ label: 'BibTeX', button: 'Copy BibTeX', suffix: '', text: full }];
-  return `<div class="citation-box" data-citation>
-    ${versions.map(({ label, button, suffix, text }) => `<div class="citation-toolbar">
+  return `<div data-citation>
+    ${versions.map(({ label, button, suffix, text }) => `<div class="citation-box" role="group" aria-label="${label}">
+    <div class="citation-toolbar">
       <span class="citation-label">${label}</span>
       ${copyButton(p, button, 'button small', suffix)}<p class="copy-status" role="status" aria-live="polite"></p>
     </div>
-    <pre id="bibtex-${p.id.toLowerCase()}${suffix}" data-format="bibtex" tabindex="0" aria-label="${label} citation for ${esc(p.id)}"><code>${esc(text)}</code></pre>`).join('\n')}
+    <pre id="bibtex-${p.id.toLowerCase()}${suffix}" data-format="bibtex" tabindex="0" aria-label="${label} citation for ${esc(p.id)}"><code>${esc(text)}</code></pre></div>`).join('\n')}
     <p class="citation-source">${p.bibtexFile ? `BibTeX: ${external(p.paper || p.bibtexSource, esc(p.bibtexSourceLabel || 'Publisher export'))}` : `Provisional citation · ${p.status === 'Accepted' ? 'Accepted' : 'Bibliographic details pending'}`}</p>
   </div>`;
 }
