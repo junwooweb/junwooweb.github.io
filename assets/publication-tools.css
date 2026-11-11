@@ -21,10 +21,10 @@ html { scroll-padding-top: 5rem; }
 .research-stat { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: .85rem; padding: .9rem .8rem; border: 1px solid #dce2e6; border-top: 4px solid var(--stat-accent, var(--stat-ink)); border-radius: 10px; background: var(--stat-bg); color: var(--stat-ink); }
 .stat-summary { align-self: center; }
 .stat-details { display: grid; align-content: center; min-width: 0; padding-left: .85rem; border-left: 1px solid #d5dade; }
-.research-stat-label { margin: 0 0 .65rem; font-size: 1.05rem; font-weight: 650; line-height: 1.35; }
+.research-stat-label { margin: 0 0 .65rem; font-size: clamp(1.25rem, 3.6cqi, 1.5rem); font-weight: 700; line-height: 1.25; }
 .research-stat-value { font-size: 2.25rem; font-weight: 800; line-height: 1; letter-spacing: -.04em; }
 @container (max-width: 30rem) {
-  .research-stat { gap: .5rem; }
+  .research-stat { grid-template-columns: minmax(min-content, 1fr) minmax(0, 2fr); gap: .5rem; }
   .stat-details { padding-left: .6rem; }
   .stat-details .publication-venues > div { display: flex; flex-wrap: wrap; gap: .2rem .45rem; }
   .research-stat-value { font-size: 1.85rem; }
