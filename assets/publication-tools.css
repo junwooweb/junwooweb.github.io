@@ -32,7 +32,9 @@ html { scroll-padding-top: 5rem; }
 .research-update-link { color: #334155; font-weight: 500; }
 .news-paper { color: #334155; font-weight: 600; text-decoration: underline; text-underline-offset: .17em; }
 .news-paper:hover, .news-paper:focus-visible { color: #153e75; text-decoration-thickness: 2px; }
-.news-venues { margin: 0 0 1rem; font-size: .9rem; }
+#news .research-updates-header { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 1.2rem; }
+#news .research-updates-hint { grid-column: 1 / -1; justify-self: end; }
+.news-venues { margin: 0; font-size: .9rem; }
 .news-venues > div { display: grid; grid-template-columns: 6rem minmax(0,1fr); gap: .5rem; margin: .3rem 0; }
 .news-venues dt { font-weight: 700; }
 .news-venues dd { margin: 0; }

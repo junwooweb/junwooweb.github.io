@@ -254,7 +254,7 @@ nav { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bot
     line-height: 1.5;
     font-size: 1rem;
 }
-/* 논문 제목 링크 — 기본 밑줄 + ↗ 아이콘으로 클릭 가능 표시 */
+/* 논문 제목 링크 — 기본 밑줄으로 클릭 가능 표시 */
 .pub-title a {
     color: var(--text-main);
     border-bottom: 1px solid #cbd5e1;
@@ -262,14 +262,6 @@ nav { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bot
     transition: color 0.2s, border-color 0.2s;
 }
 .pub-title a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-.pub-title a::after {
-    content: ' ↗';
-    font-size: 0.78em;
-    color: #94a3b8;
-    font-weight: 500;
-    transition: color 0.2s;
-}
-.pub-title a:hover::after { color: var(--accent); }
 .pub-authors { color: var(--text-light); font-size: 0.87rem; margin-bottom: 0.25rem; }
 .pub-authors .me { color: var(--text-main); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 .pub-venue { color: var(--accent); font-size: 0.85rem; font-weight: 600; font-style: italic; }
@@ -302,9 +294,9 @@ nav { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bot
     box-shadow: 0 6px 20px rgba(37,99,235,0.18);
     transform: translateY(-3px);
 }
-/* hover 시 "View Paper ↗" 오버레이 */
+/* hover 시 "View Paper" 오버레이 */
 .pub-thumb::after {
-    content: 'View Paper  ↗';
+    content: 'View Paper';
     position: absolute;
     inset: 0;
     background: rgba(30, 64, 175, 0.82);

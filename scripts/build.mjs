@@ -26,7 +26,7 @@ const isFirstAuthor = p => p.firstAuthor ?? (p.authors[0] === 'Junwoo Kim' || p.
 const release = 'https://github.com/junwooweb/junwooweb.github.io/releases/download/images/';
 const site = 'https://junwooweb.github.io/';
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const external = (url, label, cls = '') => `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${label}<span aria-hidden="true"> ↗</span></a>`;
+const external = (url, label, cls = '') => `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${label}</a>`;
 const imageUrl = (p, base = '') => `${base}${p.image}`;
 const portraitDirectory = new URL('assets/images/profile/', root);
 const portraitFiles = (await readdir(portraitDirectory, { withFileTypes: true }))
@@ -280,7 +280,7 @@ function newsVenues() {
     ['Conferences', ["ACM UIST'26", "IEEE ISMAR'26", "IEEE WHC'23", "EuroHaptics'24"]]
   ];
   return `<dl class="news-venues">${groups.map(([label, venues]) => {
-    const links = venues.map(key => external(researchUpdates.venueLinks[key], esc(key.replace(/(?:'\d{2}| 20\d{2})$/, '')), 'news-venue'));
+    const links = venues.map(key => external(researchUpdates.venueLinks[key], esc(key), 'news-venue'));
     return `<div><dt>${label}</dt><dd>${links.join(' · ')}</dd></div>`;
   }).join('')}</dl>`;
 }
@@ -327,7 +327,7 @@ function layout({ title, description, content, base = '', page = '', active = 'h
     <div class="nav-links"><a href="${base}index.html"${active === 'home' ? ' aria-current="page"' : ''}>Home</a><a href="${base}publications.html"${active === 'publications' ? ' aria-current="page"' : ''}>Publications</a></div>
   </nav></header>
   <main id="main" class="container">${content}</main>
-  <footer class="site-footer"><div><a class="wordmark" href="${base}index.html">Junwoo Kim<span class="wordmark-dot">.</span></a><p>Haptics · Human–Computer Interaction · Multimodal AI</p></div><div class="footer-right"><a href="mailto:kjw8515@postech.ac.kr">kjw8515@postech.ac.kr ↗</a><p>© ${new Date().getFullYear()} Junwoo Kim · Ph.D. Student in CSE, POSTECH</p></div></footer>
+  <footer class="site-footer"><div><a class="wordmark" href="${base}index.html">Junwoo Kim<span class="wordmark-dot">.</span></a><p>Haptics · Human–Computer Interaction · Multimodal AI</p></div><div class="footer-right"><a href="mailto:kjw8515@postech.ac.kr">kjw8515@postech.ac.kr</a><p>© ${new Date().getFullYear()} Junwoo Kim · Ph.D. Student in CSE, POSTECH</p></div></footer>
 </body>
 </html>\n`.replace(/[ \t]+$/gm, '');
 }
@@ -353,7 +353,7 @@ for (const p of papers) {
   const base = '../../';
   const related = papers.filter(other => other.slug !== p.slug && (other.tags.some(tag => p.tags.includes(tag)) || (p.slug.includes('torso') && other.slug === 'azimuth-elevation'))).slice(0,2);
   const publicationDetails = venueLineMarkup(p);
-  const content = `<a class="back-link" href="${base}publications.html#${p.id.toLowerCase()}">← All publications</a>
+  const content = `<a class="back-link" href="${base}publications.html#${p.id.toLowerCase()}">All publications</a>
   <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${publicationDetails}</p><div class="project-actions">${paperButton(p, 'button paper-link')}${p.youtubeId ? '<a class="button" href="#video">Watch video</a>' : ''}<a class="button citation-link" href="#citation">Citation details</a></div></header>
   <figure class="project-figure"><img src="${esc(imageUrl(p, base))}" alt="${esc(p.imageAlt)}" width="${p.imageWidth || 1100}" height="${p.imageHeight || 620}"><figcaption>${esc(p.imageAlt)}.</figcaption></figure>
   <div class="project-content"><section class="project-section"><h2>Abstract</h2><p>${esc(p.abstract)}</p></section>
@@ -361,7 +361,7 @@ for (const p of papers) {
   ${projectVideo(p)}` : ''}
   <section class="project-section"><h2>Results &amp; Discussion</h2><p>${esc(p.results)}</p></section>
   <section class="project-section" id="citation"><div class="section-heading"><h2>Citation</h2><span class="muted">Publication details &amp; BibTeX</span></div>${bibliographicDetails(p)}${citation(p)}</section>
-  ${related.length ? `<section class="project-section related"><h2>Related research</h2>${related.map(other => `<a href="../${other.slug}/"><span>${esc(venueLabel(other))}</span>${esc(other.title)} <span aria-hidden="true">↗</span></a>`).join('')}</section>` : ''}
+  ${related.length ? `<section class="project-section related"><h2>Related research</h2>${related.map(other => `<a href="../${other.slug}/"><span>${esc(venueLabel(other))}</span>${esc(other.title)}</a>`).join('')}</section>` : ''}
   </div>`;
   const dir = new URL(`projects/${p.slug}/`, root);
   await mkdir(dir, { recursive:true });
