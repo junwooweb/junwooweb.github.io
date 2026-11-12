@@ -116,7 +116,8 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .profile-gallery { grid-area: portrait; width: 100%; }
 .profile-info { grid-area: identity; min-width: 0; }
 .profile-introduction { grid-area: bio; min-width: 0; container-type: inline-size; text-align: left; }
-.profile-introduction .keyword-box { margin-bottom: 0; justify-content: start; }
+.profile-introduction .keyword-box { margin: 1rem 0 0; justify-content: start; }
+.profile-research-layout .profile-bio { margin: 0; }
 .profile-research-layout { display: grid; align-items: start; gap: 1rem; }
 @container (min-width: 37rem) {
   .profile-research-layout { grid-template-columns: minmax(0, 1fr) clamp(16rem, 31cqi, 19rem); }
