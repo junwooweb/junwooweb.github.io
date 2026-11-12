@@ -108,17 +108,18 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .profile-section {
   display: grid;
   grid-template-columns: clamp(300px, 30vw, 420px) minmax(0, 1fr);
-  grid-template-areas: "sidebar identity" "sidebar bio";
-  grid-template-rows: auto 1fr;
+  grid-template-areas: "portrait identity" "portrait bio" "details details";
+  grid-template-rows: auto 1fr auto;
   align-items: start;
   row-gap: 1.5rem;
 }
-.profile-sidebar { grid-area: sidebar; min-width: 0; }
-.profile-gallery { width: 100%; }
+.profile-gallery { grid-area: portrait; width: 100%; }
 .profile-info { grid-area: identity; min-width: 0; }
 .profile-description { grid-area: bio; min-width: 0; }
+.profile-description .keyword-box { margin-bottom: 0; }
+.profile-details { grid-area: details; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(1.25rem, 3vw, 3rem); }
 .profile-research { text-align: left; }
-.profile-research .profile-subheading, .profile-introduction .profile-subheading { margin-top: 0; }
+.profile-details .profile-subheading, .profile-introduction .profile-subheading { margin-top: 0; }
 .profile-topics { display: grid; gap: .45rem; margin: 0; padding: 0; list-style: none; }
 .profile-topics li { padding: .65rem .85rem; border: 1px solid #e2e5e9; border-radius: 7px; background: #f7f8f9; color: #334155; font-size: .93rem; font-weight: 600; line-height: 1.4; }
 .topic-keywords { display: flex; flex-wrap: wrap; gap: .25rem .35rem; margin-top: .35rem; color: #475569; font-size: .8rem; font-weight: 500; }
@@ -261,14 +262,23 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .profile-section { column-gap: 2rem; }
   .col-left { width: 100%; }
 }
+@media (min-width: 900px) and (max-width: 1024px) {
+  .profile-details { gap: 1rem; }
+  .profile-details .education-current, .profile-details .education-previous { padding-inline: .75rem; }
+  .profile-details .education-degree { font-size: 1rem; }
+  .profile-details .education-degree span, .profile-topics li { font-size: .875rem; }
+  .profile-topics li { padding-inline: .65rem; }
+}
+@media (max-width: 899px) {
+  .profile-details { grid-template-columns: minmax(0, 1fr); }
+}
 @media (max-width: 768px) {
   .research-overview { grid-template-columns: minmax(0, 1fr); }
-  .profile-section { grid-template-columns: minmax(0, 1fr); grid-template-areas: "identity" "sidebar" "bio"; grid-template-rows: auto; }
+  .profile-section { grid-template-columns: minmax(0, 1fr); grid-template-areas: "identity" "portrait" "bio" "details"; grid-template-rows: auto; }
   .profile-gallery { width: min(360px, 100%); margin-inline: auto; }
   .profile-subheading { font-size: 1.35rem; }
   .profile-education, .profile-introduction { text-align: left; }
   .education-current, .education-previous { padding: .9rem 1rem; }
-  .education-degree span { display: block; margin-top: .2rem; }
   /* Match the original stacked mobile intent, overriding its column-specific rule. */
   .col-left .pub-item { flex-direction: column; align-items: flex-start; }
   .col-left .pub-thumb { width: 100%; height: 180px; }
