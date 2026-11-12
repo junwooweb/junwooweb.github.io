@@ -321,6 +321,11 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .research-title { overflow-wrap: anywhere; }
   .nav-menu a { margin-left: 1rem; }
 }
+@media (max-width: 600px), (max-width: 959px) and (max-height: 480px) {
+  .home-page { margin-block-start: .375rem; }
+  .profile-section { --profile-stack-gap: .75rem; row-gap: var(--profile-stack-gap); }
+  .profile-info h1 { margin-block-end: var(--profile-stack-gap); }
+}
 @media (max-width: 480px) {
   .profile-introduction { display: grid; grid-template-areas: "heading" "lead" "topics" "detail"; }
   .profile-introduction h2 { grid-area: heading; }
