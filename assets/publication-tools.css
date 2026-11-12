@@ -67,20 +67,20 @@ html { scroll-padding-top: 5rem; }
 .news-paper:hover, .news-paper:focus-visible { color: var(--update-ink); text-decoration-thickness: 2px; }
 #news .research-updates-hint { margin-left: auto; }
 #news .research-updates-list { gap: 0; }
-#news .research-update { grid-template-columns: 6rem 6rem 1.75rem minmax(0, 1fr); align-items: center; gap: 1rem; min-height: 0; padding: .85rem 0; border: 0; border-radius: 0; background: transparent; }
+#news .research-update { grid-template-columns: 6rem 6rem minmax(0, 1fr); align-items: center; gap: 1rem; min-height: 0; padding: .85rem 0; border: 0; border-radius: 0; background: transparent; }
 #news .research-update-date { margin: 0; font-size: .85rem; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.news-source { display: inline-grid; place-items: center; grid-column: 3; justify-self: start; width: 1.75rem; height: 1.75rem; border-radius: 4px; color: #0675a8; text-decoration: none; }
+.news-source { display: inline-grid; place-items: center; margin-inline-start: .4rem; vertical-align: middle; width: 1.75rem; height: 1.75rem; border-radius: 4px; color: #0675a8; text-decoration: none; }
 .news-source .material-symbols-outlined { font-size: 1.1rem; }
 #news .news-venue { text-decoration: none; }
 .news-source:hover, .news-source:focus-visible { background: #eaf4fa; }
 #news .research-update-category { flex-direction: row; align-items: center; justify-self: start; gap: .3rem; padding: 0; border: 0; background: transparent; }
 #news .research-update-category > span:first-child { padding: .1rem .55rem; border-radius: 4px; background: var(--update-bg); font-size: .78rem; font-weight: 700; }
 #news .research-update-category small { padding-left: .55rem; color: #64748b; font-weight: 400; }
-#news .research-update-content { grid-column: 4; padding: 0; }
+#news .research-update-content { grid-column: 3; padding: 0; }
 #news .research-update-content p { display: grid; grid-template-columns: 1.35rem minmax(0, 1fr); gap: .4rem; align-items: baseline; }
 #news .update-markers { white-space: nowrap; }
 @media (max-width: 600px) {
-  #news .research-update { grid-template-columns: auto auto 1fr; gap: .4rem .85rem; }
+  #news .research-update { grid-template-columns: auto 1fr; gap: .4rem .85rem; }
   #news .research-update-content { grid-column: 1 / -1; }
 }
 .publication-venues { grid-column: 1 / -1; display: grid; grid-template-columns: var(--label-width) minmax(0, 1fr); gap: .45rem; margin: 0; font-size: .85rem; line-height: 1.5; }

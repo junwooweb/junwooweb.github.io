@@ -267,10 +267,11 @@ function updateMessage(update) {
     const link = update.source ? external(update.source, label, 'news-paper') : `<a class="news-paper" href="#${esc(id.toLowerCase())}">${label}</a>`;
     return `${link} ${esc(summary)}`;
   }
-  if (url && update.category === 'Paper' && !update.topic) {
+  if (update.category === 'Paper' && update.project) {
     const titleLink = `<a class="news-paper" href="${esc(update.project)}">“${esc(update.title)}”</a>`;
     const accepted = update.type === 'conference' ? 'accepted to' : 'accepted for publication in';
-    return `The ${update.type === 'conference' ? 'conference' : 'journal'} paper ${titleLink} was ${accepted} ${external(url, esc(venue), 'news-venue')}.`;
+    const venueText = url ? external(url, esc(venue), 'news-venue') : esc(venue);
+    return `The ${update.type === 'conference' ? 'conference' : 'journal'} paper ${titleLink} was ${accepted} ${venueText}.`;
   }
   if (url && update.category === 'Award' && summary.includes(venue)) {
     const at = summary.lastIndexOf(venue);
@@ -306,9 +307,8 @@ function researchUpdateList(updates, { timeline = false } = {}) {
       <div class="research-update-category">
         <span>${timeline && update.type === 'travel' ? 'Support' : update.category}</span>${timeline ? roleBadge : ''}${typeLabel && !timeline ? `<small>${typeLabel}</small>` : ''}
       </div>
-      ${sourceLink}
       <div class="research-update-content">
-        <p><span class="update-markers">${iconMarkup}${!timeline && roleBadge ? ' ' + roleBadge : ''}</span> <span>${updateMessage(update)}</span></p>
+        <p><span class="update-markers">${iconMarkup}${!timeline && roleBadge ? ' ' + roleBadge : ''}</span> <span>${updateMessage(update)}${sourceLink}</span></p>
         ${update.topic ? `<p class="research-update-topic">${esc(update.topic)}</p>` : ''}
       </div>
     </li>`;
