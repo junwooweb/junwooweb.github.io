@@ -121,7 +121,8 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .profile-research .profile-subheading, .profile-introduction .profile-subheading { margin-top: 0; }
 .profile-topics { flex: 1; display: grid; align-content: space-between; gap: .45rem; margin: 0; padding: 0; list-style: none; }
 .profile-topics li { padding: .65rem .85rem; border: 1px solid #e2e5e9; border-radius: 7px; background: #f7f8f9; color: #334155; font-size: .93rem; font-weight: 600; line-height: 1.4; }
-.topic-keywords { display: block; margin-top: .2rem; color: #526174; font-size: .8rem; font-weight: 400; }
+.topic-keywords { display: flex; flex-wrap: wrap; gap: .25rem .35rem; margin-top: .35rem; color: #475569; font-size: .8rem; font-weight: 500; }
+.topic-keywords > span { padding: .1rem .42rem; border: 1px solid #d5d9df; border-radius: 4px; background: #eff1f4; }
 .profile-photo-stage { width: 100%; aspect-ratio: 1; touch-action: pan-y; }
 .profile-img { display: block; width: 100%; height: auto; aspect-ratio: 1; }
 .portrait-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1rem; }
