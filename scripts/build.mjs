@@ -405,8 +405,7 @@ for (const p of papers) {
   <header class="project-header"><p class="eyebrow">${venueBadge(p)} <span class="paper-id">${p.id}</span>${statusBadge(p)}</p><h1>${esc(p.title)}</h1><p class="project-authors">${authors(p)}${contributionNote(p)}</p><p class="project-venue">${publicationDetails}</p>${researchKeywords(p)}<div class="project-actions">${paperButton(p, 'button paper-link')}${p.youtubeId ? '<a class="button video-link" href="#video">Watch video</a>' : ''}<a class="button citation-link" href="#citation">Citation details</a></div></header>
   <figure class="project-figure"><img src="${esc(imageUrl(p, base))}" alt="${esc(p.imageAlt)}" width="${p.imageWidth || 1100}" height="${p.imageHeight || 620}"><figcaption>${esc(p.imageAlt)}.</figcaption></figure>
   <div class="project-content"><section class="project-section"><h2>Abstract</h2><p>${esc(p.abstract)}</p></section>
-  <section class="project-section"><h2>Contributions</h2><p>${esc(p.contribution)}</p></section>${p.youtubeId ? `
-  ${projectVideo(p)}` : ''}
+  ${p.youtubeId ? projectVideo(p) : ''}
   <section class="project-section"><h2>Results &amp; Discussion</h2><p>${esc(p.results)}</p></section>
   <section class="project-section" id="citation"><div class="section-heading"><h2>Citation</h2><span class="muted">Publication details &amp; BibTeX</span></div>${bibliographicDetails(p)}${citation(p)}</section>
   ${related.length ? `<section class="project-section related"><h2>Related research</h2>${related.map(other => `<a href="../${other.slug}/"><span>${esc(venueLabel(other))}</span>${esc(other.title)}</a>`).join('')}</section>` : ''}

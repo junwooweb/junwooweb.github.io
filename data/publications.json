@@ -16,9 +16,9 @@
     "specialIssue": "Special issue of IEEE ISMAR 2026",
     "specialIssueSource": "https://interaction.postech.ac.kr/publications.html",
     "acceptanceRate": {
-      "value": "16%",
-      "scope": "ISMAR 2026 journal track",
-      "source": "https://interaction.postech.ac.kr/publications.html"
+      "value": "<= 15.9%",
+      "scope": "ISMAR 2026 TVCG special issue",
+      "source": "https://www.mt.inf.tu-dresden.de/en/news/2026/10/imld-ismar-2026-bari/"
     },
     "publisher": "IEEE",
     "publicationStage": "Early Access",
@@ -50,9 +50,9 @@
     "venue": "ACM Symposium on User Interface Software and Technology",
     "venueShort": "ACM UIST",
     "acceptanceRate": {
-      "value": "20.1%",
+      "value": "<= 19.9%",
       "scope": "UIST 2026 papers",
-      "source": "https://interaction.postech.ac.kr/publications.html"
+      "source": "https://uist.acm.org/2026/assets/files/UIST-2026-Slides.pdf#page=56"
     },
     "booktitle": "Proceedings of the 39th Annual ACM Symposium on User Interface Software and Technology",
     "publisher": "Association for Computing Machinery",
