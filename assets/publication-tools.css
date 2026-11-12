@@ -109,13 +109,27 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .profile-section {
   display: grid;
   grid-template-columns: clamp(14rem, 28vw, 26.25rem) minmax(0, 1fr);
-  grid-template-areas: "portrait identity" "portrait bio";
+  grid-template-areas: "portrait bio" "identity bio";
+  grid-template-rows: 1fr auto;
   align-items: start;
-  gap: 1.25rem clamp(1.5rem, 3vw, 3rem);
+  gap: .85rem clamp(1.5rem, 3vw, 3rem);
 }
 .profile-gallery { grid-area: portrait; width: 100%; }
-.profile-info { grid-area: identity; min-width: 0; }
-.profile-info h1 { line-height: 1.2; }
+.profile-info { grid-area: identity; min-width: 0; text-align: center; container-type: inline-size; }
+.profile-info h1 { margin: 0 0 .55rem; font-size: clamp(1.85rem, 10cqi, 2.75rem); line-height: 1.12; letter-spacing: -.045em; }
+.profile-info .btn-group { display: grid; grid-template-columns: repeat(4, auto); justify-content: center; gap: .4rem; }
+.profile-info .btn { justify-content: center; min-height: 2.65rem; gap: .3rem; padding: .4rem clamp(.45rem, 2cqi, .7rem); font-size: clamp(.82rem, 3.6cqi, .94rem); }
+.profile-info .btn img { width: 1.1rem; height: auto; }
+@container (max-width: 22rem) {
+  .profile-info .btn-group { grid-template-columns: repeat(2, minmax(0, 8.5rem)); }
+}
+@media (min-width: 960px) {
+  .profile-gallery { align-self: stretch; display: flex; flex-direction: column; }
+  .profile-gallery .profile-photo-stage { flex: 1; min-height: clamp(11rem, 18vw, 18rem); aspect-ratio: auto; container-type: size; display: grid; place-items: end center; }
+  .profile-photo-stage .profile-image-link { width: min(100cqi, 100cqb); }
+  .profile-introduction { align-self: stretch; display: flex; flex-direction: column; }
+  .profile-introduction .profile-group { margin-top: auto; }
+}
 .profile-introduction { grid-area: bio; min-width: 0; container-type: inline-size; text-align: left; }
 .profile-group h3 { margin: 0 0 .55rem; font-size: 1rem; line-height: 1.4; color: #334155; }
 .profile-education { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; row-gap: 1rem; }
@@ -289,13 +303,14 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .education-degree { font-size: 1rem; }
   .education-degree span { font-size: .875rem; }
 }
+@media (max-width: 959px) {
+  .profile-section { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; grid-template-areas: "portrait" "identity" "bio"; gap: .65rem; }
+  .profile-gallery { width: clamp(6rem, 23vw, 9rem); justify-self: center; }
+  .profile-info { margin-bottom: .5rem; }
+  .profile-info h1 { font-size: 2rem; }
+}
 @media (max-width: 768px) {
   .research-overview { grid-template-columns: minmax(0, 1fr); }
-  .profile-section { grid-template-columns: clamp(5rem, 22vw, 10rem) minmax(0, 1fr); grid-template-areas: "portrait identity" "bio bio"; gap: 1rem; }
-  .profile-info h1 { font-size: clamp(2.15rem, 7vw, 2.9rem); line-height: 1.15; }
-  .profile-info { text-align: left; }
-  .profile-info .btn-group { justify-content: flex-start; gap: .4rem; }
-  .profile-info .btn { padding: .35rem .65rem; }
   .profile-subheading { font-size: 1.35rem; }
   .education-current, .education-previous { padding: .9rem 1rem; }
   /* Match the original stacked mobile intent, overriding its column-specific rule. */
@@ -307,11 +322,6 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .nav-menu a { margin-left: 1rem; }
 }
 @media (max-width: 480px) {
-  .profile-section { grid-template-areas: "portrait identity" "links links" "bio bio"; align-items: center; }
-  .profile-info { display: contents; }
-  .profile-info h1 { grid-area: identity; margin: 0; }
-  .profile-info .btn-group { grid-area: links; }
-  .profile-info .btn { gap: .25rem; padding-inline: .5rem; }
   .profile-introduction { display: grid; grid-template-areas: "heading" "lead" "topics" "detail"; }
   .profile-introduction h2 { grid-area: heading; }
   .bio-lead { grid-area: lead; margin-bottom: .8rem; }
