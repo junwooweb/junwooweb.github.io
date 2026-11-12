@@ -109,7 +109,7 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .profile-section {
   display: grid;
   grid-template-columns: clamp(14rem, 28vw, 26.25rem) minmax(0, 1fr);
-  grid-template-areas: "portrait identity" "portrait bio" "education education";
+  grid-template-areas: "portrait identity" "portrait bio";
   align-items: start;
   gap: 1.25rem clamp(1.5rem, 3vw, 3rem);
 }
@@ -118,8 +118,8 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .profile-info h1 { line-height: 1.2; }
 .profile-introduction { grid-area: bio; min-width: 0; container-type: inline-size; text-align: left; }
 .profile-group h3 { margin: 0 0 .55rem; font-size: 1rem; line-height: 1.4; color: #334155; }
-.profile-education { grid-area: education; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(25rem, 100%), 1fr)); align-items: start; gap: .9rem 1.5rem; }
-.profile-education .profile-subheading { grid-column: 1 / -1; margin: 0; }
+.profile-education { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; row-gap: 1rem; }
+.profile-education .section-title { grid-column: 1 / -1; margin: 0; }
 .profile-introduction .profile-subheading { margin-top: 0; }
 .profile-topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin: 0; padding: 0; list-style: none; }
 @container (min-width: 49rem) {
@@ -285,23 +285,18 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .col-left { width: 100%; }
 }
 @media (min-width: 900px) and (max-width: 1024px) {
-  .profile-education { column-gap: 1rem; }
   .education-current, .education-previous { padding-inline: .75rem; }
   .education-degree { font-size: 1rem; }
   .education-degree span { font-size: .875rem; }
 }
-@media (max-width: 899px) {
-  .profile-education { grid-template-columns: minmax(0, 1fr); }
-}
 @media (max-width: 768px) {
   .research-overview { grid-template-columns: minmax(0, 1fr); }
-  .profile-section { grid-template-columns: clamp(5rem, 22vw, 10rem) minmax(0, 1fr); grid-template-areas: "portrait identity" "bio bio" "education education"; gap: 1rem; }
+  .profile-section { grid-template-columns: clamp(5rem, 22vw, 10rem) minmax(0, 1fr); grid-template-areas: "portrait identity" "bio bio"; gap: 1rem; }
   .profile-info h1 { font-size: clamp(2.15rem, 7vw, 2.9rem); line-height: 1.15; }
   .profile-info { text-align: left; }
   .profile-info .btn-group { justify-content: flex-start; gap: .4rem; }
   .profile-info .btn { padding: .35rem .65rem; }
   .profile-subheading { font-size: 1.35rem; }
-  .profile-education, .profile-introduction { text-align: left; }
   .education-current, .education-previous { padding: .9rem 1rem; }
   /* Match the original stacked mobile intent, overriding its column-specific rule. */
   .col-left .pub-item { flex-direction: column; align-items: flex-start; }
@@ -312,7 +307,7 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .nav-menu a { margin-left: 1rem; }
 }
 @media (max-width: 480px) {
-  .profile-section { grid-template-areas: "portrait identity" "links links" "bio bio" "education education"; align-items: center; }
+  .profile-section { grid-template-areas: "portrait identity" "links links" "bio bio"; align-items: center; }
   .profile-info { display: contents; }
   .profile-info h1 { grid-area: identity; margin: 0; }
   .profile-info .btn-group { grid-area: links; }
