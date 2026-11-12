@@ -115,14 +115,18 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 }
 .profile-gallery { grid-area: portrait; width: 100%; }
 .profile-info { grid-area: identity; min-width: 0; }
-.profile-description { grid-area: bio; min-width: 0; }
-.profile-description .keyword-box { margin-bottom: 0; }
-.profile-details { grid-area: details; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(1.25rem, 3vw, 3rem); }
-.profile-research { text-align: left; }
-.profile-details .profile-subheading, .profile-introduction .profile-subheading { margin-top: 0; }
+.profile-introduction { grid-area: bio; min-width: 0; container-type: inline-size; text-align: left; }
+.profile-introduction .keyword-box { margin-bottom: 0; justify-content: start; }
+.profile-research-layout { display: grid; align-items: start; gap: 1rem; }
+@container (min-width: 37rem) {
+  .profile-research-layout { grid-template-columns: minmax(0, 1fr) clamp(16rem, 31cqi, 19rem); }
+}
+.profile-education { grid-area: details; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: .9rem 1.5rem; }
+.profile-education .profile-subheading { grid-column: 1 / -1; margin: 0; }
+.profile-introduction .profile-subheading { margin-top: 0; }
 .profile-topics { display: grid; gap: .45rem; margin: 0; padding: 0; list-style: none; }
-.profile-topics li { padding: .65rem .85rem; border: 1px solid #e2e5e9; border-radius: 7px; background: #f7f8f9; color: #334155; font-size: .93rem; font-weight: 600; line-height: 1.4; }
-.topic-keywords { display: flex; flex-wrap: wrap; gap: .25rem .35rem; margin-top: .35rem; color: #475569; font-size: .8rem; font-weight: 500; }
+.profile-topics li { padding: .45rem .65rem; border: 1px solid #e2e5e9; border-radius: 7px; background: #f7f8f9; color: #334155; font-size: .875rem; font-weight: 600; line-height: 1.4; }
+.topic-keywords { display: flex; flex-wrap: wrap; gap: .2rem .3rem; margin-top: .25rem; color: #475569; font-size: .75rem; font-weight: 500; }
 .topic-keywords > span { padding: .1rem .42rem; border: 1px solid #d5d9df; border-radius: 4px; background: #eff1f4; }
 .profile-photo-stage { width: 100%; aspect-ratio: 1; touch-action: pan-y; }
 .profile-img { display: block; width: 100%; height: auto; aspect-ratio: 1; }
@@ -142,7 +146,7 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .education-lab { display: flex; flex-wrap: wrap; gap: .2rem .5rem; margin: .4rem 0 0; font-size: .88rem; color: #475569; }
 .education-lab a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 .education-lab .advisor-link { color: #475569; }
-.education-previous { margin-top: .85rem; border-color: #e2e8f0; border-left-color: #cbd5e1; background: #f8fafc; color: #64748b; }
+.education-previous { border-color: #e2e8f0; border-left-color: #cbd5e1; background: #f8fafc; color: #64748b; }
 .graduated-label { color: #64748b; font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
 .education-previous .education-degree { color: #475569; font-size: 1.02rem; font-weight: 700; }
 .education-previous .education-institution { font-size: .88rem; }
@@ -263,14 +267,13 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .col-left { width: 100%; }
 }
 @media (min-width: 900px) and (max-width: 1024px) {
-  .profile-details { gap: 1rem; }
-  .profile-details .education-current, .profile-details .education-previous { padding-inline: .75rem; }
-  .profile-details .education-degree { font-size: 1rem; }
-  .profile-details .education-degree span, .profile-topics li { font-size: .875rem; }
-  .profile-topics li { padding-inline: .65rem; }
+  .profile-education { column-gap: 1rem; }
+  .education-current, .education-previous { padding-inline: .75rem; }
+  .education-degree { font-size: 1rem; }
+  .education-degree span { font-size: .875rem; }
 }
 @media (max-width: 899px) {
-  .profile-details { grid-template-columns: minmax(0, 1fr); }
+  .profile-education { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 768px) {
   .research-overview { grid-template-columns: minmax(0, 1fr); }
