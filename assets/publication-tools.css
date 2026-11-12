@@ -116,16 +116,20 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .profile-gallery { grid-area: portrait; width: 100%; }
 .profile-info { grid-area: identity; min-width: 0; }
 .profile-introduction { grid-area: bio; min-width: 0; container-type: inline-size; text-align: left; }
-.profile-introduction .keyword-box { margin: 1rem 0 0; justify-content: start; }
-.profile-research-layout .profile-bio { margin: 0; }
-.profile-research-layout { display: grid; align-items: start; gap: 1rem; }
-@container (min-width: 37rem) {
-  .profile-research-layout { grid-template-columns: minmax(0, 1fr) clamp(16rem, 31cqi, 19rem); }
-}
+.profile-group { display: grid; grid-template-columns: 7rem minmax(0, 1fr); align-items: start; gap: .5rem .75rem; }
+.profile-group + .profile-group { margin-top: .85rem; }
+.profile-group h3 { margin: .25rem 0 0; font-size: .9rem; line-height: 1.4; color: #334155; }
+.profile-group .keyword-box { margin: 0; justify-content: start; }
 .profile-education { grid-area: details; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: .9rem 1.5rem; }
 .profile-education .profile-subheading { grid-column: 1 / -1; margin: 0; }
 .profile-introduction .profile-subheading { margin-top: 0; }
-.profile-topics { display: grid; gap: .45rem; margin: 0; padding: 0; list-style: none; }
+.profile-topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem; margin: 0; padding: 0; list-style: none; overflow-wrap: anywhere; }
+@container (min-width: 54rem) {
+  .profile-topics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@container (max-width: 34rem) {
+  .profile-group { grid-template-columns: minmax(0, 1fr); }
+}
 .profile-topics li { padding: .45rem .65rem; border: 1px solid #e2e5e9; border-radius: 7px; background: #f7f8f9; color: #334155; font-size: .875rem; font-weight: 600; line-height: 1.4; }
 .topic-keywords { display: flex; flex-wrap: wrap; gap: .2rem .3rem; margin-top: .25rem; color: #475569; font-size: .75rem; font-weight: 500; }
 .topic-keywords > span { padding: .1rem .42rem; border: 1px solid #d5d9df; border-radius: 4px; background: #eff1f4; }
