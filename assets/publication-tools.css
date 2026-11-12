@@ -105,37 +105,27 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .skip-link { position: absolute; left: 1rem; top: -5rem; z-index: 1000; background: #fff; padding: .7rem 1rem; border: 1px solid var(--accent); }
 .skip-link:focus { top: .7rem; }
 .profile-image-link { display: block; flex-shrink: 0; line-height: 0; border-radius: 50%; }
-.home-page { margin-block-start: 0; }
-.profile-section { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
-.profile-hero {
-  position: relative;
+.home-page { margin-block-start: clamp(1.25rem, 3vw, 3rem); }
+.profile-section {
   display: grid;
-  grid-template-columns: clamp(300px, 30vw, 420px) minmax(0, max-content);
-  place-content: center;
-  align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
-  padding-block: 4.5rem;
-  box-sizing: border-box;
+  grid-template-columns: clamp(14rem, 28vw, 26.25rem) minmax(0, 1fr);
+  grid-template-areas: "portrait identity" "portrait bio" "education education";
+  align-items: start;
+  gap: 1.25rem clamp(1.5rem, 3vw, 3rem);
 }
-@media screen {
-  .profile-hero { min-height: calc(100vh - 3.5rem); min-height: calc(100svh - 3.5rem); }
-}
-.profile-gallery { width: 100%; }
-.profile-info { min-width: 0; }
-.profile-next { position: absolute; bottom: .75rem; left: 50%; translate: -50% 0; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #d5dee8; border-radius: 50%; color: #44596d; background: #fff; }
-.profile-next::after { content: ''; width: .6rem; height: .6rem; border: solid currentColor; border-width: 0 2px 2px 0; transform: translateY(-2px) rotate(45deg); }
-.profile-next:hover { background: #eff4f8; }
-@media print { .profile-next { display: none; } }
-.profile-introduction { min-width: 0; container-type: inline-size; text-align: left; }
+.profile-gallery { grid-area: portrait; width: 100%; }
+.profile-info { grid-area: identity; min-width: 0; }
+.profile-info h1 { line-height: 1.2; }
+.profile-introduction { grid-area: bio; min-width: 0; container-type: inline-size; text-align: left; }
 .profile-group h3 { margin: 0 0 .55rem; font-size: 1rem; line-height: 1.4; color: #334155; }
-.profile-education { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(25rem, 100%), 1fr)); align-items: start; gap: .9rem 1.5rem; }
+.profile-education { grid-area: education; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(25rem, 100%), 1fr)); align-items: start; gap: .9rem 1.5rem; }
 .profile-education .profile-subheading { grid-column: 1 / -1; margin: 0; }
 .profile-introduction .profile-subheading { margin-top: 0; }
 .profile-topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin: 0; padding: 0; list-style: none; }
-@container (min-width: 54rem) {
+@container (min-width: 49rem) {
   .profile-topics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
-@container (max-width: 24rem) {
+@container (max-width: 15rem) {
   .profile-topics { grid-template-columns: minmax(0, 1fr); }
 }
 .profile-topics > li {
@@ -179,7 +169,8 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .education-previous .education-degree { color: #475569; font-size: 1.02rem; font-weight: 700; }
 .education-previous .education-institution { font-size: .88rem; }
 .education-previous .education-period { background: #e2e8f0; color: #475569; font-size: .75rem; }
-.profile-bio { margin: 0 0 1.2rem; font-size: 1rem; }
+.profile-bio { margin: 0 0 1rem; font-size: 1rem; line-height: 1.6; }
+.bio-lead { margin-bottom: .4rem; }
 .profile-bio strong { color: #1e3a5f; font-weight: 700; }
 .pub-main { width: 100%; }
 .research-kw { font-size: .82rem; color: #1d4ed8; }
@@ -304,10 +295,11 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
 }
 @media (max-width: 768px) {
   .research-overview { grid-template-columns: minmax(0, 1fr); }
-  .profile-hero { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding-block: 1.5rem 4.5rem; text-align: center; }
+  .profile-section { grid-template-columns: clamp(5rem, 22vw, 10rem) minmax(0, 1fr); grid-template-areas: "portrait identity" "bio bio" "education education"; gap: 1rem; }
   .profile-info h1 { font-size: clamp(2.15rem, 7vw, 2.9rem); line-height: 1.15; }
-  .profile-gallery { width: min(360px, 100%, 45svh); margin-inline: auto; }
-  .profile-hero .btn-group { justify-content: center; }
+  .profile-info { text-align: left; }
+  .profile-info .btn-group { justify-content: flex-start; gap: .4rem; }
+  .profile-info .btn { padding: .35rem .65rem; }
   .profile-subheading { font-size: 1.35rem; }
   .profile-education, .profile-introduction { text-align: left; }
   .education-current, .education-previous { padding: .9rem 1rem; }
@@ -320,6 +312,17 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .nav-menu a { margin-left: 1rem; }
 }
 @media (max-width: 480px) {
+  .profile-section { grid-template-areas: "portrait identity" "links links" "bio bio" "education education"; align-items: center; }
+  .profile-info { display: contents; }
+  .profile-info h1 { grid-area: identity; margin: 0; }
+  .profile-info .btn-group { grid-area: links; }
+  .profile-info .btn { gap: .25rem; padding-inline: .5rem; }
+  .profile-introduction { display: grid; grid-template-areas: "heading" "lead" "topics" "detail"; }
+  .profile-introduction h2 { grid-area: heading; }
+  .bio-lead { grid-area: lead; margin-bottom: .8rem; }
+  .profile-group { grid-area: topics; }
+  .bio-detail { grid-area: detail; margin: 1rem 0 0; }
+  .profile-topics > li { padding: .55rem; }
   .research-updates-scroll { max-height: 23rem; }
   .research-update { grid-template-columns: 5rem minmax(0, 1fr); }
   .research-update-content { padding: .75rem .7rem; }
@@ -341,8 +344,8 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .reveal-pending:not(:target, :focus-within, :has(:target)) { opacity: 0; }
 }
 @media screen and (prefers-reduced-motion: no-preference) {
-  .reveal-pending:not(:target, :focus-within, :has(:target)) { translate: 0 .75rem; }
-  .reveal-visible:not(:target, :focus-within, :has(:target)) { transition: opacity 320ms ease-out, translate 320ms ease-out; }
+  .reveal-pending:not(:target, :focus-within, :has(:target)) { translate: 0 28px; }
+  .reveal-visible:not(:target, :focus-within, :has(:target)) { transition: opacity .6s cubic-bezier(.21,.47,.32,.98), translate .6s cubic-bezier(.21,.47,.32,.98); }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }

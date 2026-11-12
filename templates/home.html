@@ -33,27 +33,58 @@
 
     <!-- Profile -->
     <section class="profile-section" id="about" style="margin-bottom:2.5rem;">
-        <div class="profile-hero">
-            {{PROFILE_GALLERY}}
-            <div class="profile-info">
-                <h1>Junwoo Kim</h1>
-                <div class="btn-group">
-                    <a href="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/cv.pdf?v=77ddeb60c7ee" target="_blank" rel="noopener noreferrer" class="btn" style="background:#b91c1c; color:#fff; border-color:#b91c1c;">
-                        <span class="material-symbols-outlined">picture_as_pdf</span> CV
-                    </a>
-                    <a href="{{SCHOLAR_PROFILE}}" target="_blank" rel="noopener noreferrer" class="btn" style="background:#1a73e8; color:#fff; border-color:#1a73e8;">
-                        <span class="material-symbols-outlined">school</span> Scholar
-                    </a>
-                    <a href="https://www.linkedin.com/in/%EC%A4%80%EC%9A%B0-%EA%B9%80-528b6b386/" target="_blank" rel="noopener noreferrer" class="btn" style="background:#0a66c2; color:#fff; border-color:#0a66c2;">
-                        <img src="assets/images/linkedin-in-white.png" alt="" width="20" height="19"> LinkedIn
-                    </a>
-                    <a href="mailto:kjw8515@postech.ac.kr" class="btn" style="background:#16a34a; color:#fff; border-color:#16a34a;">
-                        <span class="material-symbols-outlined">mail</span> Email
-                    </a>
-                </div>
+        {{PROFILE_GALLERY}}
+
+        <div class="profile-info">
+            <h1>Junwoo Kim</h1>
+            <div class="btn-group">
+                <a href="https://github.com/junwooweb/junwooweb.github.io/releases/download/images/cv.pdf?v=77ddeb60c7ee" target="_blank" rel="noopener noreferrer" class="btn" style="background:#b91c1c; color:#fff; border-color:#b91c1c;">
+                    <span class="material-symbols-outlined">picture_as_pdf</span> CV
+                </a>
+                <a href="{{SCHOLAR_PROFILE}}" target="_blank" rel="noopener noreferrer" class="btn" style="background:#1a73e8; color:#fff; border-color:#1a73e8;">
+                    <span class="material-symbols-outlined">school</span> Scholar
+                </a>
+                <a href="https://www.linkedin.com/in/%EC%A4%80%EC%9A%B0-%EA%B9%80-528b6b386/" target="_blank" rel="noopener noreferrer" class="btn" style="background:#0a66c2; color:#fff; border-color:#0a66c2;">
+                    <img src="assets/images/linkedin-in-white.png" alt="" width="20" height="19"> LinkedIn
+                </a>
+                <a href="mailto:kjw8515@postech.ac.kr" class="btn" style="background:#16a34a; color:#fff; border-color:#16a34a;">
+                    <span class="material-symbols-outlined">mail</span> Email
+                </a>
             </div>
-            <a class="profile-next" href="#education" aria-label="Scroll to Education"></a>
         </div>
+
+        <section class="profile-introduction" aria-labelledby="profile-heading">
+            <h2 class="profile-subheading" id="profile-heading"><span class="material-symbols-outlined" aria-hidden="true">person</span> About Me</h2>
+            <p class="profile-bio bio-lead">
+                I design and build <strong>haptic systems and interactive applications</strong> for practical use.
+            </p>
+            <p class="profile-bio bio-detail">
+                My research in human–computer interaction integrates <strong>sensing, signal processing, and multimodal AI</strong> to connect physical measurements and audiovisual content with haptic feedback.
+                I develop pipelines that span <strong>haptic rendering, real-time system implementation, application integration, and validation</strong> through physical measurements and user studies.
+                Alongside this systems research, I investigate <strong>haptic perception</strong> to understand how people interpret tactile cues and to guide the design of effective, usable haptic experiences.
+            </p>
+            <section class="profile-group" id="research" aria-labelledby="topic-label">
+                <h3 id="topic-label">Research Topic</h3>
+                <ul class="profile-topics">
+                    <li class="topic-generation">
+                        <h4>Haptic Generation Model</h4>
+                        <span class="topic-keywords"><span>HCI</span> <span>AI</span> <span>System</span> <span>Haptic Generation</span></span>
+                    </li>
+                    <li class="topic-rendering">
+                        <h4>Haptic<br>Perception/<wbr>Rendering</h4>
+                        <span class="topic-keywords"><span>HCI</span> <span>XR/VR/AR</span> <span>Haptic Illusion Effect</span> <span>Haptic Feedback</span></span>
+                    </li>
+                    <li class="topic-devices">
+                        <h4>Interactive Applications using Devices</h4>
+                        <span class="topic-keywords"><span>HCI</span> <span>Sensing</span> <span>Signal Processing</span></span>
+                    </li>
+                    <li class="topic-contact">
+                        <h4>Finger Contact Dynamics and Perception</h4>
+                        <span class="topic-keywords"><span>Haptic Perception</span> <span>Sensing</span> <span>3D DIC</span></span>
+                    </li>
+                </ul>
+            </section>
+        </section>
 
         <section class="profile-education" id="education" aria-labelledby="education-heading" data-reveal>
             <h2 class="profile-subheading" id="education-heading"><span class="material-symbols-outlined" aria-hidden="true">school</span> Education</h2>
@@ -71,37 +102,6 @@
                 <h3 class="education-degree">B.S. in Electronic Engineering</h3>
                 <p class="education-institution">Pusan National University (<strong>PNU</strong>), South Korea</p>
             </div>
-        </section>
-
-        <section class="profile-introduction" aria-labelledby="profile-heading">
-            <h2 class="profile-subheading" id="profile-heading" data-reveal><span class="material-symbols-outlined" aria-hidden="true">person</span> About Me</h2>
-            <p class="profile-bio" data-reveal>
-                I design and build <strong>haptic systems and interactive applications</strong> for practical use.
-                My research in human–computer interaction integrates <strong>sensing, signal processing, and multimodal AI</strong> to connect physical measurements and audiovisual content with haptic feedback.
-                I develop pipelines that span <strong>haptic rendering, real-time system implementation, application integration, and validation</strong> through physical measurements and user studies.
-                Alongside this systems research, I investigate <strong>haptic perception</strong> to understand how people interpret tactile cues and to guide the design of effective, usable haptic experiences.
-            </p>
-            <section class="profile-group" id="research" aria-labelledby="topic-label" data-reveal>
-                <h3 id="topic-label">Research Topic</h3>
-                <ul class="profile-topics">
-                    <li class="topic-generation">
-                        <h4>Haptic Generation Model</h4>
-                        <span class="topic-keywords"><span>HCI</span> <span>AI</span> <span>System</span> <span>Haptic Generation</span></span>
-                    </li>
-                    <li class="topic-rendering">
-                        <h4>Haptic<br>Perception/Rendering</h4>
-                        <span class="topic-keywords"><span>HCI</span> <span>XR/VR/AR</span> <span>Haptic Illusion Effect</span> <span>Haptic Feedback</span></span>
-                    </li>
-                    <li class="topic-devices">
-                        <h4>Interactive Applications using Devices</h4>
-                        <span class="topic-keywords"><span>HCI</span> <span>Sensing</span> <span>Signal Processing</span></span>
-                    </li>
-                    <li class="topic-contact">
-                        <h4>Finger Contact Dynamics and Perception</h4>
-                        <span class="topic-keywords"><span>Haptic Perception</span> <span>Sensing</span> <span>3D DIC</span></span>
-                    </li>
-                </ul>
-            </section>
         </section>
     </section>
 

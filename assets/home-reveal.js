@@ -8,7 +8,7 @@ if ('IntersectionObserver' in window) {
       entry.target.classList.replace('reveal-pending', 'reveal-visible');
       observer.unobserve(entry.target);
     }
-  }, { rootMargin: '0px 0px -32px 0px' });
+  }, { rootMargin: '0px 0px -80px 0px' });
 
   items.forEach(item => item.classList.add('reveal-pending'));
 
