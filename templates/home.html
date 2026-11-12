@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <section class="profile-education" id="education" aria-labelledby="education-heading">
+        <section class="profile-education" id="education" aria-labelledby="education-heading" data-reveal>
             <h2 class="profile-subheading" id="education-heading"><span class="material-symbols-outlined" aria-hidden="true">school</span> Education</h2>
             <div class="education-current">
                 <div class="education-meta"><span class="current-label">Current</span><span class="education-period">2021.09~2028.02(Expected)</span></div>
@@ -72,14 +72,14 @@
         </section>
 
         <section class="profile-introduction" aria-labelledby="profile-heading">
-            <h2 class="profile-subheading" id="profile-heading"><span class="material-symbols-outlined" aria-hidden="true">person</span> About Me</h2>
-            <p class="profile-bio">
+            <h2 class="profile-subheading" id="profile-heading" data-reveal><span class="material-symbols-outlined" aria-hidden="true">person</span> About Me</h2>
+            <p class="profile-bio" data-reveal>
                 I design and build <strong>haptic systems and interactive applications</strong> for practical use.
                 My research in human–computer interaction integrates <strong>sensing, signal processing, and multimodal AI</strong> to connect physical measurements and audiovisual content with haptic feedback.
                 I develop pipelines that span <strong>haptic rendering, real-time system implementation, application integration, and validation</strong> through physical measurements and user studies.
                 Alongside this systems research, I investigate <strong>haptic perception</strong> to understand how people interpret tactile cues and to guide the design of effective, usable haptic experiences.
             </p>
-            <section class="profile-group" id="research" aria-labelledby="topic-label">
+            <section class="profile-group" id="research" aria-labelledby="topic-label" data-reveal>
                 <h3 id="topic-label">Research Topic</h3>
                 <ul class="profile-topics">
                     <li class="topic-generation">
@@ -104,7 +104,7 @@
     </section>
 
     <div class="research-overview">
-    <section class="research-output" aria-labelledby="research-output-heading">
+    <section class="research-output" aria-labelledby="research-output-heading" data-reveal>
     <h2 class="section-title" id="research-output-heading"><span class="material-symbols-outlined" aria-hidden="true">bar_chart</span> Research Output</h2>
 
     <!-- Stats -->
@@ -199,7 +199,7 @@
     -->
 
     <!-- Ongoing Work -->
-    <section class="research-updates ongoing-work" aria-labelledby="ongoing-work-heading">
+    <section class="research-updates ongoing-work" aria-labelledby="ongoing-work-heading" data-reveal>
         <div class="research-updates-header">
             <h2 class="section-title" id="ongoing-work-heading"><span class="material-symbols-outlined" aria-hidden="true">pending_actions</span> Ongoing Work</h2>
             <span class="research-updates-count">{{SUBMITTED_COUNT}} submissions</span>
@@ -220,7 +220,7 @@
     </div>
 
     <!-- Patents -->
-    <section class="pub-section patents-section" id="patents">
+    <section class="pub-section patents-section" id="patents" data-reveal>
         <h2 class="section-title"><span class="material-symbols-outlined" aria-hidden="true">lightbulb</span> Patents</h2>
 
         <article class="pub-item patent-card patent-pending" id="p2">
@@ -266,6 +266,7 @@
         {{PUBLICATIONS}}
     </section>
 
+    <script src="assets/home-reveal.js" defer></script>
 </main>
 
 <footer style="text-align:center; padding: 3rem 0; color:#94a3b8; font-size:0.83rem; border-top:1px solid #f1f5f9; margin-top:4rem; background:#fafbfd;">

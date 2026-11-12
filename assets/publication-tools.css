@@ -325,6 +325,10 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
   .pub-keywords { flex-basis: 100%; }
   .pub-title { font-size: 1.2rem; }
 }
+@media screen and (prefers-reduced-motion: no-preference) {
+  .reveal-pending:not(:target, :focus-within, :has(:target)) { opacity: 0; translate: 0 .65rem; }
+  .reveal-visible:not(:target, :focus-within, :has(:target)) { transition: opacity 320ms ease-out, translate 320ms ease-out; }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
