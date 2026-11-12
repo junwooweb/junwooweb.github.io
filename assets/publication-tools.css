@@ -108,7 +108,7 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .profile-section {
   display: grid;
   grid-template-columns: clamp(300px, 30vw, 420px) minmax(0, 1fr);
-  grid-template-areas: "portrait identity" "portrait bio" "details details";
+  grid-template-areas: "portrait identity" "portrait details" "bio bio";
   grid-template-rows: auto 1fr auto;
   align-items: start;
   row-gap: 1.5rem;
@@ -117,7 +117,7 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .profile-info { grid-area: identity; min-width: 0; }
 .profile-introduction { grid-area: bio; min-width: 0; container-type: inline-size; text-align: left; }
 .profile-group h3 { margin: 0 0 .55rem; font-size: 1rem; line-height: 1.4; color: #334155; }
-.profile-education { grid-area: details; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: .9rem 1.5rem; }
+.profile-education { grid-area: details; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(25rem, 100%), 1fr)); align-items: start; gap: .9rem 1.5rem; }
 .profile-education .profile-subheading { grid-column: 1 / -1; margin: 0; }
 .profile-introduction .profile-subheading { margin-top: 0; }
 .profile-topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin: 0; padding: 0; list-style: none; }
@@ -294,7 +294,7 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
 }
 @media (max-width: 768px) {
   .research-overview { grid-template-columns: minmax(0, 1fr); }
-  .profile-section { grid-template-columns: minmax(0, 1fr); grid-template-areas: "identity" "portrait" "bio" "details"; grid-template-rows: auto; }
+  .profile-section { grid-template-columns: minmax(0, 1fr); grid-template-areas: "portrait" "identity" "details" "bio"; grid-template-rows: auto; }
   .profile-gallery { width: min(360px, 100%); margin-inline: auto; }
   .profile-subheading { font-size: 1.35rem; }
   .profile-education, .profile-introduction { text-align: left; }
