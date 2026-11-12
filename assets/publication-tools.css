@@ -69,12 +69,12 @@ html { scroll-padding-top: 5rem; }
 .news-paper:hover, .news-paper:focus-visible { color: var(--update-ink); text-decoration-thickness: 2px; }
 #news .research-updates-hint { margin-left: auto; }
 #news .research-updates-list { gap: 0; }
-#news .research-update { grid-template-columns: 8rem 6rem 3rem minmax(0, 1fr); align-items: center; gap: 1rem; min-height: 0; padding: .85rem 0; border: 0; border-bottom: 1px solid var(--border-color); border-radius: 0; background: transparent; }
-#news .research-update-date { margin: 0; font-size: .85rem; font-variant-numeric: tabular-nums; }
-.news-source { display: inline-flex; align-items: center; gap: .2rem; grid-column: 3; justify-self: start; color: #0675a8; font-size: .82rem; font-weight: 750; text-decoration: underline; text-decoration-thickness: .1em; text-underline-offset: .18em; }
-.news-source .material-symbols-outlined { font-size: .9rem; }
+#news .research-update { grid-template-columns: 6rem 6rem 1.75rem minmax(0, 1fr); align-items: center; gap: 1rem; min-height: 0; padding: .85rem 0; border: 0; border-bottom: 1px solid var(--border-color); border-radius: 0; background: transparent; }
+#news .research-update-date { margin: 0; font-size: .85rem; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.news-source { display: inline-grid; place-items: center; grid-column: 3; justify-self: start; width: 1.75rem; height: 1.75rem; border-radius: 4px; color: #0675a8; text-decoration: none; }
+.news-source .material-symbols-outlined { font-size: 1.1rem; }
 #news .news-venue { text-decoration: none; }
-.news-source:hover, .news-source:focus-visible { text-decoration-thickness: .15em; }
+.news-source:hover, .news-source:focus-visible { background: #eaf4fa; }
 #news .research-update-category { flex-direction: row; align-items: center; justify-self: start; gap: .3rem; padding: 0; border: 0; background: transparent; }
 #news .research-update-category > span:first-child { padding: .1rem .55rem; border-radius: 4px; background: var(--update-bg); font-size: .78rem; font-weight: 700; }
 #news .research-update-category small { padding-left: .55rem; color: #64748b; font-weight: 400; }

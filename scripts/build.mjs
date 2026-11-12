@@ -286,12 +286,14 @@ function updateMessage(update) {
 }
 
 function researchUpdateList(updates, { timeline = false } = {}) {
+  const monthYear = new Intl.DateTimeFormat('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
   return `<ol class="research-updates-list">${updates.map(update => {
-    const period = update.date
-      ? `<time datetime="${esc(update.date)}"${update.endDate ? ` data-end-date="${esc(update.endDate)}"` : ''}>${esc(update.label || update.date)}</time>`
-      : esc(update.dateNote || '');
-    const date = period ? `<span class="research-update-date">${period}</span>` : '';
-    const sourceLink = timeline && update.dateLink ? external(update.dateLink, '<span class="material-symbols-outlined" aria-hidden="true">link</span>Link', 'news-source') : '';
+    const date = timeline && update.date
+      ? `<time class="research-update-date" datetime="${esc(update.date)}">${monthYear.format(new Date(update.date)).toUpperCase()}</time>`
+      : '';
+    const sourceLink = timeline && update.category === 'Paper' && update.dateLink
+      ? `<a class="news-source" href="${esc(update.dateLink)}" target="_blank" rel="noopener noreferrer" aria-label="Open paper: ${esc(update.title)}"><span class="material-symbols-outlined" aria-hidden="true">link</span></a>`
+      : '';
     const type = update.type || update.category.toLowerCase();
     const icon = { Paper: '📄', Award: '🏆', Patent: '💡', 'Travel Support': '✈️' }[update.category];
     const iconMarkup = `<span aria-hidden="true">${icon}</span>`;
@@ -300,7 +302,7 @@ function researchUpdateList(updates, { timeline = false } = {}) {
       : '';
     const typeLabel = { conference: 'Conference', journal: 'Journal', award: 'Recognition', patent: 'Application' }[type];
     return `<li class="research-update" data-update-id="${esc(update.id)}" data-update-category="${update.category.toLowerCase()}" data-update-type="${type}" data-first-author="${Boolean(update.firstAuthor)}">
-      ${timeline ? date : ''}
+      ${date}
       <div class="research-update-category">
         <span>${timeline && update.type === 'travel' ? 'Support' : update.category}</span>${timeline ? roleBadge : ''}${typeLabel && !timeline ? `<small>${typeLabel}</small>` : ''}
       </div>
@@ -329,7 +331,7 @@ function researchTimeline() {
     ...entry, category: 'Travel Support', type: 'travel',
     summary: `I received BK21 travel support${entry.amountKRW == null ? '' : ` (KRW ${entry.amountKRW.toLocaleString('en-US')})`} from POSTECH to attend an international conference abroad.`
   }));
-  const updates = [...travel, ...papers.map(paperUpdate), ...researchUpdates.awards.map(a => ({ ...a, category: 'Award', dateLink: researchUpdates.venueLinks[a.venue] })), ...researchUpdates.patents.map(p => ({ ...p, category: 'Patent', dateLink: p.source }))]
+  const updates = [...travel, ...papers.map(paperUpdate), ...researchUpdates.awards.map(a => ({ ...a, category: 'Award' })), ...researchUpdates.patents.map(p => ({ ...p, category: 'Patent' }))]
     // ISO dates sort newest first, with partial dates after dated entries in the same period.
     .sort((a, b) => String(b.date || b.year || '').localeCompare(String(a.date || a.year || '')));
   return researchUpdateList(updates, { timeline: true });
