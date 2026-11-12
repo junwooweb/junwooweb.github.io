@@ -108,18 +108,18 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .profile-section {
   display: grid;
   grid-template-columns: clamp(300px, 30vw, 420px) minmax(0, 1fr);
-  grid-template-areas: "portrait education" "research bio";
+  grid-template-areas: "sidebar identity" "sidebar bio";
+  grid-template-rows: auto 1fr;
   align-items: start;
   row-gap: 1.5rem;
 }
-.profile-gallery { grid-area: portrait; width: 100%; }
-.profile-info { grid-area: education; }
+.profile-sidebar { grid-area: sidebar; min-width: 0; }
+.profile-gallery { width: 100%; }
+.profile-info { grid-area: identity; min-width: 0; }
 .profile-description { grid-area: bio; min-width: 0; }
-.profile-description, .profile-research { align-self: stretch; display: flex; flex-direction: column; }
-.profile-description .btn-group { margin-top: auto; }
-.profile-research { grid-area: research; text-align: left; }
+.profile-research { text-align: left; }
 .profile-research .profile-subheading, .profile-introduction .profile-subheading { margin-top: 0; }
-.profile-topics { flex: 1; display: grid; align-content: space-between; gap: .45rem; margin: 0; padding: 0; list-style: none; }
+.profile-topics { display: grid; gap: .45rem; margin: 0; padding: 0; list-style: none; }
 .profile-topics li { padding: .65rem .85rem; border: 1px solid #e2e5e9; border-radius: 7px; background: #f7f8f9; color: #334155; font-size: .93rem; font-weight: 600; line-height: 1.4; }
 .topic-keywords { display: flex; flex-wrap: wrap; gap: .25rem .35rem; margin-top: .35rem; color: #475569; font-size: .8rem; font-weight: 500; }
 .topic-keywords > span { padding: .1rem .42rem; border: 1px solid #d5d9df; border-radius: 4px; background: #eff1f4; }
@@ -129,7 +129,6 @@ a.research-update-date:hover { color: #334155; text-decoration: underline; }
 .portrait-controls button { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 1px solid #bfdbfe; border-radius: 50%; background: #eff6ff; color: #1d4ed8; font: 600 1.7rem/1 'Inter', sans-serif; cursor: pointer; }
 .portrait-controls button:hover { background: #dbeafe; border-color: var(--accent); }
 .portrait-count { min-width: 3rem; color: #475569; text-align: center; font-size: .9rem; font-weight: 600; font-variant-numeric: tabular-nums; }
-.profile-info { min-width: 0; }
 .profile-subheading { display: flex; align-items: center; gap: .5rem; margin: 1.6rem 0 .9rem; color: #1e293b; font-size: 1.5rem; font-weight: 800; line-height: 1.35; letter-spacing: -.02em; }
 .education-current, .education-previous { padding: 1rem 1.2rem; border: 1px solid #dbeafe; border-left: 4px solid var(--accent); border-radius: 10px; background: #f5f9ff; }
 .education-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .8rem; margin-bottom: .4rem; }
@@ -264,8 +263,8 @@ body:has(.portrait-dialog[open]) { overflow: hidden; }
 }
 @media (max-width: 768px) {
   .research-overview { grid-template-columns: minmax(0, 1fr); }
-  .profile-section { grid-template-columns: minmax(0, 1fr); grid-template-areas: "portrait" "research" "education" "bio"; }
-  .profile-gallery, .profile-research { width: min(360px, 100%); justify-self: center; }
+  .profile-section { grid-template-columns: minmax(0, 1fr); grid-template-areas: "identity" "sidebar" "bio"; grid-template-rows: auto; }
+  .profile-gallery { width: min(360px, 100%); margin-inline: auto; }
   .profile-subheading { font-size: 1.35rem; }
   .profile-education, .profile-introduction { text-align: left; }
   .education-current, .education-previous { padding: .9rem 1rem; }
